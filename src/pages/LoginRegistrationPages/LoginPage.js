@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
-import InputComponent from "../../components/auth/InputComponent";
+import InputComponent from "../../components/form/InputComponent";
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
 import {UserPanel} from "../../components/userPanel/UserPanel";

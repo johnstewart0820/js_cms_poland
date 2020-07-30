@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import PasswordStrengthMeter from "../../components/auth/PasswordStrengthMeter";
 import * as axios from "axios";
-import InputComponent from "../../components/auth/InputComponent";
+import InputComponent from "../../components/form/InputComponent";
 
 export default class RegistrationPage extends Component {
 
