@@ -1,18 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import {useHistory} from 'react-router-dom';
 import "../../styles/auth/auth-panel.scss";
 import ButtonLink from "../buttons/ButtonLink";
 
-const AuthPanel = (props) => (
-	<div className="auth-panel">
-		<p> Twoje konto </p>
+const AuthPanel = (props) => {
+	const history = useHistory();
 
-		<ButtonLink href="#" extra_classes="green" > <span> Zaloguj się </span> </ButtonLink> 
-		<ButtonLink href="#" extra_classes="green-transparent" > <span> Zarejestruj się </span>  </ButtonLink>
+	return (
+		<div className="auth-panel">
+			<p> Twoje konto </p>
 
-	</div>
-)
+			<ButtonLink href="#" extra_classes="green" onClick={() => history.push('/login')}> <span> Zaloguj się </span> </ButtonLink>
+			<ButtonLink href="#" extra_classes="green-transparent" onClick={() => history.push('/registration')}> <span> Zarejestruj się </span>  </ButtonLink>
+
+		</div>
+	)
+}
 
 AuthPanel.propTypes = { }
 
