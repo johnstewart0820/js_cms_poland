@@ -3,9 +3,8 @@ import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import InputComponent from "../../components/form/InputComponent";
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
-import {UserPanel} from "../../components/userPanel/UserPanel";
 
-export const LoginPage = () => {
+const LoginPage = () => {
     const history = useHistory();
     const [visible, setVisible] = React.useState(false);
     const [state, setState] = React.useState({
@@ -86,3 +85,5 @@ export const LoginPage = () => {
         </div>
     )
 }
+
+export default LoginPage;
