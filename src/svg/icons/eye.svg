@@ -1,0 +1,7 @@
+<svg id="eye" class="stroke" xmlns="http://www.w3.org/2000/svg" width="22.05" height="13.129" viewBox="0 0 22.05 13.129">
+  <g transform="translate(-198.223 -160.013)">
+    <path d="M199.123,166.851s9.6,12.049,20.25,0v-.546s-9.6-12.05-20.25,0Z" fill="none" stroke="#324655" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+    <circle cx="3.536" cy="3.536" r="3.536" transform="translate(205.712 162.863)" stroke-width="0.65" stroke="#324655" stroke-linecap="round" stroke-linejoin="round" fill="#324655"/>
+    <circle cx="1.088" cy="1.088" r="1.088" transform="translate(207.072 164.001)" stroke-width="0.57" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+@import "../helpers/mixins.scss";
+@import "../general/colors.scss";
+
+.pagination{
+	margin: 30px;
+	width: 100%;
+	padding: 0 15px;
+	
+	@include flex-centered;
+
+	> a,
+	> span {
+		@include flex-centered;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		margin: 0 10px;
+
+		color: $gray;
+		background: rgba(50, 70, 85, 0.08);
+
+		svg{
+			height: 10px;
+		}
+
+
+		&.active{
+			background: $gray;
+			color: #fff;
+		}
+	}
+}

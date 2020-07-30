@@ -1,0 +1,64 @@
+@import "./colors.scss";
+@import "../helpers/mixins.scss";
+
+.pics-text-link{
+	padding: 50px 0;
+}
+
+
+.pics-text-link__pics{
+	@include flex-wrap;
+	width: 50%;
+
+	.thumbnail{
+		@include flex-centered;
+		cursor: pointer;
+
+		text-align: center;
+		padding: 18px;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 2.3px;
+		font-size: 1.28em;
+		font-weight: bold;
+	
+		width: 260px;
+		height: 218px;
+		margin-right: 17px;
+		margin-bottom: 17px;
+		z-index: 5;
+	
+		&:nth-child(3n){
+			margin-right: 0;
+		}
+
+		&::before{
+			transition: all .35s;
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000);
+			opacity: 0.81;
+			z-index: -1;
+		}
+
+
+		&:hover::before{
+			background: $green;
+			opacity: 0.61;
+		}
+	}
+}
+
+
+.pics-text-link__text{
+	width: 50%;
+	max-width: 700px;
+	margin-left: auto;
+	padding-left: 20px;
+
+	> p {
+		font-size: 1.28em;
+		font-weight: bold;
+		line-height: 28px;
+		margin-bottom: 44px;
+		margin-top: 0;
+	}
+}

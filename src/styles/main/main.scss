@@ -1,0 +1,126 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+*{
+	box-sizing: border-box;
+}
+
+#ustron-app, body, html{
+	height: 100%;
+}
+
+#ustron-app{
+	display: flex;
+	flex-direction: column;
+}
+
+body{
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+	color: $gray;
+
+
+	&.links-underline{
+		a:not(.button-link){
+			text-decoration: underline;
+		}
+	}
+}
+
+main{
+	flex: auto;
+}
+
+.d-none{
+	display: none;
+}
+
+a{
+	text-decoration: none;
+	&:hover{
+		text-decoration: none;
+	}
+}
+
+.heading{
+	font-size: 1.28em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 2.3px;
+}
+
+
+.page-title{
+	line-height: 50px;
+	font-weight: bold;
+	font-size: 3.42em;
+	color: #fff;
+}
+
+.has-overlay{
+	position: relative;
+	&::before{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+	}
+}
+
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.thumbnail{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50%;
+}
+
+img, svg{
+	max-width: 100%;
+	height: auto;
+}
+
+
+.container{
+	max-width: 1670px;
+	padding: 0 15px;
+	margin: auto;
+}
+
+.single-container{
+	max-width: 1118px;
+	padding: 50px 15px;
+	margin: auto;
+
+	.heading{
+		text-transform: capitalize;
+		letter-spacing: normal;
+		margin-bottom: 30px;
+	}
+}
+
+
+.single-content-bottom{
+	@include flex-a-center;
+	margin-top: 45px;
+
+	.button-link{
+		margin-right: 20px;
+	}
+}
+
+.link-to-all{
+	text-transform: uppercase;
+	color: $green;
+	margin-left: 40px;
+	
+	&:hover{
+		text-decoration: underline;
+	}
+}

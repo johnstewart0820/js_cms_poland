@@ -1,0 +1,63 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+
+.button-link{
+	@include flex-centered;
+	transition: all .5s;
+	border: 1px solid $gray;
+	color: $gray;
+	background: transparent;
+
+	width: 275px;
+	padding: 20px 15px;
+
+	font-size: 0.85em;
+	font-weight: 600;
+	text-transform: uppercase;
+
+	letter-spacing: 2.3px;
+
+	span{
+		padding: 0 15px;
+	}
+
+	&:hover{
+		background: $gray;
+		color: #fff;
+	}
+
+
+	&.green{
+		background: $green;
+		border-color: $green;
+		color: #fff;
+
+		&:hover{
+			background: $dark_green;
+			border-color: $dark_green;
+		}
+	}
+
+
+	&.green-transparent{
+		border-color: $green;
+		color: $green;
+
+		&:hover{
+			background: $green;
+			color: #fff;
+		}
+	}
+
+
+	&.white{
+		border-color: #fff;
+		color: #fff;
+
+		&:hover{
+			background: #fff;
+			color: $gray;
+		}
+	}
+}

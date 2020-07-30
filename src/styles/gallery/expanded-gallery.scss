@@ -1,0 +1,73 @@
+@import "../helpers/mixins.scss";
+
+.expanded-gallery{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0, .7);
+	z-index: 99999;
+
+	@include flex-column;
+
+	.close-button{
+		right: 110px;
+		top: 15px;
+
+		svg{
+			width: 46px;
+			height: auto;
+		}
+	}
+}
+
+
+.expanded-gallery__arrow{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100px;
+	height: 100%;
+
+	@include flex-centered;
+	z-index: 10;
+
+
+	svg.stroke{
+		width: 20px;
+		height: auto;
+
+		path{
+			stroke: #fff;
+		}
+	}
+
+
+	&.next{
+		left: auto;
+		right: 0;
+	}
+}
+
+.expanded-gallery__items{
+	margin: auto;
+	width: calc(100% - 200px);
+	height: 100vh;
+	position: relative;
+}
+
+
+.expanded-gallery__bottom{
+	flex: 1;
+	text-align: center;
+	color: #fff;
+	background: rgba(0,0,0, .5);
+	padding: 25px 15px;
+	z-index: 10;
+}
+
+
+.expanded-gallery__desc{
+	font-size: 1.14em;
+}

@@ -1,0 +1,26 @@
+[
+	{
+		"id": 1,
+		"title": "Przebojowa Zima Radia ZET",
+		"date": "15.02.2020",
+		"thumbnail": "/img/loop/photo-report1.jpg"
+	},
+	{
+		"id": 2,
+		"title": "Ustroniaczek na nartach",
+		"date": "15.02.2020",
+		"thumbnail": "/img/loop/photo-report2.jpg"
+	},
+	{
+		"id": 3,
+		"title": "Bal na lodzie",
+		"date": "15.02.2020",
+		"thumbnail": "/img/loop/photo-report3.jpg"
+	},
+	{
+		"id": 4,
+		"title": "Fotorelacja - Wyjazd do Neukirchen Vluyn",
+		"date": "26.01.2020",
+		"thumbnail": "/img/loop/photo-report4.jpg"
+	}
+]

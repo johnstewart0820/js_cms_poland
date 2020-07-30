@@ -1,0 +1,128 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.map-with-pins-filtering{
+	height: 689px;
+	width: 100%;
+	position: relative;
+	display: flex;
+
+	.loader{
+		margin: auto;
+	}
+}
+
+.map-with-pins-filtering-info{
+	display: flex;
+
+	width: 672px;
+	min-height: 364px;
+	background: $gray;
+	color: #fff;
+
+	@media (min-width: 1670px) { 
+		left: calc( (100vw - 1640px) / 2);
+	}
+
+	position: absolute;
+	z-index: 999;
+	left: 15px;
+	top: 50px;
+
+	.link-to-all{
+		margin-left: 0;
+		margin-top: 35px;
+	}
+
+	.loader{
+		margin: auto;
+	}
+	
+	&::before{
+		content: '';
+		display: block;
+		position: absolute;
+
+		width: 0; 
+		height: 0; 
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		
+		border-left: 15px solid $gray;
+
+		right: -15px;
+		top: 0;
+	}
+}
+
+.map-with-pins-filtering-info__main{
+	flex: 1;
+	padding: 30px;
+	max-width: 400px;
+	@include flex-column;
+}
+
+.map-with-pins-filtering-info__text{
+	margin-top: auto;
+}
+
+
+.map-with-pins-filtering-filters{
+	width: 220px;
+	min-width: 220px;
+	margin-left: auto;
+
+	@include flex-column;
+}
+
+
+.map-with-pins-filtering-filters__item{
+	flex: 1;
+	max-height: 72.8px;
+	color: rgba(255, 255, 255, .3);
+	border-bottom: 1px solid rgba(255, 255, 255, .3); 
+	@include flex-a-center;
+
+	text-transform: uppercase;
+	padding: 10px;
+
+	small{
+		text-transform: none;
+	}
+
+	&.active{
+		color: #fff;
+
+		span{
+			font-weight: bold;
+		}
+
+		svg:not(.map-pin) {
+			&.fill {
+				path, ellipse {
+					fill: rgba(255, 255, 255, 1);
+				}
+			}
+		}
+	}
+
+	svg {
+		margin-right: 20px;
+		min-width: 16px;
+		
+		&:not(.map-pin).fill {
+			path, ellipse{
+				fill: rgba(255, 255, 255, .3);
+			}
+		}
+	}
+
+	&:first-child{
+		min-height: 72.8px;
+		max-height: 72.8px;
+	}
+
+	&:last-child{
+		border: 0;
+	}
+}

@@ -1,0 +1,46 @@
+@import "../general/colors.scss";
+
+.search-form{
+	position: absolute;
+	top: 88px;
+	left: 0;
+	z-index: 999;
+
+	background: linear-gradient(to right, #324655, #556D80);
+
+	min-height: 153px;
+	width: 100%;
+
+	padding: 0 40px 40px 150px;
+
+	display: flex;
+
+	input{
+		margin-top: auto;
+		height: 50px;
+		width: 100%;
+		background: transparent;
+		color: #fff;
+		border: 0;
+		border-bottom: 1px solid #fff;
+		font-size: 1.42em;
+
+		&::placeholder{
+			color: $green;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 2.3px;
+		}
+	}
+
+
+	svg{
+		position: absolute;
+		right: 40px;
+		bottom: 55px;
+
+		path, line{
+			stroke: #fff;
+		}
+	}
+}

@@ -1,0 +1,48 @@
+@import "./colors.scss";
+@import "../helpers/mixins.scss";
+
+.weather{
+	@include flex-centered;
+	background-color: $gray_super_light_2;
+	padding: 45px;
+
+	.loader{
+		min-height: 74px;
+	}
+}
+
+.weather__info{
+	@include flex-a-center;
+	margin-right: 140px;
+
+	> div {
+		line-height: 19px;
+		
+		strong:first-child{
+			margin-bottom: 8px;
+		}
+	}
+
+	span, strong{
+		display: block;
+	}
+}
+
+.weather__info_degrees{
+	position: relative;
+	font-size: 4.85em;
+	margin: 0 36px 0 20px;
+	line-height: 1.1;
+	
+	&::after{
+		content: '';
+		position: absolute;
+		right: -10px;
+		top: 10px;
+		display: block;
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		border: 3px solid $gray;
+	}
+}

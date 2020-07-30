@@ -1,0 +1,49 @@
+@import "./colors.scss";
+@import "../helpers/mixins.scss";
+
+.pic-text-info{
+	padding: 50px 0;
+}
+
+.pic-text-info__picture{
+	width: 536px;
+	min-height: 563px;
+	margin-right: 16px;
+}
+
+.pic-text-info__info{
+	flex: 1;
+	background: $gray;
+	color: #fff;
+	padding: 40px 70px;
+	position: relative;
+}
+
+
+.pic-text-info__info_head{
+	@include flex-a-center;
+	margin-bottom: 28px;
+
+	.heading{
+		margin-bottom: 0;
+		max-width: 260px;
+	}
+}
+
+
+.pic-text-info__text{
+	@include flex-wrap;
+	margin: 0 -15px;
+
+	> div {
+		flex: auto;
+		min-width: 240px;
+		padding: 0 15px;
+	}
+
+	.button-link{
+		position: absolute;
+		right: 70px;
+		bottom: 40px;
+	}
+}

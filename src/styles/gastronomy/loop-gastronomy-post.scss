@@ -1,0 +1,109 @@
+@import "../general/colors.scss"; 
+@import "../helpers/mixins.scss";
+
+.loop-gastronomy-post{
+	width: 400px;
+	margin-right: 14px;
+	border-bottom: 1px solid transparent;
+
+	&:hover{
+		border-bottom: 1px solid #707070;
+		.loop-gastronomy-post__thumbnail::before{
+			opacity: .78;
+		}		
+	}
+
+	.share-button-list{
+		display: block;
+		
+		button{
+			margin: 4px 0;
+		}
+	}
+}
+
+.loop-gastronomy-post__thumbnail{
+	height: 221px;	
+	display: flex;
+
+	&::before{
+		opacity: 0;
+		transition: opacity .5s;
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+	}
+}
+
+.loop-gastronomy-post__category{
+	position: relative;
+	color: #fff;
+	letter-spacing: 2.3px;
+	padding: 20px 30px;
+	margin-top: auto;
+	text-transform: uppercase;
+	text-shadow: 0 0 8px #000;
+}
+
+.loop-gastronomy-post__content{
+	padding: 26px;
+	color: $gray;
+}
+
+.loop-gastronomy-post__title{
+	letter-spacing: 0;
+	margin-bottom: 18px;
+	text-transform: capitalize;
+}
+
+
+.loop-gastronomy-post__address{
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 2.3px;
+	margin-bottom: 20px;
+	max-width: 49%;
+
+	> span{
+		font-weight: normal;
+		display: block;
+		margin-bottom: 10px;
+		color: rgba( 61, 85, 104, .24);
+	}
+}
+
+
+.loop-gastronomy-post__info{
+	margin-bottom: 25px;
+	> a{
+		@include flex-a-center;
+		color: $gray;
+		margin-bottom: 4px;
+
+		svg{
+			width: 20px;
+			margin-right: 10px;
+		}
+	}
+}
+
+
+.loop-gastronomy-post__bottom{
+	@include flex-a-center;
+
+	.button-link{
+		max-width: 239px;
+	}
+
+	> a:not(.button-link){
+		@include flex-centered;
+		border-radius: 50%;
+		margin-left: 12px;
+		width: 38px;
+		min-width: 38px;
+		height: 38px;
+		background: rgba(50, 70, 85, 0.08);
+	}
+
+	.button-link + a{
+		margin-left: auto;
+	}
+}

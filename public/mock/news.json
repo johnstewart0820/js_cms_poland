@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"date": "19.02.2020",
+		"thumbnail": "/img/loop/1.jpg",
+		"category": "Kategoria",
+		"title": "Działaj Lokalnie 2020 - nabór wniosków",
+		"desc": "Stowarzyszenie Cieszyńskiej Młodzieży Twórczej we współpracy z Akademią Rozwoju Filantropii w Polsce ogłasza Lokalny Konkurs Grantowy w ramach programu Działaj Lokalnie Polsko-Amerykańskiej Fundacji Wolności. "
+	},
+	{
+		"id": 2,
+		"date": "19.02.2020",
+		"thumbnail": "/img/loop/2.jpg",
+		"category": "Kategoria",
+		"title": "Działaj Lokalnie 2020 - nabór wniosków",
+		"desc": "Stowarzyszenie Cieszyńskiej Młodzieży Twórczej we współpracy z Akademią Rozwoju Filantropii w Polsce ogłasza Lokalny Konkurs Grantowy w ramach programu Działaj Lokalnie Polsko-Amerykańskiej Fundacji Wolności. "
+	},
+	{
+		"id": 3,
+		"date": "19.02.2020",
+		"thumbnail": "/img/loop/3.jpg",
+		"category": "Kategoria",
+		"title": "Działaj Lokalnie 2020 - nabór wniosków",
+		"desc": "Stowarzyszenie Cieszyńskiej Młodzieży Twórczej we współpracy z Akademią Rozwoju Filantropii w Polsce ogłasza Lokalny Konkurs Grantowy w ramach programu Działaj Lokalnie Polsko-Amerykańskiej Fundacji Wolności. "
+	},
+	{
+		"id": 4,
+		"date": "19.02.2020",
+		"thumbnail": "/img/loop/4.jpg",
+		"category": "Kategoria",
+		"title": "Działaj Lokalnie 2020 - nabór wniosków",
+		"desc": "Stowarzyszenie Cieszyńskiej Młodzieży Twórczej we współpracy z Akademią Rozwoju Filantropii w Polsce ogłasza Lokalny Konkurs Grantowy w ramach programu Działaj Lokalnie Polsko-Amerykańskiej Fundacji Wolności. "
+	},
+	{
+		"id": 5,
+		"date": "19.02.2020",
+		"thumbnail": "/img/loop/5.jpg",
+		"category": "Kategoria",
+		"title": "Działaj Lokalnie 2020 - nabór wniosków",
+		"desc": "Stowarzyszenie Cieszyńskiej Młodzieży Twórczej we współpracy z Akademią Rozwoju Filantropii w Polsce ogłasza Lokalny Konkurs Grantowy w ramach programu Działaj Lokalnie Polsko-Amerykańskiej Fundacji Wolności. "
+	}
+]

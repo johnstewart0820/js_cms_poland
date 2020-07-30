@@ -1,0 +1,64 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+
+.main-menu{
+	@include flex-wrap;
+	background: linear-gradient(to right, #324655, #556D80);
+	padding: 34px;
+
+	position: absolute;
+	z-index: 999;
+	left: calc(-100vw + 88px);
+	top: 88px;
+	min-height: 813px;
+	width: 100vw;
+
+	font-size: 1.5em;
+
+
+	a{
+		color: #fff;
+		display: block;
+	}
+}
+
+
+$main-menu-colors:
+	"tourism" $green,
+	"culture" $turquoise,
+	"sport" $red,
+	"main" $yellow,
+	"stay-updated" $aqua;
+
+.main-menu__column{
+	flex: 1;
+
+	@each $class_name, $color in $main-menu-colors{
+		&.#{$class_name}{
+			.main-menu__title{
+				color: $color;
+			}
+
+			.main-menu__items a:hover{
+				color: $color;
+			}
+		}
+	}
+}
+
+
+.main-menu__title{
+	letter-spacing: 2.3px;
+	font-weight: bold;
+	border-bottom: 1px solid rgba( 255, 255 , 255, .5);
+	padding-bottom: 30px;
+	padding-left: 45px;
+	text-transform: uppercase;
+}
+
+.main-menu__items{
+	padding-top: 45px;
+	padding-left: 45px;
+	line-height: 70px;
+}

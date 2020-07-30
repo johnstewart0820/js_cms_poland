@@ -1,0 +1,37 @@
+.loop-photo-report-post{
+	color: #fff;
+	width: 400px;
+	height: 221px;
+	margin-right: 15px;
+	display: flex;
+
+	z-index: 5;
+
+	&::before{
+		transition: opacity .5s;
+		 background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+		 opacity: 0;
+	}
+
+	&:hover::before{
+		opacity: .78;
+	}
+}
+
+.loop-photo-report-post__info{
+	width: 100%;
+	padding: 18px 30px;
+	margin-top: auto;
+	background: rgba(0, 0, 0, .4);
+	position: relative;
+}
+
+.loop-photo-report-post__date{
+	margin-bottom: 12px;
+}
+
+.loop-photo-report-post__title{
+	text-transform: capitalize;
+	margin-bottom: 0;
+	letter-spacing: 0;
+}

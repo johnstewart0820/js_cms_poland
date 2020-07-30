@@ -1,0 +1,189 @@
+
+$contrast: #ffd401;
+
+body.contrast{
+	background: #000;
+	color: $contrast;
+
+	/* SVG */
+	svg{
+		&.fill{
+			path, ellipse, rect, circle, line{
+				fill: $contrast;
+			}
+		}
+		&.stroke{
+			path, rect, ellipse, circle, line{
+				stroke: $contrast !important;
+			}
+		}
+	
+	
+		&.fill-stroke{
+			.fill{
+				fill: $contrast !important;
+			}
+	
+			.stroke{
+				stroke: $contrast !important;
+			}
+		}
+
+		&#bip{
+			.white{
+				fill: #000;
+			}
+
+			.red{
+				fill: $contrast
+			}
+		}
+	}	
+
+	
+	.arrows > a:hover,
+	.sidebar__trigger.active,
+	.header__link.active {
+		svg {
+			&.stroke{
+				path, line {
+					stroke: #000 !important;
+				}
+			}
+		}
+	}
+	
+
+	// ONLY COLOR
+	.link-to-all,
+	.main-menu a,
+	.carousel__head > a,
+	.footer-main__address_heading,
+	.breadcrumbs div, 
+	.breadcrumbs a,
+	.header-logo span,
+	.links-tiles .row > a,
+	.loop-gastronomy-post__content,
+	.loop-accommodation-post__content,
+	.loop-gastronomy-post__info > a,
+	.loop-accommodation-post__info > a,
+	.header-main__menu > a,
+	.main-menu a:hover,
+	.search-form input,
+	.search-form input::placeholder,
+	.main-menu__title,
+	.loop-news-post__content,
+	.loop-news-post__date,
+	.footer-main a, .footer-copyright a,
+	.loop-event-post__content,
+	.header__link{
+		color: $contrast !important;
+	}
+
+
+	// BACKGROUND BLACK AND COLOR CONTRAST
+	.pictures-slider__circles a,
+	.text-link-expandable-info,
+	.two-carousels-one-row > div:nth-child(2),
+	.main-header-external-link,
+	.weather{
+		background-color: #000;
+		color: $contrast;
+	}
+
+
+	// BG BLACK + FONT CONTRAST + BORDER CONTRAST
+	.breadcrumbs,
+	.text-link-pic,
+	.footer-main,
+	.main-menu,
+	.footer-copyright,
+	.sidebar,
+	.links-tiles .row > a:hover,
+	.map-with-pins-info{
+		background: #000;
+		color: $contrast;
+		border-color: $contrast
+	}
+
+	// BG CONTRAST 
+	.sidebar__trigger.active,
+	.pictures-slider__circles a.active,
+	.header__link.active::before,
+	.main-header-external-link > span{
+		background-color: $contrast;
+	}
+
+
+	// BG CONTRAST AND COLOR BLACK
+	.arrows > a:hover,
+	.text-link-expandable-info__expandable_head{
+		background: $contrast;
+		color: #000;
+	}
+
+
+	// BORDER 1px solid
+	.loop-gastronomy-post__bottom > a:not(.button-link),
+	.loop-accommodation-post__bottom > a:not(.button-link),
+	.arrows > a,
+	.sidebar{
+		border: 1px solid $contrast;
+	}
+
+
+	// BORDER COLOR CONTRAST 
+	.links-tiles .row > a,
+	.loop-event-post__dates,
+	.loop-event-post__date{
+		border-color: $contrast;
+	}
+
+
+	// DISPLAY NONE
+	.main-header-external-link::before{
+		display: none;
+	}
+
+
+	// GRAYSCALE
+	.thumbnail,
+	.main-header-tiles-section__tile{
+		filter: grayscale(100%);	
+	}
+
+
+
+	/************************* OTHER ******************************/
+	.main-header-section__main{
+		border-bottom: 1px solid $contrast;
+	}
+
+	.button-link{
+		background: #000;
+		color: $contrast;
+		border-color: $contrast;
+		&:hover{
+			background: $contrast;
+			color: #000 !important; 
+		}
+	}
+
+	.auth-panel,
+	.search-form,
+	.main-menu{
+		background: #000;
+		border-color: $contrast;
+		border-top: 1px solid $contrast;
+		border-bottom: 1px solid $contrast;
+	}
+
+
+	.amounts-with-icons__item_circle > span{
+		background: rgba(255, 212, 1, .4);
+	}
+
+	.amounts-with-icons__item_circle{
+		background: rgba(255, 212, 1, .2);	
+	}
+}

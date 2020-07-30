@@ -1,0 +1,10 @@
+<svg id="envelope" class="stroke" xmlns="http://www.w3.org/2000/svg" width="19" height="15" viewBox="0 0 19 15">
+  <g transform="translate(-1518 -2733)">
+    <g transform="translate(1518 2733)" fill="none" stroke="#324655" stroke-width="2">
+      <rect width="19" height="15" rx="4" stroke="none"/>
+      <rect x="1" y="1" width="17" height="13" rx="3" fill="none"/>
+    </g>
+    <line x2="8" y2="6" transform="translate(1519.5 2735.5)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="2"/>
+    <line x1="8" y2="6" transform="translate(1527.5 2735.5)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>

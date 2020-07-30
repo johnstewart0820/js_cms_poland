@@ -1,0 +1,21 @@
+.expanded-gallery-item{
+	display: flex;
+	margin: auto;
+	opacity: 0;
+	visibility: hidden;
+
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+	transition: opacity .4s;
+
+	&.active{
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+.expanded-gallery-item__photo{
+	margin: auto;
+}

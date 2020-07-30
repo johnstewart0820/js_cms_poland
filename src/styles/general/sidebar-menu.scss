@@ -1,0 +1,33 @@
+@import "./colors.scss";
+@import "../helpers/mixins.scss";
+
+.sidebar-menu{
+	position: relative;
+	background: $gray;
+	min-width: 88px;
+	@include flex-column;
+	align-items: center;
+
+	svg.fill path{
+		fill: #fff;
+	}
+}
+
+
+.sidebar-menu__trigger{
+	width: 100%;
+	height: 88px;
+	border: 0;
+	background: transparent;
+	@include flex-centered;
+}
+
+
+.sidebar-menu__socials{
+	@include flex-column-centered;
+	flex: auto;
+
+	svg{
+		margin: 15px 10px;
+	}
+}

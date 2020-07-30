@@ -1,0 +1,56 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.page-header-section{
+	display: flex;
+	background: $gray;
+	color: #fff;
+	flex: auto;
+
+	.category{
+		text-transform: uppercase;
+		margin-bottom: 6px;
+	}
+
+	.date{
+		color: rgba(255, 255, 255, .4);
+		text-transform: uppercase;
+		margin-bottom: 8px;
+	}
+
+	.event-dates{
+		border-color: #fff;
+		* {
+			border-color: #fff;
+		}
+	}
+
+	.page-title{
+		margin-bottom: 50px;
+	}
+}
+
+
+.page-header-section__main{
+	flex: auto;
+	padding: 25px 0;
+	padding-right: 15px;
+	margin-top: auto;
+}
+
+.page-header-section__thumbnail{
+	width: 691px;
+	min-width: 691px;
+	height: 100%;
+}
+
+.page-header-section.single-news,
+.page-header-section.single-event{
+	.page-header-section__main{
+		padding-left: calc((100vw - 1088px) / 2);
+
+		@media( max-width: 1130px){
+			padding-left: 15px;
+		}
+	}
+}

@@ -1,0 +1,76 @@
+@import "./colors.scss";
+@import "../helpers/mixins.scss";
+
+.text-link-expandable-info{
+	padding: 50px 0;
+	background: $gray_super_light;
+
+	.section-heading{
+		margin-right: 50px;
+		align-items: flex-start;
+	}
+
+
+	.loader{
+		min-height: 200px;
+	}
+}
+
+
+.text-link-expandable-info__text{
+	max-width: 700px;
+	padding-right: 20px;
+
+	> p {
+		font-size: 1.28em;
+		font-weight: bold;
+		line-height: 28px;
+		margin: 0 0 44px 0;
+	}
+}
+
+
+.text-link-expandable-info__expandable{
+	max-width: 536px;
+	min-width: 536px;
+	margin-left: auto;
+
+	position: relative;
+
+	&_head{
+		@include flex-a-center;
+		background: $green;
+		color: $gray;
+		height: 113px;
+		padding: 10px 40px;
+
+		.heading{
+			max-width: 265px;
+		}
+
+		> svg{
+			margin-left: auto;
+		}
+	}
+
+
+	&_body{
+		position: absolute;
+		z-index: 5;
+		width: 100%;
+		left: 0;
+
+		padding: 40px 50px;
+		background: rgba(203, 213, 220, .09);
+
+		> div{
+			@include flex-a-center;
+
+			strong{
+				font-size: 2em;
+				min-width: 71px;
+				margin-right: 10px;
+			}
+		}
+	}
+}

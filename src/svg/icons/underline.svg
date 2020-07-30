@@ -1,0 +1,7 @@
+<svg id="underline" class="stroke" xmlns="http://www.w3.org/2000/svg" width="19.272" height="20.43" viewBox="0 0 19.272 20.43">
+  <g transform="translate(-173.043 -149.771)">
+    <rect width="8.901" height="4.834" rx="2.417" transform="translate(181.508 157.678) rotate(-48.197)" stroke-width="1.8" stroke="#324655" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect width="8.901" height="4.834" rx="2.417" transform="translate(174.314 165.708) rotate(-48.197)" stroke-width="1.8" stroke="#324655" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <line y1="4.831" x2="4.326" transform="translate(180.446 157.649)" fill="none" stroke="#324655" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </g>
+</svg>

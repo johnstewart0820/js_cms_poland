@@ -1,0 +1,46 @@
+@import "../helpers/mixins.scss";
+
+.main-header-section {
+	@include flex-wrap;
+	min-height: calc( 100vh - 90px );
+
+	&.subpage{
+		min-height: calc( 740px - 90px );
+	}
+
+	&.single{
+		min-height: 449px;
+	}
+
+
+	&.photo-reports{
+		min-height: 231px;
+
+		.page-title{
+			margin-bottom: 30px;
+		}
+	}
+}
+
+.main-header-section__main{
+	width: calc(100% - 88px);
+	@include flex-wrap;
+	flex-direction: column;
+
+
+	.main-header-tiles-section{
+		flex: auto;
+	}
+
+	> .row{
+		max-height: 174px;
+	}
+
+	.main-header-external-link{
+		flex: auto;
+	}
+	
+	.weather{
+		width: 47.5982533%;
+	}
+}

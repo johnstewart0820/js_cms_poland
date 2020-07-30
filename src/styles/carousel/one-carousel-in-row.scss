@@ -1,0 +1,18 @@
+.one-carousel-in-row{
+	.loader{
+		min-height: 200px;
+	}
+
+	> div:not(.loader) {
+		margin-left: 15px;
+		max-width: calc( 1920px - 140px );
+	}
+}
+
+@media (min-width: 1670px) {
+	.one-carousel-in-row{ 
+		> div:not(.loader) {
+			margin-left: calc( (100vw - 1640px) / 2);
+		}
+	}
+}

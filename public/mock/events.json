@@ -1,0 +1,52 @@
+[
+	{
+		"id": 1,
+		"start_date": "26.10.2020",
+		"start_time": "19:00",
+		"end_date": "",
+		"end_time": "",
+		"thumbnail": "/img/loop/1.jpg",
+		"category": "Kategoria",
+		"title": "Konkurs Kulinarny EspritChef Junior"
+	},
+	{
+		"id": 2,
+		"start_date": "26.10.2020",
+		"start_time": "17:00",
+		"end_date": "01.07.2020",
+		"end_time": "20:00",
+		"thumbnail": "/img/loop/5.jpg",
+		"category": "Kategoria",
+		"title": "Konkurs Kulinarny EspritChef Junior"
+	},
+	{
+		"id": 3,
+		"start_date": "26.10.2020",
+		"start_time": "19:00",
+		"end_date": "",
+		"end_time": "",
+		"thumbnail": "/img/loop/1.jpg",
+		"category": "Kategoria",
+		"title": "Konkurs Kulinarny EspritChef Junior"
+	},
+	{
+		"id": 4,
+		"start_date": "26.10.2020",
+		"start_time": "19:00",
+		"end_date": "",
+		"end_time": "",
+		"thumbnail": "/img/loop/5.jpg",
+		"category": "Kategoria",
+		"title": "Konkurs Kulinarny Senior"
+	},
+	{
+		"id": 5,
+		"start_date": "26.10.2020",
+		"start_time": "19:00",
+		"end_date": "",
+		"end_time": "",
+		"thumbnail": "/img/loop/5.jpg",
+		"category": "Kategoria",
+		"title": "Konkurs Kulinarny EspritChef Middle"
+	}
+]

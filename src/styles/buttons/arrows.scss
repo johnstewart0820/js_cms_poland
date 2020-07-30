@@ -1,0 +1,41 @@
+@import "../helpers/mixins.scss";
+@import "../general/colors.scss";
+
+.arrows{
+	@include flex-a-center;
+	height: 56px;
+	width: 111px;
+
+	> a {
+		width: 56px;
+		height: 100%;
+		border-radius: 50%;
+		transition: background .4s;
+
+		@include flex-centered;
+
+		&:hover{
+			background: $gray;
+			svg{
+				path{
+					stroke: #fff;
+				}
+			}
+		}
+
+		&:first-child{
+			width: 42px;
+			height: 42px;
+			background: rgba(50, 70, 85, .08);
+			margin-right: 15px;
+
+			&:hover{
+				background: $gray;
+			}
+		}
+
+		&:last-child{
+			border: 2px solid $gray;
+		}
+	}
+}

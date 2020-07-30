@@ -1,0 +1,3 @@
+const SITE = "TOURISM"; // MAIN TOURISM SPORT CULTURE
+
+export { SITE };

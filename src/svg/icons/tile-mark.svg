@@ -1,0 +1,13 @@
+<svg id="tile-mark" class="fill-stroke" xmlns="http://www.w3.org/2000/svg" width="49.051" height="25.011" viewBox="0 0 49.051 25.011">
+  <g transform="translate(2736.286 463.245)">
+    <path class="fill stroke" d="M-2676.3-447.186c-3.153,3.359-8.593,9.361-21.057,9.786l-4.129,4.128c.883.085,1.786.132,2.712.132,14.606,0,21.236-9.6,23.617-13.447.86-1.391.132-1.957-1.144-.6" transform="translate(-12.983 -5.594)" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    <path class="fill stroke" d="M-2684.293-456.673a15.128,15.128,0,0,0,2.8,1.385,5.849,5.849,0,0,0,2.323.285s-3.461-2.947-4.811-4.042l-1.892,1.892a3.111,3.111,0,0,1,1.576.48" transform="translate(-18.898 -1.397)" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    <path class="fill stroke" d="M-2703.65-431.475a32.712,32.712,0,0,1-7.685-.905l-3.026,3.026a28.2,28.2,0,0,0,8,1.984l4.129-4.129q-.694.025-1.417.025" transform="translate(-8.107 -11.496)" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    <path class="fill stroke" d="M-2700.792-457.259c.956.311,1.755.737,2.567.927a4.773,4.773,0,0,0,2.065-.018c1.175-.354,2.068-.9,2.95-1.168a3.515,3.515,0,0,1,1.091-.17l1.891-1.892c-.178-.144-.32-.257-.412-.326-.787-.591-1.118-.72-1.818-.322-.787.447-2.743,1.451-3.68,1.934-.67.347-.8.319-1.218-.089-.56-.544-1.339-1.337-2-2.05l-3.019,3.019a3.872,3.872,0,0,1,1.584.155" transform="translate(-12.646 -0.862)" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    <path class="fill stroke" d="M-2724.636-434.61a29.737,29.737,0,0,0,6.382,3.6l3.025-3.025a31.466,31.466,0,0,1-7.259-2.723Z" transform="translate(-4.215 -9.836)" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    <path class="fill stroke" d="M-2731.458-443.39l-1.383,1.384a26.243,26.243,0,0,0,5.094,4.884l2.151-2.15a26.455,26.455,0,0,1-5.865-4.117" transform="translate(-1.108 -7.326)" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    <g transform="translate(-2735.766 -462.733)">
+      <path class="fill stroke" d="M-2734.528-447.381c-.761-1.152-1.527-.414-1.13.754a10.867,10.867,0,0,0,1.709,2.891l1.383-1.384a13.572,13.572,0,0,1-1.962-2.261" transform="translate(2735.766 457.137)" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

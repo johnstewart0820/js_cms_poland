@@ -1,0 +1,13 @@
+<svg id="library" class="fill" xmlns="http://www.w3.org/2000/svg" width="30" height="23.516" viewBox="0 0 30 23.516">
+  <g transform="translate(134 -47.207)">
+    <path d="M-104,69.363l-5.648-20.342-4.868,1.352.538,1.937h-5.415v-2.7h-5.052v2h-2.736v-4.4H-134V70.723h20.945V55.634l4.187,15.08ZM-123.477,50.58h3.115v2.4h-3.115Zm0,6.416h3.115V68.011h-3.115Zm0-.969v-.556h3.115v.556Zm0-1.524v-.556h3.115V54.5Zm-4.673,13.366h-4.881V50.048h4.881Zm0-19.694v.9h-4.881v-.9Zm-4.881,21.579v-.916h4.881v.916Zm8.586,0h-2.736V52.577h2.736Zm.969,0V68.98h3.115v.774Zm9.453,0h-5.369V53.278h5.369Zm5.83-.232L-111.6,57.255l3-.833,3.406,12.266Zm-3.665-13.2-.267-.961,3-.833.267.961Zm1.537-6.109.939,3.381-3,.833-.939-3.381Z" fill="#fff"/>
+    <rect width="3.12" height="0.969" transform="translate(-118.268 54.326)" fill="#fff"/>
+    <rect width="3.12" height="0.969" transform="translate(-118.268 56.028)" fill="#fff"/>
+    <rect width="3.12" height="0.969" transform="translate(-118.268 57.73)" fill="#fff"/>
+    <rect width="3.12" height="0.969" transform="translate(-118.268 67.586)" fill="#fff"/>
+    <rect width="0.969" height="1.631" transform="translate(-126.298 61.547)" fill="#fff"/>
+    <rect width="0.969" height="3.687" transform="translate(-126.298 64.099)" fill="#fff"/>
+    <rect width="0.969" height="4.396" transform="translate(-126.298 56.229)" fill="#fff"/>
+    <rect width="0.969" height="1.702" transform="translate(-126.298 53.676)" fill="#fff"/>
+  </g>
+</svg>

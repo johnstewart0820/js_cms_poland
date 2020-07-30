@@ -1,0 +1,21 @@
+<svg id="sun" class="fill-stroke" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+  <g transform="translate(-1568.5 -2644.5)">
+    <circle class="fill" cx="3" cy="3" r="3" transform="translate(1574 2650)" fill="#324655"/>
+    <g transform="translate(1577 2645)">
+      <line y2="3" class="stroke" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+      <line y2="3" class="stroke" transform="translate(0 13)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+    </g>
+    <g transform="translate(1569 2653)">
+      <line y2="3.077" class="stroke" transform="translate(16) rotate(90)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+      <line y2="3.077" class="stroke" transform="translate(3.077) rotate(90)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+    </g>
+    <g transform="translate(1582.657 2647.343) rotate(45)">
+      <line y2="3.077" class="stroke" transform="translate(0 0)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+      <line y2="3.077" class="stroke" transform="translate(0 12.923)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+    </g>
+    <g transform="translate(1571.343 2647.343) rotate(45)">
+      <line y2="3.077" class="stroke" transform="translate(16 0) rotate(90)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+      <line y2="3.077" class="stroke" transform="translate(3.077 0) rotate(90)" fill="none" stroke="#324655" stroke-linecap="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+@import "../helpers/mixins.scss";
+@import "./colors.scss";
+
+.amounts-with-icons{
+	padding: 50px 0;
+	.loader{ 
+		min-height: 200px;
+	}
+}
+
+.amounts-with-icons__head{
+	@include flex-a-center;
+	margin-bottom: 55px;
+
+	.section-heading{
+		margin-bottom: 0;
+	}
+}
+
+
+.amounts-with-icons__body{
+	max-width: 1200px;
+	margin: auto;
+}
+
+
+.amounts-with-icons__item{
+	@include flex-a-center;
+	margin-bottom: 32px;
+
+	> div {
+		width: calc(( 100% - 117px - 70px ) / 2);
+		&:last-child{
+			text-transform: uppercase;
+		}
+	}
+	
+	font-weight: bold;
+	font-size: 1.28em;	
+	width: 50%;
+	min-width: 50%;
+}
+
+.amounts-with-icons__item_circle{
+	@include flex-centered;
+	width: 117px;
+	height: 117px;
+	border-radius: 50%;
+	background: rgba( 133, 203, 63, .6);
+	margin: 0 35px;
+
+	> span{
+		position: relative;
+		background: $green;
+		border-radius: 50%;
+		width: 92px;
+		height: 92px;
+
+		svg {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+		}
+	}
+}

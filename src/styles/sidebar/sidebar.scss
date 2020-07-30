@@ -1,0 +1,48 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.sidebar{
+	position: absolute;
+	z-index: 1099;
+	right: 0;
+	top: 0;
+	width: 88px;
+	min-width: 88px;
+
+	height: 740px;
+
+	background: $gray;
+	@include flex-column;
+	align-items: center;
+
+
+	svg.fill path{
+		fill: #fff;
+	}
+}
+
+
+.sidebar__trigger{
+	width: 100%;
+	height: 88px;
+	border: 0;
+	background: transparent;
+	@include flex-centered;
+
+	&.active{
+		background: $green;
+	}
+}
+
+
+.sidebar__socials{
+	@include flex-column-centered;
+	flex: auto;
+
+	> a {
+		@include flex-centered;
+		width: 45px;
+		height: 45px;
+		margin: 5px 0;
+	}
+}

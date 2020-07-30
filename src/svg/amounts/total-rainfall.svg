@@ -1,0 +1,6 @@
+<svg id="total-rainfall" class="stroke" xmlns="http://www.w3.org/2000/svg" width="48.5" height="57.187" viewBox="0 0 48.5 57.187">
+  <g transform="translate(224 44.798)">
+    <path d="M-192.219-4a15.39,15.39,0,0,1-15.39,15.39A15.39,15.39,0,0,1-223-4c0-8.5,14.219-38.585,15.39-39.756C-207.232-44.135-192.219-12.5-192.219-4Z" transform="translate(0 0)" fill="none" stroke="#324655" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M-162.477-17.925a8.073,8.073,0,0,1-8.073,8.073,8.073,8.073,0,0,1-8.073-8.073c0-4.458,7.459-20.239,8.073-20.854C-170.352-38.976-162.477-22.384-162.477-17.925Z" transform="translate(-14.022 -1.574)" fill="none" stroke="#324655" stroke-miterlimit="10" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import "../../styles/form/select.scss";
+import Angle from '../../svg/components/Angle';
+
+const Select = ({ name, id, options, label, extra_classes, onChange }) => (
+	<div className={`form-select ${ extra_classes || "" }`} >
+		<label className="form-select__label" htmlFor={ name || id }> { label } </label>
+
+		<Angle direction="bottom" />
+
+		<select name={ name } id={ name || id } onChange={ onChange } >
+			
+			{ options && options.length > 0 &&
+				options.map(({ value, label }) => (
+					<option key={ value } value={ value }> { label } </option>
+				))
+			}
+
+		</select>
+	</div>
+)
+
+Select.propTypes = { 
+	name: PropTypes.string.isRequired,
+	id: PropTypes.string,
+	options:	PropTypes.arrayOf(PropTypes.shape({
+		value: PropTypes.oneOfType([
+			PropTypes.string.isRequired,
+			PropTypes.number.isRequired
+		]).isRequired,
+		label: PropTypes.string.isRequired
+	})),
+
+	extra_classes: PropTypes.string,
+	label: PropTypes.string.isRequired,
+	onChange: PropTypes.func
+}
+
+export default Select;

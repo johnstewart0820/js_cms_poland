@@ -1,0 +1,46 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.loop-event-post{
+	color: $gray;
+	width: 400px;
+	margin-right: 14px;
+
+	&:hover{
+		border-bottom: 1px solid #707070;
+		.loop-event-post__thumbnail::before{
+			opacity: .78;
+		}		
+	}
+}
+
+
+.loop-event-post__thumbnail{
+	height: 221px;
+	width: 100%;
+	display: flex;
+	
+	&::before{
+		opacity: 0;
+		transition: opacity .5s;
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+	}
+}
+
+.loop-event-post__category{
+	position: relative;
+	padding: 20px;
+	text-transform: uppercase;
+	letter-spacing: 2.3px;
+	margin-top: auto;
+	color: #fff;
+}
+
+.loop-event-post__content{
+	padding: 20px 16px;
+}
+
+.loop-event-post__title{
+	letter-spacing: 0;
+	text-transform: capitalize;
+}

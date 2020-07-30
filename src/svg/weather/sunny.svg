@@ -1,0 +1,33 @@
+<svg id="sunny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.986" height="25.343" viewBox="0 0 25.986 25.343">
+  <defs>
+    <linearGradient id="sunny-linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffdda7"/>
+      <stop offset="0.024" stop-color="#fad193"/>
+      <stop offset="0.067" stop-color="#f4c079"/>
+      <stop offset="0.116" stop-color="#eeb263"/>
+      <stop offset="0.173" stop-color="#eaa752"/>
+      <stop offset="0.243" stop-color="#e8a046"/>
+      <stop offset="0.342" stop-color="#e69c3f"/>
+      <stop offset="0.617" stop-color="#e69b3e"/>
+      <stop offset="1" stop-color="#ef7b14"/>
+    </linearGradient>
+    <radialGradient id="sunny-radial-gradient" cx="0.379" cy="0.791" r="0.818" gradientTransform="matrix(-0.987, 0.161, -0.161, -0.987, 1.325, 0.371)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#feeab8"/>
+      <stop offset="0.226" stop-color="#fee0ab"/>
+      <stop offset="0.444" stop-color="#ffdda7"/>
+      <stop offset="0.523" stop-color="#fdd8a0"/>
+      <stop offset="0.634" stop-color="#facb8e"/>
+      <stop offset="0.762" stop-color="#f6b570"/>
+      <stop offset="0.904" stop-color="#ef9748"/>
+      <stop offset="1" stop-color="#ea8028"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(-18.442 0)">
+    <path d="M-1523.915,83.259h0a2.053,2.053,0,0,0-1.245-3.15h0a2.053,2.053,0,0,1-.246-3.931h0a2.053,2.053,0,0,0,.844-3.28h0a2.053,2.053,0,0,1,2.112-3.325h0a2.053,2.053,0,0,0,2.61-2.158h0a2.053,2.053,0,0,1,3.662-1.449h0a2.053,2.053,0,0,0,3.381-.211h0a2.053,2.053,0,0,1,3.814.981h0a2.053,2.053,0,0,0,2.859,1.816h0a2.053,2.053,0,0,1,2.509,3.036h0a2.053,2.053,0,0,0,1.246,3.15h0a2.053,2.053,0,0,1,.246,3.931h0a2.053,2.053,0,0,0-.844,3.28h0a2.053,2.053,0,0,1-2.111,3.325h0a2.053,2.053,0,0,0-2.611,2.158h0a2.053,2.053,0,0,1-3.663,1.449h0a2.053,2.053,0,0,0-3.38.211h0a2.053,2.053,0,0,1-3.814-.981h0a2.053,2.053,0,0,0-2.859-1.816h0A2.053,2.053,0,0,1-1523.915,83.259Z" transform="translate(1545.199 -64.751)" fill="url(#sunny-linear-gradient)"/>
+    <g transform="translate(19.876 1.08)">
+      <g transform="translate(0 0)">
+        <circle cx="10.094" cy="10.094" r="10.094" transform="matrix(0.161, -0.987, 0.987, 0.161, 0, 19.923)" fill="url(#sunny-radial-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>

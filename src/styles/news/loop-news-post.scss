@@ -1,0 +1,51 @@
+@import "../general/colors.scss"; 
+
+.loop-news-post{
+	width: 400px;
+	margin-right: 14px;
+	border-bottom: 1px solid transparent;
+
+	&:hover{
+		border-bottom: 1px solid #707070;
+		.loop-news-post__thumbnail::before{
+			opacity: .78;
+		}		
+	}
+}
+
+.loop-news-post__thumbnail{
+	height: 221px;	
+	display: flex;
+
+	&::before{
+		opacity: 0;
+		transition: opacity .5s;
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+	}
+}
+
+.loop-news-post__category{
+	position: relative;
+	color: #fff;
+	letter-spacing: 2.3px;
+	padding: 20px 30px;
+	margin-top: auto;
+	text-transform: uppercase;
+	text-shadow: 0 0 8px #000;
+}
+
+.loop-news-post__content{
+	padding: 26px;
+	color: $gray;
+}
+
+.loop-news-post__title{
+	letter-spacing: 0;
+	margin-bottom: 12px;
+	text-transform: capitalize;
+}
+
+.loop-news-post__date{
+	color: $light_gray;
+	margin-bottom: 12px;
+}
