@@ -3,6 +3,7 @@ import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import InputComponent from "../../components/auth/InputComponent";
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
+import {UserPanel} from "../../components/userPanel/UserPanel";
 
 export const LoginPage = () => {
     const history = useHistory();
