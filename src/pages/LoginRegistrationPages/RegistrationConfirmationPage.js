@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/LoginRegistrationPages/RegistrationConfirmationPage.scss';
 import {useHistory} from "react-router-dom";
 
-export const RegistrationConfirmationPage = () => {
+const RegistrationConfirmationPage = () => {
     const history = useHistory();
     return (
         <div className="registration-container" style={{padding: 0}}>
@@ -20,7 +20,7 @@ export const RegistrationConfirmationPage = () => {
 
                 <button
                     className="button-link green full-width"
-                    onClick={() => history.push('/')}
+                    onClick={() => history.push('/login')}
                 >
                     DALEJ
                 </button>
@@ -28,3 +28,5 @@ export const RegistrationConfirmationPage = () => {
         </div>
     )
 }
+
+export default RegistrationConfirmationPage;

@@ -1,0 +1,36 @@
+.card {
+  min-height: 300px;
+  min-width: 340px;
+  max-width: 340px;
+  margin: 10px;
+}
+
+.custom-container {
+  display: flex;
+  .card-container {
+    padding: 30px;
+    .card {
+      .card-inner-container {
+        padding: 20px;
+
+        button {
+          width: 180px;
+          margin-right: 20px;
+        }
+
+        .circle-button {
+          border-radius: 50%;
+          background-color: #F1F1F1;
+          height: 40px;
+          width: 40px;
+          border-style: none;
+          margin: 5px;
+          transition: 1s;
+          &:hover {
+            background-color: #9d9d9d;
+          }
+        }
+      }
+    }
+  }
+}
