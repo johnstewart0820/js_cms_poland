@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import {CircleButton} from "./CircleButton";
 
-export const Card = props => {
+const Card = props => {
     return(
         <Col>
             <div className="card">
@@ -15,11 +15,17 @@ export const Card = props => {
                     </h4>
                     <Row>
                         <button className="button-link green">Rezerwacja</button>
-                        <CircleButton/>
-                        <CircleButton/>
+                        <CircleButton
+                            circleButtonSrc={require('../../svg/icons/social-plus.svg')}
+                        />
+                        <CircleButton
+                            circleButtonSrc={require('../../svg/icons/share.svg')}
+                        />
                     </Row>
                 </div>
             </div>
         </Col>
     )
 }
+
+export default Card;

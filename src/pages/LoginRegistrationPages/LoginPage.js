@@ -3,8 +3,9 @@ import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import InputComponent from "../../components/form/InputComponent";
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
+import {UserPanel} from "../../components/userPanel/UserPanel";
 
-const LoginPage = () => {
+const LoginPage = props => {
     const history = useHistory();
     const [visible, setVisible] = React.useState(false);
     const [state, setState] = React.useState({
@@ -22,6 +23,17 @@ const LoginPage = () => {
         }
     }
 
+    const getHash = () => {
+        let urlString = 'https://api.ustron.s3.netcore.pl/users/activate?hash=';
+        let url = new URL(urlString);
+        let result = url.searchParams.get('hash');
+        console.log(result);
+    }
+
+    React.useEffect(() => {
+        getHash()
+    }, []);
+
     const handleChange = e => {
         const value = e.target.value;
         setState({
@@ -37,6 +49,7 @@ const LoginPage = () => {
         )
         .then((response) => {
             console.log(response);
+            history.push('/reservation');
         }, (error) => {
             alert(error.response.data.errors);
         });
@@ -44,6 +57,7 @@ const LoginPage = () => {
 
     return(
         <div className="registration-container" style={{padding: 0}}>
+            <UserPanel/>
             <div className="container__photo">
                 <img alt='' src={require('../../img/LoginRegistration/photo.png')} />
             </div>

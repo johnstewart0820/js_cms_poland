@@ -1,19 +1,34 @@
 import React from 'react';
 import {UserPanel} from "../../components/userPanel/UserPanel";
-import {Col, Container, Row} from "react-bootstrap";
 import '../../styles/StadiumReservationPages/StadiumReservation.scss'
-import {Card} from "../../components/StadiumReservationComponents/Card";
+import Card from "../../components/StadiumReservationComponents/Card";
+import {Row} from "react-bootstrap";
+import * as axios from "axios";
 
-export const StadiumReservation = () => {
+const StadiumReservation = () => {
+    const [data, setData] = React.useState();
+
+    React.useEffect(() => {
+        axios.get(
+            'https://api.ustron.s3.netcore.pl/courts-reservations'
+        )
+        .then(({response}) => {
+            setData(response);
+        }, (error) => {
+            alert(error.response.data.errors);
+        });
+    }, []);
+
     return (
        <div className="custom-container">
            <UserPanel/>
            <div className="card-container">
-               <Row>
+               <div className="page-title">
+                   <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
                    <h3>
                        BOISKA
                    </h3>
-               </Row>
+               </div>
                <Row>
                    <Card
                         headerImageSource={require('../../img/loop/1.jpg')}
@@ -25,3 +40,5 @@ export const StadiumReservation = () => {
        </div>
     )
 }
+
+export default StadiumReservation;
