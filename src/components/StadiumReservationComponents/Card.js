@@ -1,6 +1,6 @@
 import React from 'react';
-import {Col, Row} from "react-bootstrap";
 import {CircleButton} from "./CircleButton";
+import {Col, Row} from "react-bootstrap";
 
 export const Card = props => {
     return(

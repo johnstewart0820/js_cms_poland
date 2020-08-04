@@ -85,7 +85,6 @@ export default class RegistrationPage extends Component {
                                 name={'userDataPolicy'}
                                 onChange={this.handleInputChange}
                             />
-                            {console.log(userDataPolicy, privacyPolicy)}
                             <h6>
                                 Wyrażam zgodę na przetwarzanie moich danych osobowych przez Biuro<br/>
                                 oraz przedstawicieli zgodnie z Ustawą o Ochronie Danych Osobowych (Dz. U.<br/>

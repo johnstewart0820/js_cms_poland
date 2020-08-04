@@ -3,9 +3,23 @@ import '../../styles/UserPanel/UserPanel.scss';
 import {PanelButton} from "./PanelButton";
 import {UserPanelHeader} from "./UserPanelHeader";
 import {useHistory} from "react-router-dom";
+import * as axios from "axios";
 
 export const UserPanel = () => {
     const history = useHistory();
+
+    const logout = () => {
+        axios.get(
+            `https://api.ustron.s3.netcore.pl/users/logout`,
+        )
+        .then((response) => {
+            console.log(response);
+            alert('Goodbye');
+            history.push('/login');
+        }, (error) => {
+            alert(error);
+        });
+    }
 
     return (
         <div className="panel-container">
@@ -42,6 +56,7 @@ export const UserPanel = () => {
             </div>
             <div className="panel-container__footer">
                 <PanelButton
+                    onClick={logout}
                     buttonText={'Wyloguj się'}
                     buttonImage={require('../../svg/icons/lock.svg')}
                 />

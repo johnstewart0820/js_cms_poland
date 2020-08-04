@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/LoginRegistrationPages/RegistrationConfirmationPage.scss';
+import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import {useHistory} from "react-router-dom";
 
 const RegistrationConfirmationPage = () => {

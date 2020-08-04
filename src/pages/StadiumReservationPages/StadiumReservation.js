@@ -1,10 +1,10 @@
 import React from 'react';
 import {UserPanel} from "../../components/userPanel/UserPanel";
-import {Col, Container, Row} from "react-bootstrap";
 import '../../styles/StadiumReservationPages/StadiumReservation.scss'
 import {Card} from "../../components/StadiumReservationComponents/Card";
+import {Row} from "react-bootstrap";
 
-export const StadiumReservation = () => {
+const StadiumReservation = () => {
     return (
        <div className="custom-container">
            <UserPanel/>
@@ -25,3 +25,5 @@ export const StadiumReservation = () => {
        </div>
     )
 }
+
+export default StadiumReservation;

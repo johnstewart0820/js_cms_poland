@@ -8,7 +8,7 @@ const LoginPage = () => {
     const history = useHistory();
     const [visible, setVisible] = React.useState(false);
     const [state, setState] = React.useState({
-        email: '',
+        login: '',
         password: '',
     });
 
@@ -30,6 +30,16 @@ const LoginPage = () => {
         });
     }
 
+    const activation = () => {
+       const params = new URLSearchParams(window.location.search);
+       const hash = params.get('hash');
+       console.log(hash);
+    }
+
+    React.useEffect(() => {
+        activation();
+    });
+
     const login = () => {
         let data = state;
         axios.post(
@@ -37,6 +47,8 @@ const LoginPage = () => {
         )
         .then((response) => {
             console.log(response);
+            if (response.status === 200)
+                history.push('/reservation');
         }, (error) => {
             alert(error.response.data.errors);
         });
@@ -53,8 +65,8 @@ const LoginPage = () => {
                 </p>
                 <InputComponent
                     fieldName={'EMAIL'}
-                    name={'email'}
-                    value={state.email}
+                    name={'login'}
+                    value={state.login}
                     inputHandler={handleChange}
                 />
                 <InputComponent
