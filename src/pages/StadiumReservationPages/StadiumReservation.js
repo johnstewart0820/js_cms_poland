@@ -3,21 +3,19 @@ import {UserPanel} from "../../components/userPanel/UserPanel";
 import '../../styles/StadiumReservationPages/StadiumReservation.scss'
 import Card from "../../components/StadiumReservationComponents/Card";
 import {Row} from "react-bootstrap";
-import * as axios from "axios";
+import axios from '../../extra/axios';
 
 const StadiumReservation = () => {
     const [data, setData] = React.useState();
 
     React.useEffect(() => {
-        axios.get(
-            'https://api.ustron.s3.netcore.pl/courts-reservations'
-        )
+        axios.get('https://api.ustron.s3.netcore.pl/courts-reservations')
         .then(({response}) => {
             setData(response);
-        }, (error) => {
+        }).catch(error => {
             alert(error.response.data.errors);
         });
-    }, []);
+    },[]);
 
     return (
        <div className="custom-container">

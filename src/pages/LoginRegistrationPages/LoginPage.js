@@ -3,11 +3,12 @@ import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import InputComponent from "../../components/form/InputComponent";
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
-import {UserPanel} from "../../components/userPanel/UserPanel";
+import User from "../../extra/User";
 
 const LoginPage = () => {
     const history = useHistory();
     const [visible, setVisible] = React.useState(false);
+    const [errors, setErrors] = React.useState([]);
     const [state, setState] = React.useState({
         login: '',
         password: '',
@@ -31,27 +32,19 @@ const LoginPage = () => {
         });
     }
 
-    const activation = () => {
-       const params = new URLSearchParams(window.location.search);
-       const hash = params.get('hash');
-       console.log(hash);
-    }
-
-    React.useEffect(() => {
-        activation();
-    });
-
     const login = () => {
         let data = state;
         axios.post(
             `https://api.ustron.s3.netcore.pl/users/login`, data
-        )
-        .then((response) => {
-            console.log(response);
-            if (response.status === 200)
-                history.push('/reservation');
-        }, (error) => {
-            alert(error.response.data.errors);
+        ).then((response) => {
+            User.saveToken(response.data.token);
+            history.push('/reservation');
+        }).catch(error => {
+            const responseErrors = error.response?.data?.errors;
+            if (responseErrors)
+                setErrors(Array.isArray(responseErrors) ? responseErrors : [responseErrors]);
+            else
+                setErrors(['Error sending login request']);
         });
     }
 
@@ -61,6 +54,11 @@ const LoginPage = () => {
                 <img alt='' src={require('../../img/LoginRegistration/photo.png')} />
             </div>
             <div className="container__form">
+                {!!errors.length && (
+                    <div>
+                        {errors.map(error => <>{error}<br/></>)}
+                    </div>
+                )}
                 <p>
                     Zaloguj Się
                 </p>
