@@ -8,6 +8,7 @@ const NewsPage = asyncComponent( () => import( "../pages/common/NewsPage" ));
 const PhotoReportsPage = asyncComponent( () => import( "../pages/common/PhotoReportsPage") );
 const AccommodationsPage = asyncComponent( () => import( "../pages/common/AccommodationsPage" ));
 const GastronomyPage = asyncComponent( () => import( "../pages/common/GastronomyPage") );
+const WhatToVisitPage = asyncComponent( () => import( "../pages/tourism/WhatToVisitPage") );
 const RegistrationPage = asyncComponent(() => import('../pages/LoginRegistrationPages/RegistrationPage'));
 const LoginPage = asyncComponent(() => import('../pages/LoginRegistrationPages/LoginPage'));
 const RegistrationConfirmationPage = asyncComponent(() => import('../pages/LoginRegistrationPages/RegistrationConfirmationPage'));
@@ -27,6 +28,7 @@ const TourismRouters = () => (
 		<Route exact path="/photo-reports" component={ PhotoReportsPage } />
 		<Route exact path="/accommodations" component={ AccommodationsPage } />
 		<Route exact path="/gastronomy" component={ GastronomyPage } />
+		<Route exact path="/what-to-visit" component={ WhatToVisitPage } />
 
 		<Route exact path="/login" component={ LoginPage } />
 		<Route exact path="/registration" component={ RegistrationPage } />
