@@ -33,6 +33,7 @@ const StadiumReservation = () => {
                         title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
                         address={'43-450 Ustroń ul. Zabytkowa 23'}
                    />
+
                </Row>
            </div>
        </div>

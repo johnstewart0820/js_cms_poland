@@ -1,10 +1,8 @@
 .checkbox-container {
-  flex-direction: row;
   display: flex;
   align-items: baseline;
-  height: 40px;
-
-  h6 {
+  max-height: 40px;
+  label {
     font-size: 18px;
     font-weight: normal;
   }

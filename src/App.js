@@ -43,7 +43,7 @@ class App extends Component {
 	  
 				  <Footer />
 	  
-			  </Router>
+			  	</Router>
 			</>
 		 );
 	}

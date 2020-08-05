@@ -7,22 +7,11 @@ import User from "../../extra/User";
 
 const LoginPage = () => {
     const history = useHistory();
-    const [visible, setVisible] = React.useState(false);
     const [errors, setErrors] = React.useState([]);
     const [state, setState] = React.useState({
         login: '',
         password: '',
     });
-
-    const visibilitySwitch = () => {
-        if (visible === false) {
-            setVisible(true);
-            console.log(visible)
-        } else {
-            setVisible(false);
-            console.log(visible)
-        }
-    }
 
     const handleChange = e => {
         const value = e.target.value;
@@ -66,7 +55,7 @@ const LoginPage = () => {
                     fieldName={'EMAIL'}
                     name={'login'}
                     value={state.login}
-                    inputHandler={handleChange}
+                    onChange={handleChange}
                 />
                 <InputComponent
                     fieldName={'HASŁO'}
@@ -74,10 +63,8 @@ const LoginPage = () => {
                     value={state.password}
                     imageSrcForSwitch={require('../../svg/icons/passwordVisible.svg')}
                     containerStyles={{margin: '5px 5px 50px 5px'}}
-                    inputImage={true}
-                    type={visible === true ? 'text' : 'password'}
-                    switchHandler={visibilitySwitch}
-                    inputHandler={handleChange}
+                    password={true}
+                    onChange={handleChange}
                 />
 
                 <button

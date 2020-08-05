@@ -2,6 +2,16 @@ import React from 'react';
 import '../../styles/form/input.scss'
 
 const InputComponent = (props) => {
+    const [visible, setVisible] = React.useState(false);
+
+    const handleSwitch = () => {
+        if (visible === false) {
+            setVisible(true);
+        } else {
+            setVisible(false)
+        }
+    }
+
     return (
         <div className="input-container" style={props.containerStyles}>
             <div className="input-label-container">
@@ -11,13 +21,14 @@ const InputComponent = (props) => {
                 className="input-default"
                 value={props.value}
                 name={props.name}
-                type={props.type}
-                onChange={props.inputHandler}
+                type={props.password ? visible === true ? 'text' : 'password' : props.type}
+                onChange={props.onChange}
+                disabled={props.disabled}
             />
-            {props.inputImage && (
-                <a className="button-password" onClick={props.switchHandler}>
+            {props.visibilitySwitch && (
+                <button className="button-password" onClick={handleSwitch}>
                     <img  alt='' src={props.imageSrcForSwitch} />
-                </a>
+                </button>
             )}
         </div>
     )

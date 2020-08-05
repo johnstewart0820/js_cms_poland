@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
-import PasswordStrengthMeter from "../../components/auth/PasswordStrengthMeter";
+import PasswordStrengthMeter from "../../components/form/PasswordStrengthMeter";
 import * as axios from "axios";
 import InputComponent from "../../components/form/InputComponent";
 
@@ -10,7 +10,6 @@ export default class RegistrationPage extends Component {
         super(props);
         this.state = {
             password: '',
-            passwordVisible: false,
             emailIsValid: null,
             email: '',
             login: '',
@@ -35,29 +34,28 @@ export default class RegistrationPage extends Component {
                     </p>
                     <InputComponent
                         fieldName={'NAZWA UŻYTKOWNIKA'}
-                        inputHandler={this.handleInputChange}
+                        onChange={this.handleInputChange}
                         value={login}
                         name={'login'}
                     />
                     <InputComponent
                         containerStyles={{margin: '5px 5px 40px 5px'}}
                         fieldName={'IMIĘ NAZWISKO'}
-                        inputHandler={this.handleInputChange}
+                        onChange={this.handleInputChange}
                         value={name}
                         name={'name'}
                     />
                     <InputComponent
                         fieldName={'EMAIL'}
-                        inputHandler={this.handleInputChange}
+                        onChange={this.handleInputChange}
                         value={email}
                         name={'email'}
                     />
                     <InputComponent
                         fieldName={'HASŁO'}
-                        type={this.state.passwordVisible === true ? 'text' : 'password'}
-                        switchHandler={this.visibilityPasswordSwitch}
-                        inputHandler={e => this.setState({password: e.target.value})}
-                        inputImage={true}
+                        visibilitySwitch={true}
+                        password={true}
+                        onChange={e => this.setState({password: e.target.value})}
                         imageSrcForSwitch={require('../../svg/icons/passwordVisible.svg')}
                     />
 
@@ -128,18 +126,6 @@ export default class RegistrationPage extends Component {
             } else {
                 alert('Zaakceptuj naszą politykę prywatności !');
             }
-        }
-    }
-
-    visibilityPasswordSwitch = () => {
-        if (this.state.passwordVisible === false) {
-            this.setState({
-                passwordVisible: true
-            })
-        } else {
-            this.setState({
-                passwordVisible: false
-            })
         }
     }
 

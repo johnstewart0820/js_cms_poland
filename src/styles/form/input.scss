@@ -30,6 +30,13 @@
     align-items: center;
     border-radius: 100px;
     position: absolute;
+    border-style: none;
+    background-color: transparent;
+    border-width: 0;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
 
     &:hover {
       background-color: #d0d0d0;
