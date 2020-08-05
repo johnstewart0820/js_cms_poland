@@ -90,6 +90,9 @@ export default class Weather extends Component{
 				}
 
 			break;
+
+			default:
+				console.warn(`Unhandled switch weather action [${action}]`);
 		}
 	}
 

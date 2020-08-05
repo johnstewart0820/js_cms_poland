@@ -100,7 +100,10 @@ export default class Carousel extends Component{
 					})
 				});
 
-				break;		
+				break;
+
+			default:
+				console.warn(`Unhandled move items action [${action}]`);
 		}
 	}
 
