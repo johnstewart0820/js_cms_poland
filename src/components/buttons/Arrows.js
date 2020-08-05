@@ -13,20 +13,14 @@ const arrowClick = ( e, action, callback ) => {
 
 const Arrows = ({ extra_classes, onClick }) => (
 	<div className={`arrows ${ extra_classes || "" }`}>
-		
 		{ 
 			[ "prev", "next" ].map( action => (
-				<a 
-					key={ action } 
-					href="#" 
-					onClick={ (e) => arrowClick( e, action, onClick ) } 
-				>
+				<button key={action} onClick={(e) => arrowClick(e, action, onClick)}>
 					<Angle direction={ action === "prev" ?  "left" : "" } />
 					<span className="d-none"> arrow </span>
-				</a>
+				</button>
 			))
 		}
-
 	</div>
 )
 

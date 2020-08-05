@@ -36,7 +36,7 @@ const LoopGastronomyPostInfo = ({ phone, email, www }) => {
 		<div className="loop-gastronomy-post__info"> 
 			{ info && info.length > 0 &&
 				info.map(({ svg, value, href, target }, index) => (
-					<a key={ index } href={ href } target={ target } rel={target === '_blank' && 'noopener noreferrer'}>
+					<a key={ index } href={ href } target={ target } rel={target === '_blank' ? 'noopener noreferrer' : null}>
 						{ svg }
 						<span> { value } </span>
 					</a>

@@ -41,7 +41,7 @@ export default class ShareButton extends Component{
 		const { expanded } = this.state;
 
 		return(
-			<a href="#" className="share-button" onClick={ this.toggleExpand } >
+			<button className="share-button" onClick={ this.toggleExpand } >
 				<ShareIcon />
 
 				{ expanded && 
@@ -53,7 +53,7 @@ export default class ShareButton extends Component{
 						}
 					</div>
 				} 			
-			</a>
+			</button>
 		)
 	}
 };

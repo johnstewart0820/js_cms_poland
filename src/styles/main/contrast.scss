@@ -41,7 +41,7 @@ body.contrast{
 	}	
 
 	
-	.arrows > a:hover,
+	.arrows > button:hover,
 	.sidebar__trigger.active,
 	.header__link.active {
 		svg {
@@ -82,7 +82,7 @@ body.contrast{
 
 
 	// BACKGROUND BLACK AND COLOR CONTRAST
-	.pictures-slider__circles a,
+	.pictures-slider__circles button,
 	.text-link-expandable-info,
 	.two-carousels-one-row > div:nth-child(2),
 	.main-header-external-link,
@@ -108,7 +108,7 @@ body.contrast{
 
 	// BG CONTRAST 
 	.sidebar__trigger.active,
-	.pictures-slider__circles a.active,
+	.pictures-slider__circles button.active,
 	.header__link.active::before,
 	.main-header-external-link > span{
 		background-color: $contrast;
@@ -116,7 +116,7 @@ body.contrast{
 
 
 	// BG CONTRAST AND COLOR BLACK
-	.arrows > a:hover,
+	.arrows > button:hover,
 	.text-link-expandable-info__expandable_head{
 		background: $contrast;
 		color: #000;
@@ -126,7 +126,7 @@ body.contrast{
 	// BORDER 1px solid
 	.loop-gastronomy-post__bottom > a:not(.button-link),
 	.loop-accommodation-post__bottom > a:not(.button-link),
-	.arrows > a,
+	.arrows > button,
 	.sidebar{
 		border: 1px solid $contrast;
 	}

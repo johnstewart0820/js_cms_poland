@@ -140,45 +140,34 @@ export default class PicturesSlider extends Component{
 
 
 				<div className="pictures-slider__circles">
-					{ slides && slides.length > 1 && 
+					{ slides && slides.length > 1 &&
 						slides.map(( item, index) => (
-							<a 
-								key={ index }	
-								href="#" 
-								className={ index === active_slide ? "active" : "" }
-								onClick={ (e) => {
-									e.preventDefault();
-									this.changeSlide( index );
-							}}>  
-								<span className="d-none"> slide { index } </span>
-							</a>
+							<button
+								key={index}
+								className={index === active_slide ? "active" : ""}
+								onClick={() => this.changeSlide(index)}
+							>
+								<span className="d-none"> slide {index} </span>
+							</button>
 						))
 					}
 				</div>
 
 				{ slides && slides.length > 1 && 
 					<div className="pictures-slider__controls">
-						<a href="#" onClick={ (e) => {
-							e.preventDefault();
-							this.changeSlide("prev");
-						}}> <Angle direction="left" /> <span className="d-none"> arrow </span> </a>
+						<button onClick={() => this.changeSlide("prev")}>
+							<Angle direction="left" /> <span className="d-none"> arrow </span>
+						</button>
 						
-						<a href="#" onClick={ (e) => {
-							e.preventDefault();
-							auto_playing 
-								? this.stopAutoPlay()
-								: this.autoPlay();
-						}}>  
-
+						<button onClick={() => auto_playing ? this.stopAutoPlay() : this.autoPlay()}>
 							{ auto_playing && <StopIcon /> }
 							{ !auto_playing && <PlayIcon /> }
 							<span className="d-none"> stop/start </span> 
-						</a>
+						</button>
 
-						<a href="#" onClick={ (e) => {
-							e.preventDefault();
-							this.changeSlide("next");
-						}}> <Angle/> <span className="d-none"> arrow </span> </a>
+						<button onClick={() => this.changeSlide("next")}>
+							<Angle/> <span className="d-none"> arrow </span>
+						</button>
 					</div>
 				}
 			</div>
