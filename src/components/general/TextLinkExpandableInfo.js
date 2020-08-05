@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
-
 import Loader from "./Loader";
 import SectionHeading from "./SectionHeading";
 import ButtonLink from "../buttons/ButtonLink";

@@ -80,6 +80,7 @@
 	flex: 1;
 	max-height: 72.8px;
 	color: rgba(255, 255, 255, .3);
+	@include transparent-button;
 	border-bottom: 1px solid rgba(255, 255, 255, .3); 
 	@include flex-a-center;
 
@@ -115,6 +116,10 @@
 				fill: rgba(255, 255, 255, .3);
 			}
 		}
+	}
+
+	span {
+		text-align: left;
 	}
 
 	&:first-child{

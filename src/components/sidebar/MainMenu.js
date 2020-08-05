@@ -9,14 +9,14 @@ const MainMenu = () => (
 
 		{ MAIN_MENU.map(( { title, main_href, items, extra_class }, index ) => (
 			<div key={ index } className={`main-menu__column ${ extra_class }`} >
-				<a href={ main_href } target="_blank" className="main-menu__title"> { title } </a> 
+				<a href={ main_href } target="_blank" className="main-menu__title" rel={'noopener noreferrer'}> { title } </a>
 
 				{ items && items.length > 0 &&
 
 					<div className="main-menu__items">
 					{ 
 						items.map(({ title, href }, index) => (
-							<a key={ index } href={ href } target="_blank" > { title } </a>
+							<a key={ index } href={ href } target="_blank" rel={'noopener noreferrer'}> { title } </a>
 						))
 					}
 					</div>

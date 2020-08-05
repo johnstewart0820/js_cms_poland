@@ -108,7 +108,8 @@
 	margin-left: -100px;
 	left: 50%;
 
-	a { 
+	button {
+		@include transparent-button-no-outline;
 		transition: background .6s;
 		width: 40px;
 		min-width: 40px;
@@ -142,7 +143,8 @@
 	bottom: 30px;
 	right: 50px;
 
-	a {
+	button {
+		@include transparent-button-no-outline;
 		transition: background .6s;
 		width: 20px;
 		min-width: 20px;

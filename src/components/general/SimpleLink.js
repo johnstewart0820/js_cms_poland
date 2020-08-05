@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
 
 const SimpleLink = ({ svg, to, href = "#", label, target, hidden_text, extra_classes, onClick }) => (
 	to 

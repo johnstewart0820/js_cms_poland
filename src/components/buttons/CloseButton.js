@@ -9,10 +9,10 @@ import "../../styles/buttons/close-button.scss";
 const CloseButton = ({ onClick }) => (
 	isFunction( onClick )
 	? (
-		<a href="#" className="close-button" onClick={ e => { e.preventDefault(); onClick() }}>
+		<button className="close-button" onClick={onClick}>
 			<span className="d-none"> close button </span>
 			<CloseIcon />
-		</a>
+		</button>
 	)
 	: null
 	

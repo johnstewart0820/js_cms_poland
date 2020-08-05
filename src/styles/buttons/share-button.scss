@@ -2,7 +2,7 @@
 @import "../helpers/mixins.scss";
 
 .share-button{
-	cursor: pointer;
+	@include transparent-button-no-outline;
 
 	display: flex;
 	align-items: center;

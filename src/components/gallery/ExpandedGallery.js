@@ -38,6 +38,9 @@ export default class ExpandedGallery extends Component{
 			case "prev":
 				active_photo = ( active_photo === 0 ) ? items_length - 1 : active_photo - 1;
 			break;
+
+			default:
+				console.warn(`Unhandled change photo action [${action}]`);
 		}
 
 		this.setState({ active_photo });

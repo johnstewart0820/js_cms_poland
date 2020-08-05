@@ -43,7 +43,6 @@ export default class GastronomyPage extends Component{
 			const post_row = [...data];
 
 			const posts = [ ...post_row, ...post_row, ...post_row ];
-
 			this.setState({ posts, loading: false });
 		})
 	}

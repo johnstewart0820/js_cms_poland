@@ -41,3 +41,19 @@
 	display: flex;
 	flex-direction: column;
 }
+
+@mixin transparent-button {
+	background-color: transparent;
+	border-width: 0;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+}
+
+@mixin transparent-button-no-outline {
+	@include transparent-button;
+	&:focus {
+		outline: none;
+	}
+}

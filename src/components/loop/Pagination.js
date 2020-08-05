@@ -59,16 +59,15 @@ export default class Pagination extends Component{
 		const classes = num === this.state.active_page ? "active" : "";
 
 		return ( 
-			<a 
+			<button
 				key={ action || num }
-				href="#"
 				onClick={ e => { e.preventDefault(); this.changePage( num ) }} 
 				className={ classes }> 
 					{ !action && num } 
 
 					{ action === "prev" && <Angle direction="left" /> }
 					{ action === "next" && <Angle /> }
-			</a> 
+			</button>
 		)
 	}
 

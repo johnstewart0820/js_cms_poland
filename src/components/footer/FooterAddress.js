@@ -13,7 +13,7 @@ const FooterAddress = () => (
 
 		<div>  <a href="tel:+48338579300"> <PhoneIcon /> +48 33 85 79 300 </a> </div>
 		<div>  <a href="mailto:biuropodawcze@ustron.pl"> <EmailIcon /> biuropodawcze@ustron.pl </a> </div>
-		<div>  <a href="http://ustron.pl" target="_blank"> <WWWIcon /> www.ustron.pl</a>  </div>
+		<div>  <a href="http://ustron.pl" target="_blank" rel={'noopener noreferrer'}> <WWWIcon /> www.ustron.pl</a>  </div>
 	</div>
 )
 

@@ -13,7 +13,7 @@ const SlideContent = ({ title, desc, link, link_label, top_link, top_link_label,
 		<div className="pictures-slider__slide_content container">
 
 			{ top_link && 
-				<a href={ top_link } target="_blank" className="pictures-slider__slide_top_link">
+				<a href={ top_link } target="_blank" className="pictures-slider__slide_top_link" rel={'noopener noreferrer'}>
 					<em> { top_link_svg } </em>
 					<span> { top_link_label } </span>
 				</a>
@@ -119,6 +119,7 @@ export default class PicturesSlider extends Component{
 							key={ index } 
 							href={ item.link }
 							target="_blank"
+							rel={'noopener noreferrer'}
 							className={`pictures-slider__slide thumbnail ${ active_slide === index ? "active" : ""}`} 
 							style={{ backgroundImage: `url(${ item.url })`}}
 						>
@@ -139,45 +140,34 @@ export default class PicturesSlider extends Component{
 
 
 				<div className="pictures-slider__circles">
-					{ slides && slides.length > 1 && 
+					{ slides && slides.length > 1 &&
 						slides.map(( item, index) => (
-							<a 
-								key={ index }	
-								href="#" 
-								className={ index === active_slide ? "active" : "" }
-								onClick={ (e) => {
-									e.preventDefault();
-									this.changeSlide( index );
-							}}>  
-								<span className="d-none"> slide { index } </span>
-							</a>
+							<button
+								key={index}
+								className={index === active_slide ? "active" : ""}
+								onClick={() => this.changeSlide(index)}
+							>
+								<span className="d-none"> slide {index} </span>
+							</button>
 						))
 					}
 				</div>
 
 				{ slides && slides.length > 1 && 
 					<div className="pictures-slider__controls">
-						<a href="#" onClick={ (e) => {
-							e.preventDefault();
-							this.changeSlide("prev");
-						}}> <Angle direction="left" /> <span className="d-none"> arrow </span> </a>
+						<button onClick={() => this.changeSlide("prev")}>
+							<Angle direction="left" /> <span className="d-none"> arrow </span>
+						</button>
 						
-						<a href="#" onClick={ (e) => {
-							e.preventDefault();
-							auto_playing 
-								? this.stopAutoPlay()
-								: this.autoPlay();
-						}}>  
-
+						<button onClick={() => auto_playing ? this.stopAutoPlay() : this.autoPlay()}>
 							{ auto_playing && <StopIcon /> }
 							{ !auto_playing && <PlayIcon /> }
 							<span className="d-none"> stop/start </span> 
-						</a>
+						</button>
 
-						<a href="#" onClick={ (e) => {
-							e.preventDefault();
-							this.changeSlide("next");
-						}}> <Angle/> <span className="d-none"> arrow </span> </a>
+						<button onClick={() => this.changeSlide("next")}>
+							<Angle/> <span className="d-none"> arrow </span>
+						</button>
 					</div>
 				}
 			</div>

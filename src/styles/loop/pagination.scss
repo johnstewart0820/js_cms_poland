@@ -8,8 +8,9 @@
 	
 	@include flex-centered;
 
-	> a,
+	> button,
 	> span {
+		@include transparent-button;
 		@include flex-centered;
 		cursor: pointer;
 		width: 30px;

@@ -6,7 +6,8 @@
 	height: 56px;
 	width: 111px;
 
-	> a {
+	> button {
+		@include transparent-button;
 		width: 56px;
 		height: 100%;
 		border-radius: 50%;

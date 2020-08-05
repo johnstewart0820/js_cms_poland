@@ -14,10 +14,10 @@ const FooterSubPagesLinks = () => {
 		<div className="footer-main__subpage-links">
 			{ 
 				links.map(({ href, label, color }, index ) => (
-					<a key={ index } href={ href } target="_blank" className="footer-main__link"> 
+					<a key={ index } href={ href } target="_blank" className="footer-main__link" rel={'noopener noreferrer'}>
 						<span> { label } </span>
 						<em style={{ background: color }} />
-					</a>		
+					</a>
 				))
 			}
 		</div>

@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ButtonLink from "../buttons/ButtonLink";
 import ShareButton from '../buttons/ShareButton';
 
 import "../../styles/gastronomy/loop-gastronomy-post.scss";
-import { PhoneIcon, EmailIcon, WWWIcon, PlusIcon, ShareIcon } from "../../svg/icons";
+import { PhoneIcon, EmailIcon, WWWIcon, PlusIcon } from "../../svg/icons";
 
 
 const LoopGastronomyPostInfo = ({ phone, email, www }) => {
@@ -37,7 +36,7 @@ const LoopGastronomyPostInfo = ({ phone, email, www }) => {
 		<div className="loop-gastronomy-post__info"> 
 			{ info && info.length > 0 &&
 				info.map(({ svg, value, href, target }, index) => (
-					<a key={ index } href={ href } target={ target }>
+					<a key={ index } href={ href } target={ target } rel={target === '_blank' ? 'noopener noreferrer' : null}>
 						{ svg }
 						<span> { value } </span>
 					</a>
@@ -57,7 +56,7 @@ const LoopGastronomyPost = ({ id, title, category, thumbnail, address, phone, em
 			<div className="loop-gastronomy-post__title heading"> { title } </div>
 
 			{ address &&
-				<div class="loop-gastronomy-post__address">  
+				<div className="loop-gastronomy-post__address">
 					<span> ADRES </span>
 					{ address } 
 				</div> 
