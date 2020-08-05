@@ -41,13 +41,14 @@ export default class MainHeaderTile extends Component{
 
 		return(
 			<a  
-				target="_blank"
+				target={'_blank'}
+				rel={'noopener noreferrer'}
 				href={ main_href }
 				onMouseOver={ this.onMouseOver }
 				onMouseLeave={ this.onMouseLeave }
 				className={`main-header-tiles-section__tile thumbnail ${ show_links ? "show-links" : "" } ${ extra_class || "" }`}
 				style={{ backgroundImage: `url(${ bg })` }}
-			>	
+			>
 				<div className="main-header-tiles-section__tile_info">
 					<TileMark />
 					<div className="heading"> { title } </div>
@@ -58,7 +59,7 @@ export default class MainHeaderTile extends Component{
 					<div className="main-header-tiles-section__tile_links">
 					{ items.map(({ svg, title, href }, index) => (
 						
-						<a href={ href } target="_blank" key={ index } > 
+						<a href={ href } target="_blank" rel={'noopener noreferrer'} key={ index } >
 							{ svg }
 							<div> { title } </div>
 							<span/>

@@ -14,9 +14,11 @@ const TextLinkPic = ({ heading, text, link, link_label, picture }) => (
 				<div className="text-link-pic__text">
 					<p> { text } </p>
 
-					{ link && link_label && 
-						<a href={ link } target="_blank" className="button-link green-transparent"> { link_label } </a>
-					}
+					{ link && link_label && (
+						<a href={ link } target="_blank" rel={'noopener noreferrer'} className="button-link green-transparent">
+							{link_label}
+						</a>
+					)}
 				</div>
 
 				{ picture && 

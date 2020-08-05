@@ -16,7 +16,7 @@ const LinksTiles = ({ heading, links }) => (
 
 					{ links && links.length > 0 &&
 						links.map(({ href, label }, index) => (
-							<a key={ index } href={ href } target="_blank" > { label } </a>
+							<a key={ index } href={ href } target="_blank" rel={'noopener noreferrer'}> { label } </a>
 						))
 					}
 

@@ -48,7 +48,7 @@ const LoopAccommodationPostInfo = ({ phone, email, www }) => {
 }
 
 const LoopAccommodationPost = ({ id, title, category, thumbnail, address, phone, email, www }) => (
-	<a href={`/accommodation/${ id }`} target="_blank" className="loop-accommodation-post">
+	<a href={`/accommodation/${ id }`} target="_blank" rel={'noopener noreferrer'} className="loop-accommodation-post">
 		<div className="loop-accommodation-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url(${ thumbnail })` }} >
 			<div className="loop-accommodation-post__category"> { category } </div>
 		</div>

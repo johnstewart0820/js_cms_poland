@@ -13,7 +13,7 @@ const SlideContent = ({ title, desc, link, link_label, top_link, top_link_label,
 		<div className="pictures-slider__slide_content container">
 
 			{ top_link && 
-				<a href={ top_link } target="_blank" className="pictures-slider__slide_top_link">
+				<a href={ top_link } target="_blank" className="pictures-slider__slide_top_link" rel={'noopener noreferrer'}>
 					<em> { top_link_svg } </em>
 					<span> { top_link_label } </span>
 				</a>
@@ -119,6 +119,7 @@ export default class PicturesSlider extends Component{
 							key={ index } 
 							href={ item.link }
 							target="_blank"
+							rel={'noopener noreferrer'}
 							className={`pictures-slider__slide thumbnail ${ active_slide === index ? "active" : ""}`} 
 							style={{ backgroundImage: `url(${ item.url })`}}
 						>

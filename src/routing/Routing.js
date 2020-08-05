@@ -13,9 +13,7 @@ const ROUTERS = {
 
 const Routing = () => (
 	<Switch>
-		
-		{ ROUTERS [ SITE ] }
-
+		{ROUTERS[SITE]}
 	</Switch>
 )
 
