@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ButtonLink from "../buttons/ButtonLink";
 import ShareButton from '../buttons/ShareButton';
 
 import "../../styles/accommodations/loop-accommodation-post.scss";
-import { PhoneIcon, EmailIcon, WWWIcon, PlusIcon, ShareIcon } from "../../svg/icons";
+import { PhoneIcon, EmailIcon, WWWIcon, PlusIcon } from "../../svg/icons";
 
 
 const LoopAccommodationPostInfo = ({ phone, email, www }) => {

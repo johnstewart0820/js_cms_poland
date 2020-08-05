@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TileMark } from '../../svg/icons';
 
 import "../../styles/header/main-header-external-link.scss";

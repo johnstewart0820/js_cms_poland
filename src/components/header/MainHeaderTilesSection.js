@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import "../../styles/header/main-header-tiles-section.scss";
 import { MAIN_MENU } from "../../extra/main_menu";
 import { HerbIcon } from "../../svg/icons";
@@ -8,7 +6,7 @@ import bg1 from "../../img/main-tiles/tile1.jpg";
 
 import MainHeaderTile from './MainHeaderTile';
 
-const MainHeaderTilesSection = (props) => (
+const MainHeaderTilesSection = () => (
 	<div className="main-header-tiles-section">
 		<div className="main-header-tiles-section__left">
 

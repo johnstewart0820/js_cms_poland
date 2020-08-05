@@ -59,7 +59,7 @@ export default class PhotoReportsPage extends Component{
 
 	render(){
 
-		const { posts, loading, page, pages_amount } = this.state;
+		const { posts, loading, pages_amount } = this.state;
 
 
 		return(

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const MainLogo = ({ text_color = "#3d5567" }) => (
 	<svg id="main-logo" className="fill-stroke" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="281" height="56.196" viewBox="0 0 281 56.196">

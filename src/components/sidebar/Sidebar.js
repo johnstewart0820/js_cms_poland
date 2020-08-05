@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import SimpleLink from "../general/SimpleLink";
 import MainMenu from "./MainMenu";
 

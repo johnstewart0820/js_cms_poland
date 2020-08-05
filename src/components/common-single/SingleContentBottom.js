@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ShareButton from '../buttons/ShareButton';
 import AddToPlanner from '../buttons/AddToPlanner';
 
-const SingleContentBottom = (props) => (
+const SingleContentBottom = () => (
 	<div className="single-content-bottom">
 		<AddToPlanner />
 		<ShareButton />

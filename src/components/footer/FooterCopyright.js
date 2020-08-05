@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const FooterCopyright = (props) => (
+const FooterCopyright = () => (
 	<div className="footer-copyright">
 		<span> Pliki cookies i polityka prywatności </span>
 

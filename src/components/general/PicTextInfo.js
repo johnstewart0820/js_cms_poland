@@ -1,6 +1,5 @@
 import React from 'react';
 import Parser from "html-react-parser";
-import PropTypes from 'prop-types';
 
 import ButtonLink from "../buttons/ButtonLink";
 import "../../styles/general/pic-text-info.scss";

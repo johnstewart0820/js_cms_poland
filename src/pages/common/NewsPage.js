@@ -49,8 +49,6 @@ export default class NewsPage extends Component{
 
 
 	mockPostsQuery = () => {
-		const { params } = this.state;
-
 		API.get("/mock/news.json")
 		.then( res => {
 
