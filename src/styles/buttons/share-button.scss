@@ -1,49 +1,48 @@
 @import "../general/colors.scss";
 @import "../helpers/mixins.scss";
 
-.share-button{
-	@include transparent-button-no-outline;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	margin-left: 12px;
-	width: 38px;
-	min-width: 38px;
-	height: 38px;
-	background: rgba(50, 70, 85, 0.08);
+.share-button-wrapper {
 	position: relative;
-	border: 0;
-	// outline: none;
-}
+	margin-left: 12px;
 
-
-.share-button-list{
-	position: absolute;
-
-	z-index: 15;
-	min-width: 38px;
-	border-radius: 50%;
-	left: 0;
-	bottom: 37px;
-	padding-bottom: 6px;
-
-	@include flex-a-center;
-
-	> button, > a{
-		cursor: pointer;
-		@include flex-centered;
-		margin: 0 7px 6px 0;
-		background: rgba(50, 70, 85, 0.08);
-		width: 38px;
-		height: 38px;
+	& > .share-button {
+		@include transparent-button-no-outline;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		border-radius: 50%;
-		padding: 0;
+		width: 38px;
+		min-width: 38px;
+		height: 38px;
+		background: rgba(50, 70, 85, 0.08);
+		border: 0;
+	}
 
-		svg.fill{
-			path{
-				fill: $gray;
+	& > .share-button-list {
+		position: absolute;
+		display: block;
+		z-index: 15;
+		min-width: 38px;
+		border-radius: 50%;
+		left: 0;
+		bottom: 37px;
+		padding-bottom: 6px;
+
+		> button,
+		> a {
+			cursor: pointer;
+			@include flex-centered;
+			margin: 0 7px 6px 0;
+			background: rgba(50, 70, 85, 0.08);
+			width: 38px;
+			height: 38px;
+			border-radius: 50%;
+			padding: 0;
+
+			svg.fill {
+				path {
+					fill: $gray;
+				}
 			}
 		}
 	}
