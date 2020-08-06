@@ -1,59 +1,64 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import {ShareIcon, FacebookIcon, TwitterIcon, EnvelopeIcon} from '../../svg/icons';
+import '../../styles/buttons/share-button.scss';
 
-import { ShareIcon, FacebookIcon, TwitterIcon, EnvelopeIcon } from '../../svg/icons';
+const Buttons = [
+    {icon: <FacebookIcon/>, name: "Facebook", link: "https://www.facebook.com/sharer/sharer.php?u=$link$"},
+    {icon: <TwitterIcon/>, name: "Twitter", link: "https://twitter.com/home?status=$link$ "},
+    {icon: <EnvelopeIcon/>, name: "Email", link: "mailto:info@example.com?&subject=&body=$link$"}
+];
 
-import "../../styles/buttons/share-button.scss";
-
-
-const share_buttons = [
-	{ svg: <FacebookIcon/>, name: "Facebook", share_link: "https://www.facebook.com/sharer/sharer.php?u=$link$" },
-	{ svg: <TwitterIcon/>, name: "Twitter", share_link: "https://twitter.com/home?status=$link$ " },
-	{ svg: <EnvelopeIcon/> , name: "Email", share_link: "mailto:info@example.com?&subject=&body=$link$"}
-]
-
-export default class ShareButton extends Component{
-
-	static propTypes = {
-		link_for_sharing: PropTypes.string
-	}
-
-	state = { expanded: false }
-
-	toggleExpand = e => {
-		e.preventDefault();
-		e.stopPropagation();
-		
-		this.setState( state => ({ expanded: !state.expanded }));
-	}
-
-
-	shareWith = (e, share_link ) => {
-		e.preventDefault();
-		e.stopPropagation();
-
-		const link_for_sharing = this.props.link_for_sharing || window.location.href;
-		window.open( share_link.replace( "$link$" , link_for_sharing ) );
-	}
-
-
-	render(){
-		const { expanded } = this.state;
-
-		return(
-			<button className="share-button" onClick={ this.toggleExpand } >
-				<ShareIcon />
-
-				{ expanded && 
-					<div className="share-button-list">
-						{ share_buttons && share_buttons.length > 0 &&
-							share_buttons.map(({ svg, name, share_link }) => (
-								<button key={ name } title={ name } onClick={ e => this.shareWith( e, share_link) }> { svg }  </button>
-							))
-						}
-					</div>
-				} 			
-			</button>
-		)
-	}
+const shareWith = (e, link, replace) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(link.replace("$link$", replace));
 };
+
+const ShareButton = props => {
+    const ref = React.useRef(null);
+    const [expanded, setExpanded] = React.useState(false);
+
+    const toggleExpand = e => {
+        e.preventDefault();
+        setExpanded(!expanded);
+    };
+
+    React.useEffect(() => {
+        const handler = e => {
+            if (ref.current && !ref.current.contains(e.target))
+                setExpanded(false);
+        };
+
+        window.addEventListener('click', handler);
+        return () => window.removeEventListener('click', handler);
+    }, [ref]);
+
+    return (
+        <div className="share-button-wrapper" ref={ref}>
+            <button className="share-button" onClick={toggleExpand}>
+                <ShareIcon/>
+            </button>
+            {expanded && (
+                <div className={`share-button-list${props.horizontal ? ' share-button-list-horizontal' : ''}`}>
+                    {Buttons.map(button => (
+                        <button
+                            key={button.name}
+                            title={button.name}
+                            onClick={e => shareWith(e, button.link, props.link_for_sharing || window.location.href)}
+                        >
+                            {button.icon}
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+ShareButton.propTypes = {
+    link_for_sharing: PropTypes.string,
+    horizontal: PropTypes.bool,
+};
+
+export default ShareButton;

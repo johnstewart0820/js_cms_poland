@@ -85,12 +85,40 @@ const ACCOMMODATIONS = [
 		],
 		Component: Select
 	}
-]
+];
+
+const WHAT_TO_VISIT = [
+	{
+		label: "Polecane dla",
+		name: "recommended_for",
+		options: [
+			{ value: "family_with_kids", label: "Rodziny Z Dziećmi"},
+		],
+		Component: Select
+	},
+	{
+		label: "Typ Atrakcji",
+		name: "type",
+		options: [
+			{ value: "bike_lane", label: "Trasa Rowerowa"},
+		],
+		Component: Select
+	},
+	{
+		label: "Przedział cenowy",
+		name: "price_range",
+		options: [
+			{ value: "low_prices", label: "Niskie Ceny"},
+		],
+		Component: Select
+	},
+];
 
 const LOOP_SEARCH_INPUTS = {
 	"news": NEWS,
 	"photo-reports": PHOTO_REPORTS,
-	"accommodations": ACCOMMODATIONS
+	"accommodations": ACCOMMODATIONS,
+	"what-to-visit": WHAT_TO_VISIT,
 }
 
 

@@ -46,9 +46,6 @@
 	background-color: transparent;
 	border-width: 0;
 	cursor: pointer;
-	&:focus {
-		outline: none;
-	}
 }
 
 @mixin transparent-button-no-outline {
