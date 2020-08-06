@@ -6,7 +6,7 @@
 	margin-left: 12px;
 
 	& > .share-button {
-		@include transparent-button-no-outline;
+		@include transparent-button;
 		display: flex;
 		align-items: center;
 		justify-content: center;
