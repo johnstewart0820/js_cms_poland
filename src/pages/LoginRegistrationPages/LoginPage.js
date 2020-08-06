@@ -27,7 +27,7 @@ const LoginPage = () => {
             `https://api.ustron.s3.netcore.pl/users/login`, data
         ).then((response) => {
             User.saveToken(response.data.token);
-            history.push('/reservation');
+            history.push('/profile');
         }).catch(error => {
             const responseErrors = error.response?.data?.errors;
             if (responseErrors)

@@ -12,8 +12,7 @@ export const UserPanel = () => {
         axios.get(
             `https://api.ustron.s3.netcore.pl/users/logout`,
         )
-        .then((response) => {
-            console.log(response);
+        .then(() => {
             alert('Goodbye');
             history.push('/login');
         }, (error) => {
@@ -32,7 +31,7 @@ export const UserPanel = () => {
                     buttonText={'Moj profil'}
                 />
                 <PanelButton
-                    onClick={() => history.push('/reservation')}
+                    onClick={() => history.push('/stadium-reservation')}
                     lines={true}
                     buttonImage={require('../../svg/icons/stadium-black.svg')}
                     buttonText={'Rezerwacja boisk'}

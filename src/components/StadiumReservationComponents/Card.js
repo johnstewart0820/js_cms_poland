@@ -15,7 +15,9 @@ const Card = props => {
                         {props.address}
                     </h4>
                     <Row>
-                        <button className="button-link green">Rezerwacja</button>
+                        <button
+                            onClick={props.reservationButtonOnClick}
+                            className="button-link green">Rezerwacja</button>
                         <CircleButton
                             circleButtonSrc={require('../../svg/icons/social-plus.svg')}
                         />
