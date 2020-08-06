@@ -1,0 +1,16 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.plus-button {
+	display: inline-block;
+
+	> button {
+		@include transparent-button;
+		border-radius: 50%;
+		width: 38px;
+		min-width: 38px;
+		height: 38px;
+		background: rgba(50, 70, 85, 0.08);
+		border: 0;
+	}
+}
