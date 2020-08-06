@@ -1,9 +1,9 @@
 import React from 'react';
-import {UserPanel} from "../../components/userPanel/UserPanel";
-import '../../styles/StadiumReservationPages/StadiumReservation.scss'
+import '../../styles/StadiumReservationPages/StadiumReservation.scss';
 import Card from "../../components/StadiumReservationComponents/Card";
 import {Row} from "react-bootstrap";
 import axios from '../../extra/axios';
+import {Container} from "../../components/userPanel/Container";
 
 const StadiumReservation = () => {
     const [data, setData] = React.useState();
@@ -18,25 +18,32 @@ const StadiumReservation = () => {
     },[]);
 
     return (
-       <div className="custom-container">
-           <UserPanel/>
-           <div className="card-container">
-               <div className="page-title">
-                   <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
-                   <h3>
-                       BOISKA
-                   </h3>
-               </div>
-               <Row>
-                   <Card
-                        headerImageSource={require('../../img/loop/1.jpg')}
-                        title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
-                        address={'43-450 Ustroń ul. Zabytkowa 23'}
-                   />
-
-               </Row>
-           </div>
-       </div>
+        <Container
+            containerTitle={'BOISKA'}
+        >
+            <Row>
+                <Card
+                    headerImageSource={require('../../img/loop/1.jpg')}
+                    title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
+                    address={'43-450 Ustroń ul. Zabytkowa 23'}
+                />
+                <Card
+                    headerImageSource={require('../../img/loop/1.jpg')}
+                    title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
+                    address={'43-450 Ustroń ul. Zabytkowa 23'}
+                />
+                <Card
+                    headerImageSource={require('../../img/loop/1.jpg')}
+                    title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
+                    address={'43-450 Ustroń ul. Zabytkowa 23'}
+                />
+                <Card
+                    headerImageSource={require('../../img/loop/1.jpg')}
+                    title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
+                    address={'43-450 Ustroń ul. Zabytkowa 23'}
+                />
+            </Row>
+        </Container>
     )
 }
 

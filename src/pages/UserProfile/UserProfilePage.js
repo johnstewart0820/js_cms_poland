@@ -7,6 +7,7 @@ import axios from '../../extra/axios';
 import {UserCategory} from "../../components/UserProfile/UserCategory";
 import {UserProfileData} from "../../components/UserProfile/UserProfileData";
 import Loader from "../../components/general/Loader";
+import {Container} from "../../components/userPanel/Container";
 
 const UserProfilePage = () => {
     const [loading, setLoading] = React.useState(true);
@@ -35,37 +36,31 @@ const UserProfilePage = () => {
         getUserData()
     },[]);
 
+    if (loading)
+        return <Container containerTitle={'MOJ PROFIL'}>
+                    <div>
+                        <Loader/>
+                    </div>
+                </Container>
     return(
-        <div className="custom-container">
-            <UserPanel/>
-            {loading && (
-                <Loader/>
-            )}
-            <div className="container-fluid">
-                <Row>
-                   <div className="title">
-                       <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
-                       <h3>
-                           MOJ PROFIL
-                       </h3>
-                   </div>
-                </Row>
-                <Row>
-                    {!loading && (
-                        <>
-                            <UserCategory
-                                userName={state.name}
-                            />
-                            <UserProfileData
-                                login={state.login}
-                                name={state.name}
-                                email={state.email}
-                            />
-                        </>
-                    )}
-                </Row>
-            </div>
-        </div>
+         <Container
+            containerTitle={'MOJ PROFIL'}
+         >
+             <Row>
+                 {!loading && (
+                     <>
+                         <UserCategory
+                             userName={state.name}
+                         />
+                         <UserProfileData
+                             login={state.login}
+                             name={state.name}
+                             email={state.email}
+                         />
+                     </>
+                 )}
+             </Row>
+         </Container>
     )
 }
 

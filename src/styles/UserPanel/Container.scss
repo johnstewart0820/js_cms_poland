@@ -1,0 +1,23 @@
+.custom-container {
+  display: flex;
+  background-color: #f9f9f9;
+
+  .container-fluid {
+    .page-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-left: 20px;
+
+      img {
+        height: 50px;
+        width: 50px;
+        margin-right: 20px;
+      }
+      h3 {
+        font-size: 20px;
+        color: #3D5567;
+      }
+    }
+  }
+}

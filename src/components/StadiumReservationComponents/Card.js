@@ -1,6 +1,7 @@
 import React from 'react';
 import {CircleButton} from "./CircleButton";
 import {Col, Row} from "react-bootstrap";
+import '../../styles/StadiumReservationPages/Card.scss';
 
 const Card = props => {
     return(
