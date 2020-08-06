@@ -1,0 +1,56 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.loop-card {
+    width: 400px;
+    margin-right: 14px;
+    border-bottom: 1px solid transparent;
+
+    // remove blue color from all links inside card
+    a {
+        color: inherit;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__thumbnail {
+        height: 221px;
+        display: flex;
+
+        &:before {
+            opacity: .78;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+        }
+
+        &-text {
+            position: relative;
+            color: #fff;
+            letter-spacing: 2.3px;
+            padding: 20px 30px;
+            margin-top: auto;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px #000;
+        }
+    }
+
+    &__content-container {
+        padding: 26px;
+        color: $gray;
+    }
+
+    &__title {
+        letter-spacing: 0;
+        margin-bottom: 18px;
+        text-transform: capitalize;
+    }
+
+    &__text {
+        margin-bottom: 25px;
+    }
+
+    &__action-buttons {
+        float: right;
+        display: flex;
+    }
+}
