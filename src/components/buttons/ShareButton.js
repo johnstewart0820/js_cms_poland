@@ -40,7 +40,7 @@ const ShareButton = props => {
                 <ShareIcon/>
             </button>
             {expanded && (
-                <div className="share-button-list">
+                <div className={`share-button-list${props.horizontal ? ' share-button-list-horizontal' : ''}`}>
                     {Buttons.map(button => (
                         <button
                             key={button.name}
@@ -58,6 +58,7 @@ const ShareButton = props => {
 
 ShareButton.propTypes = {
     link_for_sharing: PropTypes.string,
+    horizontal: PropTypes.bool,
 };
 
 export default ShareButton;

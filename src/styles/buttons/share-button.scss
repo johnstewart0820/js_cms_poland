@@ -45,5 +45,17 @@
 				}
 			}
 		}
+
+		&-horizontal {
+			@include flex-a-center;
+			left: 45px;
+			bottom: 0;
+			padding-bottom: 0;
+
+			> button,
+			> a {
+				margin: 0 7px 0 0;
+			}
+		}
 	}
 }
