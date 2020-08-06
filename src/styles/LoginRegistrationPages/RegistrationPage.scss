@@ -41,6 +41,12 @@
       align-items: baseline;
 
       .row {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .row {
         height: 55px;
 
         input {
@@ -88,12 +94,6 @@
       }
     }
   }
-}
-
-.row {
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .column {
