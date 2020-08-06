@@ -17,11 +17,10 @@ const UserProfilePage = () => {
         email: ''
     });
 
-    const getUserData = () => {
+    React.useEffect(() => {
         axios.get('https://api.ustron.s3.netcore.pl/users/getInfo')
             .then((response) => {
                 setState({
-                    ...state,
                     login: response.data.info.login,
                     email: response.data.info.login,
                     name: response.data.info.full_name,
@@ -29,12 +28,8 @@ const UserProfilePage = () => {
                 setNotificationsArea(response.data.info.notifications_area);
                 setLoading(false);
             }).catch(error => {
-                alert(error.response.data.errors);
+            alert(error.response.data.errors);
         });
-    }
-
-    React.useEffect(() => {
-        getUserData()
     },[]);
 
     if (loading)

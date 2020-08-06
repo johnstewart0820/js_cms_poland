@@ -1,4 +1,3 @@
-import react from 'react';
 import {Col, Row} from "react-bootstrap";
 import InputComponent from "../form/InputComponent";
 import React from "react";

@@ -7,24 +7,20 @@ const ActivateAccount = () => {
     const [error, setError] = React.useState('');
     const history = useHistory();
 
-    const activation = () => {
-       const params = new URLSearchParams(window.location.search);
-       const hash = params.get('hash');
-
-       if (hash) {
-           axios.post('https://api.ustron.s3.netcore.pl/users/activate', {
-                hash: hash
-           }).then(() => {
-               history.push('/login');
-           }).catch(() => {
-               setError('Error account activation');
-           })
-       }
-    }
-
     React.useEffect(() => {
-        activation();
-    },[]);
+        const params = new URLSearchParams(window.location.search);
+        const hash = params.get('hash');
+
+        if (hash) {
+            axios.post('https://api.ustron.s3.netcore.pl/users/activate', {
+                hash: hash
+            }).then(() => {
+                history.push('/login');
+            }).catch(() => {
+                setError('Error account activation');
+            })
+        }
+    },[history]);
 
     return(
         <div className="registration-container" style={{padding: 0}}>

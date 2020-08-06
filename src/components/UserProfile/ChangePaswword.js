@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 import InputComponent from "../form/InputComponent";
 import PasswordStrengthMeter from "../form/PasswordStrengthMeter";
 import axios from "../../extra/axios";
