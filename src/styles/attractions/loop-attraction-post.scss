@@ -2,6 +2,7 @@
 @import "../helpers/mixins.scss";
 
 .loop-card {
+    $wrapper: &;
     width: 400px;
     margin-right: 14px;
     border-bottom: 1px solid transparent;
@@ -9,9 +10,10 @@
     // remove blue color from all links inside card
     a {
         color: inherit;
-        &:hover {
-            text-decoration: underline;
-        }
+    }
+
+    &:hover &__thumbnail:before {
+        opacity: .78;
     }
 
     &__thumbnail {
@@ -19,8 +21,13 @@
         display: flex;
 
         &:before {
-            opacity: .78;
+            opacity: 0;
+            transition: opacity .5s;
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+        }
+
+        &:hover &:before {
+            opacity: .78;
         }
 
         &-text {
@@ -31,6 +38,7 @@
             margin-top: auto;
             text-transform: uppercase;
             text-shadow: 0 0 8px #000;
+            text-decoration: none;
         }
     }
 
@@ -43,6 +51,9 @@
         letter-spacing: 0;
         margin-bottom: 18px;
         text-transform: capitalize;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     &__text {
