@@ -21,7 +21,7 @@ class Sidebar extends Component {
 
 	state = {
 		menu_open: false,
-		height: SITE === "MAIN" ? "100vh" : "740px"
+		height: SITE === "MAIN" ? "100vh" : "100%"
 	}
 	
 

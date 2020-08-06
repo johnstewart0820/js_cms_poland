@@ -1,16 +1,16 @@
 import React from 'react';
-import {UserPanel} from "../../components/userPanel/UserPanel";
 import '../../styles/StadiumReservationPages/StadiumReservation.scss';
 import {Row} from "react-bootstrap";
 import '../../styles/UserProfilePage/UserProfile.scss';
 import axios from '../../extra/axios';
-import {UserCategory} from "../../components/UserProfile/UserCategory";
+import {ChangePassword} from "../../components/UserProfile/ChangePaswword";
 import {UserProfileData} from "../../components/UserProfile/UserProfileData";
 import Loader from "../../components/general/Loader";
 import {Container} from "../../components/userPanel/Container";
 
 const UserProfilePage = () => {
     const [loading, setLoading] = React.useState(true);
+    const [notifications_area, setNotificationsArea] = React.useState([]);
     const [state, setState] = React.useState({
         login: '',
         name: '',
@@ -24,11 +24,12 @@ const UserProfilePage = () => {
                     ...state,
                     login: response.data.info.login,
                     email: response.data.info.login,
-                    name: response.data.info.full_name
+                    name: response.data.info.full_name,
                 });
+                setNotificationsArea(response.data.info.notifications_area);
                 setLoading(false);
             }).catch(error => {
-            alert(error.response.data.errors);
+                alert(error.response.data.errors);
         });
     }
 
@@ -49,14 +50,13 @@ const UserProfilePage = () => {
              <Row>
                  {!loading && (
                      <>
-                         <UserCategory
-                             userName={state.name}
-                         />
                          <UserProfileData
                              login={state.login}
                              name={state.name}
                              email={state.email}
+                             notifications={notifications_area}
                          />
+                         <ChangePassword/>
                      </>
                  )}
              </Row>

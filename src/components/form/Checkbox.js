@@ -8,6 +8,7 @@ const Checkbox = props => (
                 type="checkbox"
                 value={props.value}
                 name={props.name}
+                checked={props.checked}
                 onChange={props.onChange}
             />
             {props.label}
