@@ -76,7 +76,7 @@ const LoginPage = () => {
 
                 <div className="bottom-container" style={{margin: '5px 5px -10px 5px'}}>
                     <div className="login-container">
-                        <h5>Nie masz konta ? </h5><a onClick={() => history.push('/registration')}>  Zarejestruj się </a>
+                        <h5>Nie masz konta ? </h5><button onClick={() => history.push('/registration')}>  Zarejestruj się </button>
                     </div>
                 </div>
             </div>

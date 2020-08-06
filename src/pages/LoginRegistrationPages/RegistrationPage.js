@@ -90,7 +90,7 @@ export default class RegistrationPage extends Component {
                             </h6>
                         </div>
                         <div className="login-container">
-                            <h5>Masz konto ?</h5><a onClick={() => history.push('/login')}>  Zaloguj się</a>
+                            <h5>Masz konto ?</h5><button onClick={() => history.push('/login')}>  Zaloguj się</button>
                         </div>
                     </div>
                 </div>
