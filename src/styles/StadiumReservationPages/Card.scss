@@ -1,23 +1,104 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
 .card {
   min-height: 300px;
   min-width: 340px;
   max-width: 340px;
   margin: 15px;
 
-  img {
-    width: 100%;
-    height: 100%;
-    max-height: 250px;
+  &:hover{
+    .card__thumbnail::before{
+      opacity: .78;
+    }
   }
 
-  .card-inner-container {
-    padding: 20px;
+  .share-button-list{
+    display: block;
 
-    .button-link {
-      max-width: 190px;
+    button{
+      margin: 4px 0;
+      transition: 0.5s;
+
+      &:hover {
+        background-color: #b7b7b7;
+      }
     }
-    button {
-      margin-right: 5px;
+  }
+
+  .card__thumbnail {
+    height: 221px;
+    display: flex;
+
+    .card__name {
+      position: relative;
+      color: #fff;
+      letter-spacing: 2.3px;
+      padding: 10px 30px;
+      margin-top: auto;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px #000;
+    }
+
+    &::before{
+      opacity: 0;
+      transition: opacity .5s;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+    }
+  }
+
+  .card__content {
+    padding: 20px;
+    color: $gray;
+    .card__title {
+      letter-spacing: 0;
+      margin-bottom: 18px;
+      text-transform: capitalize;
+    }
+
+    .card__address {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.3px;
+      margin-bottom: 20px;
+      max-width: 240px;
+      line-height: 0px;
+
+      > span{
+        font-weight: normal;
+        display: block;
+        color: rgba( 61, 85, 104, .24);
+        margin: 40px 0px 10px 0px;
+      }
+    }
+  }
+
+  .card__bottom {
+    @include flex-a-center;
+
+    .button-link{
+      max-width: 239px;
+    }
+
+    > a:not(.button-link){
+      @include flex-centered;
+      border-radius: 50%;
+      margin-left: 12px;
+      width: 38px;
+      min-width: 38px;
+      height: 38px;
+      background: rgba(50, 70, 85, 0.08);
+      transition: 0.5s;
+
+      &:hover {
+        background-color: #b7b7b7;
+      }
+    }
+
+    .button-link + a{
+      margin-left: 10px;
     }
   }
 }
+
+

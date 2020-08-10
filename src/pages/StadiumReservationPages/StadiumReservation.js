@@ -36,10 +36,13 @@ const StadiumReservation = () => {
                 {data.map((item, index) => (
                     <Card
                         key={index}
-                        reservationButtonOnClick={() => history.push('/reservation')}
-                        headerImageSource={require('../../img/loop/1.jpg')}
+                        name={item.title}
                         title={item.title}
-                        address={'43-450 Ustroń ul. Zabytkowa 23'}
+                        address={item.acf.field_map_address}
+                        postCode={item.acf.field_map_postcode}
+                        city={item.acf.field_map_city}
+                        thumbnail={'../../img/loop/1.jpg'}
+                        greenButtonOnclick={() => history.push('/reservation')}
                     />
                 ))}
             </Row>
