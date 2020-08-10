@@ -16,6 +16,7 @@ const StadiumReservation = asyncComponent(() => import('../pages/StadiumReservat
 const UserProfilePage = asyncComponent(() => import('../pages/UserProfile/UserProfilePage'));
 const ActivateAccount = asyncComponent(() => import('../pages/LoginRegistrationPages/ActivateAccount'));
 const ReservationPage = asyncComponent(() => import('../pages/StadiumReservationPages/ReservationPage'));
+const NotificationPage = asyncComponent(() => import('../components/confirm/NotificationPage'));
 
 const EventSinglePage = asyncComponent( () => import( "../pages/common/EventSinglePage" ));
 const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSinglePage" ));
@@ -31,13 +32,17 @@ const TourismRouters = () => (
 		<Route exact path="/gastronomy" component={ GastronomyPage } />
 		<Route exact path="/what-to-visit" component={ WhatToVisitPage } />
 
+		{/*Login&Registration routes*/}
 		<Route exact path="/login" component={ LoginPage } />
 		<Route exact path="/registration" component={ RegistrationPage } />
 		<Route exact path="/confirm" component={ RegistrationConfirmationPage } />
+		<Route exact path="/activate-account" component={ ActivateAccount }/>
+
+		{/*Boiska reservation*/}
 		<Route exact path="/profile" component={ UserProfilePage } />
 		<Route exact path="/stadium-reservation" component={ StadiumReservation }/>
-		<Route exact path="/activate-account" component={ ActivateAccount }/>
 		<Route exact path="/reservation" component={ ReservationPage }/>
+		<Route exact path="/reservation-confirm" component={ NotificationPage }/>
 
 		<Route exact path="/events/:id" component={ EventSinglePage } />
 		<Route exact path="/news/:id" component={ NewsSinglePage } />

@@ -1,0 +1,23 @@
+.description {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 120px 50px 10px 10px;
+
+  .description__inner {
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: nowrap;
+
+    h1 {
+      font-weight: normal;
+    }
+
+    a {
+      display: flex;
+      align-self: center;
+      margin-top: 25px;
+    }
+  }
+}
