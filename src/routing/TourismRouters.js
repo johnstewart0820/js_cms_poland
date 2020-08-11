@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 import asyncComponent from "../components/AsyncComponent";
+import TourismRoutes from "../constants/TourismRoutes";
 
 const MainPage = asyncComponent( () => import( "../pages/tourism/MainPage" ));
 const CityPage = asyncComponent( () => import( "../pages/tourism/CityPage" ));
@@ -24,28 +25,23 @@ const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSingle
 
 const TourismRouters = () => (
 	<>
-		<Route exact path="/" component={ MainPage } />
-		<Route exact path="/city" component={ CityPage } />
-		<Route exact path="/news" component={ NewsPage } />
-		<Route exact path="/photo-reports" component={ PhotoReportsPage } />
-		<Route exact path="/accommodations" component={ AccommodationsPage } />
-		<Route exact path="/gastronomy" component={ GastronomyPage } />
-		<Route exact path="/what-to-visit" component={ WhatToVisitPage } />
-
-		{/*Login&Registration routes*/}
-		<Route exact path="/login" component={ LoginPage } />
-		<Route exact path="/registration" component={ RegistrationPage } />
-		<Route exact path="/confirm" component={ RegistrationConfirmationPage } />
-		<Route exact path="/activate-account" component={ ActivateAccount }/>
-
-		{/*Boiska reservation*/}
-		<Route exact path="/profile" component={ UserProfilePage } />
-		<Route exact path="/stadium-reservation" component={ StadiumReservation }/>
-		<Route exact path="/reservation" component={ ReservationPage }/>
-		<Route exact path="/reservation-confirm" component={ NotificationPage }/>
-
-		<Route exact path="/events/:id" component={ EventSinglePage } />
-		<Route exact path="/news/:id" component={ NewsSinglePage } />
+		<Route exact path={TourismRoutes.Main} component={ MainPage } />
+		<Route exact path={TourismRoutes.City} component={ CityPage } />
+		<Route exact path={TourismRoutes.News} component={ NewsPage } />
+		<Route exact path={TourismRoutes.PhotoReports} component={ PhotoReportsPage } />
+		<Route exact path={TourismRoutes.Accommodations} component={ AccommodationsPage } />
+		<Route exact path={TourismRoutes.Gastronomy} component={ GastronomyPage } />
+		<Route exact path={TourismRoutes.WhatToVisit} component={ WhatToVisitPage } />
+		<Route exact path={TourismRoutes.Login} component={ LoginPage } />
+		<Route exact path={TourismRoutes.Registration} component={ RegistrationPage } />
+		<Route exact path={TourismRoutes.RegistrationConfirmation} component={ RegistrationConfirmationPage } />
+		<Route exact path={TourismRoutes.ActivateAccount} component={ ActivateAccount }/>
+		<Route exact path={TourismRoutes.UserProfile} component={ UserProfilePage } />
+		<Route exact path={TourismRoutes.StadiumReservation} component={ StadiumReservation }/>
+		<Route exact path={TourismRoutes.Reservation()} component={ ReservationPage }/>
+		<Route exact path={TourismRoutes.Notification} component={ NotificationPage }/>
+		<Route exact path={TourismRoutes.SingleEvent()} component={ EventSinglePage } />
+		<Route exact path={TourismRoutes.SingleNews()} component={ NewsSinglePage } />
 
 	</>
 )

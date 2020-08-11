@@ -4,6 +4,7 @@ import {PanelButton} from "./PanelButton";
 import {UserPanelHeader} from "./UserPanelHeader";
 import {useHistory} from "react-router-dom";
 import * as axios from "axios";
+import TourismRoutes from "../../constants/TourismRoutes";
 
 export const UserPanel = () => {
     const history = useHistory();
@@ -25,13 +26,13 @@ export const UserPanel = () => {
             <UserPanelHeader/>
             <div className="panel-container__body">
                 <PanelButton
-                    onClick={() => history.push('/profile')}
+                    onClick={() => history.push(TourismRoutes.UserProfile)}
                     lines={true}
                     buttonImage={require('../../svg/icons/id-card.svg')}
                     buttonText={'Moj profil'}
                 />
                 <PanelButton
-                    onClick={() => history.push('/stadium-reservation')}
+                    onClick={() => history.push(TourismRoutes.StadiumReservation)}
                     lines={true}
                     buttonImage={require('../../svg/icons/stadium-black.svg')}
                     buttonText={'Rezerwacja boisk'}
