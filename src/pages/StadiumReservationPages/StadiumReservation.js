@@ -6,6 +6,7 @@ import axios from '../../extra/axios';
 import {Container} from "../../components/userPanel/Container";
 import Loader from "../../components/general/Loader";
 import {useHistory} from "react-router-dom";
+import TourismRoutes from "../../constants/TourismRoutes";
 
 const StadiumReservation = () => {
     const history = useHistory();
@@ -36,13 +37,14 @@ const StadiumReservation = () => {
                 {data.map((item, index) => (
                     <Card
                         key={index}
+                        id={item.id}
                         name={item.title}
                         title={item.title}
                         address={item.acf.field_map_address}
                         postCode={item.acf.field_map_postcode}
                         city={item.acf.field_map_city}
                         thumbnail={'../../img/loop/1.jpg'}
-                        greenButtonOnclick={() => history.push('/reservation')}
+                        greenButtonOnclick={() => history.push(TourismRoutes.Reservation(item.id))}
                     />
                 ))}
             </Row>
