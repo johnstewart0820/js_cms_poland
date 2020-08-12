@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import InputComponent from "../../components/form/InputComponent";
-import * as axios from "axios";
+import axios from '../../extra/axios';
 import {useHistory} from 'react-router-dom';
 import User from "../../extra/User";
+import UserContext from "../../constants/UserContext";
 
 const LoginPage = () => {
     const history = useHistory();
@@ -12,6 +13,8 @@ const LoginPage = () => {
         login: '',
         password: '',
     });
+    const user = React.useContext(UserContext);
+    let token = '';
 
     const handleChange = e => {
         const value = e.target.value;
@@ -21,19 +24,39 @@ const LoginPage = () => {
         });
     }
 
-    const login = () => {
-        let data = state;
+    const loginUser = () => {
+        let userData = state;
         axios.post(
-            `https://api.ustron.s3.netcore.pl/users/login`, data
+            `https://api.ustron.s3.netcore.pl/users/login`, userData
         ).then((response) => {
-            User.saveToken(response.data.token);
-            history.push('/profile');
-        }).catch(error => {
+            token = response.data.token;
+        }).then(getUserData).catch(error => {
+            console.log(error);
             const responseErrors = error.response?.data?.errors;
             if (responseErrors)
                 setErrors(Array.isArray(responseErrors) ? responseErrors : [responseErrors]);
             else
                 setErrors(['Error sending login request']);
+        });
+    }
+
+    const getUserData = () => {
+        axios.get('https://api.ustron.s3.netcore.pl/users/getInfo', {
+            headers: {Authorization: 'Bearer ' + token},
+        }).then((response) => {
+            const userData = {
+                id: response.data.info.id,
+                email: response.data.info.login,
+                name: response.data.info.full_name,
+                notifications: response.data.info.notifications_area,
+                lastLoginDate: response.data.info.last_login_date,
+                lastPasswordChange: response.data.info.last_password_change,
+                token,
+            };
+
+            User.saveData(JSON.stringify(userData));
+            user.login(userData);
+            history.push('/profile');
         });
     }
 
@@ -45,7 +68,11 @@ const LoginPage = () => {
             <div className="container__form">
                 {!!errors.length && (
                     <div>
-                        {errors.map(error => <>{error}<br/></>)}
+                        {errors.map((error, index) => (
+                            <React.Fragment key={index}>
+                                {error}<br/>
+                            </React.Fragment>
+                        ))}
                     </div>
                 )}
                 <p>
@@ -69,7 +96,7 @@ const LoginPage = () => {
 
                 <button
                     className="button-link green full-width"
-                    onClick={login}
+                    onClick={loginUser}
                 >
                     Zaloguj Się
                 </button>
