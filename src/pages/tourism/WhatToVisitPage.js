@@ -33,7 +33,7 @@ export default function () {
                 submitCallback={() => {}}
             />
 
-            <LoopSearchPostsContainer extra_classes={'gastronomy'} heading={'Atrakcje'}>
+            <LoopSearchPostsContainer extra_classes={'gastronomy'} heading={'Atrakcje'} headingLink={window.location} headingLinkText={'ZOBACZ WSZYSTKIE'}>
                 {attractions !== null && !attractions.length && <h3>Brak </h3>}
                 {!!attractions?.length && attractions?.map((item, index) => <LoopAttractionPost key={ index } {...item } />)}
                 {!attractions && <Loader style={{ width: "100%" }} />}

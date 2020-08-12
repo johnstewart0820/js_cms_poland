@@ -37,8 +37,7 @@ export default class LoopSearchPostsContainer extends Component{
 				<div className="container">
 
 					<div className="loop-search-posts-container__top">
-						<SectionHeading heading={ heading } />
-
+						<SectionHeading heading={ heading } headingLink={this.props.headingLink} headingLinkText={this.props.headingLinkText} />
 
 						{ sort_options && !!sort_options.length && 
 							<Select 
