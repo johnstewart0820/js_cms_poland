@@ -43,7 +43,7 @@
     }
 
     &__content-container {
-        padding: 26px;
+        padding: 10px 26px;
         color: $gray;
     }
 
@@ -63,5 +63,12 @@
     &__action-buttons {
         float: right;
         display: flex;
+    }
+
+    &__icons {
+        // every child except first one
+        * + * {
+            margin-left: 10px;
+        }
     }
 }
