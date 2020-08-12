@@ -1,13 +1,20 @@
 import React from "react";
 import '../../styles/UserPanel/UserPanel.scss';
 import {PanelButton} from "./PanelButton";
-import {UserPanelHeader} from "./UserPanelHeader";
 import {useHistory} from "react-router-dom";
-import * as axios from "axios";
+import axios from '../../extra/axios';
 import TourismRoutes from "../../constants/TourismRoutes";
+import UserContext from "../../constants/UserContext";
 
 export const UserPanel = () => {
     const history = useHistory();
+    const userContext = React.useContext(UserContext);
+    const [name, setName] = React.useState('');
+    const [role, setRole] = React.useState('');
+
+    React.useEffect(() => {
+        setName(userContext.name);
+    }, [userContext]);
 
     const logout = () => {
         axios.get(
@@ -23,7 +30,13 @@ export const UserPanel = () => {
 
     return (
         <div className="panel-container">
-            <UserPanelHeader/>
+            <div className="panel-container__header">
+                <img alt='' src={require('../../svg/icons/user-photo.svg')}/>
+                <div className="column">
+                    <h3>{name}</h3>
+                    {/*<p>{role}</p>*/}
+                </div>
+            </div>
             <div className="panel-container__body">
                 <PanelButton
                     onClick={() => history.push(TourismRoutes.UserProfile)}
