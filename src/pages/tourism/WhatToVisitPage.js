@@ -9,17 +9,21 @@ import LoopSearchPostsContainer from "../../components/loop/LoopSearchPostsConta
 import Loader from "../../components/general/Loader";
 import LoopAttractionPost from "../../components/attractions/LoopAttractionPost";
 import LoopPathPost from "../../components/paths/LoopPathPost";
+import DiscountsContainer from "../../components/discounts/DiscountsContainer";
+import YellowDiscountBlock from "../../components/discounts/YellowDiscountBlock";
 
 export default function () {
     const [slides, setSlides] = React.useState([]);
     const [attractions, setAttractions] = React.useState(null);
     const [paths, setPaths] = React.useState(null);
+    const [discounts, setDiscounts] = React.useState(null);
 
     React.useEffect(() => {
         setTimeout(() => {
             setSlides(sample_slides);
             API.get("mock/attractions.json").then(res => setAttractions(res.data));
             API.get("mock/paths.json").then(res => setPaths(res.data));
+            API.get("mock/discounts.json").then(res => setDiscounts(res.data));
         }, 500);
     }, []);
 
@@ -47,6 +51,16 @@ export default function () {
                 {!!paths?.length && paths?.map((item, index) => <LoopPathPost key={index} {...item} />)}
                 {!paths && <Loader style={{ width: '100%' }} />}
             </LoopSearchPostsContainer>
+
+            <DiscountsContainer
+                heading={<>Aktualne promocje <br/>i karty rabatowe</>}
+                headingLink={window.location.href}
+                headingLinkText={'ZOBACZ WSZYSTKIE'}
+            >
+                {discounts !== null && !discounts.length && <h3>Brak</h3>}
+                {!!discounts?.length && discounts?.map((item, index) => <YellowDiscountBlock key={index} {...item} />)}
+                {!discounts && <Loader style={{ width: '100%' }} />}
+            </DiscountsContainer>
         </>
     );
 }

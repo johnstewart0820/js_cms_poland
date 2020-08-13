@@ -1,0 +1,30 @@
+@import "../general/colors";
+
+.discount {
+    &__karta {
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: $green;
+        padding: 40px 80px;
+        margin-right: 40px;
+
+        span {
+            color: #ffffff;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: nowrap;
+
+        > * {
+            width: 260px;
+        }
+    }
+}
