@@ -14,5 +14,16 @@
     font-size: 40px;
     margin: 0;
   }
+}
 
+.reservation-body {
+  display: flex;
+  padding: 30px 10px 60px 100px;
+
+  .day-button__container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 250px;
+    overflow-y: scroll;
+  }
 }

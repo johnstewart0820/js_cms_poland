@@ -1,17 +1,12 @@
 import React from 'react';
 
-const RadioButton = ({label, onChange, value, name, containerStyles}) => {
+const RadioButton = ({containerStyles, label, ...rest}) => {
     return(
         <label style={containerStyles}>
-            <input
-                type="radio"
-                onChange={onChange}
-                value={value}
-                name={name}
-            />
+            <input type="radio"{...rest} />
             {label}
         </label>
-    )
-}
+    );
+};
 
 export default RadioButton;

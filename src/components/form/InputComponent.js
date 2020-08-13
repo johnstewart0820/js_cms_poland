@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/form/input.scss'
 
-const InputComponent = (props) => {
+const InputComponent = props => {
     const [visible, setVisible] = React.useState(false);
 
     const handleSwitch = () => {

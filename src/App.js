@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { router_basename } from "./extra/API";
 import { BrowserRouter as Router } from "react-router-dom";
-
-
+import {UserContextProvider} from './constants/UserContext';
 import Routing from "./routing/Routing";
 import Footer from './components/footer/Footer';
 import Sidebar from "./components/sidebar/Sidebar";
@@ -17,6 +16,11 @@ import { isContrastThemeOn, turnOnContrastTheme } from "./extra/theme";
 import { SITE } from "./extra/site_settings";
 
 
+/* FIXME move to locale switcher */
+import moment from 'moment';
+import 'moment/locale/pl';
+moment().locale('pl');
+
 class App extends Component {
 
 	componentDidMount(){
@@ -28,19 +32,20 @@ class App extends Component {
 		if( isContrastThemeOn() ) turnOnContrastTheme()
 	}
 
-
-	render(){
+	render() {
 		return (
 			<>
 				<Router basename={ router_basename }>
 
 					<Header type={ SITE } />
 					<Sidebar />
-		  
-				  <main>
-					  <Routing />
-				  </main>
-	  
+
+					<UserContextProvider>
+						<main>
+							<Routing />
+						</main>
+					</UserContextProvider>
+
 				  <Footer />
 	  
 			  	</Router>
