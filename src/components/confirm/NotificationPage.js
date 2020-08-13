@@ -6,13 +6,13 @@ import {useLocation} from 'react-router-dom';
 
 const data = {
     '/reservation-confirm' : {
-        title : (props) => (
+        title: (props) => (
             <h1>
                 Pomyślnie dokonano rezerwacji boiska:<br/>
                 Nazwa {props}
             </h1>
         ),
-        description: (
+        description: (props) => (
             <h3>
                 Opłatę w wysokości 90 zł za zarezerwowany czas należy przesłać na<br/>
                 konto ING nr 85 1050 1070 1000 2126 6545 4565 z podaniem imienia i<br/>
@@ -22,6 +22,23 @@ const data = {
         buttonText: 'ZAREJESTRUJ',
         onClick: () => {},
     },
+    '/confirm' : {
+        title: () => (
+            <>
+                <p>Dziękujemy</p>
+                <h2> za dokonanie rejestracji!</h2>
+            </>
+        ),
+        description: () => (
+            <h5>
+                Na podany podczas rejestracji adres email została wysłana wiadomość<br/>
+                z linkiem aktywującym twoje konto w naszym serwisie.<br/>
+                Odbierz pocztę i kliknij w link w celu aktywacji twojego konta.<br/>
+            </h5>
+        ),
+        buttonText: 'DALEJ',
+        onClick: () => {}
+    }
 };
 
 const NotificationPage = props => {
@@ -34,8 +51,8 @@ const NotificationPage = props => {
         >
             <div className="description">
                 <div className="description__inner">
-                    {item.title(props)}
-                    {item.description}
+                    {item.title()}
+                    {item.description()}
                     <ButtonLink extra_classes="green" onClick={() => item.onClick(props)}>{item.buttonText}</ButtonLink>
                 </div>
             </div>
