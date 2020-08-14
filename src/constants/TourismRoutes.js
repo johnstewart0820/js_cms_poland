@@ -16,4 +16,5 @@ export default {
     Notification: '/reservation-confirm',
     SingleEvent: (id = ':id') => `/events/${id}`,
     SingleNews: (id = ':id') => `/news/${id}`,
+    ReservationHistoryPage: '/reservation-history'
 };

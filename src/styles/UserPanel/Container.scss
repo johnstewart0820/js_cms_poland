@@ -1,23 +1,36 @@
 .custom-container {
   display: flex;
   background-color: #f9f9f9;
-
+  width: calc(100% - 88px);
   .container-fluid {
     width: 100%;
-    .page-title {
+    .row {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding-left: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
 
-      img {
-        height: 50px;
-        width: 50px;
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         margin-right: 20px;
       }
-      h3 {
-        font-size: 20px;
-        color: #3D5567;
+
+      .page-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 20px;
+
+        img {
+          height: 50px;
+          width: 50px;
+          margin-right: 20px;
+        }
+        h3 {
+          font-size: 20px;
+          color: #3D5567;
+        }
       }
     }
   }

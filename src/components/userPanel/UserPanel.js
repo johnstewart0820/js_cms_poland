@@ -45,7 +45,7 @@ export const UserPanel = () => {
                     buttonText={'Moj profil'}
                 />
                 <PanelButton
-                    onClick={() => history.push(TourismRoutes.StadiumReservation)}
+                    onClick={() => history.push(TourismRoutes.ReservationHistoryPage)}
                     lines={true}
                     buttonImage={require('../../svg/icons/stadium-black.svg')}
                     buttonText={'Rezerwacja boisk'}

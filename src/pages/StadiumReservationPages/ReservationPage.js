@@ -10,6 +10,7 @@ import RadioButton from "../../components/form/RadioButton";
 import axios from '../../extra/axios';
 import moment from 'moment';
 import usePrevious from "../../hooks/usePrevious";
+import {useHistory} from "react-router-dom";
 
 const ReservationPage = props => {
     const pageId = props.match.params.id;
@@ -24,6 +25,7 @@ const ReservationPage = props => {
     const [selectedDay, setSelectedDay] = React.useState(null);
     const [selectedTime, setSelectedTime] = React.useState('');
     const [loading, setLoading] = React.useState(true);
+    const history = useHistory();
 
     React.useEffect(() => {
         setSelectedDay(days.find(item => item.day === moment(calendarDate).format('DD.MM.YYYY')) || null);
@@ -69,10 +71,26 @@ const ReservationPage = props => {
         setLoading(false);
     }
 
+    const makeReservation = () => {
+        if (selectedTime) {
+            axios.post(`https://api.ustron.s3.netcore.pl/courts/${pageId}/makeReservation`, {
+                day: selectedDay.day,
+                time_frame: selectedTime,
+            }).then(({response}) => {
+                console.log(response);
+                history.push('/reservation-confirm');
+            })
+        } else {
+            alert('blabla')
+        }
+    }
+
     const handleChange = e => setSelectedTime(e.target.value);
 
     return (
-        <Container containerTitle={'BOISKA REZERWACJA'}>
+        <Container
+            containerTitle={'BOISKA REZERWACJA'}
+        >
             <Row>
                 <div className='reservation-header'>
                     <p>BOISKO/ KATEGORIA ORLIK</p>
@@ -86,8 +104,10 @@ const ReservationPage = props => {
                     <Col>
                         <div className="calendar-container">
                             <InputComponent
+                                disabled
                                 fieldName={'DATA'}
                                 containerStyles={{margin: '40px 0px 10px 0px', borderColor: '#85CB3F'}}
+                                value={moment(calendarDate ,"DD-MM-YYYY").format('DD.MM.YYYY')}
                             />
                             <Calendar
                                 className='calendar'
@@ -106,9 +126,11 @@ const ReservationPage = props => {
                             <div className="day-button__container">
                                 {days.map((item) => {
                                     const date = moment(item.day, 'DD.MM.YYYY');
+                                    const convertedDate = date.format('DD.MM.YYYY');
+                                    const convertedCalendarDate = moment(calendarDate).format('DD.MM.YYYY');
                                     return <DayButton
                                         key={item.day}
-                                        active={date.isSame(calendarDate)}
+                                        active={convertedDate === convertedCalendarDate}
                                         onClick={() => setCalendarDate(date.toDate())}
                                         dayName={date.format('dddd').toUpperCase()}
                                         monthName={date.format('MMMM').toUpperCase()}
@@ -133,13 +155,19 @@ const ReservationPage = props => {
                                                     value={key}
                                                     containerStyles={{marginTop: '10px'}}
                                                     checked={selectedTime === key}
-                                                    disabled={!!selectedDay?.time_table[key]?.is_available}
+                                                    disabled={selectedDay?.time_table[key]?.is_available === false}
                                                     onChange={handleChange}
                                                 />
                                             ))
                                         : <h3>Wybierz datę</h3>
                                     }
                                 </div>
+                                <Col>
+                                    <button
+                                        className="button-link green full-width"
+                                        style={{marginTop: '20px'}}
+                                        onClick={makeReservation}>REZERWUJ</button>
+                                </Col>
                             </div>
                         </Row>
                     </Col>
