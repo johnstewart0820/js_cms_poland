@@ -1,6 +1,6 @@
 import React from "react";
 import MapPin from "../svg/components/MapPin";
-import { MountainsIcon, BikeIcon, BedIcon, MapIcon, SquareIcon } from "../svg/icons";
+import { MountainsIcon, BikeIcon, BedIcon, MapIcon, SquareIcon, HikingIcon, DiscountIcon } from "../svg/icons";
 
 
 const FILTERS = {
@@ -36,8 +36,16 @@ const FILTERS = {
 		{ svg: <MapPin color="#052E57" />, label: "Kwatery Prywatne", value: "private" },
 		{ svg: <MapPin color="#CE2F94" />, label: "Domek letniskowy", value: "summer_house" },
 		{ svg: <MapPin color="#9F2FCE" />, label: "Pole campingowe", value: "camping" },
-	]
-}
+	],
+
+	"attractions": [
+		{ svg: <SquareIcon />, label: "wszystkie", value: "*" },
+		{ svg: <BikeIcon />, label: "atrakcje", value: "attractions" },
+		{ svg: <HikingIcon />, label: "szlaki", value: "paths" },
+		{ svg: <MapIcon />, label: "gra terenowa", value: "outdoor_games" },
+		{ svg: <DiscountIcon />, label: "promocje", value: "discounts" },
+	],
+};
 
 
 const FILTERS_CONTENT = {
@@ -70,7 +78,14 @@ const FILTERS_CONTENT = {
 			text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 			link_to_all: "/practical-info"
 		}
-	}
+	},
+
+	"attractions": {
+		"*": {
+			heading: "Co zwiedzić?",
+			text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+		},
+	},
 }
 
 export { FILTERS, FILTERS_CONTENT };

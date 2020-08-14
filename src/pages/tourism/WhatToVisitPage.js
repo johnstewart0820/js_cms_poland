@@ -11,6 +11,16 @@ import LoopAttractionPost from "../../components/attractions/LoopAttractionPost"
 import LoopPathPost from "../../components/paths/LoopPathPost";
 import DiscountsContainer from "../../components/discounts/DiscountsContainer";
 import YellowDiscountBlock from "../../components/discounts/YellowDiscountBlock";
+import TextLinkPic from "../../components/general/TextLinkPic";
+import MapWithPinsFiltering from "../../components/map/MapWithPinsFiltering";
+
+const text_link_pic = {
+    heading: "Gra Terenowa",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    link: "#",
+    link_label: "dowiedz się więcej",
+    picture: "/img/pics/1.jpg"
+};
 
 export default function () {
     const [slides, setSlides] = React.useState([]);
@@ -61,6 +71,10 @@ export default function () {
                 {!!discounts?.length && discounts?.map((item, index) => <YellowDiscountBlock key={index} {...item} />)}
                 {!discounts && <Loader style={{ width: '100%' }} />}
             </DiscountsContainer>
+
+            <TextLinkPic { ...text_link_pic } />
+
+            <MapWithPinsFiltering type="attractions" />
         </>
     );
 }

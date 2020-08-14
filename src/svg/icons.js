@@ -45,6 +45,8 @@ import { ReactComponent as RopewaysIcon } from "./icons/ropeways.svg";
 import { ReactComponent as RinkIcon } from "./icons/rink.svg";
 import { ReactComponent as TrainerIcon } from "./icons/trainer.svg";
 import { ReactComponent as BikeIcon } from "./icons/bike.svg";
+import { ReactComponent as HikingIcon } from "./icons/hiking.svg";
+import { ReactComponent as DiscountIcon } from "./icons/discount.svg";
 
 import { ReactComponent as MuseumIcon } from "./icons/museum.svg";
 import { ReactComponent as HouseOfCultureIcon } from "./icons/house-of-culture.svg";
@@ -100,6 +102,8 @@ export {
 	RinkIcon,
 	TrainerIcon,
 	BikeIcon,
+	HikingIcon,
+	DiscountIcon,
 
 	MuseumIcon,
 	HouseOfCultureIcon,

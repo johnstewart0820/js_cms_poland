@@ -6,7 +6,7 @@ import "../../styles/discounts/discount-container.scss";
 const karta = require('../../img/uzdrowisowa-karta.png');
 
 const DiscountsContainer = props => (
-    <section className={props.extraClasses || ''}>
+    <section className={'my-5' + (props.extraClasses || '')}>
         <div className="container">
             <SectionHeading
                 heading={props.heading}
