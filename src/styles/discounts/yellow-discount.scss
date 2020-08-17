@@ -1,0 +1,26 @@
+@import "../general/colors";
+
+.yellow-discount {
+    &__amount {
+        background-color: $light_yellow;
+        display: flex;
+        flex-direction: column;
+        color: $gray;
+        font-size: 60px;
+        text-align: center;
+        font-weight: bold;
+        padding: 40px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    &__title {
+        color: $gray;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}

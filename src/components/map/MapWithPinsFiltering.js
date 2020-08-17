@@ -20,8 +20,9 @@ export default class MapWithPinsFiltering extends Component {
     API_URLs = {
         "trip": "mock/trip-map.json",
         "practical-info": "mock/practical-info-map.json",
-        "accommodations": "mock/accommodations-map.json"
-    }
+        "accommodations": "mock/accommodations-map.json",
+        "attractions": "/mock/attractions-map.json",
+    };
 
     state = {
         filter: "*",

@@ -5,6 +5,7 @@ import '../../styles/attractions/loop-attraction-post.scss';
 import BicycleIcon from "../icons/BicycleIcon";
 import DisabilityIcon from "../icons/DisabilityIcon";
 import FamilyIcon from "../icons/FamilyIcon";
+import HikingIcon from "../icons/HikingIcon";
 
 export default function ({id, title, excerpt, category, thumbnail}) {
     return (
@@ -20,10 +21,18 @@ export default function ({id, title, excerpt, category, thumbnail}) {
             </a>
 
             <div className="loop-card__content-container">
-                <div className="my-3 loop-card__icons">
-                    <BicycleIcon/>
-                    <DisabilityIcon/>
-                    <FamilyIcon/>
+                <div className="my-3 d-flex justify-content-between">
+                    <div className="loop-card__icons">
+                        <BicycleIcon/>
+                        <DisabilityIcon/>
+                        <FamilyIcon/>
+                    </div>
+                    <div className="loop-card__icons d-flex align-items-center">
+                        <HikingIcon/>
+                        <div className="d-inline-block heading">
+                            4H
+                        </div>
+                    </div>
                 </div>
                 <div className="loop-card__title heading">
                     <a href={`/attractions/${id}`} target={'_blank'} rel={'noopener noreferrer'}>

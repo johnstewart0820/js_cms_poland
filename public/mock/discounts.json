@@ -1,0 +1,26 @@
+[
+	{
+		"id": 1,
+		"title": "Miejska Informacja Turystyczna",
+		"description": "na zakup pamiątek",
+		"amount": 15
+	},
+	{
+		"id": 2,
+		"title": "Górski Park Równica",
+		"description": "bilety do kina 7D",
+		"amount": 15
+	},
+	{
+		"id": 3,
+		"title": "Figle Migle",
+		"description": "na karnet całodzienny oraz na bilety na kolej linową",
+		"amount": 15
+	},
+	{
+		"id": 4,
+		"title": "Kolej linowa Czantoria",
+		"description": "na bilety na kolej linową",
+		"amount": 15
+	}
+]
