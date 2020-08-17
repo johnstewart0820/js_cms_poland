@@ -76,9 +76,7 @@ const ReservationPage = props => {
             axios.post(`https://api.ustron.s3.netcore.pl/courts/${pageId}/makeReservation`, {
                 day: selectedDay.day,
                 time_frame: selectedTime,
-            }).then(() => {
-                history.push('/reservation-confirm');
-            })
+            }).then(response => history.push('/reservation-confirmation?id=' + response.data.id))
         } else {
             alert('Wybierz czas');
         }

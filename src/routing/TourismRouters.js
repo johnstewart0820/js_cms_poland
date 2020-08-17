@@ -17,8 +17,9 @@ const StadiumReservation = asyncComponent(() => import('../pages/StadiumReservat
 const UserProfilePage = asyncComponent(() => import('../pages/UserProfile/UserProfilePage'));
 const ActivateAccount = asyncComponent(() => import('../pages/LoginRegistrationPages/ActivateAccount'));
 const ReservationPage = asyncComponent(() => import('../pages/StadiumReservationPages/ReservationPage'));
-const NotificationPage = asyncComponent(() => import('../components/confirm/NotificationPage'));
+const NotificationPage = asyncComponent(() => import('../components/userPanel/TitleDescriptionButton'));
 const ReservationHistoryPage = asyncComponent(() => import('../pages/StadiumReservationPages/ReservationsHistoryPage'));
+const ReservationConfirmationPage = asyncComponent(() => import('../pages/StadiumReservationPages/ReservationConfirmation'));
 
 const EventSinglePage = asyncComponent( () => import( "../pages/common/EventSinglePage" ));
 const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSinglePage" ));
@@ -39,8 +40,8 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.ActivateAccount} component={ ActivateAccount }/>
 		<Route exact path={TourismRoutes.UserProfile} component={ UserProfilePage } />
 		<Route exact path={TourismRoutes.StadiumReservation} component={ StadiumReservation }/>
+		<Route exact path={TourismRoutes.ReservationConfirmationPage} component={ ReservationConfirmationPage }/>
 		<Route exact path={TourismRoutes.Reservation()} component={ ReservationPage }/>
-		<Route exact path={TourismRoutes.Notification} component={ NotificationPage }/>
 		<Route exact path={TourismRoutes.SingleEvent()} component={ EventSinglePage } />
 		<Route exact path={TourismRoutes.SingleNews()} component={ NewsSinglePage } />
 		<Route exact path={TourismRoutes.ReservationHistoryPage} component={ReservationHistoryPage}/>

@@ -13,8 +13,8 @@ export default {
     UserProfile: '/profile',
     StadiumReservation: '/courts',
     Reservation: (id = ':id') => `/reservation/${id}`,
-    Notification: '/reservation-confirm',
     SingleEvent: (id = ':id') => `/events/${id}`,
     SingleNews: (id = ':id') => `/news/${id}`,
-    ReservationHistoryPage: '/reservation-history'
+    ReservationHistoryPage: '/reservation-history',
+    ReservationConfirmationPage: '/reservation-confirm',
 };

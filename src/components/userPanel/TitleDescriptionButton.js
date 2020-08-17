@@ -1,26 +1,26 @@
 import React from 'react';
-import {Container} from "../userPanel/Container";
-import '../../styles/StadiumReservationPages/ReservationConfirmation.scss';
 import ButtonLink from "../../components/buttons/ButtonLink";
-import {useLocation} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
+import TourismRoutes from "../../constants/TourismRoutes";
+import PropTypes from 'prop-types';
 
 const data = {
     '/reservation-confirm' : {
         title: (props) => (
             <h1>
                 Pomyślnie dokonano rezerwacji boiska:<br/>
-                Nazwa {props}
+                Nazwa
             </h1>
         ),
         description: (props) => (
             <h3>
                 Opłatę w wysokości 90 zł za zarezerwowany czas należy przesłać na<br/>
-                konto ING nr 85 1050 1070 1000 2126 6545 4565 z podaniem imienia i<br/>
+                konto ING nr {props.cardNum} z podaniem imienia i<br/>
                 nazwiska osoby rezerwującej oraz daty za którą dokonano opłaty.
             </h3>
         ),
         buttonText: 'ZAREJESTRUJ',
-        onClick: () => {},
+        onClick: (props) => {props.history.push(TourismRoutes.ReservationHistoryPage)}
     },
     '/confirm' : {
         title: () => (
@@ -37,27 +37,33 @@ const data = {
             </h5>
         ),
         buttonText: 'DALEJ',
-        onClick: () => {}
+        onClick: (props) => console.log(props.history)
     }
 };
 
-const NotificationPage = props => {
+const TitleDescriptionButton = props => {
     const location = useLocation();
     const item = data[location.pathname];
+    const history = useHistory();
+
+    const args = {...props, history};
 
     return (
-        <Container
-            containerTitle={'REZERWACJA BOISK'}
-        >
-            <div className="description">
-                <div className="description__inner">
-                    {item.title()}
-                    {item.description()}
-                    <ButtonLink extra_classes="green" onClick={() => item.onClick(props)}>{item.buttonText}</ButtonLink>
-                </div>
+        <div className="description">
+            <div className="description__inner">
+                {props.title}
+                {props.description}
+                <ButtonLink extra_classes="green" onClick={props.onClick}>{props.buttonText}</ButtonLink>
             </div>
-        </Container>
-    )
-}
+        </div>
+    );
+};
 
-export default NotificationPage;
+TitleDescriptionButton.propTypes = {
+    title: PropTypes.node,
+    description: PropTypes.node,
+    buttonText: PropTypes.node,
+    onClick: PropTypes.func,
+};
+
+export default TitleDescriptionButton;

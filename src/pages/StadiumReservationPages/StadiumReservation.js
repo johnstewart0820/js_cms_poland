@@ -16,7 +16,6 @@ const StadiumReservation = () => {
     React.useEffect(() => {
         axios.get('https://api.ustron.s3.netcore.pl/courts')
         .then((response) => {
-            console.log(response)
             setData(response.data.courts);
             setLoading(false)
         }).catch(error => {
