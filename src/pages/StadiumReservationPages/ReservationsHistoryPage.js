@@ -3,7 +3,6 @@ import {Container} from "../../components/userPanel/Container";
 import axios from '../../extra/axios';
 import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
 import Checkbox from "../../components/form/Checkbox";
-import moment from "moment";
 
 const ReservationHistoryPage = () => {
     const [data, setData] = React.useState([]);
@@ -16,7 +15,6 @@ const ReservationHistoryPage = () => {
     const getData = () => {
         axios.get('https://api.ustron.s3.netcore.pl/courts-reservations')
         .then((response) => {
-            console.log(response.data.reservations)
             setData(response.data.reservations);
         }).catch((error) => console.log(error))
     }
