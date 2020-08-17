@@ -31,7 +31,6 @@ const LoginPage = () => {
         ).then((response) => {
             token = response.data.token;
         }).then(getUserData).catch(error => {
-            console.log(error);
             const responseErrors = error.response?.data?.errors;
             if (responseErrors)
                 setErrors(Array.isArray(responseErrors) ? responseErrors : [responseErrors]);
