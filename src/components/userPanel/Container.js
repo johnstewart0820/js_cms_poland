@@ -8,12 +8,13 @@ import Notification from "../notification/Notification";
 export const Container = props => {
     const location = useLocation();
     const history = useHistory();
+
     return(
         <div className="custom-container">
             <UserPanel/>
             <div className="container-fluid">
                 {props.setNotification && <Notification message={props.notificationMessage}/>}
-                <div className="row">
+                <div className='row' style={location.pathname === '/reservation-history' ? {justifyContent: 'space-between'} : {justifyContent: ''}}>
                     <div className="page-title">
                         <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
                         <h3>
