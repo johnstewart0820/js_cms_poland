@@ -8,25 +8,29 @@ import Notification from "../notification/Notification";
 export const Container = props => {
     const location = useLocation();
     const history = useHistory();
+    const locations = {
+      reservation: '/reservation-history',
+      registerToEvent: '/register-event'
+    };
 
     return(
         <div className="custom-container">
             <UserPanel/>
             <div className="container-fluid">
                 {props.setNotification && <Notification message={props.notificationMessage}/>}
-                <div className='row' style={location.pathname === '/reservation-history' ? {justifyContent: 'space-between'} : {justifyContent: ''}}>
+                <div className='row' style={!!locations.reservation && !!locations.registerToEvent ? {justifyContent: 'space-between'} : {justifyContent: ''}}>
                     <div className="page-title">
                         <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
                         <h3>
                             {props.containerTitle}
                         </h3>
                     </div>
-                    {location.pathname === '/reservation-history' && (
+                    {props.addContainerButton && (
                         <div className="button-container">
                             <button
                                 className="button-link green full-width"
-                                onClick={() => history.push(TourismRoutes.StadiumReservation)}
-                            >ZAREZERWUJ BOISKO</button>
+                                onClick={() => history.push(props.routeForContainerButton)}
+                            >{props.textForContainerButton}</button>
                         </div>
                     )}
                 </div>

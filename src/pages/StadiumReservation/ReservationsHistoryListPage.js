@@ -3,6 +3,7 @@ import {Container} from "../../components/UserPanel/Container";
 import axios from '../../extra/axios';
 import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
 import Checkbox from "../../components/form/Checkbox";
+import TourismRoutes from "../../constants/TourismRoutes";
 
 const ReservationHistoryPage = () => {
     const [data, setData] = React.useState([]);
@@ -33,6 +34,9 @@ const ReservationHistoryPage = () => {
         <Container
             setNotification={!!error}
             notificationMessage={error}
+            addContainerButton={true}
+            routeForContainerButton={TourismRoutes.StadiumReservation}
+            textForContainerButton={'ZAREZERWUJ BOISKO'}
             containerTitle={'BOISKA HISTORIA REZERWACJI'}>
             <div className="list-container">
                 <div className="list-view__container">
