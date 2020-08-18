@@ -96,7 +96,7 @@ const ReservationHistoryPage = () => {
                                         </td>
                                         <td>
                                             {item.is_canceled === '0' && item.confirmed === '0' && <p style={{color: 'red'}}>{result}</p>}
-                                            {item.confirmed === '1' && <h5>Opłacone</h5>}
+                                            {item.confirmed === '1' && item.is_canceled === '0' && <h5>Opłacone</h5>}
                                             {item.is_canceled === '1' && <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>}
                                         </td>
                                         <td style={{padding: "20px 0 0 0"}}>
