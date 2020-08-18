@@ -1,0 +1,37 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.container-inner {
+  background: white;
+  padding: 50px;
+  margin: 10px 20px 10px 20px;
+  .container-inner__body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .gray-input {
+      border: 2px solid #d2d2d2;
+      min-width: 398px;
+      min-height: 56px;
+      padding: 5px;
+      max-width: 806px;
+      margin: 10px 5px;
+      z-index: 0;
+      svg {
+        right: 20px;
+      }
+    }
+
+    .margin-bottom {
+      margin-bottom: 50px;
+    }
+
+    .row {
+      button {
+        min-width: 398px;
+        margin: 50px 5px 0;
+      }
+    }
+  }
+}

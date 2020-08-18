@@ -19,6 +19,8 @@ const ActivateAccount = asyncComponent(() => import('../pages/LoginRegistration/
 const ReservationPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationCalendarPage'));
 const ReservationHistoryPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationsHistoryListPage'));
 const ReservationConfirmationPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationConfirmationPage'));
+const RegisterToEventList = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventList'));
+const RegisterToEventForm = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventForm'));
 
 const EventSinglePage = asyncComponent( () => import( "../pages/common/EventSinglePage" ));
 const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSinglePage" ));
@@ -44,6 +46,8 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.SingleEvent()} component={ EventSinglePage } />
 		<Route exact path={TourismRoutes.SingleNews()} component={ NewsSinglePage } />
 		<Route exact path={TourismRoutes.ReservationHistoryPage} component={ReservationHistoryPage}/>
+		<Route exact path={TourismRoutes.RegisterToEventList} component={RegisterToEventList}/>
+		<Route exact path={TourismRoutes.RegisterToEventForm} component={RegisterToEventForm}/>
 	</>
 )
 

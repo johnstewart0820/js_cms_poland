@@ -17,4 +17,6 @@ export default {
     SingleNews: (id = ':id') => `/news/${id}`,
     ReservationHistoryPage: '/reservation-history',
     ReservationConfirmationPage: '/reservation-confirmation',
+    RegisterToEventList: '/register-event',
+    RegisterToEventForm: '/register-event-form'
 };

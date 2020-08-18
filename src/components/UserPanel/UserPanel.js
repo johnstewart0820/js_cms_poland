@@ -51,6 +51,7 @@ export const UserPanel = () => {
                     buttonText={'Rezerwacja boisk'}
                 />
                 <PanelButton
+                    onClick={() => history.push(TourismRoutes.RegisterToEventList)}
                     lines={true}
                     buttonImage={require('../../svg/icons/pencil-black.svg')}
                     buttonText={'Rejestracja na zawody'}
