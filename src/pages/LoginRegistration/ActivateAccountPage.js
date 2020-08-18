@@ -3,7 +3,7 @@ import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
 
-const ActivateAccount = () => {
+const ActivateAccountPage = () => {
     const [error, setError] = React.useState('');
     const history = useHistory();
 
@@ -36,4 +36,4 @@ const ActivateAccount = () => {
     )
 }
 
-export default ActivateAccount;
+export default ActivateAccountPage;

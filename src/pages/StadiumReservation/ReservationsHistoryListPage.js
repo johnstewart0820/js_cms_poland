@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from "../../components/userPanel/Container";
+import {Container} from "../../components/UserPanel/Container";
 import axios from '../../extra/axios';
 import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
 import Checkbox from "../../components/form/Checkbox";
@@ -20,10 +20,13 @@ const ReservationHistoryPage = () => {
     }
 
     const cancelReservation = id => {
-        axios.post(`https://api.ustron.s3.netcore.pl/courts-reservations/${id}/cancel`)
-        .then(() => {
-            getData()
-        }).catch((error) => setError(error))
+        let result = window.confirm('Czy na pewno chcesz anulować rezerwację?');
+        if(result === true) {
+            axios.post(`https://api.ustron.s3.netcore.pl/courts-reservations/${id}/cancel`)
+            .then(() => {
+                getData()
+            }).catch((error) => setError(error))
+        }
     }
 
     return(
@@ -68,7 +71,7 @@ const ReservationHistoryPage = () => {
                                 minute = minute % 6;
                                 day = Math.floor(hour / 24);
                                 hour = hour % 24;
-                                let result = 'pozostało ' + (day > 1 ? day + ' dni ' : day + ' dzień ') + (hour > 1 ? hour + ' godzin' : hour + ' godzina');
+                                let result = 'pozostało ' + (day > 1 ? day + ' dni ' : day + ' dzień ') + (hour > 1 ? hour + ' godzin' : hour + ' godzina') + ' na dokonanie wpłaty';
 
                                 return(
                                     <tr key={index}>
@@ -88,9 +91,9 @@ const ReservationHistoryPage = () => {
                                             {item.day}
                                         </td>
                                         <td>
-                                            {item.is_canceled === '0' && item.confirmed === '0' && result}
-                                            {item.confirmed === '1' && 'opłacone'}
-                                            {item.is_canceled === '1' && 'Wygasłe/anulowane'}
+                                            {item.is_canceled === '0' && item.confirmed === '0' && <p style={{color: 'red'}}>{result}</p>}
+                                            {item.confirmed === '1' && <h5>Opłacone</h5>}
+                                            {item.is_canceled === '1' && <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>}
                                         </td>
                                         <td style={{padding: "20px 0 0 0"}}>
                                             {item.is_canceled === '0' && (

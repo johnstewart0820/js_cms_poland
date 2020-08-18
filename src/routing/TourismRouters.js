@@ -10,16 +10,15 @@ const PhotoReportsPage = asyncComponent( () => import( "../pages/common/PhotoRep
 const AccommodationsPage = asyncComponent( () => import( "../pages/common/AccommodationsPage" ));
 const GastronomyPage = asyncComponent( () => import( "../pages/common/GastronomyPage") );
 const WhatToVisitPage = asyncComponent( () => import( "../pages/tourism/WhatToVisitPage") );
-const RegistrationPage = asyncComponent(() => import('../pages/LoginRegistrationPages/RegistrationPage'));
-const LoginPage = asyncComponent(() => import('../pages/LoginRegistrationPages/LoginPage'));
-const RegistrationConfirmationPage = asyncComponent(() => import('../pages/LoginRegistrationPages/RegistrationConfirmationPage'));
-const StadiumReservation = asyncComponent(() => import('../pages/StadiumReservationPages/StadiumReservation'));
+const RegistrationPage = asyncComponent(() => import('../pages/LoginRegistration/RegistrationPage'));
+const LoginPage = asyncComponent(() => import('../pages/LoginRegistration/LoginPage'));
+const RegistrationConfirmationPage = asyncComponent(() => import('../pages/LoginRegistration/RegistrationConfirmationPage'));
+const StadiumReservation = asyncComponent(() => import('../pages/StadiumReservation/CourtsWithCardsPage'));
 const UserProfilePage = asyncComponent(() => import('../pages/UserProfile/UserProfilePage'));
-const ActivateAccount = asyncComponent(() => import('../pages/LoginRegistrationPages/ActivateAccount'));
-const ReservationPage = asyncComponent(() => import('../pages/StadiumReservationPages/ReservationPage'));
-const NotificationPage = asyncComponent(() => import('../components/userPanel/TitleDescriptionButton'));
-const ReservationHistoryPage = asyncComponent(() => import('../pages/StadiumReservationPages/ReservationsHistoryPage'));
-const ReservationConfirmationPage = asyncComponent(() => import('../pages/StadiumReservationPages/ReservationConfirmation'));
+const ActivateAccount = asyncComponent(() => import('../pages/LoginRegistration/ActivateAccountPage'));
+const ReservationPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationCalendarPage'));
+const ReservationHistoryPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationsHistoryListPage'));
+const ReservationConfirmationPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationConfirmationPage'));
 
 const EventSinglePage = asyncComponent( () => import( "../pages/common/EventSinglePage" ));
 const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSinglePage" ));

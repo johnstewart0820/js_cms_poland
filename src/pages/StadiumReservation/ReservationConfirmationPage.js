@@ -4,9 +4,11 @@ import axios from "../../extra/axios";
 import Loader from "../../components/general/Loader";
 import '../../styles/StadiumReservationPages/ReservationConfirmation.scss';
 import ButtonLink from "../../components/buttons/ButtonLink";
-import {Container} from "../../components/userPanel/Container";
+import {Container} from "../../components/UserPanel/Container";
+import TourismRoutes from "../../constants/TourismRoutes";
 
-const ReservationConfirmation = () => {
+const ReservationConfirmationPage = () => {
+    const history = useHistory();
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
@@ -35,7 +37,7 @@ const ReservationConfirmation = () => {
                                 konto ING nr {reservationData.bank_account_number} z podaniem imienia i<br/>
                                 nazwiska osoby rezerwującej oraz daty za którą dokonano opłaty.
                             </h3>
-                            <ButtonLink extra_classes="green" onClick={() => {}}>asdasd</ButtonLink>
+                            <ButtonLink extra_classes="green" onClick={() => history.push(TourismRoutes.ReservationHistoryPage)}>ZAREJESTRUJ</ButtonLink>
                         </>
                     )}
                 </div>
@@ -44,4 +46,4 @@ const ReservationConfirmation = () => {
     );
 };
 
-export default ReservationConfirmation;
+export default ReservationConfirmationPage;

@@ -3,12 +3,12 @@ import '../../styles/StadiumReservationPages/StadiumReservation.scss';
 import Card from "../../components/StadiumReservationComponents/Card";
 import {Row} from "react-bootstrap";
 import axios from '../../extra/axios';
-import {Container} from "../../components/userPanel/Container";
+import {Container} from "../../components/UserPanel/Container";
 import Loader from "../../components/general/Loader";
 import {useHistory} from "react-router-dom";
 import TourismRoutes from "../../constants/TourismRoutes";
 
-const StadiumReservation = () => {
+const CourtsWithCardsPage = () => {
     const history = useHistory();
     const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState({});
@@ -52,4 +52,4 @@ const StadiumReservation = () => {
     )
 }
 
-export default StadiumReservation;
+export default CourtsWithCardsPage;

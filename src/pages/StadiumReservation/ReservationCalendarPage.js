@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from "../../components/userPanel/Container";
+import {Container} from "../../components/UserPanel/Container";
 import {Col, Row} from "react-bootstrap";
 import '../../styles/StadiumReservationPages/ReservationPage.scss';
 import {Calendar} from "react-calendar";
@@ -12,7 +12,7 @@ import moment from 'moment';
 import usePrevious from "../../hooks/usePrevious";
 import {useHistory} from "react-router-dom";
 
-const ReservationPage = props => {
+const ReservationCalendarPage = props => {
     const pageId = props.match.params.id;
     if (!pageId) {
         // FIXME add no page id handler
@@ -174,4 +174,4 @@ const ReservationPage = props => {
     )
 }
 
-export default ReservationPage;
+export default ReservationCalendarPage;

@@ -16,5 +16,5 @@ export default {
     SingleEvent: (id = ':id') => `/events/${id}`,
     SingleNews: (id = ':id') => `/news/${id}`,
     ReservationHistoryPage: '/reservation-history',
-    ReservationConfirmationPage: '/reservation-confirm',
+    ReservationConfirmationPage: '/reservation-confirmation',
 };

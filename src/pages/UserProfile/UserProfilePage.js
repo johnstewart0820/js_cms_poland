@@ -3,7 +3,7 @@ import '../../styles/StadiumReservationPages/StadiumReservation.scss';
 import {Col, Row} from "react-bootstrap";
 import '../../styles/UserProfilePage/UserProfile.scss';
 import {ChangePassword} from "../../components/UserProfile/ChangePaswword";
-import {Container} from "../../components/userPanel/Container";
+import {Container} from "../../components/UserPanel/Container";
 import UserContext from "../../constants/UserContext";
 import Checkbox from "../../components/form/Checkbox";
 import InputComponent from "../../components/form/InputComponent";
