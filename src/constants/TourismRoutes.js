@@ -19,5 +19,7 @@ export default {
     ReservationConfirmationPage: '/reservation-confirmation',
     RegisterToEventList: '/register-event',
     RegisterToEventForm: '/register-event-form',
-    RegisterToEventConfirmationPage: '/register-event-confirm'
+    RegisterToEventConfirmationPage: '/register-event-confirm',
+    ObjectListPage: '/object-list',
+    EditObjectFormPage: '/object-edit'
 };
