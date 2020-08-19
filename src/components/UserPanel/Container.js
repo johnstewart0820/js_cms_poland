@@ -2,7 +2,6 @@ import React from 'react';
 import {UserPanel} from "./UserPanel";
 import '../../styles/UserPanel/Container.scss'
 import {useLocation, useHistory} from "react-router-dom";
-import TourismRoutes from "../../constants/TourismRoutes";
 import Notification from "../notification/Notification";
 
 export const Container = props => {
