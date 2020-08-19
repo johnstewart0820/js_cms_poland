@@ -18,5 +18,6 @@ export default {
     ReservationHistoryPage: '/reservation-history',
     ReservationConfirmationPage: '/reservation-confirmation',
     RegisterToEventList: '/register-event',
-    RegisterToEventForm: '/register-event-form'
+    RegisterToEventForm: '/register-event-form',
+    RegisterToEventConfirmationPage: '/register-event-confirm'
 };

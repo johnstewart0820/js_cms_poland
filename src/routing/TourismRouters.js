@@ -21,6 +21,7 @@ const ReservationHistoryPage = asyncComponent(() => import('../pages/StadiumRese
 const ReservationConfirmationPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationConfirmationPage'));
 const RegisterToEventList = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventList'));
 const RegisterToEventForm = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventForm'));
+const RegisterToEventConfirmationPage = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventConfirmation'));
 
 const EventSinglePage = asyncComponent( () => import( "../pages/common/EventSinglePage" ));
 const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSinglePage" ));
@@ -48,6 +49,7 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.ReservationHistoryPage} component={ReservationHistoryPage}/>
 		<Route exact path={TourismRoutes.RegisterToEventList} component={RegisterToEventList}/>
 		<Route exact path={TourismRoutes.RegisterToEventForm} component={RegisterToEventForm}/>
+		<Route exact path={TourismRoutes.RegisterToEventConfirmationPage} component={RegisterToEventConfirmationPage}/>
 	</>
 )
 
