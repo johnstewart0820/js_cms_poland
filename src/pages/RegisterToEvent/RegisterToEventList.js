@@ -20,8 +20,8 @@ const RegisterToEventList = () => {
     }
 
     const cancelSubscription = id => {
-        window.confirm('Na pewno chcesz zrezygnować z subskrypcji wydarzenia');
-        if (window.confirm.status === true) {
+        let result = window.confirm('Na pewno chcesz zrezygnować z subskrypcji wydarzenia ?');
+        if (result === true) {
             axios.post(`https://api.ustron.s3.netcore.pl/subscriptions/${id}/cancel`)
                 .then(() => {
                     getData()
@@ -91,7 +91,7 @@ const RegisterToEventList = () => {
                                         <td>
                                             {item.is_canceled === '0' && item.confirmed === '0' && <p style={{color: 'red'}}>{result}</p>}
                                             {item.confirmed === '1' && item.is_canceled === '0' && <h5>Opłacone</h5>}
-                                            {item.is_canceled === '1' && item.confirmed === '1' && <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>}
+                                            {item.is_canceled === '1' && <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>}
                                         </td>
                                         <td style={{padding: "20px 0 0 0"}}>
                                             {item.is_canceled === '0' && <button
