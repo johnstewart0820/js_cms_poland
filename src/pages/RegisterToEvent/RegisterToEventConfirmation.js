@@ -5,14 +5,24 @@ import '../../styles/StadiumReservationPages/ReservationConfirmation.scss';
 import ButtonLink from "../../components/buttons/ButtonLink";
 import {Container} from "../../components/UserPanel/Container";
 import TourismRoutes from "../../constants/TourismRoutes";
+import '../../styles/helpers/classes.scss';
 
 const RegisterToEventConfirmationPage = () => {
     const history = useHistory();
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
+    const [loading, setLoading] = React.useState(true);
 
     const [subscriptionData, setSubscriptionData] = React.useState(null);
 
+
+    if (!!loading) return <Container
+        containerTitle={'REJESTRACJA NA ZAWODY'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
 
     return (

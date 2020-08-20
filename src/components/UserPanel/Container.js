@@ -1,11 +1,10 @@
 import React from 'react';
 import {UserPanel} from "./UserPanel";
 import '../../styles/UserPanel/Container.scss'
-import {useLocation, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Notification from "../notification/Notification";
 
 export const Container = props => {
-    const location = useLocation();
     const history = useHistory();
     const locations = {
       reservation: '/reservation-history',

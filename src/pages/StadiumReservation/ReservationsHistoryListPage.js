@@ -4,10 +4,13 @@ import axios from '../../extra/axios';
 import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
 import Checkbox from "../../components/form/Checkbox";
 import TourismRoutes from "../../constants/TourismRoutes";
+import Loader from "../../components/general/Loader";
+import '../../styles/helpers/classes.scss';
 
 const ReservationHistoryPage = () => {
     const [data, setData] = React.useState([]);
     const [error, setError] = React.useState('');
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         getData();
@@ -17,6 +20,7 @@ const ReservationHistoryPage = () => {
         axios.get('https://api.ustron.s3.netcore.pl/courts-reservations')
         .then((response) => {
             setData(response.data.reservations);
+            setLoading(false)
         }).catch((error) => console.log(error))
     }
 
@@ -29,6 +33,14 @@ const ReservationHistoryPage = () => {
             }).catch((error) => setError(error))
         }
     }
+
+    if (!!loading) return <Container
+        containerTitle={'BOISKA HISTORIA REZERWACJI'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return(
         <Container

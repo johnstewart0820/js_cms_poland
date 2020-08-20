@@ -7,6 +7,7 @@ import {Container} from "../../components/UserPanel/Container";
 import Loader from "../../components/general/Loader";
 import {useHistory} from "react-router-dom";
 import TourismRoutes from "../../constants/TourismRoutes";
+import '../../styles/helpers/classes.scss';
 
 const CourtsWithCardsPage = () => {
     const history = useHistory();
@@ -23,12 +24,14 @@ const CourtsWithCardsPage = () => {
         });
     },[]);
 
-    if (loading)
-        return <Container containerTitle={'MOJ PROFIL'}>
-            <div>
-                <Loader/>
-            </div>
-        </Container>
+    if (!!loading) return <Container
+        containerTitle={'BOISKA'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
+
     return (
         <Container
             containerTitle={'BOISKA'}

@@ -9,6 +9,8 @@ import Checkbox from "../../components/form/Checkbox";
 import InputComponent from "../../components/form/InputComponent";
 import axios from "../../extra/axios";
 import User from "../../extra/User";
+import Loader from "../../components/general/Loader";
+import '../../styles/helpers/classes.scss';
 
 const UserProfilePage = () => {
     const userContext = React.useContext(UserContext);
@@ -16,10 +18,12 @@ const UserProfilePage = () => {
     const [notifications_area, setNotificationsArea] = React.useState(userContext.notifications || []);
     const [name, setName] = React.useState(userContext.name || '');
     const [userDataNotice, setUserDataNotice] = React.useState('');
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         setName(userContext.name || '');
         setNotificationsArea(userContext.notifications || []);
+        setLoading(false);
     }, [userContext]);
 
     const handleChange = e => {
@@ -52,6 +56,14 @@ const UserProfilePage = () => {
             setUserDataNotice('Proszę wypełnić wszystkie pola ');
         }
     }
+
+    if (!!loading) return <Container
+         containerTitle={'MOJ PROFIL'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return (
         <Container containerTitle={'MOJ PROFIL'}>

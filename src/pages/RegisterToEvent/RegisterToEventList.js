@@ -4,10 +4,13 @@ import axios from '../../extra/axios';
 import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
 import Checkbox from "../../components/form/Checkbox";
 import TourismRoutes from "../../constants/TourismRoutes";
+import Loader from "../../components/general/Loader";
+import '../../styles/helpers/classes.scss';
 
 const RegisterToEventList = () => {
     const [notification, setNotification] = React.useState('');
     const [data, setData] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         getData();
@@ -15,8 +18,10 @@ const RegisterToEventList = () => {
 
     const getData = () => {
         axios.get('https://api.ustron.s3.netcore.pl/subscriptions')
-        .then((response) => setData(response.data.subscriptions))
-        .catch((error) => setNotification(error))
+        .then((response) => {
+            setData(response.data.subscriptions);
+            setLoading(false);
+        }).catch((error) => setNotification(error))
     }
 
     const cancelSubscription = id => {
@@ -28,6 +33,14 @@ const RegisterToEventList = () => {
                 }).catch((error) => setNotification(error))
         }
     }
+
+    if (!!loading) return <Container
+        containerTitle={'REJESTRACJA NA ZAWODY'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return(
         <Container

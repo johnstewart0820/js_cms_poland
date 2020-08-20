@@ -2,9 +2,19 @@ import React from "react";
 import {Container} from "../../components/UserPanel/Container";
 import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
 import TourismRoutes from "../../constants/TourismRoutes";
+import Loader from "../../components/general/Loader";
 
 const ObjectListPage = () => {
     const [data, getData] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+
+    if (!!loading) return <Container
+        containerTitle={'MOJE OBIEKTY'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return(
         <Container

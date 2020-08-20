@@ -11,6 +11,8 @@ import axios from '../../extra/axios';
 import moment from 'moment';
 import usePrevious from "../../hooks/usePrevious";
 import {useHistory} from "react-router-dom";
+import Loader from "../../components/general/Loader";
+import '../../styles/helpers/classes.scss';
 
 const ReservationCalendarPage = props => {
     const pageId = props.match.params.id;
@@ -83,6 +85,14 @@ const ReservationCalendarPage = props => {
     }
 
     const handleChange = e => setSelectedTime(e.target.value);
+
+    if (!!loading) return <Container
+        containerTitle={'BOISKA REZERWACJA'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return (
         <Container

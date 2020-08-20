@@ -6,8 +6,9 @@ import InputComponent from "../../components/form/InputComponent";
 import axios from '../../extra/axios';
 import '../../styles/Calendar/Calendar.scss';
 import {Calendar} from "react-calendar";
-import '../../styles/RegisterToEvent/Modal.scss';
 import moment from "moment";
+import Loader from "../../components/general/Loader";
+import '../../styles/helpers/classes.scss';
 
 
 const RegisterToEvent = () => {
@@ -23,6 +24,7 @@ const RegisterToEvent = () => {
     const [show, setShow] = React.useState(false);
     const [nationality, setNationality] = React.useState('');
     const [calendarDate, setCalendarDate] = React.useState(new Date());
+    const [loading, setLoading] = React.useState(true);
     const [gender, setGender] = React.useState([
         {
             value: 1,
@@ -59,6 +61,7 @@ const RegisterToEvent = () => {
                 console.log(res.data.events)
                 setGroups(res.data.events[0].custom_data.event.groups);
                 setEvents(res.data.events);
+                setLoading(false);
             })
     }
 
@@ -69,6 +72,14 @@ const RegisterToEvent = () => {
             [e.target.name]: value
         });
     }
+
+    if (!!loading) return <Container
+        containerTitle={'REJESTRACJA NA ZAWODY'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return(
         <Container

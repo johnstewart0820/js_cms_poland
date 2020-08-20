@@ -6,6 +6,7 @@ import '../../styles/StadiumReservationPages/ReservationConfirmation.scss';
 import ButtonLink from "../../components/buttons/ButtonLink";
 import {Container} from "../../components/UserPanel/Container";
 import TourismRoutes from "../../constants/TourismRoutes";
+import '../../styles/helpers/classes.scss';
 
 const ReservationConfirmationPage = () => {
     const history = useHistory();
@@ -13,11 +14,23 @@ const ReservationConfirmationPage = () => {
     const id = params.get('id');
 
     const [reservationData, setReservationData] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         axios.get('https://api.ustron.s3.netcore.pl/courts-reservations/' + id)
-            .then(response => setReservationData(response.data.reservation));
+            .then((response) => {
+                setReservationData(response.data.reservation)
+                setLoading(false);
+            });
     }, []);
+
+    if (!!loading) return <Container
+        containerTitle={'REZERWACJA BOISK'}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return (
         <Container
