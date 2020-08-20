@@ -19,6 +19,7 @@ const UserProfilePage = () => {
     const [name, setName] = React.useState(userContext.name || '');
     const [userDataNotice, setUserDataNotice] = React.useState('');
     const [loading, setLoading] = React.useState(true);
+    const [notification, setNotification] = React.useState(null);
 
     React.useEffect(() => {
         setName(userContext.name || '');
@@ -50,7 +51,7 @@ const UserProfilePage = () => {
                     setUserDataNotice('Twój profil został zaktualizowany');
                     window.scrollTo({top: 0});
                 }).catch((error) => {
-                    alert(error.response.data);
+                    setNotification(error.response.data);
                 });
         } else {
             setUserDataNotice('Proszę wypełnić wszystkie pola ');
@@ -59,6 +60,8 @@ const UserProfilePage = () => {
 
     if (!!loading) return <Container
          containerTitle={'MOJ PROFIL'}
+         setNotification={!!notification && true}
+         notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -66,7 +69,10 @@ const UserProfilePage = () => {
     </Container>
 
     return (
-        <Container containerTitle={'MOJ PROFIL'}>
+        <Container
+            setNotification={!!notification && true}
+            notificationMessage={notification}
+            containerTitle={'MOJ PROFIL'}>
             <Row>
                 <Col className="col-md-5">
                     <div className="container-inner">

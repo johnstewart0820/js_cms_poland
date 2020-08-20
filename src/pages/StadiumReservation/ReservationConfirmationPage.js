@@ -15,17 +15,20 @@ const ReservationConfirmationPage = () => {
 
     const [reservationData, setReservationData] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
+    const [notification, setNotification] = React.useState(null);
 
     React.useEffect(() => {
         axios.get('https://api.ustron.s3.netcore.pl/courts-reservations/' + id)
             .then((response) => {
-                setReservationData(response.data.reservation)
+                setReservationData(response.data.reservation);
                 setLoading(false);
-            });
+            }).catch((error) => setNotification(error.response.data));
     }, []);
 
     if (!!loading) return <Container
         containerTitle={'REZERWACJA BOISK'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -35,6 +38,8 @@ const ReservationConfirmationPage = () => {
     return (
         <Container
             containerTitle={'REZERWACJA BOISK'}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
         >
             <div className="description">
                 <div className="description__inner">

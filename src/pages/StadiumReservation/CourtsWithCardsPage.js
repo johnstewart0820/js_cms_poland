@@ -13,6 +13,7 @@ const CourtsWithCardsPage = () => {
     const history = useHistory();
     const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState({});
+    const [notification, setNotification] = React.useState(null);
 
     React.useEffect(() => {
         axios.get('https://api.ustron.s3.netcore.pl/courts')
@@ -20,12 +21,14 @@ const CourtsWithCardsPage = () => {
             setData(response.data.courts);
             setLoading(false)
         }).catch(error => {
-            alert(error);
+            setNotification(error.response?.data);
         });
     },[]);
 
     if (!!loading) return <Container
         containerTitle={'BOISKA'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -35,6 +38,8 @@ const CourtsWithCardsPage = () => {
     return (
         <Container
             containerTitle={'BOISKA'}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
         >
             <Row>
                 {data.map((item, index) => (

@@ -9,7 +9,7 @@ import '../../styles/helpers/classes.scss';
 
 const ReservationHistoryPage = () => {
     const [data, setData] = React.useState([]);
-    const [error, setError] = React.useState('');
+    const [notification, setNotification] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
@@ -21,7 +21,7 @@ const ReservationHistoryPage = () => {
         .then((response) => {
             setData(response.data.reservations);
             setLoading(false)
-        }).catch((error) => console.log(error))
+        }).catch((error) => setNotification(error.response.data))
     }
 
     const cancelReservation = id => {
@@ -30,12 +30,14 @@ const ReservationHistoryPage = () => {
             axios.post(`https://api.ustron.s3.netcore.pl/courts-reservations/${id}/cancel`)
             .then(() => {
                 getData()
-            }).catch((error) => setError(error))
+            }).catch((error) => setNotification(error.response.data))
         }
     }
 
     if (!!loading) return <Container
         containerTitle={'BOISKA HISTORIA REZERWACJI'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -44,8 +46,8 @@ const ReservationHistoryPage = () => {
 
     return(
         <Container
-            setNotification={!!error}
-            notificationMessage={error}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
             addContainerButton={true}
             routeForContainerButton={TourismRoutes.StadiumReservation}
             textForContainerButton={'ZAREZERWUJ BOISKO'}

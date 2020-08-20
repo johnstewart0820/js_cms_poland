@@ -21,7 +21,7 @@ const RegisterToEventList = () => {
         .then((response) => {
             setData(response.data.subscriptions);
             setLoading(false);
-        }).catch((error) => setNotification(error))
+        }).catch((error) => setNotification(error.response.data))
     }
 
     const cancelSubscription = id => {
@@ -30,12 +30,14 @@ const RegisterToEventList = () => {
             axios.post(`https://api.ustron.s3.netcore.pl/subscriptions/${id}/cancel`)
                 .then(() => {
                     getData()
-                }).catch((error) => setNotification(error))
+                }).catch((error) => setNotification(error.response.data))
         }
     }
 
     if (!!loading) return <Container
         containerTitle={'REJESTRACJA NA ZAWODY'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>

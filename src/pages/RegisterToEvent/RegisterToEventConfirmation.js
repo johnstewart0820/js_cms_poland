@@ -12,12 +12,15 @@ const RegisterToEventConfirmationPage = () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const [loading, setLoading] = React.useState(true);
+    const [notification, setNotification] = React.useState(null);
 
     const [subscriptionData, setSubscriptionData] = React.useState(null);
 
 
     if (!!loading) return <Container
         containerTitle={'REJESTRACJA NA ZAWODY'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -28,6 +31,8 @@ const RegisterToEventConfirmationPage = () => {
     return (
         <Container
             containerTitle={'REJESTRACJA NA ZAWODY'}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
         >
             <div className="description">
                 <div className="description__inner">

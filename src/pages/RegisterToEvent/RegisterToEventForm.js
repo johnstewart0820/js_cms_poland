@@ -25,6 +25,7 @@ const RegisterToEvent = () => {
     const [nationality, setNationality] = React.useState('');
     const [calendarDate, setCalendarDate] = React.useState(new Date());
     const [loading, setLoading] = React.useState(true);
+    const {notification, setNotification} = React.useState(null);
     const [gender, setGender] = React.useState([
         {
             value: 1,
@@ -62,7 +63,7 @@ const RegisterToEvent = () => {
                 setGroups(res.data.events[0].custom_data.event.groups);
                 setEvents(res.data.events);
                 setLoading(false);
-            })
+            }).catch((error) => setNotification(error.response.data))
     }
 
     const handleInputChange = e => {
@@ -75,6 +76,8 @@ const RegisterToEvent = () => {
 
     if (!!loading) return <Container
         containerTitle={'REJESTRACJA NA ZAWODY'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -84,6 +87,8 @@ const RegisterToEvent = () => {
     return(
         <Container
             containerTitle={'REJESTRACJA NA ZAWODY'}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
         >
             <div className="container-inner">
                 <div className="container-inner__body">

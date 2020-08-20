@@ -27,6 +27,7 @@ const ReservationCalendarPage = props => {
     const [selectedDay, setSelectedDay] = React.useState(null);
     const [selectedTime, setSelectedTime] = React.useState('');
     const [loading, setLoading] = React.useState(true);
+    const [notification, setNotification] = React.useState(null);
     const history = useHistory();
 
     React.useEffect(() => {
@@ -58,7 +59,7 @@ const ReservationCalendarPage = props => {
             })
             .then(getDays)
             .catch(error => {
-                alert(error);
+                setNotification(error.data?.error);
                 setLoading(false);
             });
     }, []);
@@ -88,6 +89,8 @@ const ReservationCalendarPage = props => {
 
     if (!!loading) return <Container
         containerTitle={'BOISKA REZERWACJA'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -97,6 +100,8 @@ const ReservationCalendarPage = props => {
     return (
         <Container
             containerTitle={'BOISKA REZERWACJA'}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
         >
             <Row>
                 <div className='reservation-header'>

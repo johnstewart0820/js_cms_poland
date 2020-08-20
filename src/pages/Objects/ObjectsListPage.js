@@ -7,9 +7,12 @@ import Loader from "../../components/general/Loader";
 const ObjectListPage = () => {
     const [data, getData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
+    const [notification, setNotification] = React.useState(null);
 
     if (!!loading) return <Container
         containerTitle={'MOJE OBIEKTY'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
     >
         <div className="loader-container">
             <Loader/>
@@ -22,6 +25,8 @@ const ObjectListPage = () => {
             addContainerButton={true}
             textForContainerButton={'DODAJ OBIEKT'}
             routeForContainerButton={TourismRoutes.EditObjectFormPage}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
         >
             <div className="list-container">
                 <div className="list-view__container">
