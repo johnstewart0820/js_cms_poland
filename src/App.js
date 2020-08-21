@@ -37,10 +37,9 @@ class App extends Component {
 			<>
 				<Router basename={ router_basename }>
 
-					<Header type={ SITE } />
-					<Sidebar />
-
 					<UserContextProvider>
+						<Header type={ SITE } />
+						<Sidebar />
 						<main>
 							<Routing />
 						</main>
