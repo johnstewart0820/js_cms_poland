@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../styles/StadiumReservationPages/StadiumReservation.scss';
-import {Col, Row} from "react-bootstrap";
 import '../../styles/UserProfilePage/UserProfile.scss';
 import {ChangePassword} from "../../components/UserProfile/ChangePaswword";
 import {Container} from "../../components/UserPanel/Container";
@@ -11,6 +10,8 @@ import axios from "../../extra/axios";
 import User from "../../extra/User";
 import Loader from "../../components/general/Loader";
 import '../../styles/helpers/classes.scss';
+import Row from "../../components/helpers/Row";
+import Col from "../../components/helpers/Col";
 
 const UserProfilePage = () => {
     const userContext = React.useContext(UserContext);
@@ -74,7 +75,7 @@ const UserProfilePage = () => {
             notificationMessage={notification}
             containerTitle={'MOJ PROFIL'}>
             <Row>
-                <Col className="col-md-5">
+                <Col>
                     <div className="container-inner">
                         <div className="user-category-header">
                             <div className="user-category__image">

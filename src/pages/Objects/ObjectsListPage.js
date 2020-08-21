@@ -3,13 +3,14 @@ import {Container} from "../../components/UserPanel/Container";
 import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
 import TourismRoutes from "../../constants/TourismRoutes";
 import Loader from "../../components/general/Loader";
+import '../../styles/helpers/classes.scss';
 
 const ObjectListPage = () => {
     const [data, getData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [notification, setNotification] = React.useState(null);
 
-    if (!!loading) return <Container
+    if (!loading) return <Container
         containerTitle={'MOJE OBIEKTY'}
         setNotification={!!notification && true}
         notificationMessage={notification}

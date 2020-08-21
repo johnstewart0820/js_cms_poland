@@ -88,7 +88,6 @@ const RegisterToEventListPage = () => {
                                 day = Math.floor(hour / 24);
                                 hour = hour % 24;
                                 let result = 'pozostało ' + (day > 1 ? day + ' dni ' : day + ' dzień ') + (hour > 1 ? hour + ' godzin' : hour + ' godzina') + ' na dokonanie wpłaty';
-                                console.log(item)
                                 return(
                                     <tr key={index}>
                                         <td>

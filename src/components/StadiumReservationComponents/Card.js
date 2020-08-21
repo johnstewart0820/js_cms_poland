@@ -1,10 +1,11 @@
 import React from 'react';
-import {Col, Row} from "react-bootstrap";
 import ButtonLink from "../buttons/ButtonLink";
 import ShareButton from "../buttons/ShareButton";
 import {  PlusIcon } from "../../svg/icons";
 import '../../styles/StadiumReservationPages/Card.scss';
 import {useHistory} from 'react-router-dom';
+import Row from "../helpers/Row";
+import Col from "../helpers/Col";
 
 const Card = ({id, name, title, address, thumbnail, postCode ,city, greenButtonOnclick}) => {
     const history = useHistory();

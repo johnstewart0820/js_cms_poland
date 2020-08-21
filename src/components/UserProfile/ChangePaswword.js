@@ -1,8 +1,8 @@
 import React from 'react';
-import {Col} from "react-bootstrap";
 import InputComponent from "../form/InputComponent";
 import PasswordStrengthMeter from "../form/PasswordStrengthMeter";
 import axios from "../../extra/axios";
+import Col from "../helpers/Col";
 
 export const ChangePassword = props => {
     const [password, setPassword] = React.useState(props.password || '');
@@ -15,7 +15,6 @@ export const ChangePassword = props => {
         if (password !== '' && confirmPass !== '') {
             axios.post(url, data)
                 .then((response) => {
-                    console.log(response);
                     setPasswordNotice('Hasło zostało zmienione');
                 }).catch((error) => {
                 alert(error.response.data);

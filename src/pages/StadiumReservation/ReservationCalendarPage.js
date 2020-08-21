@@ -1,6 +1,5 @@
 import React from 'react';
 import {Container} from "../../components/UserPanel/Container";
-import {Col, Row} from "react-bootstrap";
 import '../../styles/StadiumReservationPages/ReservationPage.scss';
 import {Calendar} from "react-calendar";
 import '../../styles/Calendar/Calendar.scss';
@@ -13,6 +12,8 @@ import usePrevious from "../../hooks/usePrevious";
 import {useHistory} from "react-router-dom";
 import Loader from "../../components/general/Loader";
 import '../../styles/helpers/classes.scss';
+import Row from "../../components/helpers/Row";
+import Col from "../../components/helpers/Col";
 
 const ReservationCalendarPage = props => {
     const pageId = props.match.params.id;
@@ -113,7 +114,7 @@ const ReservationCalendarPage = props => {
             </Row>
             <Row>
                 <div className="reservation-body">
-                    <Col>
+                    <div>
                         <div className="calendar-container">
                             <InputComponent
                                 disabled
@@ -132,7 +133,7 @@ const ReservationCalendarPage = props => {
                                 jednego użytkownika. Szczegółowo opisany w regulaminie.
                             </h4>
                         </div>
-                    </Col>
+                    </div>
                     <Col>
                         <Row>
                             <div className="day-button__container">

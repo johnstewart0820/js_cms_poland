@@ -1,0 +1,23 @@
+
+.white-body {
+  .white-body-container {
+    background: white;
+    padding: 50px;
+    margin: 10px 20px 10px 20px;
+    .white-body-container__inner {
+      display: flex;
+
+      .header-status-text {
+        line-height: 0;
+        h4 {
+          font-weight: normal;
+          color: red;
+        }
+      }
+
+      .elements-container {
+
+      }
+    }
+  }
+}
