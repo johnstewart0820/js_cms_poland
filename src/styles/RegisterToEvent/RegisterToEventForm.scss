@@ -10,6 +10,23 @@
     flex-direction: column;
     text-align: center;
 
+    .container-inner-input__long {
+      min-height: 60px;
+      max-width: 806px;
+    }
+
+    .container-inner-input {
+      min-height: 60px;
+      width: 398px;
+      margin-bottom: 5px;
+    }
+
+    .container-inner-input__margin-bottom {
+      min-height: 60px;
+      width: 398px;
+      margin-bottom: 50px;
+    }
+
     .container-inner-row {
       display: flex;
       flex-direction: row;
@@ -22,6 +39,17 @@
       }
       .container-inner-col {
         flex-direction: column;
+
+        .birth-date-input {
+          min-height: 60px;
+          margin: 10px 5px;
+        }
+
+        .container-inner-input__margin-top {
+          min-height: 60px;
+          width: 398px;
+          margin-top: 50px;
+        }
 
         .calendar-container {
           .calendar {

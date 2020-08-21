@@ -13,7 +13,7 @@ const InputComponent = props => {
     }
 
     return (
-        <div className="input-container" style={props.containerStyles}>
+        <div className={`input-container ${ props.extraClasses || '' }`} style={props.containerStyles}>
             <div className="input-label-container">
                 <h5 className="input-label">{props.fieldName}</h5>
             </div>

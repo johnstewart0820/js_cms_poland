@@ -143,9 +143,9 @@ const RegisterToEvent = () => {
             <div className="container-inner">
                 <div className="container-inner__body">
                     <Select extra_classes={'gray-input margin-bottom'} addEmptyOption={true} onChange={(e) => setEvent(e.target.value)} options={eventsOptions} label={'REJESTRACJA NA ZAWODY'} name={'registrationToEvent'}/>
-                    <InputComponent onChange={handleInputChange} containerStyles={{minHeight: '60px', maxWidth: '806px'}} fieldName={'NAZWISKO IMIĘ'} name={'userName'}/>
-                    <InputComponent onChange={handleInputChange} containerStyles={{minHeight: '60px', width: '398px', marginBottom: '5px'}} fieldName={'E-MAIL'} name={'email'}/>
-                    <InputComponent onChange={handleInputChange} type='number' placeholder={'91234000000'} containerStyles={{minHeight: '60px', width: '398px', marginBottom: '50px'}} fieldName={'PESEL'} name={'pesel'}/>
+                    <InputComponent onChange={handleInputChange} extraClasses={'container-inner-input__long'} fieldName={'NAZWISKO IMIĘ'} name={'userName'}/>
+                    <InputComponent onChange={handleInputChange} extraClasses={'container-inner-input'}  fieldName={'E-MAIL'} name={'email'}/>
+                    <InputComponent onChange={handleInputChange} extraClasses={'container-inner-input__margin-bottom'} type='number' placeholder={'91234000000'} fieldName={'PESEL'} name={'pesel'}/>
                     <div className="container-inner-row">
                         <div className="container-inner-col">
                             <Select extra_classes={'gray-input-fixed__width'} addEmptyOption={true} onChange={(e) => setNationality(e.target.value)} options={countryOptions} label={'NARODOWOŚĆ'} name={'country'}/>
@@ -155,7 +155,7 @@ const RegisterToEvent = () => {
                             <InputComponent
                                 onClick={() => (show === false ? setShow(true) : setShow(false))}
                                 value={moment(birthDate ,"DD-MM-YYYY").format('DD.MM.YYYY')}
-                                containerStyles={{minHeight: '60px', margin: '10px 5px'}}
+                                extraClasses={'birth-date-input'}
                                 fieldName={'DATA URODZENIA'} name={'birthDate'}/>
                             {show === true && (
                                 <div className="calendar-container">
@@ -176,14 +176,14 @@ const RegisterToEvent = () => {
                                 type="number"
                                 onChange={handleInputChange}
                                 placeholder={'50100'}
-                                containerStyles={{minHeight: '60px', marginTop: '50px'}}
+                                extraClasses={'container-inner-input__margin-top'}
                                 fieldName={'KOD MIASTA'} name={'postalCode'}/>
                         </div>
                         <div className="container-inner-col">
                             <InputComponent
                                 placeholder={'Wrocław, Nowowiejska 72'}
                                 onChange={handleInputChange}
-                                containerStyles={{minHeight: '60px', marginTop: '50px'}}
+                                extraClasses={'container-inner-input__margin-top'}
                                 fieldName={'MIASTO, ULICA, NR. DOMU'}
                                 name={'address'}/>
                         </div>
