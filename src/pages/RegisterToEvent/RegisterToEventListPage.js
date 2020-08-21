@@ -7,7 +7,7 @@ import TourismRoutes from "../../constants/TourismRoutes";
 import Loader from "../../components/general/Loader";
 import '../../styles/helpers/classes.scss';
 
-const RegisterToEventList = () => {
+const RegisterToEventListPage = () => {
     const [notification, setNotification] = React.useState('');
     const [data, setData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
@@ -127,4 +127,4 @@ const RegisterToEventList = () => {
     )
 }
 
-export default RegisterToEventList;
+export default RegisterToEventListPage;

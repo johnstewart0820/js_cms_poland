@@ -19,9 +19,9 @@ const ActivateAccount = asyncComponent(() => import('../pages/LoginRegistration/
 const ReservationPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationCalendarPage'));
 const ReservationHistoryPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationsHistoryListPage'));
 const ReservationConfirmationPage = asyncComponent(() => import('../pages/StadiumReservation/ReservationConfirmationPage'));
-const RegisterToEventList = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventList'));
-const RegisterToEventForm = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventForm'));
-const RegisterToEventConfirmationPage = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventConfirmation'));
+const RegisterToEventList = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventListPage'));
+const RegisterToEventForm = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventFormPage'));
+const RegisterToEventConfirmationPage = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventConfirmationPage'));
 const ObjectListPage = asyncComponent(() => import('../pages/Objects/ObjectsListPage'));
 const EditObjectFormPage = asyncComponent(() => import('../pages/Objects/EditObjectFormPage'));
 
