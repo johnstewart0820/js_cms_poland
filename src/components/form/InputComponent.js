@@ -18,6 +18,7 @@ const InputComponent = props => {
                 <h5 className="input-label">{props.fieldName}</h5>
             </div>
             <input
+                placeholder={props.placeholder}
                 onClick={props.onClick}
                 className="input-default"
                 value={props.value}
