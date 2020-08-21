@@ -13,13 +13,6 @@
     .container-inner-row {
       display: flex;
       flex-direction: row;
-      flex-wrap: wrap;
-      .container-inner-row-button {
-        margin: 50px 0 10px 5px;
-        button {
-          width: 398px;
-        }
-      }
       .container-inner-col {
         flex-direction: column;
 
@@ -121,19 +114,6 @@
       max-width: 806px;
       margin: 10px 5px;
       z-index: 0;
-      svg {
-        right: 20px;
-      }
-    }
-
-    .gray-input-fixed__width {
-      border: 2px solid #d2d2d2;
-      min-width: 398px;
-      min-height: 56px;
-      padding: 5px;
-      margin: 10px 5px;
-      z-index: 0;
-      width: 398px;
       svg {
         right: 20px;
       }

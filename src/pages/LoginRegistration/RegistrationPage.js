@@ -116,6 +116,7 @@ export default class RegistrationPage extends Component {
                     name: name
                 })
                     .then((response) => {
+                        console.log(response);
                         if (response.status === 200) {
                             this.routeToConfirm();
                         }
