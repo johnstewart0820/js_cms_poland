@@ -4,19 +4,20 @@ import PropTypes from 'prop-types';
 import "../../styles/form/select.scss";
 import Angle from '../../svg/components/Angle';
 
-const Select = ({ name, id, options, label, extra_classes, onChange }) => (
+const Select = ({ name, id, options, label, extra_classes, onChange, addEmptyOption, emptyOptionLabel, defaultValue }) => (
 	<div className={`form-select ${ extra_classes || "" }`} >
 		<label className="form-select__label" htmlFor={ name || id }> { label } </label>
 
 		<Angle direction="bottom" />
 
-		<select name={ name } id={ name || id } onChange={ onChange } >
-			
-			{ options && options.length > 0 &&
+		<select defaultValue={defaultValue} name={ name } id={ name || id } onChange={ onChange } >
+
+			{ addEmptyOption && <option value="default"> {emptyOptionLabel ? emptyOptionLabel : ''} </option> }
+			{ options && options.length > 0 && (
 				options.map(({ value, label }) => (
 					<option key={ value } value={ value }> { label } </option>
 				))
-			}
+			)}
 
 		</select>
 	</div>
