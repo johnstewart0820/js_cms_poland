@@ -56,7 +56,7 @@ const RegisterToEventConfirmationPage = () => {
                                 nr {subscriptionData.bank_account_number} z podaniem imion i nazwisk osob, których<br/>
                                 dotyczy opłata
                             </h3>
-                            <ButtonLink extra_classes="green" onClick={() => history.push(TourismRoutes.ReservationHistoryPage)}>ZAREJESTRUJ</ButtonLink>
+                            <ButtonLink extra_classes="green" onClick={() => history.push(TourismRoutes.RegisterToEventList)}>ZAREJESTRUJ</ButtonLink>
                         </>
                     )}
                 </div>
