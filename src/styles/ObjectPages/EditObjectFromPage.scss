@@ -6,17 +6,59 @@
     margin: 10px 20px 10px 20px;
     .white-body-container__inner {
       display: flex;
-
+      flex-direction: column;
       .header-status-text {
         line-height: 0;
+        margin: 0 5px 30px 5px;
         h4 {
           font-weight: normal;
           color: red;
         }
       }
 
-      .elements-container {
+      .row {
+        .row-title {
+          margin: 45px 5px 0 5px;
+        }
+        .edit-object-input {
+          min-width: 620px;
+        }
 
+        .edit-object-select {
+          min-height: 56px;
+          border: 2px solid #d2d2d2;
+          margin: 5px;
+          padding: 5px;
+          flex-direction: row;
+          display: flex;
+        }
+
+        .edit-object-textarea {
+          width: 1220px;
+          min-height: 200px;
+        }
+
+        .city-data-input {
+          min-height: 56px;
+          border: 2px solid #d2d2d2;
+          margin: 35px 5px 5px 5px;
+          padding: 5px;
+          flex-direction: row;
+          display: flex;
+          width: 297px;
+          min-width: 0;
+        }
+
+        .coordinates-input {
+          min-height: 56px;
+          border: 2px solid #d2d2d2;
+          margin: 35px 5px 5px 5px;
+          padding: 5px;
+          flex-direction: row;
+          display: flex;
+          width: 150px;
+          min-width: 0;
+        }
       }
     }
   }

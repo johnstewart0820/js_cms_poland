@@ -7,6 +7,8 @@ import InputComponent from "../../components/form/InputComponent";
 import Select from "../../components/form/Select";
 import Row from "../../components/helpers/Row";
 import Col from "../../components/helpers/Col";
+import TextArea from "../../components/form/TextArea";
+import AddImageButton from "../../components/form/AddImageButton";
 
 const EditObjectFormPage = () => {
     const [loading, setLoading] = React.useState(true);
@@ -39,15 +41,65 @@ const EditObjectFormPage = () => {
                                 </div>
                             </Col>
                         </Row>
-
-                        <div className='elements-container'>
-                            <Row>
-                                <InputComponent fieldName={'NAZWA'}/>
-                                <Select label={'TYP'} name={'type'}/>
-                                <Select label={'TYP'} name={'TYP'}/>
-                            </Row>
-                        </div>
-
+                        <Row>
+                            <InputComponent fieldName={'NAZWA'} extraClasses={'edit-object-input'}/>
+                            <Select label={'TYP'} name={'type'} extra_classes={'edit-object-select'}/>
+                            <Select label={'TYP'} name={'TYP'} extra_classes={'edit-object-select'}/>
+                        </Row>
+                        <Row>
+                            <TextArea
+                                label={'OPIS'}
+                                placeholder={'Add please your description'}
+                                extraClasses={'edit-object-textarea'}
+                            />
+                        </Row>
+                        <Row>
+                            <InputComponent
+                                fieldName={'WWW'}
+                            />
+                            <InputComponent
+                                fieldName={'MAIL'}
+                            />
+                        </Row>
+                        <Row>
+                            <InputComponent
+                                fieldName={'MIASTO'}
+                                extraClasses={'city-data-input'}
+                            />
+                            <InputComponent
+                                fieldName={'KOD'}
+                                extraClasses={'city-data-input'}
+                            />
+                            <InputComponent
+                                fieldName={'ULICA'}
+                                extraClasses={'city-data-input'}
+                            />
+                            <InputComponent
+                                fieldName={'N'}
+                                extraClasses={'city-data-input'}
+                            />
+                        </Row>
+                        <Row
+                            rowTitle={'wspołrzędne'}
+                        >
+                            <InputComponent
+                                fieldName={'LAT'}
+                                extraClasses={'coordinates-input'}
+                            />
+                            <InputComponent
+                                fieldName={'LONG'}
+                                extraClasses={'coordinates-input'}
+                            />
+                        </Row>
+                        <Row>
+                            <Col
+                                colTitle={'obrazek wyróżniający'}
+                            >
+                                <AddImageButton
+                                    buttonText={'lol'}
+                                />
+                            </Col>
+                        </Row>
                     </div>
                 </div>
             </div>
