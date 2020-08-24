@@ -1,0 +1,26 @@
+.textarea-container {
+  min-width: 398px;
+  min-height: 56px;
+  border: 2px solid #d2d2d2;
+  margin: 5px;
+  padding: 5px;
+  flex-direction: row;
+  display: flex;
+  .textarea-label {
+    display: flex;
+    background-color: #ffffff;
+    height: 20px;
+    position: absolute;
+    margin-top: -17px;
+    padding: 8px;
+    align-items: center;
+    h5 {
+      font-size: 15px;
+    }
+  }
+  .textarea {
+    border: none;
+    width: 100%;
+    resize: none;
+  }
+}
