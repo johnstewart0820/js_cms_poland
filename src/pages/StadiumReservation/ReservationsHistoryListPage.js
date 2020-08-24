@@ -6,6 +6,8 @@ import Checkbox from "../../components/form/Checkbox";
 import TourismRoutes from "../../constants/TourismRoutes";
 import Loader from "../../components/general/Loader";
 import '../../styles/helpers/classes.scss';
+import moment from "moment";
+import humanizedDuration from "../../extra/humanizedDuration";
 
 const ReservationHistoryPage = () => {
     const [data, setData] = React.useState([]);
@@ -21,8 +23,11 @@ const ReservationHistoryPage = () => {
         .then((response) => {
             setData(response.data.reservations);
             setLoading(false)
-        }).catch((error) => setNotification(error.response.data))
-    }
+        }).catch((error) => {
+            console.log(error);
+            setNotification(error.response.data)
+        });
+    };
 
     const cancelReservation = id => {
         let result = window.confirm('Czy na pewno chcesz anulować rezerwację?');
@@ -30,19 +35,23 @@ const ReservationHistoryPage = () => {
             axios.post(`https://api.ustron.s3.netcore.pl/courts-reservations/${id}/cancel`)
             .then(() => {
                 getData()
-            }).catch((error) => setNotification(error.response.data))
+            }).catch((error) => setNotification(error.response.data));
         }
-    }
+    };
 
-    if (!!loading) return <Container
-        containerTitle={'BOISKA HISTORIA REZERWACJI'}
-        setNotification={!!notification && true}
-        notificationMessage={notification}
-    >
-        <div className="loader-container">
-            <Loader/>
-        </div>
-    </Container>
+    if (!!loading) {
+        return (
+            <Container
+                containerTitle={'BOISKA HISTORIA REZERWACJI'}
+                setNotification={!!notification && true}
+                notificationMessage={notification}
+            >
+                <div className="loader-container">
+                    <Loader/>
+                </div>
+            </Container>
+        );
+    }
 
     return(
         <Container
@@ -80,17 +89,22 @@ const ReservationHistoryPage = () => {
                             </thead>
                             <tbody>
                             {data.map((item, index) => {
-                                let timeToCancel = item.seconds_to_cancel;
-                                let day, hour, minute, seconds;
-                                seconds = Math.floor(timeToCancel / 100);
-                                minute = Math.floor(seconds / 6);
-                                seconds = seconds % 6;
-                                hour = Math.floor(minute / 6);
-                                minute = minute % 6;
-                                day = Math.floor(hour / 24);
-                                hour = hour % 24;
-                                let result = 'pozostało ' + (day > 1 ? day + ' dni ' : day + ' dzień ') + (hour > 1 ? hour + ' godzin' : hour + ' godzina') + ' na dokonanie wpłaty';
+                                let timeToCancel = humanizedDuration(item.seconds_to_cancel);
+                                let result = 'Pozostało ' + timeToCancel + ' na dokonanie wpłaty';
 
+                                const StatusItem = () => {
+                                    if (item.seconds_to_cancel <= 0) {
+                                        return <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>
+                                    } else {
+                                        if (item.is_canceled === '0' && item.confirmed === '0') {
+                                            return <p style={{color: 'red'}}>{result}</p>
+                                        } else if (item.confirmed === '1' && item.is_canceled === '0') {
+                                            return <h5>Opłacone</h5>
+                                        } else {
+                                            return <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>
+                                        }
+                                    }
+                                }
                                 return(
                                     <tr key={index}>
                                         <td>
@@ -109,12 +123,10 @@ const ReservationHistoryPage = () => {
                                             {item.day}
                                         </td>
                                         <td>
-                                            {item.is_canceled === '0' && item.confirmed === '0' && <p style={{color: 'red'}}>{result}</p>}
-                                            {item.confirmed === '1' && item.is_canceled === '0' && <h5>Opłacone</h5>}
-                                            {item.is_canceled === '1' && <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>}
+                                            <StatusItem/>
                                         </td>
                                         <td style={{padding: "20px 0 0 0"}}>
-                                            {item.is_canceled === '0' && (
+                                            {item.is_canceled === '0' && item.seconds_to_cancel >= 1 && (
                                                 <button
                                                     onClick={() => cancelReservation(item.id)}
                                                     className="list-view__button">
