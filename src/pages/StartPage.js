@@ -36,7 +36,9 @@ export default class StartPage extends Component{
 		// 	categories: "9,10"
 		// }})
 		// .then( res => {
-		// 	console.log(res.data);
+			
+		// 	const last_news = res.data.contents;
+		// 	this.setState({ last_news, news_loading: false })
 		// })
 
 		MOCK_API.get("news.json")
@@ -48,7 +50,7 @@ export default class StartPage extends Component{
 
 		API.get("contents/events?limit=5")
 		.then( res => {
-			console.log( res.data );
+			// console.log( res.data );
 			const { events } = res.data;
 
 			this.setState({ last_events: events, events_loading: false });
