@@ -24,23 +24,36 @@ export default class StartPage extends Component{
 
 
 	componentDidMount(){
-
-		setTimeout(() => {
-			this.getLastNews();
-			this.getLastEvents();
-		}, 2000)
+		this.getLastNews();
+		this.getLastEvents();
 	}
 
 
 	getLastNews = () => {
+
+		// API.get("contents/posts", { params: {
+		// 	limit: 5,
+		// 	categories: "9,10"
+		// }})
+		// .then( res => {
+		// 	console.log(res.data);
+		// })
+
 		MOCK_API.get("news.json")
 		.then( res => this.setState({ last_news: res.data, news_loading: false }));
 	}
 
 
 	getLastEvents = () => {
-		MOCK_API.get("events.json")
-		.then( res => this.setState({ last_events: res.data, events_loading: false }));
+
+		API.get("contents/events?limit=5")
+		.then( res => {
+			console.log( res.data );
+			const { events } = res.data;
+
+			this.setState({ last_events: events, events_loading: false });
+		})
+		.catch( err => {});
 	}
 
 

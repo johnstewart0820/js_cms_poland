@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Parser from "html-react-parser";
-import { API, MOCK_API } from "../../extra/API";
+import { API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import OneCarouseInRow from "../../components/carousel/OneCarouseInRow";
@@ -17,46 +17,51 @@ import SingleContentBottom from "../../components/common-single/SingleContentBot
 
 export default class EventSinglePage extends Component{
 
-	constructor(props){
-		super(props);
+	id = this.props.match.params ? this.props.match.params.id : null;
 
-		this.state = {	
-			loading: true,
-			
-			post: {},
-			other_events: [],
-			
-			breadcrumbs: [
-				{ label: "Główna", to: "/" },
-				{ label: "Wydarzenia", to: "/events" }
-			]
-		}
+	state = {	
+		loading: true,
+		
+		post: {},
+		other_events: [],
+		
+		breadcrumbs: [
+			{ label: "Główna", to: "/" },
+			{ label: "Wydarzenia", to: "/events" }
+		]
 	}
 
 
 	componentDidMount = () => {
-		setTimeout( () => this.getEvent(), 2000 );
+		this.getEvent();
 	}
 
 
 	getEvent = () => {
-		MOCK_API.get("single-event.json")
+		API.get(`contents/events/${this.id}`)
 		.then( res => {
 
-			const { post } = res.data;
-			console.log(res.data);
+			const post = res.data.event;
 			if( post ) {
 				
 				const breadcrumbs = [...this.state.breadcrumbs, { label: post.title }];
 				this.setState({ post, breadcrumbs }, () => this.getOtherEvents());
 			}
 		})
+		.catch( err => {});
 	}
 
 
 	getOtherEvents = () => {
-		MOCK_API.get("events.json")
-		.then( res => this.setState({ other_events: res.data, loading: false }));
+
+		API.get("contents/events?limit=5")
+		.then( res => {
+			console.log( res.data );
+			const { events } = res.data;
+
+			this.setState({ other_events: events, loading: false });
+		})
+		.catch( err => {});
 	}
 
 
@@ -69,13 +74,11 @@ export default class EventSinglePage extends Component{
 			!loading 
 			? { 
 				title: post.title,
-				thumbnail: post.thumbnail,
-				category: post.category,
+				thumbnail: post.original_image,
+				category: post.categories_labels,
 				dates: {
-					start_date: post.start_date,
-					end_date: post.end_date,
-					start_time: post.start_time,
-					end_time: post.end_time,
+					start_date: post.event_start_date ? new Date( post.event_start_date * 1000 ) : null,
+					end_date: post.event_end_date ? new Date( post.event_end_date * 1000 ) : null,
 				}
 			}
 			: {};
@@ -91,15 +94,14 @@ export default class EventSinglePage extends Component{
 			}
 		}
 
+
 		return(
 			<>
 				<MainHeaderSection extra_classes="single">		
 					{ !loading && <Breadcrumbs breadcrumbs={ breadcrumbs } /> }
 					{ loading && <Loader /> }	
 
-					{ !loading && 
-						<EventSingleHead { ...single_head } />
-					}
+					{ !loading &&  <EventSingleHead { ...single_head } /> }
 				</MainHeaderSection>
 
 				{ !loading && content && 

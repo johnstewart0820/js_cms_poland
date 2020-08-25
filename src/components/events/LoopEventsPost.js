@@ -5,21 +5,35 @@ import "../../styles/events/loop-event-post.scss";
 
 import EventDates from "./EventDates";
 
+const fromTimeStampToDateObj = timestamp => ( new Date( timestamp * 1000 ));
 
-const LoopEventsPost = ({ id, thumbnail, title, category, start_date, end_date, start_time, end_time }) => (
-	<Link to={`/events/${ id }`} className="loop-event-post">
-		<div className="loop-event-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url(${ thumbnail })` }}>
-			<div className="loop-event-post__category"> { category } </div>
-		</div>
 
-		<div className="loop-event-post__content">
+export default function LoopEventsPost ( props ) {
+	
+	const { event_date_id, image, original_image, title, categories_labels, event_start_date, event_end_date } = props;
 
-			<EventDates {...{ start_date, end_date, start_time, end_time }} />
-			<div className="loop-event-post__title heading"> { title } </div>
-		</div>
-	</Link>
-)
+	const event_dates = {
+		start_date: event_start_date ? fromTimeStampToDateObj( event_start_date ) : null,
+		end_date: event_end_date ? fromTimeStampToDateObj( event_end_date ) : null
+	}
+
+	return (
+		<Link to={`/events/${ event_date_id }`} className="loop-event-post">
+			<div className="loop-event-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url(${ original_image })` }}>
+				{ categories_labels && 
+					<div className="loop-event-post__category">  
+						{ categories_labels } 
+					</div>
+				}
+			</div>
+
+			<div className="loop-event-post__content">
+
+				<EventDates {...event_dates } />
+				<div className="loop-event-post__title heading"> { title } </div>
+			</div>
+		</Link>
+	)
+}
 
 LoopEventsPost.propTypes = { }
-
-export default LoopEventsPost;

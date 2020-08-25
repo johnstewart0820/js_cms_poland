@@ -81,10 +81,13 @@ export default class MainPage extends Component{
 
 
 	componentDidMount(){
+
+		this.getLastEvents();
+
+
 		setTimeout(() => {
 			this.setState({ slides });
 			this.getLastNews();
-			this.getLastEvents();
 
 			this.getAccommodations();
 			this.getGastronomy();
@@ -99,8 +102,14 @@ export default class MainPage extends Component{
 
 
 	getLastEvents = () => {
-		MOCK_API.get("events.json")
-		.then( res => this.setState({ last_events: res.data, events_loading: false }));
+		API.get("contents/events?limit=5")
+		.then( res => {
+			console.log( res.data );
+			const { events } = res.data;
+
+			this.setState({ last_events: events, events_loading: false });
+		})
+		.catch( err => {});
 	}
 
 
