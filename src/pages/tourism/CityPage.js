@@ -102,33 +102,32 @@ const pic_text_info = {
 
 export default class CityPage extends Component{
 
-	constructor(props){
-		super(props);
+	state = {
+		slides: [],
 
-		this.state = {
-			slides: [],
+		news_loading: true,
+		events_loading: true,
+		photo_reports_loading: true,
+		safe_ustron_loading: true,
 
-			news_loading: true,
-			events_loading: true,
-			photo_reports_loading: true,
-			safe_ustron_loading: true,
+		expanded_section: { loading: true },
+		amounts_with_icons: { loading: true, items: [] },
 
-			expanded_section: { loading: true },
-			amounts_with_icons: { loading: true, items: [] },
-
-			last_news: [],
-			last_events: [],
-			photo_reports: [],
-			safe_ustron: []
-		}
+		last_news: [],
+		last_events: [],
+		photo_reports: [],
+		safe_ustron: []
 	}
 
 	
 	componentDidMount(){
+
+		this.getLastEvents();
+
+
 		setTimeout(() => {
 			this.setState({ slides });
 			this.getLastNews();
-			this.getLastEvents();
 			this.getPhotoReports();
 			this.getSafeUstron();
 
@@ -144,8 +143,14 @@ export default class CityPage extends Component{
 
 
 	getLastEvents = () => {
-		MOCK_API.get("events.json")
-		.then( res => this.setState({ last_events: res.data, events_loading: false }));
+		API.get("contents/events?limit=5")
+		.then( res => {
+			console.log( res.data );
+			const { events } = res.data;
+
+			this.setState({ last_events: events, events_loading: false });
+		})
+		.catch( err => {});
 	}
 
 
