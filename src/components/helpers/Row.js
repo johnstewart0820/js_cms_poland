@@ -8,7 +8,7 @@ const Row = props => (
                 <h3 className='row-title'>{props.rowTitle.toUpperCase()}</h3>
             </div>
         )}
-        <div className='row'>
+        <div className={`row ${props.extraClasses ? props.extraClasses : ''}`}>
             {props.children}
         </div>
     </>
