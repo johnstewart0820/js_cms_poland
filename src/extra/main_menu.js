@@ -9,7 +9,7 @@ import bg3 from "../img/main-tiles/tile3.jpg";
 import bg4 from "../img/main-tiles/tile4.jpg";
 
 const main_url = "https://ustron.s3.netcore.pl/"
-const tourism_url = "http://visit.ustron.s3.netcore.pl/";
+const tourism_url = "http://visit.ustron.s3.netcore.pl";
 const culture_url = "";
 const sport_url = "";
 const stay_updated_url = "";
