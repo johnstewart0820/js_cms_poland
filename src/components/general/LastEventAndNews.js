@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 
 import Carousel from '../carousel/Carousel';
@@ -33,13 +33,13 @@ export default class LastEventAndNews extends Component{
 
 
 	getLastNews = () => {
-		API.get("mock/news.json")
+		MOCK_API.get("mock/news.json")
 		.then( res => this.setState({ last_news: res.data, news_loading: false }));
 	}
 
 
 	getLastEvents = () => {
-		API.get("mock/events.json")
+		MOCK_API.get("mock/events.json")
 		.then( res => this.setState({ last_events: res.data, events_loading: false }));
 	}
 

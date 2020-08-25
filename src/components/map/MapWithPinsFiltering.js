@@ -5,8 +5,8 @@ import GoogleMap from "./GoogleMap";
 import Loader from "../general/Loader";
 import LinkToAll from "../buttons/LinkToAll";
 
-import {API} from '../../extra/API';
-import {FILTERS, FILTERS_CONTENT} from "../../extra/map";
+import { API, MOCK_API } from '../../extra/API';
+import { FILTERS, FILTERS_CONTENT } from "../../extra/map";
 import "../../styles/map/map-with-pins-filtering.scss";
 
 export default class MapWithPinsFiltering extends Component {
@@ -18,10 +18,10 @@ export default class MapWithPinsFiltering extends Component {
     filters = FILTERS[this.props.type];
 
     API_URLs = {
-        "trip": "mock/trip-map.json",
-        "practical-info": "mock/practical-info-map.json",
-        "accommodations": "mock/accommodations-map.json",
-        "attractions": "/mock/attractions-map.json",
+        "trip": "trip-map.json",
+        "practical-info": "practical-info-map.json",
+        "accommodations": "accommodations-map.json",
+        "attractions": "attractions-map.json",
     };
 
     state = {
@@ -41,7 +41,7 @@ export default class MapWithPinsFiltering extends Component {
         const api_url = this.API_URLs[this.props.type];
         if (!api_url) return;
 
-        API.get(api_url)
+        MOCK_API.get(api_url)
             .then(res => {
 
                 const markers = this.getMarkersProperObjects(res.data);

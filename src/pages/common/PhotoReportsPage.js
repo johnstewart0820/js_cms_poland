@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import PageHeaderSection from "../../components/header/PageHeaderSection";
@@ -39,7 +39,7 @@ export default class PhotoReportsPage extends Component{
 
 
 	getPhotoReports = () => {
-		API.get("/mock/photoreports.json")
+		MOCK_API.get("photoreports.json")
 		.then( res => {
 			const { data } = res;
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import Arrows from '../buttons/Arrows';
 import Loader from "./Loader";
@@ -11,14 +11,10 @@ import { MainlyCloudy, PartlyCloudy, Sunny } from "../../svg/weather-icons";
 
 export default class Weather extends Component{
 
-	constructor(props){
-		super(props);
-
-		this.state = {
-			loading: true,
-			current_index: 0,
-			weather: []
-		}
+	state = {
+		loading: true,
+		current_index: 0,
+		weather: []
 	}
 
 
@@ -28,7 +24,7 @@ export default class Weather extends Component{
 
 
 	getWeather = () => {
-		API.get("mock/weather.json")
+		MOCK_API.get("weather.json")
 		.then ( res => this.setState({ weather: res.data, loading: false }));
 	}
 

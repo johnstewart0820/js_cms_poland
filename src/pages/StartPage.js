@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { API } from "../extra/API";
+// import Axios from "axios";
+import { API, MOCK_API } from "../extra/API";
 
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
@@ -13,21 +14,17 @@ import Weather from "../components/general/Weather";
 
 export default class StartPage extends Component{
 
-	constructor(props){
-		super(props);
+	state = {
+		news_loading: true,
+		events_loading: true,
 
-		this.state = {
-
-			news_loading: true,
-			events_loading: true,
-
-			last_news: [],
-			last_events: []
-		}
+		last_news: [],
+		last_events: []
 	}
 
 
 	componentDidMount(){
+
 		setTimeout(() => {
 			this.getLastNews();
 			this.getLastEvents();
@@ -36,13 +33,13 @@ export default class StartPage extends Component{
 
 
 	getLastNews = () => {
-		API.get("mock/news.json")
+		MOCK_API.get("news.json")
 		.then( res => this.setState({ last_news: res.data, news_loading: false }));
 	}
 
 
 	getLastEvents = () => {
-		API.get("mock/events.json")
+		MOCK_API.get("events.json")
 		.then( res => this.setState({ last_events: res.data, events_loading: false }));
 	}
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Parser from "html-react-parser";
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import OneCarouseInRow from "../../components/carousel/OneCarouseInRow";
@@ -40,7 +40,7 @@ export default class EventSinglePage extends Component{
 
 
 	getEvent = () => {
-		API.get("mock/single-event.json")
+		MOCK_API.get("single-event.json")
 		.then( res => {
 
 			const { post } = res.data;
@@ -55,7 +55,7 @@ export default class EventSinglePage extends Component{
 
 
 	getOtherEvents = () => {
-		API.get("mock/events.json")
+		MOCK_API.get("events.json")
 		.then( res => this.setState({ other_events: res.data, loading: false }));
 	}
 

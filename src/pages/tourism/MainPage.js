@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import TwoCarouselsOneRow from "../../components/carousel/TwoCarouselsOneRow";
@@ -93,25 +93,25 @@ export default class MainPage extends Component{
 
 
 	getLastNews = () => {
-		API.get("mock/news.json")
+		MOCK_API.get("news.json")
 		.then( res => this.setState({ last_news: res.data, news_loading: false }));
 	}
 
 
 	getLastEvents = () => {
-		API.get("mock/events.json")
+		MOCK_API.get("events.json")
 		.then( res => this.setState({ last_events: res.data, events_loading: false }));
 	}
 
 
 	getAccommodations = () => {
-		API.get("mock/accommodations.json")
+		MOCK_API.get("accommodations.json")
 		.then( res => this.setState({ accommodations: res.data, accommodations_loading: false }));	
 	}
 
 
 	getGastronomy = () => {
-		API.get("mock/gastronomy.json")
+		MOCK_API.get("gastronomy.json")
 		.then( res => this.setState({ gastronomy: res.data, gastronomy_loading: false }));	
 	}
 

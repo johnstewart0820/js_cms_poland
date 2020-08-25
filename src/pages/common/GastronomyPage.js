@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import LoopGastronomyPost from "../../components/gastronomy/LoopGastronomyPost";
@@ -37,7 +37,7 @@ export default class GastronomyPage extends Component{
 
 
 	getPosts = () => {
-		API.get("/mock/gastronomy.json")
+		MOCK_API.get("gastronomy.json")
 		.then( res => {
 			const { data } = res;
 			const post_row = [...data];
