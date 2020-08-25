@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Parser from "html-react-parser";
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import OneCarouseInRow from "../../components/carousel/OneCarouseInRow";
@@ -19,20 +19,16 @@ import SingleContentBottom from "../../components/common-single/SingleContentBot
 
 export default class NewsSinglePage extends Component{
 
-	constructor(props){
-		super(props);
-
-		this.state = {	
-			loading: true,
-			
-			post: {},
-			other_events: [],
-			
-			breadcrumbs: [
-				{ label: "Główna", to: "/" },
-				{ label: "Aktualności", to: "/news" }
-			]
-		}
+	state = {	
+		loading: true,
+		
+		post: {},
+		other_events: [],
+		
+		breadcrumbs: [
+			{ label: "Główna", to: "/" },
+			{ label: "Aktualności", to: "/news" }
+		]
 	}
 
 
@@ -42,7 +38,7 @@ export default class NewsSinglePage extends Component{
 
 
 	getNews = () => {
-		API.get("mock/single-new.json")
+		MOCK_API.get("single-new.json")
 		.then( res => {
 
 			const { post } = res.data;
@@ -56,7 +52,7 @@ export default class NewsSinglePage extends Component{
 
 
 	getLastNews = () => {
-		API.get("mock/news.json")
+		MOCK_API.get("news.json")
 		.then( res => this.setState({ last_news: res.data, loading: false }));
 	}
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import LoopNewsPost from "../../components/news/LoopNewsPost";
@@ -49,7 +49,7 @@ export default class NewsPage extends Component{
 
 
 	mockPostsQuery = () => {
-		API.get("/mock/news.json")
+		MOCK_API.get("news.json")
 		.then( res => {
 
 			const { data } = res;

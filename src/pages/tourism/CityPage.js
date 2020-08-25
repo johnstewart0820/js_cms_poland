@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import TwoCarouselsOneRow from "../../components/carousel/TwoCarouselsOneRow";
@@ -102,33 +102,32 @@ const pic_text_info = {
 
 export default class CityPage extends Component{
 
-	constructor(props){
-		super(props);
+	state = {
+		slides: [],
 
-		this.state = {
-			slides: [],
+		news_loading: true,
+		events_loading: true,
+		photo_reports_loading: true,
+		safe_ustron_loading: true,
 
-			news_loading: true,
-			events_loading: true,
-			photo_reports_loading: true,
-			safe_ustron_loading: true,
+		expanded_section: { loading: true },
+		amounts_with_icons: { loading: true, items: [] },
 
-			expanded_section: { loading: true },
-			amounts_with_icons: { loading: true, items: [] },
-
-			last_news: [],
-			last_events: [],
-			photo_reports: [],
-			safe_ustron: []
-		}
+		last_news: [],
+		last_events: [],
+		photo_reports: [],
+		safe_ustron: []
 	}
 
 	
 	componentDidMount(){
+
+		this.getLastEvents();
+
+
 		setTimeout(() => {
 			this.setState({ slides });
 			this.getLastNews();
-			this.getLastEvents();
 			this.getPhotoReports();
 			this.getSafeUstron();
 
@@ -138,25 +137,31 @@ export default class CityPage extends Component{
 
 
 	getLastNews = () => {
-		API.get("mock/news.json")
+		MOCK_API.get("news.json")
 		.then( res => this.setState({ last_news: res.data, news_loading: false }));
 	}
 
 
 	getLastEvents = () => {
-		API.get("mock/events.json")
-		.then( res => this.setState({ last_events: res.data, events_loading: false }));
+		API.get("contents/events?limit=5")
+		.then( res => {
+			console.log( res.data );
+			const { events } = res.data;
+
+			this.setState({ last_events: events, events_loading: false });
+		})
+		.catch( err => {});
 	}
 
 
 	getPhotoReports = () => {
-		API.get("mock/photoreports.json")
+		MOCK_API.get("photoreports.json")
 		.then( res => this.setState({ photo_reports: res.data, photo_reports_loading: false }));
 	}
 
 
 	getSafeUstron = () => {
-		API.get("mock/safe-ustron.json")
+		MOCK_API.get("safe-ustron.json")
 		.then( res => this.setState({ safe_ustron: res.data, safe_ustron_loading: false }));	
 	}
 

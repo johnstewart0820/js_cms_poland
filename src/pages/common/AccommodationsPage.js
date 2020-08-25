@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API } from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
 
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import LoopAccommodationPost from "../../components/accommodation/LoopAccommodationPost";
@@ -38,7 +38,7 @@ export default class AccommodationsPage extends Component{
 
 
 	getPosts = () => {
-		API.get("/mock/accommodations.json")
+		MOCK_API.get("accommodations.json")
 		.then( res => {
 			const { data } = res;
 			const post_row = [...data];

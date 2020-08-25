@@ -1,5 +1,6 @@
 import React from 'react';
-import {API} from "../../extra/API";
+import { API, MOCK_API } from "../../extra/API";
+
 import MainHeaderSection from "../../components/header/MainHeaderSection";
 import Breadcrumbs from '../../components/general/Breadcrumbs';
 import PicturesSlider from "../../components/slider/PicturesSlider";
@@ -31,9 +32,9 @@ export default function () {
     React.useEffect(() => {
         setTimeout(() => {
             setSlides(sample_slides);
-            API.get("mock/attractions.json").then(res => setAttractions(res.data));
-            API.get("mock/paths.json").then(res => setPaths(res.data));
-            API.get("mock/discounts.json").then(res => setDiscounts(res.data));
+            MOCK_API.get("attractions.json").then(res => setAttractions(res.data));
+            MOCK_API.get("paths.json").then(res => setPaths(res.data));
+            MOCK_API.get("discounts.json").then(res => setDiscounts(res.data));
         }, 500);
     }, []);
 

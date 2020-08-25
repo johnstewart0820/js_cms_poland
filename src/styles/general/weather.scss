@@ -4,7 +4,7 @@
 .weather{
 	@include flex-centered;
 	background-color: $gray_super_light_2;
-	padding: 45px;
+	padding: 10px 45px;
 
 	.loader{
 		min-height: 74px;
@@ -21,6 +21,10 @@
 		strong:first-child{
 			margin-bottom: 8px;
 		}
+	}
+
+	img{
+		max-width: 100px;
 	}
 
 	span, strong{
