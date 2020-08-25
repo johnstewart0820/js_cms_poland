@@ -16,7 +16,38 @@
         }
       }
 
+      .row-margin-top {
+        margin-top: 80px;
+      }
+
+      .row-with-buttons {
+        justify-content: center;
+        margin-top: 50px;
+        .button-link {
+          margin-top: 10px;
+        }
+      }
+
       .row {
+        .col {
+          .add-image-button__margin-top {
+            margin-top: 50px;
+          }
+        }
+
+        .button-add-item {
+          margin-left: 270px;
+          width: 220px;
+        }
+        .col-margin-right {
+          flex-basis: 40%;
+        }
+        .col-margin-bottom {
+          margin-bottom: 30px;
+        }
+        .col-with-checkboxes {
+          flex-basis: 20%;
+        }
         .row-title {
           margin: 45px 5px 0 5px;
         }
@@ -58,6 +89,11 @@
           display: flex;
           width: 150px;
           min-width: 0;
+        }
+
+        .km-input {
+          min-width: 0;
+          width: 200px;
         }
       }
     }

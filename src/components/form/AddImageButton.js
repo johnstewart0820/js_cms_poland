@@ -4,8 +4,10 @@ import Row from "../helpers/Row";
 import Col from "../helpers/Col";
 import {PlusIcon} from "../../svg/icons";
 
-const AddImageButton = ({children, buttonText}) => (
-    <Row>
+const AddImageButton = ({children, greenButtonText, extraClasses}) => (
+    <Row
+        extraClasses={extraClasses}
+    >
         <Col>
             <div className="add-image-button-container">
                 <label className={'add-image-button__button'}>
@@ -15,8 +17,10 @@ const AddImageButton = ({children, buttonText}) => (
             </div>
         </Col>
         <Col>
-            {children}
-            <button className='button-link green full-width'>{buttonText}</button>
+            <div className="add-image-description">
+                {children}
+                {!!greenButtonText && <button className='button-link green'>{greenButtonText}</button>}
+            </div>
         </Col>
     </Row>
 )
