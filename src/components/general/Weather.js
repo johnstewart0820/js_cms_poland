@@ -29,15 +29,6 @@ export default class Weather extends Component{
 			const { data } = res;
 			const weather_days = this.getWeatherForEachDay( data );
 
-
-			const ww = data.reduce(( total, current) => {
-
-				total[current.weather] = 1
-				return total;
-			}, {})
-
-			console.log(ww);
-
 			this.setState({ weather_days, loading: false });
 		})
 		.catch( err => { })
