@@ -21,5 +21,6 @@ export default {
     RegisterToEventForm: '/register-event-form',
     RegisterToEventConfirmationPage: '/register-event-confirm',
     ObjectListPage: '/object-list',
-    EditObjectFormPage: '/object-edit'
+    EditObjectFormPage: '/object-edit',
+    GameCardsPage: '/game'
 };

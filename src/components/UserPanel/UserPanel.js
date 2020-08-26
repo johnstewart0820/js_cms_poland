@@ -72,6 +72,7 @@ export const UserPanel = () => {
                     buttonImage={require('../../svg/icons/joystick.svg')}
                     lines={true}
                     lastChild={true}
+                    onClick={() => history.push(TourismRoutes.GameCardsPage)}
                 />
             </div>
             <div className="panel-container__footer">

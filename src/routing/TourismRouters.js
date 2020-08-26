@@ -24,6 +24,7 @@ const RegisterToEventForm = asyncComponent(() => import('../pages/RegisterToEven
 const RegisterToEventConfirmationPage = asyncComponent(() => import('../pages/RegisterToEvent/RegisterToEventConfirmationPage'));
 const ObjectListPage = asyncComponent(() => import('../pages/Objects/ObjectsListPage'));
 const EditObjectFormPage = asyncComponent(() => import('../pages/Objects/EditObjectFormPage'));
+const GameCardsPage = asyncComponent(() => import('../pages/Game/GameCardsPage'));
 
 const EventSinglePage = asyncComponent( () => import( "../pages/common/EventSinglePage" ));
 const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSinglePage" ));
@@ -54,6 +55,7 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.RegisterToEventConfirmationPage} component={RegisterToEventConfirmationPage}/>
 		<Route exact path={TourismRoutes.ObjectListPage} component={ObjectListPage}/>
 		<Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
+		<Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
 	</>
 )
 
