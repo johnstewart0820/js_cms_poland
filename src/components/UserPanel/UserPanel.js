@@ -66,6 +66,11 @@ export const UserPanel = () => {
                     lines={true}
                     buttonImage={require('../../svg/icons/circle.svg')}
                     buttonText={'E-CZK'}
+                />
+                <PanelButton
+                    buttonText={'Gra'}
+                    buttonImage={require('../../svg/icons/joystick.svg')}
+                    lines={true}
                     lastChild={true}
                 />
             </div>
