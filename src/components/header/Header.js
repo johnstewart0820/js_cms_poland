@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 import SimpleLink from "../general/SimpleLink";
 import SearchFrom from "../search/SearchFrom";
 import AuthPanel from "../auth/AuthPanel";
+import LanguageSwitcher from "../general/LanguageSwitcher";
 
 import MainLogo from "../../svg/components/MainLogo";
 import { EyeIcon, UnderlineIcon, BipIcon, SearchIcon, UserIcon } from "../../svg/icons";
 import { toggleContrastVersion, toggleUnderlineLinks } from "../../extra/theme";
-import HEADER_MENU from "../../extra/header_menu";
+// import HEADER_MENU from "../../extra/header_menu";
 
 import "../../styles/header/header.scss";
 
-const changeFontSize = (e) => {
+const changeFontSize = e => {
 	e.preventDefault();
 
 	let
@@ -73,41 +74,39 @@ const header_links = [
 export default class Header extends Component {
 
 	static propTypes = {
-		type: PropTypes.string
+		header_menu: PropTypes.array,
+		languages: PropTypes.array.isRequired,
+		active_language: PropTypes.string.isRequired
 	}
 
-	constructor(props){
-		super(props);
-
-		this.state = {
-			show_search: false,
-			show_auth: false
-		}
+	state = {
+		show_search: false,
+		show_auth: false
 	}
 
 
-	toggleSearch = (e) => {
+	toggleSearch = e => {
 		e.preventDefault();
 		this.setState({ show_search: !this.state.show_search  });
 	} 
 
 
-	toggleAuth = (e) => {
+	toggleAuth = e => {
 		e.preventDefault();
 		this.setState({ show_auth: !this.state.show_auth });
 	}
 
 
-	getHeaderLinks = () => {
-
-		return header_links.map(( item, index ) => (
+	getHeaderLinks = () => (
+		header_links.map(( item, index ) => (
 			<SimpleLink 
 				key={ index }
 				{...item}
 				extra_classes={`header__link ${ item.extra_classes || "" }`}
 			/>
 		))
-	}
+	)
+	
 
 
 	getHeaderActions = () => {
@@ -119,8 +118,13 @@ export default class Header extends Component {
 				onClick: this.toggleSearch
 			},
 			{
-				label: "PL",
-				extra_classes:" language-switcher"
+				component: LanguageSwitcher,
+				props: {
+					extra_classes:"header__link",
+					active_language: this.props.active_language,
+					languages: this.props.languages,
+					onClick: this.props.changeLanguage
+				},
 			},
 			{
 				svg: <UserIcon />,
@@ -131,22 +135,18 @@ export default class Header extends Component {
 		]
 
 		return actions.map(( item, index ) => (
-			<SimpleLink 
-				key={ index }
-				{...item}
-				extra_classes={`header__link ${ item.extra_classes || "" }`}
-			/>
+			item.component 
+			? (
+				<item.component key={ index } {...item.props } />
+			)
+			: (
+				<SimpleLink 
+					key={ index }
+					{...item}
+					extra_classes={`header__link ${ item.extra_classes || "" }`}
+				/>
+			)
 		))
-	}
-
-
-
-	getHeaderMenu = () => {
-		const { type } = this.props;
-		
-		return type
-			? HEADER_MENU[ type ]
-			: null;
 	}
 
 
@@ -166,10 +166,11 @@ export default class Header extends Component {
 
 	render() {
 
+		const { header_menu } = this.props;
+		const { show_search, show_auth } = this.state;
+
 		const header_links = this.getHeaderLinks();
 		const header_actions = this.getHeaderActions();
-
-		const header_menu = this.getHeaderMenu();
 		const header_subtitle = this.getHeaderSubtitle();
 
 		const header_classes = ["header"];
@@ -197,8 +198,8 @@ export default class Header extends Component {
 					}
 				</div>
 		
-				{ this.state.show_search && <SearchFrom /> }
-				{ this.state.show_auth && <AuthPanel /> }
+				{ show_search && <SearchFrom /> }
+				{ show_auth && <AuthPanel /> }
 			</header>
 		)
 	}

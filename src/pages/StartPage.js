@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-// import Axios from "axios";
-import { API, MOCK_API } from "../extra/API";
+import { API } from "../extra/API";
+import { SiteInfoContext } from "../constants/SiteInfoContext";
 
+
+import Loader from "../components/general/Loader";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
@@ -11,10 +13,17 @@ import MainHeaderTilesSection from "../components/header/MainHeaderTilesSection"
 import MainHeaderExternalLink from "../components/header/MainHeaderExternalLink";
 import Weather from "../components/general/Weather";
 
+import { HerbIcon } from "../svg/icons";
+import { getSubItemSvg } from "../extra/main_menu";
 
 export default class StartPage extends Component{
 
+	static contextType = SiteInfoContext;
+	interval = null;
+
 	state = {
+		loading: true,
+
 		news_loading: true,
 		events_loading: true,
 
@@ -23,49 +32,135 @@ export default class StartPage extends Component{
 	}
 
 
-	componentDidMount(){
-		this.getLastNews();
-		this.getLastEvents();
+	componentDidMount(){ this.checkIsContextUpdated() }
+
+
+	componentWillUnmount(){ clearInterval( this.interval ) }
+
+
+	checkIsContextUpdated = () => {
+		this.interval = setInterval(() => {
+			if( this.context ) {
+				clearInterval( this.interval );
+				this.getPageContent();
+			}
+		}, 1500);
 	}
 
 
-	getLastNews = () => {
+	getPageContent = () => {
 
-		// API.get("contents/posts", { params: {
-		// 	limit: 5,
-		// 	categories: "9,10"
-		// }})
-		// .then( res => {
-			
-		// 	const last_news = res.data.contents;
-		// 	this.setState({ last_news, news_loading: false })
-		// })
+		if( !this.context ) return;
 
-		MOCK_API.get("news.json")
-		.then( res => this.setState({ last_news: res.data, news_loading: false }));
+		const info = {...this.context };
+		const page_structure = info?.default_content?.custom_data?.page_structure;
+
+
+		const last_events_title = page_structure.module1_title;
+		const last_events_cat = page_structure.module1_category;
+
+		const last_news_title = page_structure.module2_title;
+		const last_news_cat = page_structure.module2_category;
+
+		const { map_id } = page_structure;
+		const main_tiles = this.getMainTiles( page_structure );
+
+		const external_link_title = page_structure.section5_title;
+		const external_link_url = page_structure.section5_url;
+
+		const external_link = {
+			heading: external_link_title,
+			href: external_link_url
+		}
+
+
+		this.setState({ loading: false, external_link, last_news_title, main_tiles, last_events_title, map_id }, () => {
+
+			this.getLastEvents( last_events_cat );
+			this.getLastNews( last_news_cat );
+		})
 	}
 
 
-	getLastEvents = () => {
+	getMainTiles = page_structure => {
 
-		API.get("contents/events?limit=5")
+		if ( !page_structure ) return [];
+		
+		const extra_classes = [ "main", "tourism", "culture", "sport" ];
+		const pre_keys = [ "section1", "section2", "section3", "section4"];
+		
+		return pre_keys 
+			.map(( pre_key, index ) => {
+
+				const title = page_structure?.[ `${pre_key}_title` ];
+				const main_href = page_structure?.[ `${pre_key}_url` ];
+				const bg = page_structure?.[ `${pre_key}_photo` ];
+				const extra_class = extra_classes[ index ];
+				const svg = index === 0 ? <HerbIcon /> : null;
+
+				const menu_structure = page_structure?.[ `${pre_key}_menu` ]?.structure; 
+				const items = 
+					menu_structure && !!menu_structure.length
+						? menu_structure.map(({ item }) => ({ title: item.name, href: item.url, svg: getSubItemSvg( item.name ) }))
+						: null;
+
+				return { title, svg, main_href, bg, extra_class, items };
+			});
+	}
+
+
+	getLastNews = categories => {
+
+		API.get("contents/posts", { params: {
+			limit: 10,
+			categories
+		}})
 		.then( res => {
-			// console.log( res.data );
-			const { events } = res.data;
+			
+			const last_news = res.data.contents;
+			this.setState({ last_news, news_loading: false })
+		})
+		.catch( err => { })
+	}
 
+
+	getLastEvents = categories => {
+
+		API.get("contents/events?limit=5", { params: {
+			limit: 10,
+			categories
+		}})
+		.then( res => {
+
+			const { events } = res.data;
 			this.setState({ last_events: events, events_loading: false });
 		})
-		.catch( err => {});
+		.catch( err => { });
 	}
 
 
 	render(){
+		console.log(this.context);
 
-		const { last_events, events_loading } = this.state;
-		const { last_news, news_loading } = this.state;
+		const { loading, main_tiles, external_link } = this.state;
+		const { last_events, last_events_title, events_loading } = this.state;
+		const { last_news, last_news_title, news_loading } = this.state;
 
-		const first_carousel = { loading: events_loading, path_to_all: "/events", heading: "Najbliższe wydarzenia", items: last_events, component: LoopEventsPost };
-		const second_carousel = { loading: news_loading, path_to_all: "/news", heading: "Ostatnie aktualności", items: last_news, component: LoopNewsPost };
+		const first_carousel = { 
+			loading: events_loading, 
+			path_to_all: "/events", 
+			heading: last_events_title, //"Najbliższe wydarzenia", 
+			items: last_events, 
+			component: LoopEventsPost 
+		};
+
+		const second_carousel = { 
+			loading: news_loading, 
+			path_to_all: "/news", 
+			heading: last_news_title, //"Ostatnie aktualności", 
+			items: last_news, 
+			component: LoopNewsPost 
+		};
 
 		const carousels = { first_carousel, second_carousel };		
 
@@ -73,17 +168,27 @@ export default class StartPage extends Component{
 			<>
 				<MainHeaderSection> 
 					
-					<MainHeaderTilesSection />
+					{ loading && <Loader /> }
 
-					<div className="row">
-						<MainHeaderExternalLink />
-						<Weather />
-					</div>
+					{ !loading &&
+						<>
+							<MainHeaderTilesSection tiles={ main_tiles } />
+
+							<div className="row">
+								<MainHeaderExternalLink {...external_link } />
+								<Weather />
+							</div>
+						</>
+					}
+					
 				</MainHeaderSection>
 
-				<TwoCarouselsOneRow {...carousels } />
-
-				<MapWithPinsFiltering type="trip" />
+				{ !loading &&
+					<>
+						<TwoCarouselsOneRow {...carousels } />
+						<MapWithPinsFiltering type="trip" />
+					</> 
+				}
 			</>
 		)
 	}
