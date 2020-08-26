@@ -104,7 +104,7 @@ export default class MainPage extends Component{
 	getLastEvents = () => {
 		API.get("contents/events?limit=5")
 		.then( res => {
-			console.log( res.data );
+			// console.log( res.data );
 			const { events } = res.data;
 
 			this.setState({ last_events: events, events_loading: false });

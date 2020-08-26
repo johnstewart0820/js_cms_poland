@@ -1,6 +1,6 @@
-const addZeroIfNeeded = (num) => ( num < 10 ? `0${+num}` :  num );
+const addZeroIfNeeded = num => ( num < 10 ? `0${+num}` :  num );
 
-const removeHtmlTags = (content) => {
+const removeHtmlTags = content => {
 	content = content.replace(/<[^<>]+>/g, ' ');
 	content = content.replace(/\s\s+/, ' ');
 	return content;
@@ -17,7 +17,7 @@ const getMobileDeviceOS = () => {
 				: undefined;
 };
 
-const isFunction = ( func ) => ( toString.call(func) === "[object Function]" )
+const isFunction = func => ( toString.call(func) === "[object Function]" )
 
 export {
 	addZeroIfNeeded,

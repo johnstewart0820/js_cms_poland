@@ -34,7 +34,7 @@ const LoopAccommodationPostInfo = ({ phone, email, www }) => {
 
 	return (
 		<div className="loop-accommodation-post__info"> 
-			{ info && info.length > 0 &&
+			{ info && !!info.length &&
 				info.map(({ svg, value, href, target }, index) => (
 					<a key={ index } href={ href } target={ target }>
 						{ svg }
@@ -56,7 +56,7 @@ const LoopAccommodationPost = ({ id, title, category, thumbnail, address, phone,
 			<div className="loop-accommodation-post__title heading"> { title } </div>
 
 			{ address &&
-				<div class="loop-accommodation-post__address">  
+				<div className="loop-accommodation-post__address">  
 					<span> ADRES </span>
 					{ address } 
 				</div> 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import Parser from "html-react-parser";
 
 import MainLogo from "../../svg/components/MainLogo";
 import ButtonLink from "../buttons/ButtonLink";
@@ -8,7 +9,7 @@ import FooterSubPagesLinks from "./FooterSubPagesLinks";
 import FooterAddress from "./FooterAddress";
 import FooterBottomLinks from "./FooterBottomLinks";
 
-const FooterMain = () => (
+const FooterMain = ({ address, footer_subpage_links, footer_links }) => (
 	<div className="footer-main">
 		<div className="container">
 
@@ -21,13 +22,13 @@ const FooterMain = () => (
 					Powrót do strony głównej
 				</Link>
 
-				<FooterSubPagesLinks />
+				<FooterSubPagesLinks items={ footer_subpage_links } />
 			</div>
 
 			<div className="footer-main__bottom">
-				<FooterAddress />
+				{ address ? <FooterAddress> { Parser( address ) } </FooterAddress> : "" }
 				<ButtonLink extra_classes="white"> Do pobrania </ButtonLink>
-				<FooterBottomLinks />
+				<FooterBottomLinks items={ footer_links } />
 			</div>
 		</div>
 	</div>
