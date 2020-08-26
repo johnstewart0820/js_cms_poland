@@ -8,14 +8,10 @@ export default class MainHeaderTile extends Component{
 	timer = null;
 	delay = 1300;
 
-	state = {
-		show_links: false
-	}
+	state = { show_links: false };
 
 
-	componentWillUnmount(){
-		clearTimeout( this.timer );
-	}
+	componentWillUnmount(){ clearTimeout( this.timer ) }
 
 
 	onMouseOver = () => {		
@@ -36,7 +32,7 @@ export default class MainHeaderTile extends Component{
 
 	render(){
 
-		const { main_href, title, items, bg, extra_class } = this.props;
+		const { main_href, title, svg, items, bg, extra_class } = this.props;
 		const { show_links } = this.state;
 
 		return(
@@ -50,12 +46,13 @@ export default class MainHeaderTile extends Component{
 				style={{ backgroundImage: `url(${ bg })` }}
 			>
 				<div className="main-header-tiles-section__tile_info">
-					<TileMark />
+					{ !svg && <TileMark /> }
+					{ svg }
 					<div className="heading"> { title } </div>
 					<span/>
 				</div>
 
-				{ items && items.length > 0 &&
+				{ items && !!items.length &&
 					<div className="main-header-tiles-section__tile_links">
 					{ items.map(({ svg, title, href }, index) => (
 						

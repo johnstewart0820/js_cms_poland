@@ -14,6 +14,35 @@ const culture_url = "";
 const sport_url = "";
 const stay_updated_url = "";
 
+
+const SUBITEMS_SVG = {
+	"miasto": <HerbIcon />,
+	"imprezy": <EventsIcon />,
+	"cozwiedzać": <MountainsIcon />,
+	"uzdrowisko": <SpaIcon />,
+	"punktygastronomiczne": <FoodOutletsIcon />,
+	"noclegi": <BedIcon />,
+	"jakdojechać": <RouteIcon />,
+
+	"muzeum": <MuseumIcon />,
+	"miejskidomkultury": <HouseOfCultureIcon />,	
+	"biblioteka": <LibraryIcon />,
+	"galeria": <GalleryIcon />,
+	"wydarzeniakulturalne": <StarIcon />,
+
+	"boiskasportowe": <StadiumIcon />,
+	"kolejelinowe": <RopewaysIcon />,
+	"lodowisko": <RinkIcon />,
+	"siłownieiplacezabaw": <TrainerIcon />,
+	"rower": <BikeIcon />,
+	"kortytenisowe": <TennisIcon />,
+}
+
+
+const getSubItemSvg = name => {
+	return SUBITEMS_SVG[ name.toLowerCase().replace(/[? ]/g, "") ];
+}
+
 const MAIN_MENU = [
 	{ 
 		title: "Portal Turystyczny",
@@ -142,4 +171,4 @@ const MAIN_MENU = [
 ] 
 
 
-export { MAIN_MENU, main_url, tourism_url, sport_url, culture_url, stay_updated_url };
+export { MAIN_MENU, getSubItemSvg, main_url, tourism_url, sport_url, culture_url, stay_updated_url };
