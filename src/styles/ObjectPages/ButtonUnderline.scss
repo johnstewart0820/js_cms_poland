@@ -1,0 +1,32 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.button-with-underline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 160px;
+  height: 60px;
+  border: none;
+  background-color:#f9f9f9;
+  color: $gray;
+  cursor: pointer;
+  font-size: 20px;
+  hr {
+    border: none;
+    margin-top: 10px;
+    width: 60px;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: $green;
+    font-weight: bold;
+    hr {
+      display: block;
+      border: 1px $green solid;
+    }
+  }
+}
