@@ -1,10 +1,11 @@
 import React from "react";
 import '../../styles/UserPanel/UserPanel.scss';
-import {PanelButton} from "./PanelButton";
+import {PanelLink} from "./PanelLink";
 import {useHistory} from "react-router-dom";
 import axios from '../../extra/axios';
 import TourismRoutes from "../../constants/TourismRoutes";
 import UserContext from "../../constants/UserContext";
+import PanelButton from "./PanelButton";
 
 export const UserPanel = () => {
     const history = useHistory();
@@ -38,41 +39,42 @@ export const UserPanel = () => {
                 </div>
             </div>
             <div className="panel-container__body">
-                <PanelButton
-                    onClick={() => history.push(TourismRoutes.UserProfile)}
+                <PanelLink
+                    to={TourismRoutes.UserProfile}
                     lines={true}
                     buttonImage={require('../../svg/icons/id-card.svg')}
                     buttonText={'Moj profil'}
                 />
-                <PanelButton
-                    onClick={() => history.push(TourismRoutes.ReservationHistoryPage)}
+                <PanelLink
+                    to={TourismRoutes.ReservationHistoryPage}
                     lines={true}
                     buttonImage={require('../../svg/icons/stadium-black.svg')}
                     buttonText={'Rezerwacja boisk'}
                 />
-                <PanelButton
-                    onClick={() => history.push(TourismRoutes.RegisterToEventList)}
+                <PanelLink
+                    to={TourismRoutes.RegisterToEventList}
                     lines={true}
                     buttonImage={require('../../svg/icons/pencil-black.svg')}
                     buttonText={'Rejestracja na zawody'}
                 />
-                <PanelButton
-                    onClick={() => history.push(TourismRoutes.ObjectListPage)}
+                <PanelLink
+                    to={TourismRoutes.ObjectListPage}
                     lines={true}
                     buttonImage={require('../../svg/icons/marker.svg')}
                     buttonText={'Moje obiekty'}
                 />
-                <PanelButton
-                    lines={true}
-                    buttonImage={require('../../svg/icons/circle.svg')}
-                    buttonText={'E-CZK'}
-                />
-                <PanelButton
+                {/*<PanelLink*/}
+                {/*    to={'/'}*/}
+                {/*    lines={true}*/}
+                {/*    buttonImage={require('../../svg/icons/circle.svg')}*/}
+                {/*    buttonText={'E-CZK'}*/}
+                {/*/>*/}
+                <PanelLink
                     buttonText={'Gra'}
                     buttonImage={require('../../svg/icons/joystick.svg')}
                     lines={true}
                     lastChild={true}
-                    onClick={() => history.push(TourismRoutes.GameCardsPage)}
+                    to={TourismRoutes.GameCardsPage}
                 />
             </div>
             <div className="panel-container__footer">

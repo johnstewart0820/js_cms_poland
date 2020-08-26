@@ -21,6 +21,18 @@
     transition: 0.5s;
     color: #ffffff;
   }
+
+  &:focus {
+    transition: 0.5s;
+    background-color: #85CB3F;
+    outline: none;
+  }
+}
+
+.focus {
+  transition: 0.5s;
+  background-color: #85CB3F;
+  outline: none;
 }
 
 hr {
