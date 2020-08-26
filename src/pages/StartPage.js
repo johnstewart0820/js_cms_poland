@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API } from "../extra/API";
-import { SITES_DOMAIN } from "../extra/site_settings";
+import { SiteInfoContext } from "../constants/SiteInfoContext";
+
 
 import Loader from "../components/general/Loader";
 import MainHeaderSection from "../components/header/MainHeaderSection";
@@ -17,6 +18,9 @@ import { getSubItemSvg } from "../extra/main_menu";
 
 export default class StartPage extends Component{
 
+	static contextType = SiteInfoContext;
+	interval = null;
+
 	state = {
 		loading: true,
 
@@ -28,45 +32,53 @@ export default class StartPage extends Component{
 	}
 
 
-	componentDidMount(){ this.getSiteInfo() }
+	componentDidMount(){ this.checkIsContextUpdated() }
 
 
-	getSiteInfo = () => {
-		API.get(`sites/getInfo?domain=${ SITES_DOMAIN[ "MAIN" ] }`)
-		.then( res => {
+	componentWillUnmount(){ clearInterval( this.interval ) }
 
-			const { info } = res.data;
-			const page_structure = info?.default_content?.custom_data?.page_structure;
 
-			// console.log( page_structure );
-
-			const last_events_title = page_structure.module1_title;
-			const last_events_cat = page_structure.module1_category;
-
-			const last_news_title = page_structure.module2_title;
-			const last_news_cat = page_structure.module2_category;
-
-			const { map_id } = page_structure;
-			const main_tiles = this.getMainTiles( page_structure );
-
-			const external_link_title = page_structure.section5_title;
-			const external_link_url = page_structure.section5_url;
-
-			const external_link = {
-				heading: external_link_title,
-				href: external_link_url
+	checkIsContextUpdated = () => {
+		this.interval = setInterval(() => {
+			if( this.context ) {
+				clearInterval( this.interval );
+				this.getPageContent();
 			}
+		}, 1500);
+	}
 
-			// console.log(main_tiles);
 
-			this.setState({ loading: false, external_link, last_news_title, main_tiles, last_events_title, map_id }, () => {
+	getPageContent = () => {
 
-				this.getLastEvents( last_events_cat );
-				this.getLastNews( last_news_cat );
-			})
+		if( !this.context ) return;
 
+		const info = {...this.context };
+		const page_structure = info?.default_content?.custom_data?.page_structure;
+
+
+		const last_events_title = page_structure.module1_title;
+		const last_events_cat = page_structure.module1_category;
+
+		const last_news_title = page_structure.module2_title;
+		const last_news_cat = page_structure.module2_category;
+
+		const { map_id } = page_structure;
+		const main_tiles = this.getMainTiles( page_structure );
+
+		const external_link_title = page_structure.section5_title;
+		const external_link_url = page_structure.section5_url;
+
+		const external_link = {
+			heading: external_link_title,
+			href: external_link_url
+		}
+
+
+		this.setState({ loading: false, external_link, last_news_title, main_tiles, last_events_title, map_id }, () => {
+
+			this.getLastEvents( last_events_cat );
+			this.getLastNews( last_news_cat );
 		})
-		.catch( err => { })
 	}
 
 
@@ -121,7 +133,6 @@ export default class StartPage extends Component{
 		.then( res => {
 
 			const { events } = res.data;
-
 			this.setState({ last_events: events, events_loading: false });
 		})
 		.catch( err => { });
@@ -129,6 +140,7 @@ export default class StartPage extends Component{
 
 
 	render(){
+		console.log(this.context);
 
 		const { loading, main_tiles, external_link } = this.state;
 		const { last_events, last_events_title, events_loading } = this.state;

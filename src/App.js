@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { API, router_basename } from "./extra/API";
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserContextProvider } from './constants/UserContext'; 
+import { SiteInfoContext } from "./constants/SiteInfoContext";
 
 import { isContrastThemeOn, turnOnContrastTheme } from "./extra/theme";
 import { SITE, SITES_DOMAIN } from "./extra/site_settings";
 
+import FullPageLoader from "./components/general/FullPageLoader";
 import Routing from "./routing/Routing";
 import Footer from './components/footer/Footer';
 import Sidebar from "./components/sidebar/Sidebar";
@@ -23,9 +25,11 @@ import moment from 'moment';
 import 'moment/locale/pl';
 moment().locale('pl');
 
+
 class App extends Component {
 
 	state = {
+		site_info_loading: true,
 		languages: ["pl"],
 		active_language: "pl",
 		header_menu: [],
@@ -70,7 +74,16 @@ class App extends Component {
 				))
 				: [];
 
-			this.setState({ languages, active_language: defaultLanguage, header_menu, footer_address, footer_subpage_links, footer_links })
+			this.setState({ 	
+				site_info: info, 
+				site_info_loading: false, 
+				languages, 
+				active_language: defaultLanguage, 
+				header_menu, 
+				footer_address, 
+				footer_subpage_links, 
+				footer_links 
+			})
 		})
 		.catch( err => {} )
 	}
@@ -101,17 +114,23 @@ class App extends Component {
 		return (
 			<>
 				<Router basename={ router_basename }>
+					
+					<>
+						<SiteInfoContext.Provider value={ this.state.site_info }>
+							<UserContextProvider>
+									
+								<Header {...header_props } />
+								<Sidebar />
+								<main>
+									<Routing />
+								</main>			
+								
+							</UserContextProvider>
+						</SiteInfoContext.Provider>
 
-					<UserContextProvider>
-						<Header {...header_props } />
-						<Sidebar />
-						<main>
-							<Routing />
-						</main>
-					</UserContextProvider>
-
-				  <Footer {...footers_props } />
-
+						<Footer {...footers_props } />
+					</>
+					
 			  	</Router>
 			</>
 		 );
