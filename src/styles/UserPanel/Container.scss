@@ -1,6 +1,9 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
 .custom-container {
   display: flex;
-  background-color: #f9f9f9;
+  background-color: $gray_super_light_2;
   width: calc(100% - 88px);
   .container-fluid {
     width: 100%;

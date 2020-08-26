@@ -17,6 +17,7 @@ import { ReactComponent as BedIcon } from "./icons/bed.svg";
 import { ReactComponent as SquareIcon } from "./icons/square.svg";
 import { ReactComponent as MapIcon } from "./icons/map.svg";
 import { ReactComponent as CloseIcon } from "./icons/close.svg";
+import { ReactComponent as PlaneIcon} from "./icons/plane.svg";
 
 import { ReactComponent as PhoneIcon } from "./icons/phone.svg";
 import { ReactComponent as EmailIcon } from "./icons/email.svg";
@@ -82,6 +83,7 @@ export {
 	WWWIcon,
 	StopIcon,
 	PlayIcon,
+	PlaneIcon,
 
 	PlusIcon,
 	ShareIcon,
