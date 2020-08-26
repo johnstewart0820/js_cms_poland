@@ -38,7 +38,7 @@ export default class StartPage extends Component{
 			const { info } = res.data;
 			const page_structure = info?.default_content?.custom_data?.page_structure;
 
-			console.log( page_structure );
+			// console.log( page_structure );
 
 			const last_events_title = page_structure.module1_title;
 			const last_events_cat = page_structure.module1_category;
@@ -49,9 +49,17 @@ export default class StartPage extends Component{
 			const { map_id } = page_structure;
 			const main_tiles = this.getMainTiles( page_structure );
 
-			console.log(main_tiles);
+			const external_link_title = page_structure.section5_title;
+			const external_link_url = page_structure.section5_url;
 
-			this.setState({ loading: false, last_news_title, main_tiles, last_events_title, map_id }, () => {
+			const external_link = {
+				heading: external_link_title,
+				href: external_link_url
+			}
+
+			// console.log(main_tiles);
+
+			this.setState({ loading: false, external_link, last_news_title, main_tiles, last_events_title, map_id }, () => {
 
 				this.getLastEvents( last_events_cat );
 				this.getLastNews( last_news_cat );
@@ -122,7 +130,7 @@ export default class StartPage extends Component{
 
 	render(){
 
-		const { loading, main_tiles } = this.state;
+		const { loading, main_tiles, external_link } = this.state;
 		const { last_events, last_events_title, events_loading } = this.state;
 		const { last_news, last_news_title, news_loading } = this.state;
 
@@ -155,7 +163,7 @@ export default class StartPage extends Component{
 							<MainHeaderTilesSection tiles={ main_tiles } />
 
 							<div className="row">
-								<MainHeaderExternalLink />
+								<MainHeaderExternalLink {...external_link } />
 								<Weather />
 							</div>
 						</>
