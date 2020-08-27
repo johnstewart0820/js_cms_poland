@@ -13,6 +13,7 @@ import { toggleContrastVersion, toggleUnderlineLinks } from "../../extra/theme";
 // import HEADER_MENU from "../../extra/header_menu";
 
 import "../../styles/header/header.scss";
+import Breadcrumbs from "../general/Breadcrumbs";
 
 const changeFontSize = e => {
 	e.preventDefault();
@@ -182,22 +183,22 @@ export default class Header extends Component {
 					<MainLogo />
 					<span> { header_subtitle }  </span>
 				</Link>
-		
+
 				<div className="header-main">
 					<div className="header-main__top">
 						{ header_links }
 						{ header_actions }
 					</div>
 
-					{ header_menu && !!header_menu.length &&  
-						<div className="header-main__menu">
-							{ header_menu.map(({ path, label }, index ) => (
-								<Link key={ index } to={ path }> { label }  </Link>
-							)) } 
-						</div> 
+					{ header_menu && !!header_menu.length &&
+					<div className="header-main__menu">
+						{ header_menu.map(({ path, label }, index ) => (
+							<Link key={ index } to={ path }> { label }  </Link>
+						)) }
+					</div>
 					}
 				</div>
-		
+
 				{ show_search && <SearchFrom /> }
 				{ show_auth && <AuthPanel /> }
 			</header>
