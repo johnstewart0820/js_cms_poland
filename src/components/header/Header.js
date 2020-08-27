@@ -13,7 +13,7 @@ import { toggleContrastVersion, toggleUnderlineLinks } from "../../extra/theme";
 // import HEADER_MENU from "../../extra/header_menu";
 
 import "../../styles/header/header.scss";
-import Breadcrumbs from "../general/Breadcrumbs";
+import UserContext from "../../constants/UserContext";
 
 const changeFontSize = e => {
 	e.preventDefault();
@@ -71,8 +71,8 @@ const header_links = [
 	}
 ]
 
-
 export default class Header extends Component {
+	static contextType = UserContext;
 
 	static propTypes = {
 		header_menu: PropTypes.array,
@@ -85,18 +85,15 @@ export default class Header extends Component {
 		show_auth: false
 	}
 
-
 	toggleSearch = e => {
 		e.preventDefault();
 		this.setState({ show_search: !this.state.show_search  });
-	} 
-
+	}
 
 	toggleAuth = e => {
 		e.preventDefault();
 		this.setState({ show_auth: !this.state.show_auth });
 	}
-
 
 	getHeaderLinks = () => (
 		header_links.map(( item, index ) => (
@@ -107,8 +104,6 @@ export default class Header extends Component {
 			/>
 		))
 	)
-	
-
 
 	getHeaderActions = () => {
 		const actions = [
@@ -131,9 +126,10 @@ export default class Header extends Component {
 				svg: <UserIcon />,
 				extra_classes: `has-overlay ${this.state.show_auth ? "active" : ""} `,
 				hidden_text: "login / logout",
-				onClick: this.toggleAuth
+				onClick: this.context.id ? console.log : this.toggleAuth
 			}
 		]
+
 
 		return actions.map(( item, index ) => (
 			item.component 
@@ -164,9 +160,7 @@ export default class Header extends Component {
 		return subtitles[ type ];
 	}
 
-
 	render() {
-
 		const { header_menu } = this.props;
 		const { show_search, show_auth } = this.state;
 
@@ -200,8 +194,9 @@ export default class Header extends Component {
 				</div>
 
 				{ show_search && <SearchFrom /> }
-				{ show_auth && <AuthPanel /> }
+				{ !this.context.id && show_auth && <AuthPanel /> }
 			</header>
 		)
 	}
-} 
+}
+

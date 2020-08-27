@@ -22,8 +22,9 @@ export const UserPanel = () => {
             `https://api.ustron.s3.netcore.pl/users/logout`,
         )
         .then(() => {
-            alert('Goodbye');
+            window.localStorage.clear();
             history.push('/login');
+            userContext.logout();
         }, (error) => {
             alert(error);
         });
