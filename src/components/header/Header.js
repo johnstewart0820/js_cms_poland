@@ -126,7 +126,7 @@ export default class Header extends Component {
 				svg: <UserIcon />,
 				extra_classes: `has-overlay ${this.state.show_auth ? "active" : ""} `,
 				hidden_text: "login / logout",
-				onClick: this.context.id ? console.log : this.toggleAuth
+				onClick: this.context.id ? () => {} : this.toggleAuth
 			}
 		]
 
