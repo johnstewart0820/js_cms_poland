@@ -1,4 +1,5 @@
 import React from "react";
+import '../../styles/UserPanel/PanelButton.scss';
 
 const PanelButton = props => (
     <>
