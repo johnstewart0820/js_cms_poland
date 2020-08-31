@@ -14,6 +14,7 @@ import { toggleContrastVersion, toggleUnderlineLinks } from "../../extra/theme";
 
 import "../../styles/header/header.scss";
 import UserContext from "../../constants/UserContext";
+import {useHistory} from "react-router-dom";
 
 const changeFontSize = e => {
 	e.preventDefault();
@@ -126,7 +127,7 @@ export default class Header extends Component {
 				svg: <UserIcon />,
 				extra_classes: `has-overlay ${this.state.show_auth ? "active" : ""} `,
 				hidden_text: "login / logout",
-				onClick: this.context.id ? () => {} : this.toggleAuth
+				onClick: this.context.id ? () => (window.location.href='/profile') : this.toggleAuth
 			}
 		]
 
