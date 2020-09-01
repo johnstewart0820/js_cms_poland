@@ -28,6 +28,7 @@ const GameCardsPage = asyncComponent(() => import('../pages/Game/GameCardsPage')
 
 const EventSinglePage = asyncComponent( () => import( "../pages/common/EventSinglePage" ));
 const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSinglePage" ));
+const EventsPage = asyncComponent(() => import('../pages/Events/EventsPage'));
 
 
 const TourismRouters = () => (
@@ -56,6 +57,7 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.ObjectListPage} component={ObjectListPage}/>
 		<Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
 		<Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
+		<Route exact path={TourismRoutes.Events} component={EventsPage}/>
 	</>
 )
 

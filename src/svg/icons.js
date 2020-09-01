@@ -54,6 +54,7 @@ import { ReactComponent as HouseOfCultureIcon } from "./icons/house-of-culture.s
 import { ReactComponent as LibraryIcon } from "./icons/library.svg";
 import { ReactComponent as GalleryIcon } from "./icons/gallery.svg";
 import { ReactComponent as QuestionIcon } from "./icons/question.svg";
+import { ReactComponent as LogoWhite} from "./icons/logo-white.svg";
 
 import herb_src from "../img/herb.png";
 const HerbIcon = () => ( <em className="ci ci-herb" style={{ backgroundImage: `url(${ herb_src })` }} /> )
@@ -112,4 +113,5 @@ export {
 	LibraryIcon,
 	GalleryIcon,
 	QuestionIcon,
+	LogoWhite,
 }

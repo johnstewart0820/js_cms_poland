@@ -40,7 +40,7 @@ export default class Carousel extends Component{
 		this.movement = true;
 		
 		const item = this.carousel_wrap.children[0]
-		const item_width = item.clientWidth;
+		const item_width = item.offsetWidth;
 		const item_margin = +window.getComputedStyle(item).getPropertyValue("margin-right").replace("px", "");
 
 	

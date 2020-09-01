@@ -14,7 +14,6 @@ import { toggleContrastVersion, toggleUnderlineLinks } from "../../extra/theme";
 
 import "../../styles/header/header.scss";
 import UserContext from "../../constants/UserContext";
-import {useHistory} from "react-router-dom";
 
 const changeFontSize = e => {
 	e.preventDefault();
