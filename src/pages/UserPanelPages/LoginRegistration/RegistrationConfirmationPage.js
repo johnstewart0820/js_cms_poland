@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../styles/LoginRegistrationPages/RegistrationConfirmationPage.scss';
-import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
+import '../../../styles/LoginRegistrationPages/RegistrationConfirmationPage.scss';
+import '../../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import {useHistory} from "react-router-dom";
 
 const RegistrationConfirmationPage = () => {
@@ -8,7 +8,7 @@ const RegistrationConfirmationPage = () => {
     return (
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
-                <img alt='' src={require('../../img/LoginRegistration/photo.png')} />
+                <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
             </div>
             <div className="container__form confirmation-container">
                 <p>Dziękujemy</p>

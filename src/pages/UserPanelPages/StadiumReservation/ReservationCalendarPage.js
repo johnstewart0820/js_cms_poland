@@ -1,19 +1,19 @@
 import React from 'react';
-import {Container} from "../../components/UserPanel/Container";
-import '../../styles/StadiumReservationPages/ReservationPage.scss';
+import {Container} from "../../../components/UserPanel/Container";
+import '../../../styles/StadiumReservationPages/ReservationPage.scss';
 import {Calendar} from "react-calendar";
-import '../../styles/Calendar/Calendar.scss';
-import InputComponent from "../../components/form/InputComponent";
-import DayButton from "../../components/StadiumReservationComponents/DayButton";
-import RadioButton from "../../components/form/RadioButton";
-import axios from '../../extra/axios';
+import '../../../styles/Calendar/Calendar.scss';
+import InputComponent from "../../../components/form/InputComponent";
+import DayButton from "../../../components/StadiumReservationComponents/DayButton";
+import RadioButton from "../../../components/form/RadioButton";
+import axios from '../../../extra/axios';
 import moment from 'moment';
-import usePrevious from "../../hooks/usePrevious";
+import usePrevious from "../../../hooks/usePrevious";
 import {useHistory} from "react-router-dom";
-import Loader from "../../components/general/Loader";
-import '../../styles/helpers/classes.scss';
-import Row from "../../components/helpers/Row";
-import Col from "../../components/helpers/Col";
+import Loader from "../../../components/general/Loader";
+import '../../../styles/helpers/classes.scss';
+import Row from "../../../components/helpers/Row";
+import Col from "../../../components/helpers/Col";
 
 const ReservationCalendarPage = props => {
     const pageId = props.match.params.id;

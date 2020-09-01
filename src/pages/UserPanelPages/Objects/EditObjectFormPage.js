@@ -1,13 +1,13 @@
 import React from "react";
-import {Container} from "../../components/UserPanel/Container";
-import Loader from "../../components/general/Loader";
-import '../../styles/helpers/classes.scss';
-import '../../styles/ObjectPages/EditObjectFromPage.scss';
-import Row from "../../components/helpers/Row";
-import Col from "../../components/helpers/Col";
-import Form from "../../components/Object/Form";
-import ObjectsGallery from "../../components/Object/ObjectsGallery";
-import Checkboxes from "../../components/Object/Checkboxes";
+import {Container} from "../../../components/UserPanel/Container";
+import Loader from "../../../components/general/Loader";
+import '../../../styles/helpers/classes.scss';
+import '../../../styles/ObjectPages/EditObjectFromPage.scss';
+import Row from "../../../components/helpers/Row";
+import Col from "../../../components/helpers/Col";
+import Form from "../../../components/Object/Form";
+import ObjectsGallery from "../../../components/Object/ObjectsGallery";
+import Checkboxes from "../../../components/Object/Checkboxes";
 
 
 const EditObjectFormPage = () => {

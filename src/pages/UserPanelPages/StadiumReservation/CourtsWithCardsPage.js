@@ -1,13 +1,13 @@
 import React from 'react';
-import '../../styles/StadiumReservationPages/StadiumReservation.scss';
-import Card from "../../components/StadiumReservationComponents/Card";
-import axios from '../../extra/axios';
-import {Container} from "../../components/UserPanel/Container";
-import Loader from "../../components/general/Loader";
+import '../../../styles/StadiumReservationPages/StadiumReservation.scss';
+import Card from "../../../components/StadiumReservationComponents/Card";
+import axios from '../../../extra/axios';
+import {Container} from "../../../components/UserPanel/Container";
+import Loader from "../../../components/general/Loader";
 import {useHistory} from "react-router-dom";
-import TourismRoutes from "../../constants/TourismRoutes";
-import '../../styles/helpers/classes.scss';
-import Row from "../../components/helpers/Row";
+import TourismRoutes from "../../../constants/TourismRoutes";
+import '../../../styles/helpers/classes.scss';
+import Row from "../../../components/helpers/Row";
 
 const CourtsWithCardsPage = () => {
     const history = useHistory();

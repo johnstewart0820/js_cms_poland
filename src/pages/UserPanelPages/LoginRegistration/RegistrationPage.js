@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
-import PasswordStrengthMeter from "../../components/form/PasswordStrengthMeter";
+import '../../../styles/LoginRegistrationPages/RegistrationPage.scss';
+import PasswordStrengthMeter from "../../../components/form/PasswordStrengthMeter";
 import * as axios from "axios";
-import InputComponent from "../../components/form/InputComponent";
+import InputComponent from "../../../components/form/InputComponent";
 
 export default class RegistrationPage extends Component {
 
@@ -26,7 +26,7 @@ export default class RegistrationPage extends Component {
         return(
             <div className="registration-container" style={{padding: 0}}>
                 <div className="container__photo">
-                    <img alt='' src={require('../../img/LoginRegistration/photo.png')} />
+                    <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
                 </div>
                 <div className="container__form">
                     <p>
@@ -56,7 +56,7 @@ export default class RegistrationPage extends Component {
                         visibilitySwitch={true}
                         password={true}
                         onChange={e => this.setState({password: e.target.value})}
-                        imageSrcForSwitch={require('../../svg/icons/passwordVisible.svg')}
+                        imageSrcForSwitch={require('../../../svg/icons/passwordVisible.svg')}
                     />
 
                     <PasswordStrengthMeter password={password}/>

@@ -1,12 +1,12 @@
 import React from "react";
-import {Container} from "../../components/UserPanel/Container";
-import axios from '../../extra/axios';
-import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
-import Checkbox from "../../components/form/Checkbox";
-import TourismRoutes from "../../constants/TourismRoutes";
-import Loader from "../../components/general/Loader";
-import '../../styles/helpers/classes.scss';
-import humanizedDuration from "../../extra/humanizedDuration";
+import {Container} from "../../../components/UserPanel/Container";
+import axios from '../../../extra/axios';
+import '../../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
+import Checkbox from "../../../components/form/Checkbox";
+import TourismRoutes from "../../../constants/TourismRoutes";
+import Loader from "../../../components/general/Loader";
+import '../../../styles/helpers/classes.scss';
+import humanizedDuration from "../../../extra/humanizedDuration";
 
 const RegisterToEventListPage = () => {
     const [notification, setNotification] = React.useState('');
@@ -116,7 +116,7 @@ const RegisterToEventListPage = () => {
                                             {item.is_canceled === '0' && item.seconds_to_cancel >= 1 && <button
                                                 onClick={() => cancelSubscription(item.id)}
                                                 className="list-view__button">
-                                                <img alt='' src={require('../../svg/icons/cross.svg')}/>
+                                                <img alt='' src={require('../../../svg/icons/cross.svg')}/>
                                             </button>}
                                         </td>
                                     </tr>

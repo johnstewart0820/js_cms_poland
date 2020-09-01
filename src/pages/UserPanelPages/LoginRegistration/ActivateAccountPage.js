@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
+import '../../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const ActivateAccountPage = () => {
     return(
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
-                <img alt='' src={require('../../img/LoginRegistration/photo.png')} />
+                <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
             </div>
             <div className="container__form">
                 <p>

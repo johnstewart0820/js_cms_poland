@@ -1,17 +1,17 @@
 import React from "react";
-import {Container} from "../../components/UserPanel/Container";
-import Select from "../../components/form/Select";
-import '../../styles/RegisterToEvent/RegisterToEventForm.scss';
-import InputComponent from "../../components/form/InputComponent";
-import axios from '../../extra/axios';
-import '../../styles/Calendar/Calendar.scss';
+import {Container} from "../../../components/UserPanel/Container";
+import Select from "../../../components/form/Select";
+import '../../../styles/RegisterToEvent/RegisterToEventForm.scss';
+import InputComponent from "../../../components/form/InputComponent";
+import axios from '../../../extra/axios';
+import '../../../styles/Calendar/Calendar.scss';
 import {Calendar} from "react-calendar";
 import moment from "moment";
-import Loader from "../../components/general/Loader";
-import '../../styles/helpers/classes.scss';
+import Loader from "../../../components/general/Loader";
+import '../../../styles/helpers/classes.scss';
 import {useHistory} from 'react-router-dom';
-import TourismRoutes from "../../constants/TourismRoutes";
-import {Countries} from "../../constants/Countries";
+import TourismRoutes from "../../../constants/TourismRoutes";
+import {Countries} from "../../../constants/Countries";
 
 
 const RegisterToEvent = () => {

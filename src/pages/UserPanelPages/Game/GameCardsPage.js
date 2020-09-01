@@ -1,10 +1,10 @@
 import React from "react";
-import {Container} from "../../components/UserPanel/Container";
-import Row from "../../components/helpers/Row";
-import '../../styles/Game/GameCardsPage.scss';
-import ProgressBar from "../../components/Object/ProgressBar";
-import ButtonUnderline from "../../components/Object/ButtonUnderline";
-import Card from "../../components/StadiumReservationComponents/Card";
+import {Container} from "../../../components/UserPanel/Container";
+import Row from "../../../components/helpers/Row";
+import '../../../styles/Game/GameCardsPage.scss';
+import ProgressBar from "../../../components/Object/ProgressBar";
+import ButtonUnderline from "../../../components/Object/ButtonUnderline";
+import Card from "../../../components/StadiumReservationComponents/Card";
 
 
 const GameCardsPage = () => {
@@ -19,7 +19,7 @@ const GameCardsPage = () => {
             <div className="container-inner">
                 <Row>
                     <div className="page-logo">
-                        <img alt='' src={require('../../svg/icons/game-header-image.svg')}/>
+                        <img alt='' src={require('../../../svg/icons/game-header-image.svg')}/>
                         <h4>
                             GRA<br/>
                             PRZEZNACZONA<br/>
@@ -39,21 +39,21 @@ const GameCardsPage = () => {
                         name={'kategoria'}
                         extraClasses={'game-card'}
                         title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
-                        thumbnail={'../../img/loop/1.jpg'}
+                        thumbnail={'../../../img/loop/1.jpg'}
                         greenButtonText={'dowiedz się wiecej'}
                     />
                     <Card
                         name={'kategoria'}
                         extraClasses={'game-card'}
                         title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
-                        thumbnail={'../../img/loop/1.jpg'}
+                        thumbnail={'../../../img/loop/1.jpg'}
                         greenButtonText={'dowiedz się wiecej'}
                     />
                     <Card
                         name={'kategoria'}
                         extraClasses={'game-card'}
                         title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
-                        thumbnail={'../../img/loop/1.jpg'}
+                        thumbnail={'../../../img/loop/1.jpg'}
                         greenButtonText={'dowiedz się wiecej'}
                     />
                 </Row>

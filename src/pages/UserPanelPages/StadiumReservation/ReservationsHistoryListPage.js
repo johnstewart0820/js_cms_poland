@@ -1,13 +1,12 @@
 import React from 'react';
-import {Container} from "../../components/UserPanel/Container";
-import axios from '../../extra/axios';
-import '../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
-import Checkbox from "../../components/form/Checkbox";
-import TourismRoutes from "../../constants/TourismRoutes";
-import Loader from "../../components/general/Loader";
-import '../../styles/helpers/classes.scss';
-import moment from "moment";
-import humanizedDuration from "../../extra/humanizedDuration";
+import {Container} from "../../../components/UserPanel/Container";
+import axios from '../../../extra/axios';
+import '../../../styles/StadiumReservationPages/ReservationHistoryPage.scss';
+import Checkbox from "../../../components/form/Checkbox";
+import TourismRoutes from "../../../constants/TourismRoutes";
+import Loader from "../../../components/general/Loader";
+import '../../../styles/helpers/classes.scss';
+import humanizedDuration from "../../../extra/humanizedDuration";
 
 const ReservationHistoryPage = () => {
     const [data, setData] = React.useState([]);
@@ -130,7 +129,7 @@ const ReservationHistoryPage = () => {
                                                 <button
                                                     onClick={() => cancelReservation(item.id)}
                                                     className="list-view__button">
-                                                    <img alt='' src={require('../../svg/icons/cross.svg')}/>
+                                                    <img alt='' src={require('../../../svg/icons/cross.svg')}/>
                                                 </button>
                                             )}
                                         </td>

@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../styles/LoginRegistrationPages/RegistrationPage.scss';
-import InputComponent from "../../components/form/InputComponent";
-import axios from '../../extra/axios';
+import '../../../styles/LoginRegistrationPages/RegistrationPage.scss';
+import InputComponent from "../../../components/form/InputComponent";
+import axios from '../../../extra/axios';
 import {useHistory} from 'react-router-dom';
-import User from "../../extra/User";
-import UserContext from "../../constants/UserContext";
+import User from "../../../extra/User";
+import UserContext from "../../../constants/UserContext";
 
 const LoginPage = () => {
     const history = useHistory();
@@ -62,7 +62,7 @@ const LoginPage = () => {
     return(
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
-                <img alt='' src={require('../../img/LoginRegistration/photo.png')} />
+                <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
             </div>
             <div className="container__form">
                 {!!errors.length && (
@@ -87,7 +87,7 @@ const LoginPage = () => {
                     fieldName={'HASŁO'}
                     name={'password'}
                     value={state.password}
-                    imageSrcForSwitch={require('../../svg/icons/passwordVisible.svg')}
+                    imageSrcForSwitch={require('../../../svg/icons/passwordVisible.svg')}
                     containerStyles={{margin: '5px 5px 50px 5px'}}
                     password={true}
                     onChange={handleChange}

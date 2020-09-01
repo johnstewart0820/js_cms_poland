@@ -1,12 +1,12 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-import Loader from "../../components/general/Loader";
-import '../../styles/StadiumReservationPages/ReservationConfirmation.scss';
-import ButtonLink from "../../components/buttons/ButtonLink";
-import {Container} from "../../components/UserPanel/Container";
-import TourismRoutes from "../../constants/TourismRoutes";
-import '../../styles/helpers/classes.scss';
-import axios from "../../extra/axios";
+import Loader from "../../../components/general/Loader";
+import '../../../styles/StadiumReservationPages/ReservationConfirmation.scss';
+import ButtonLink from "../../../components/buttons/ButtonLink";
+import {Container} from "../../../components/UserPanel/Container";
+import TourismRoutes from "../../../constants/TourismRoutes";
+import '../../../styles/helpers/classes.scss';
+import axios from "../../../extra/axios";
 
 const RegisterToEventConfirmationPage = () => {
     const history = useHistory();

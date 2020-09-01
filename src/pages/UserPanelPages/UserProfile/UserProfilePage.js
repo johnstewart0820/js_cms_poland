@@ -1,17 +1,17 @@
 import React from 'react';
-import '../../styles/StadiumReservationPages/StadiumReservation.scss';
-import '../../styles/UserProfilePage/UserProfile.scss';
-import {ChangePassword} from "../../components/UserProfile/ChangePaswword";
-import {Container} from "../../components/UserPanel/Container";
-import UserContext from "../../constants/UserContext";
-import Checkbox from "../../components/form/Checkbox";
-import InputComponent from "../../components/form/InputComponent";
-import axios from "../../extra/axios";
-import User from "../../extra/User";
-import Loader from "../../components/general/Loader";
-import '../../styles/helpers/classes.scss';
-import Row from "../../components/helpers/Row";
-import Col from "../../components/helpers/Col";
+import '../../../styles/StadiumReservationPages/StadiumReservation.scss';
+import '../../../styles/UserProfilePage/UserProfile.scss';
+import {ChangePassword} from "../../../components/UserProfile/ChangePaswword";
+import {Container} from "../../../components/UserPanel/Container";
+import UserContext from "../../../constants/UserContext";
+import Checkbox from "../../../components/form/Checkbox";
+import InputComponent from "../../../components/form/InputComponent";
+import axios from "../../../extra/axios";
+import User from "../../../extra/User";
+import Loader from "../../../components/general/Loader";
+import '../../../styles/helpers/classes.scss';
+import Row from "../../../components/helpers/Row";
+import Col from "../../../components/helpers/Col";
 
 const UserProfilePage = () => {
     const userContext = React.useContext(UserContext);
@@ -79,7 +79,7 @@ const UserProfilePage = () => {
                     <div className="container-inner">
                         <div className="user-category-header">
                             <div className="user-category__image">
-                                <img alt='' src={require('../../svg/icons/user-photo.svg')}/>
+                                <img alt='' src={require('../../../svg/icons/user-photo.svg')}/>
                             </div>
                             <div className="user-category__text">
                                 <h4>
