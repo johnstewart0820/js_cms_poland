@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
+import HeaderMenu from "./HeaderMenu";
 import SimpleLink from "../general/SimpleLink";
 import SearchFrom from "../search/SearchFrom";
 import AuthPanel from "../auth/AuthPanel";
@@ -10,10 +10,11 @@ import LanguageSwitcher from "../general/LanguageSwitcher";
 import MainLogo from "../../svg/components/MainLogo";
 import { EyeIcon, UnderlineIcon, BipIcon, SearchIcon, UserIcon } from "../../svg/icons";
 import { toggleContrastVersion, toggleUnderlineLinks } from "../../extra/theme";
-// import HEADER_MENU from "../../extra/header_menu";
+import { SITE } from "../../extra/site_settings";
+import UserContext from "../../constants/UserContext";
+
 
 import "../../styles/header/header.scss";
-import UserContext from "../../constants/UserContext";
 
 const changeFontSize = e => {
 	e.preventDefault();
@@ -72,28 +73,26 @@ const header_links = [
 ]
 
 export default class Header extends Component {
-	static contextType = UserContext;
 
-	static propTypes = {
-		header_menu: PropTypes.array,
-		languages: PropTypes.array.isRequired,
-		active_language: PropTypes.string.isRequired
-	}
+	static contextType = UserContext;
 
 	state = {
 		show_search: false,
 		show_auth: false
 	}
 
+
 	toggleSearch = e => {
 		e.preventDefault();
 		this.setState({ show_search: !this.state.show_search  });
 	}
 
+
 	toggleAuth = e => {
 		e.preventDefault();
 		this.setState({ show_auth: !this.state.show_auth });
 	}
+
 
 	getHeaderLinks = () => (
 		header_links.map(( item, index ) => (
@@ -105,6 +104,7 @@ export default class Header extends Component {
 		))
 	)
 
+
 	getHeaderActions = () => {
 		const actions = [
 			{
@@ -115,12 +115,7 @@ export default class Header extends Component {
 			},
 			{
 				component: LanguageSwitcher,
-				props: {
-					extra_classes:"header__link",
-					active_language: this.props.active_language,
-					languages: this.props.languages,
-					onClick: this.props.changeLanguage
-				},
+				props: {	extra_classes:"header__link" },
 			},
 			{
 				svg: <UserIcon />,
@@ -148,8 +143,7 @@ export default class Header extends Component {
 
 
 	getHeaderSubtitle = () => {
-		const { type } = this.props;
-		if( !type ) return null;
+		if( !SITE ) return null;
 		
 		const subtitles = {
 			"TOURISM": "Portal Turystyczny",
@@ -157,11 +151,11 @@ export default class Header extends Component {
 			"CULTURE": "Kultura",
 		}
 
-		return subtitles[ type ];
+		return subtitles[ SITE ];
 	}
 
 	render() {
-		const { header_menu } = this.props;
+
 		const { show_search, show_auth } = this.state;
 
 		const header_links = this.getHeaderLinks();
@@ -169,7 +163,7 @@ export default class Header extends Component {
 		const header_subtitle = this.getHeaderSubtitle();
 
 		const header_classes = ["header"];
-		if( header_menu && header_menu.length ) header_classes.push("has-menu");
+		if( SITE !== "MAIN" ) header_classes.push("has-menu");
 
 		return (
 			<header id="header" className={ header_classes.join(" ") }>
@@ -184,13 +178,7 @@ export default class Header extends Component {
 						{ header_actions }
 					</div>
 
-					{ header_menu && !!header_menu.length &&
-					<div className="header-main__menu">
-						{ header_menu.map(({ path, label }, index ) => (
-							<Link key={ index } to={ path }> { label }  </Link>
-						)) }
-					</div>
-					}
+					<HeaderMenu />
 				</div>
 
 				{ show_search && <SearchFrom /> }

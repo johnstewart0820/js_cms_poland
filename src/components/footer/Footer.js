@@ -5,15 +5,13 @@ import FooterCopyright from "./FooterCopyright";
 
 import "../../styles/footer/footer.scss";
 
-const Footer = props => (
+const Footer = () => (
 	<>
 		<footer className="footer">
-			<FooterMain {...props } />
+			<FooterMain />
 			<FooterCopyright />
 		</footer>
 	</>
 )
-
-Footer.propTypes = { }
 
 export default Footer;

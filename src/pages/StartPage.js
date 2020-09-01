@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { API } from "../extra/API";
-import { SiteInfoContext } from "../constants/SiteInfoContext";
+import SiteInfoContext from "../constants/SiteInfoContext";
 
 
 import Loader from "../components/general/Loader";
@@ -32,29 +32,15 @@ export default class StartPage extends Component{
 	}
 
 
-	componentDidMount(){ this.checkIsContextUpdated() }
+	componentDidMount(){ this.getPageContent() }
 
-
-	componentWillUnmount(){ clearInterval( this.interval ) }
-
-
-	checkIsContextUpdated = () => {
-		this.interval = setInterval(() => {
-			if( this.context ) {
-				clearInterval( this.interval );
-				this.getPageContent();
-			}
-		}, 1500);
-	}
-
-
+	
 	getPageContent = () => {
 
 		if( !this.context ) return;
 
-		const info = {...this.context };
-		const page_structure = info?.default_content?.custom_data?.page_structure;
-
+		const { site_info }  = this.context;
+		const page_structure = site_info?.default_content?.custom_data?.page_structure;
 
 		const last_events_title = page_structure.module1_title;
 		const last_events_cat = page_structure.module1_category;
@@ -140,7 +126,6 @@ export default class StartPage extends Component{
 
 
 	render(){
-		console.log(this.context);
 
 		const { loading, main_tiles, external_link } = this.state;
 		const { last_events, last_events_title, events_loading } = this.state;
