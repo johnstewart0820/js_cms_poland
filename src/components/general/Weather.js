@@ -7,6 +7,15 @@ import Loader from "./Loader";
 import "../../styles/general/weather.scss";
 import { getDateObjectFromDDMMYYYY, getLocalDateString, getAllFromDateObject } from "../../extra/date";
 
+import { 
+	Sunny,
+	Rain,
+	Storm,
+	BlindRain,
+	MainlyCloudy,
+	PartlyCloudy
+} from "../../svg/weather-icons";
+
 export default class Weather extends Component{
 
 	today_date = getLocalDateString( new Date() );
@@ -28,6 +37,8 @@ export default class Weather extends Component{
 			
 			const { data } = res;
 			const weather_days = this.getWeatherForEachDay( data );
+
+			// console.log( data.reduce((total, item) => { total[item.weather] = 1; return total}, {}) );
 
 			this.setState({ weather_days, loading: false });
 		})
@@ -66,18 +77,22 @@ export default class Weather extends Component{
 		const date_obj = getDateObjectFromDDMMYYYY( date );
 		const { day_num, day_name, month_name } = getAllFromDateObject( date_obj );
 
-		const weather_translation = {
-			"few clouds": "",
-			"scattered clouds": "",
-			"clear sky" : "",
-			"overcast clouds": "",
-			"broken clouds": "",
-			"light rain": ""
+		const weather_icons = {
+			"clear sky" : <Sunny />,
+
+			"light rain": <Rain />,
+			"moderate rain": "",
+
+			"few clouds": <PartlyCloudy/>,
+			"broken clouds": <PartlyCloudy/>,
+			"scattered clouds": <MainlyCloudy/>,
+			"overcast clouds": <MainlyCloudy/>,
 		}
 
 		return (
 			<div className="weather__info">
-				<img src={ icon_url } alt={ weather } />
+
+				{ weather_icons[ weather ] || <img src={ icon_url } alt={ weather } /> }
 				
 				<span className="weather__info_degrees"> { Math.round(temp) } </span>
 				

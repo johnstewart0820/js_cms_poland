@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="282.4" height="227.7" viewBox="0 0 282.4 227.7">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.499" cy="0.5" fx="0.5041641592979431" fy="0.4692172706127167" r="1.15" gradientTransform="matrix(0.598, 0, 0, -1.001, -1.032, 17.818)" gradientUnits="objectBoundingBox">
+      <stop offset="0.07" stop-color="#d3ccc6"/>
+      <stop offset="0.422" stop-color="#aba49e"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="0.5" cy="0.5" fx="0.49468278884887695" fy="0.49201786518096924" r="0.961" gradientTransform="matrix(0.598, 0, 0, -1.001, -0.34, 9.679)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.062" stop-color="#faf9f9"/>
+      <stop offset="0.424" stop-color="#e4e0dd"/>
+      <stop offset="0.74" stop-color="#d7d1cc"/>
+      <stop offset="0.975" stop-color="#d3ccc6"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f8ca8c"/>
+      <stop offset="0.189" stop-color="#f5b976"/>
+      <stop offset="0.46" stop-color="#f2a75d"/>
+      <stop offset="0.706" stop-color="#f09b4d"/>
+      <stop offset="0.904" stop-color="#ef9748"/>
+      <stop offset="1" stop-color="#ea8028"/>
+    </linearGradient>
+  </defs>
+  <g id="storm" transform="translate(-117.2 -170.5)">
+    <path id="Path_23465-3_9_" d="M382.6,235.4h-.2a25.045,25.045,0,0,0,2.1-10.1,25.459,25.459,0,0,0-39-21.6,35.48,35.48,0,0,0-68.3,13.5h0a32.532,32.532,0,0,0,.3,4.4h-.3a23.793,23.793,0,0,0-23.8,23.8h0a23.857,23.857,0,0,0,23.8,23.8H382.7a16.9,16.9,0,1,0-.1-33.8Z" fill="url(#radial-gradient)"/>
+    <path id="Path_23466-3_9_" d="M347.7,266.2h-.4a44.63,44.63,0,0,0,3.7-18,45.537,45.537,0,0,0-45.5-45.5,44.816,44.816,0,0,0-24.1,7,63.28,63.28,0,0,0-121.8,24.1,68.072,68.072,0,0,0,.5,7.8h-.5A42.422,42.422,0,0,0,117.2,284h0a42.422,42.422,0,0,0,42.4,42.4h188a30.13,30.13,0,0,0,30.1-30.1h0a29.981,29.981,0,0,0-30-30.1Z" fill="url(#radial-gradient-2)"/>
+    <path id="Контур_13" data-name="Контур 13" d="M203.6,234.9l-41.9,77.5,29.4-5.6-26.3,91.4,57.1-109L187,297.1Z" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

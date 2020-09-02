@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="260.3" height="199.4" viewBox="0 0 260.3 199.4">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.501" cy="0.5" r="0.355" gradientTransform="translate(-5.927) scale(12.854 1)" gradientUnits="objectBoundingBox">
+      <stop offset="0.039" stop-color="#bdd3db"/>
+      <stop offset="0.74" stop-color="#8abac9"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="0.5" cy="0.496" r="4.559" gradientTransform="translate(-2.428 52.375) rotate(90) scale(1 0.078)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-3" cx="0.5" cy="0.5" r="0.486" gradientTransform="matrix(0.708, 0.707, -0.708, 0.707, -0.714, 3.846)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-4" cx="0.5" cy="0.5" r="0.486" gradientTransform="matrix(-0.707, 0.707, -0.707, -0.707, -5.777, 24.169)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-5" cx="0.494" cy="0.5" r="0.354" gradientTransform="translate(-5.872) scale(12.743 1)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-6" cx="0.5" cy="0.505" r="4.517" gradientTransform="translate(-7.465 86.005) rotate(90) scale(1 0.078)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-7" cx="0.5" cy="0.5" r="0.486" gradientTransform="translate(-2.759 7.563) rotate(45)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-8" cx="0.5" cy="0.5" r="0.486" gradientTransform="translate(-17.601 45.865) rotate(135)" xlink:href="#radial-gradient"/>
+  </defs>
+  <g id="show" transform="translate(-120.1 -161.5)">
+    <path id="Контур_5" data-name="Контур 5" d="M203.7,360.9h0a6.487,6.487,0,0,1-6.5-6.5V200.3a6.487,6.487,0,0,1,6.5-6.5h0a6.487,6.487,0,0,1,6.5,6.5V354.4A6.487,6.487,0,0,1,203.7,360.9Z" fill="url(#radial-gradient)"/>
+    <path id="Контур_6" data-name="Контур 6" d="M120.1,277.4h0a6.487,6.487,0,0,1,6.5-6.5H280.7a6.487,6.487,0,0,1,6.5,6.5h0a6.487,6.487,0,0,1-6.5,6.5H126.6A6.619,6.619,0,0,1,120.1,277.4Z" fill="url(#radial-gradient-2)"/>
+    <path id="Контур_7" data-name="Контур 7" d="M144.6,336.4h0a6.58,6.58,0,0,1,0-9.2l109-109a6.58,6.58,0,0,1,9.2,0h0a6.58,6.58,0,0,1,0,9.2l-109,109A6.4,6.4,0,0,1,144.6,336.4Z" fill="url(#radial-gradient-3)"/>
+    <path id="Контур_8" data-name="Контур 8" d="M144.6,218.3h0a6.58,6.58,0,0,1,9.2,0l109,109a6.58,6.58,0,0,1,0,9.2h0a6.58,6.58,0,0,1-9.2,0l-109-109A6.58,6.58,0,0,1,144.6,218.3Z" fill="url(#radial-gradient-4)"/>
+    <path id="Контур_9" data-name="Контур 9" d="M333.3,255.8h0a3.691,3.691,0,0,1-3.7-3.7V165.2a3.691,3.691,0,0,1,3.7-3.7h0a3.691,3.691,0,0,1,3.7,3.7v86.9A3.826,3.826,0,0,1,333.3,255.8Z" fill="url(#radial-gradient-5)"/>
+    <path id="Контур_10" data-name="Контур 10" d="M286.1,208.6h0a3.691,3.691,0,0,1,3.7-3.7h86.9a3.691,3.691,0,0,1,3.7,3.7h0a3.691,3.691,0,0,1-3.7,3.7H289.8A3.691,3.691,0,0,1,286.1,208.6Z" fill="url(#radial-gradient-6)"/>
+    <path id="Контур_11" data-name="Контур 11" d="M299.9,242h0a3.744,3.744,0,0,1,0-5.2l61.5-61.5a3.744,3.744,0,0,1,5.2,0h0a3.744,3.744,0,0,1,0,5.2L305.1,242A3.744,3.744,0,0,1,299.9,242Z" fill="url(#radial-gradient-7)"/>
+    <path id="Контур_12" data-name="Контур 12" d="M299.9,175.3h0a3.744,3.744,0,0,1,5.2,0l61.5,61.5a3.744,3.744,0,0,1,0,5.2h0a3.744,3.744,0,0,1-5.2,0l-61.5-61.5A3.744,3.744,0,0,1,299.9,175.3Z" fill="url(#radial-gradient-8)"/>
+  </g>
+</svg>

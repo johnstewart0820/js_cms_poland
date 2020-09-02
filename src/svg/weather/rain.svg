@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="282.4" height="206.1" viewBox="0 0 282.4 206.1">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.499" cy="0.5" fx="0.5041903853416443" fy="0.46944841742515564" r="1.15" gradientTransform="matrix(0.598, 0, 0, -1.001, -9.922, 44.841)" gradientUnits="objectBoundingBox">
+      <stop offset="0.07" stop-color="#d3ccc6"/>
+      <stop offset="0.422" stop-color="#aba49e"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="0.499" cy="0.5" fx="0.49369797110557556" fy="0.4919995367527008" r="0.961" gradientTransform="matrix(0.598, 0, 0, -1.001, -5.494, 24.411)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.062" stop-color="#faf9f9"/>
+      <stop offset="0.424" stop-color="#e4e0dd"/>
+      <stop offset="0.74" stop-color="#d7d1cc"/>
+      <stop offset="0.975" stop-color="#d3ccc6"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-3" cx="0.5" cy="0.5" r="0.416" gradientTransform="translate(-0.309) scale(1.617 1)" gradientUnits="objectBoundingBox">
+      <stop offset="0.092" stop-color="#dbe7eb"/>
+      <stop offset="0.424" stop-color="#bdd3db"/>
+      <stop offset="0.74" stop-color="#8abac9"/>
+      <stop offset="0.975" stop-color="#7eb3c3"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-4" cx="0.499" cy="0.5" r="0.416" gradientTransform="translate(-0.307) scale(1.615 1)" xlink:href="#radial-gradient-3"/>
+  </defs>
+  <g id="rain" transform="translate(-112.5 -161.7)">
+    <path id="Path_23465-3_7_" d="M377.9,226.6h-.2a25.045,25.045,0,0,0,2.1-10.1,25.459,25.459,0,0,0-39-21.6,35.48,35.48,0,0,0-68.3,13.5h0a32.532,32.532,0,0,0,.3,4.4h-.3a23.793,23.793,0,0,0-23.8,23.8h0a23.857,23.857,0,0,0,23.8,23.8H378a16.943,16.943,0,0,0,16.9-16.9,17.16,17.16,0,0,0-17-16.9Z" fill="url(#radial-gradient)"/>
+    <path id="Path_23466-3_7_" d="M343,257.4h-.4a44.63,44.63,0,0,0,3.7-18,45.537,45.537,0,0,0-45.5-45.5,44.816,44.816,0,0,0-24.1,7A63.28,63.28,0,0,0,154.9,225a68.072,68.072,0,0,0,.5,7.8h-.5a42.422,42.422,0,0,0-42.4,42.4h0a42.422,42.422,0,0,0,42.4,42.4h188A30.13,30.13,0,0,0,373,287.5h0a30.045,30.045,0,0,0-30-30.1Z" fill="url(#radial-gradient-2)"/>
+    <path id="Контур_3" data-name="Контур 3" d="M166.9,286.4c-3.2,7.2-9.9,22.1-16,35.8a20.23,20.23,0,0,0,18.5,28.5h0a20.218,20.218,0,0,0,18.3-28.9c-6.4-13.6-13.4-28.4-16.8-35.5A2.207,2.207,0,0,0,166.9,286.4Z" fill="url(#radial-gradient-3)"/>
+    <path id="Контур_4" data-name="Контур 4" d="M211.9,322.7c-2.2,5-6.9,15.5-11.2,25.1a14.216,14.216,0,0,0,13,20h0a14.286,14.286,0,0,0,12.9-20.3c-4.5-9.6-9.4-19.9-11.8-24.9A1.652,1.652,0,0,0,211.9,322.7Z" fill="url(#radial-gradient-4)"/>
+  </g>
+</svg>
