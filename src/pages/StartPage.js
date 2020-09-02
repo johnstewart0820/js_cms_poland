@@ -39,6 +39,8 @@ export default class StartPage extends Component{
 
 		if( !this.context ) return;
 
+		this.lang = this.context.active_language;
+
 		const { site_info }  = this.context;
 		const page_structure = site_info?.default_content?.custom_data?.page_structure;
 
@@ -60,7 +62,7 @@ export default class StartPage extends Component{
 		}
 
 
-		this.setState({ loading: false, external_link, last_news_title, main_tiles, last_events_title, map_id }, () => {
+		this.setState({ external_link, last_news_title, main_tiles, last_events_title, map_id, loading: false }, () => {
 
 			this.getLastEvents( last_events_cat );
 			this.getLastNews( last_news_cat );
@@ -99,7 +101,8 @@ export default class StartPage extends Component{
 
 		API.get("contents/posts", { params: {
 			limit: 10,
-			categories
+			categories,
+			lang: this.lang
 		}})
 		.then( res => {
 			
@@ -112,9 +115,10 @@ export default class StartPage extends Component{
 
 	getLastEvents = categories => {
 
-		API.get("contents/events?limit=5", { params: {
+		API.get("contents/events", { params: {
 			limit: 10,
-			categories
+			categories,
+			lang: this.lang
 		}})
 		.then( res => {
 
@@ -127,7 +131,7 @@ export default class StartPage extends Component{
 
 	render(){
 
-		const { loading, main_tiles, external_link } = this.state;
+		const { loading, main_tiles, external_link, map_id } = this.state;
 		const { last_events, last_events_title, events_loading } = this.state;
 		const { last_news, last_news_title, news_loading } = this.state;
 
@@ -146,6 +150,11 @@ export default class StartPage extends Component{
 			items: last_news, 
 			component: LoopNewsPost 
 		};
+
+		const map = {
+			map_id,
+			lang: this.lang
+		}
 
 		const carousels = { first_carousel, second_carousel };		
 
@@ -171,7 +180,7 @@ export default class StartPage extends Component{
 				{ !loading &&
 					<>
 						<TwoCarouselsOneRow {...carousels } />
-						<MapWithPinsFiltering type="trip" />
+						<MapWithPinsFiltering {...map } />
 					</> 
 				}
 			</>

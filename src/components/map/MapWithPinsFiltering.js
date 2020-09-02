@@ -5,132 +5,145 @@ import GoogleMap from "./GoogleMap";
 import Loader from "../general/Loader";
 import LinkToAll from "../buttons/LinkToAll";
 
-import { API, MOCK_API } from '../../extra/API';
-import { FILTERS, FILTERS_CONTENT } from "../../extra/map";
+import { API } from '../../extra/API';
+// import { FILTERS, FILTERS_CONTENT } from "../../extra/map";
 import "../../styles/map/map-with-pins-filtering.scss";
 
 export default class MapWithPinsFiltering extends Component {
 
     static propTypes = {
-        type: PropTypes.string.isRequired,
+		  map_id: PropTypes.string.isRequired,
+		  lang: PropTypes.string
     }
 
-    filters = FILTERS[this.props.type];
-
-    API_URLs = {
-        "trip": "trip-map.json",
-        "practical-info": "practical-info-map.json",
-        "accommodations": "accommodations-map.json",
-        "attractions": "attractions-map.json",
-    };
-
     state = {
-        filter: "*",
+		  filter: "*",
+		  filters: [],
         heading: "",
         text: "",
         loading: true,
         markers: null
     }
 
-    componentDidMount() {
-        this.getMarkers();
-    }
+	 
+    componentDidMount() { this.getMap() }
+
+
+	 getMap = () => {
+	
+		const { map_id, lang } = this.props;
+
+		if ( !map_id ) return;
+
+		API.get(`maps/${ map_id }?lang=${ lang || "pl" }`)
+		.then( res => {
+			
+			const { map } = res.data;
+			const { name, points, categories } = map;
+
+			this.all_markers = [...points ];
+
+			const filters = this.getFilters( Object.values(categories) );
+			const markers = this.getMarkers(); 
+
+			this.setState({ heading: name, filters, markers, loading: false });	
+		})
+		.catch( err => {})
+	}
+
+
+	getFilters = categories => {
+		return categories && !!categories.length
+			? categories.map( item => {
+
+				const { id, name, lenged_image } = item;
+				return { value: name === "Wszystkie" ? "*" : id, label: name, icon: lenged_image }
+			})
+			: []
+	}
 
 
     getMarkers = () => {
-        const api_url = this.API_URLs[this.props.type];
-        if (!api_url) return;
 
-        MOCK_API.get(api_url)
-            .then(res => {
+		const { filter } = this.state;
+		const { all_markers } = this; 
 
-                const markers = this.getMarkersProperObjects(res.data);
-
-                this.all_markers = markers.slice();
-                this.setState({markers, loading: false}, () => this.getHeadingAndText());
-            })
+		return all_markers && !!all_markers.length
+				? all_markers.filter( item => ( item.category === filter || filter === "*" ))
+					.map( item => {
+						const { lat, lng, category, map_image } = item;
+						return { lat, lng, category, icon: { url: map_image, width: 46, height: 57 }};
+					})	
+				: null;
     }
 
 
-    getMarkersProperObjects = (array) => {
-        return array.map(({lat, lng, type, pin}) => ({lat, lng, type, icon: this.getPinIconAccordingToType(pin)}));
+    filterMarkers = filter => {
+        this.setState({ filter }, () => {
+
+				const markers = this.getMarkers();
+				this.setState({ markers })
+		  })
     }
 
 
-    getPinIconAccordingToType = (type) => {
-        return {
-            url: `/img/pins/${type}.png`,
-            width: 46,
-            height: 57
-        }
-    }
+   //  getHeadingAndText = () => {
+   //      const { filter } = this.state;
+   //      const heading_and_text_obj = FILTERS_CONTENT[this.props.type];
 
+   //      if (heading_and_text_obj && heading_and_text_obj[filter]) {
 
-    filterMarkers = (filter) => {
-        const markers =
-            filter === "*"
-                ? this.all_markers.slice()
-                : this.all_markers.filter(item => (item.type === filter))
-
-        this.setState({markers, filter}, () => this.getHeadingAndText())
-    }
-
-
-    getHeadingAndText = () => {
-        const {filter} = this.state;
-        const heading_and_text_obj = FILTERS_CONTENT[this.props.type];
-
-        if (heading_and_text_obj && heading_and_text_obj[filter]) {
-
-            const {heading, text, link_to_all} = heading_and_text_obj[filter];
-            this.setState({heading, text, link_to_all});
-        }
-    }
+   //          const {heading, text, link_to_all} = heading_and_text_obj[filter];
+   //          this.setState({heading, text, link_to_all});
+   //      }
+   //  }
 
     render() {
 
-        const {heading, text, link_to_all} = this.state;
-        const {markers, loading} = this.state;
+		  const { heading, text, link_to_all } = this.state;
+		  
+        const { loading, markers, filters } = this.state;
+		  const { extra_classes } = this.props;
 
         return (
-            <div className={`map-with-pins-filtering ${this.props.type || ""}`}>
+            <div className={`map-with-pins-filtering ${ extra_classes || "" }`}>
 
-                {loading && <Loader/>}
+                { loading && <Loader/> }
 
                 <div className="map-with-pins-filtering-info">
 
-                    {loading && <Loader extra_classes="white"/>}
+                    { loading && <Loader extra_classes="white"/>}
 
-                    {!loading && (
+                    { !loading && (
                         <>
                             <div className="map-with-pins-filtering-info__main">
-                                <div className="heading"> {heading} </div>
-                                <div className="map-with-pins-filtering-info__text"> {text} </div>
+                                <div className="heading"> { heading } </div>
+                                <div className="map-with-pins-filtering-info__text"> { text } </div>
 
-                                {link_to_all && <LinkToAll path={link_to_all} label="Dowiedz się więcej"/>}
+                                { link_to_all && <LinkToAll path={ link_to_all } label="Dowiedz się więcej"/> }
                             </div>
 
                             <div className="map-with-pins-filtering-filters">
-                                {this.filters && this.filters.length > 0 &&
-                                this.filters.map(({svg, label, extra_label, value}) => {
+                                { filters && !!filters.length &&
+                              		filters.map(({ icon, label, extra_label, value }) => {
 
-                                    const active_class = value === this.state.filter ? "active" : "";
+													const active_class = value === this.state.filter ? "active" : "";
 
-                                    return (
-                                        <button
-                                            key={value}
-                                            className={`map-with-pins-filtering-filters__item ${active_class} `}
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                this.filterMarkers(value);
-                                            }}
-                                        >
-                                            {svg}
-                                            <span> {label} <small> {extra_label}</small> </span>
-                                        </button>
-                                    )
+													return (
+														<button
+															key={ value }
+															className={`map-with-pins-filtering-filters__item ${active_class} `}
+															onClick={ e => {
+																	e.preventDefault();
+																	this.filterMarkers( value );
+															}}
+														>
+															{ icon && <img src={ icon } alt="cat_image" /> }
+															<span> { label } <small> { extra_label }</small> </span>
+														</button>
+													)
 
-                                })
+                                		})
                                 }
                             </div>
                         </>
