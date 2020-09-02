@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
+
 import SimpleLink from "../general/SimpleLink";
 import MainMenu from "./MainMenu";
 
@@ -19,6 +21,8 @@ class Sidebar extends Component {
 
 	static propTypes = { }
 
+	location_path = this.props.history.location.pathname;
+
 	state = {
 		menu_open: false,
 		height: SITE === "MAIN" ? "100vh" : "100%"
@@ -26,20 +30,32 @@ class Sidebar extends Component {
 	
 
 	componentDidMount() {
-		this.interval = setInterval( () => {
-			if ( document.getElementById("main-header-section") ) {
-				clearInterval( this.interval );
-				this.calculateHeight();
-			}
-		}, 40);
-
+		this.startInterval();
 		window.addEventListener( "resize", this.calculateHeight );
+	}
+
+
+	componentDidUpdate () {
+		if ( this.location_path !== this.props.history.location.pathname ) {
+			this.location_path = this.props.history.location.pathname;
+			this.startInterval()
+		}
 	}
 
 
 	componentWillUnmount(){
 		clearInterval( this.interval );
 		window.removeEventListener( "resize", this.calculateHeight );
+	}
+
+
+	startInterval = () => {
+		this.interval = setInterval( () => {
+			if ( document.getElementById("main-header-section") ) {
+				clearInterval( this.interval );
+				this.calculateHeight();
+			}
+		}, 40);
 	}
 
 
@@ -84,4 +100,4 @@ class Sidebar extends Component {
 	}
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);
