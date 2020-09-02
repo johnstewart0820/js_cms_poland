@@ -23,5 +23,6 @@ export default {
     ObjectListPage: '/object-list',
     EditObjectFormPage: '/object-edit',
     GameCardsPage: '/game',
-    Events: '/events'
+    Events: '/events',
+    AttractionPage: '/attractions'
 };
