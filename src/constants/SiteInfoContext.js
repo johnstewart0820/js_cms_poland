@@ -12,7 +12,8 @@ const SiteInfoContextConsumer = SiteInfoContext.Consumer;
 class SiteInfoContextProvider extends Component{
 
 	state = {
-		site_info_loading: true
+		site_info_loading: true,
+		active_language: "pl"
 	}
 
 	
@@ -26,14 +27,21 @@ class SiteInfoContextProvider extends Component{
 
 
 	getSiteInfo = () => {
-		API.get(`sites/getInfo?domain=${ SITES_DOMAIN[ SITE ] }`)
+
+		this.setState({ site_info_loading: true });
+
+		const params = {
+			domain: SITES_DOMAIN[ SITE ],
+			lang: this.state.active_language
+		}
+
+		API.get(`sites/getInfo`, { params })
 		.then( res => {
 
 			const { info } = res.data;
 			// console.log( info );
 
 			const languages = info.languages ? info.languages.split(",") : ["pl"];
-			const { defaultLanguage } = info;
 
 			const widgets = info?.template?.layout?.["home-page"]?.widgets;
 			// console.log( widgets );
@@ -60,7 +68,6 @@ class SiteInfoContextProvider extends Component{
 				site_info: info, 
 				site_info_loading: false, 
 				languages, 
-				active_language: defaultLanguage, 
 				header_menu, 
 				footer_address, 
 				footer_subpage_links, 
@@ -71,7 +78,7 @@ class SiteInfoContextProvider extends Component{
 	}
 
 
-	changeLanguage = language => this.setState({ active_language: language });
+	changeLanguage = language => this.setState({ active_language: language }, () => this.getSiteInfo() );
 
 
 	render(){
