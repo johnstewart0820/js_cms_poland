@@ -9,6 +9,11 @@ import LoopAttractionPost from "../../components/attractions/LoopAttractionPost"
 import {MOCK_API} from "../../extra/API";
 import Loader from "../../components/general/Loader";
 
+const sort_options = [
+    { value: 1, label: "Najbliższe aktualności" },
+    { value: 2, label: "Najstarszy aktualności" },
+];
+
 const AttractionPage = () => {
     const [slides, setSlides] = React.useState([]);
     const [data, setData] = React.useState([]);
@@ -41,6 +46,7 @@ const AttractionPage = () => {
 
             <LoopSearchPostsContainer
                 heading={'ATRAKCJE'}
+                sort_options={sort_options}
             >
                 {loading && <Loader style={{ width: "100%" }}/>}
                 {data.length > 0 && data.map((item, index) => (
