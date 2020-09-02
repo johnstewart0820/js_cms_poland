@@ -5,6 +5,7 @@ import { SITE, SITES_DOMAIN } from "../extra/site_settings";
 import { isContrastThemeOn, turnOnContrastTheme } from "../extra/theme";
 
 import FullPageLoader from '../components/general/FullPageLoader';
+import LocalStorage from "./LocalStorage";
 
 const SiteInfoContext = React.createContext(null);
 const SiteInfoContextConsumer = SiteInfoContext.Consumer;
@@ -16,10 +17,10 @@ class SiteInfoContextProvider extends Component{
 		active_language: "pl"
 	}
 
-	
-	componentDidMount () { 
+	componentDidMount () {
+		localStorage.setItem(LocalStorage.Locale, this.state.active_language);
 		this.checkTheme();
-		this.getSiteInfo(); 
+		this.getSiteInfo();
 	}
 
 
@@ -78,7 +79,10 @@ class SiteInfoContextProvider extends Component{
 	}
 
 
-	changeLanguage = language => this.setState({ active_language: language }, () => this.getSiteInfo() );
+	changeLanguage = language => {
+		localStorage.setItem(LocalStorage.Locale, language);
+		this.setState({active_language: language}, this.getSiteInfo);
+	};
 
 
 	render(){
