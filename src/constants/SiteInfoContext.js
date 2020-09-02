@@ -7,18 +7,24 @@ import { isContrastThemeOn, turnOnContrastTheme } from "../extra/theme";
 import FullPageLoader from '../components/general/FullPageLoader';
 import LocalStorage from "./LocalStorage";
 
+import moment from 'moment';
+import 'moment/locale/pl';
+
 const SiteInfoContext = React.createContext(null);
 const SiteInfoContextConsumer = SiteInfoContext.Consumer;
 
-class SiteInfoContextProvider extends Component{
+const StoredLocale = localStorage.getItem(LocalStorage.Locale);
 
+class SiteInfoContextProvider extends Component{
 	state = {
 		site_info_loading: true,
-		active_language: "pl"
-	}
+		active_language: StoredLocale || 'pl',
+	};
 
 	componentDidMount () {
-		localStorage.setItem(LocalStorage.Locale, this.state.active_language);
+		if (!StoredLocale)
+			localStorage.setItem(LocalStorage.Locale, this.state.active_language);
+		moment().locale(this.state.active_language);
 		this.checkTheme();
 		this.getSiteInfo();
 	}
@@ -81,6 +87,7 @@ class SiteInfoContextProvider extends Component{
 
 	changeLanguage = language => {
 		localStorage.setItem(LocalStorage.Locale, language);
+		moment().locale(language);
 		this.setState({active_language: language}, this.getSiteInfo);
 	};
 
