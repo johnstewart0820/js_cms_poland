@@ -11,6 +11,13 @@ API.interceptors.request.use(config => {
 	return config;
 });
 
+API.getPosts = (categories, limit, page, query) => {
+	if (Array.isArray(categories))
+		categories = categories.join(',');
+
+	return API.get('contents/posts', {params: {categories, limit, page, query}});
+};
+
 const MOCK_API = axios.create({
 	baseURL: "/mock/"
 });
