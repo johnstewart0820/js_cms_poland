@@ -9,8 +9,9 @@ const HeaderMenu = () => (
 			<>
 				{ header_menu && !!header_menu.length &&
 					<div className="header-main__menu">
+						{console.log(header_menu)}
 						{ header_menu.map(({ path, label }, index ) => (
-							<Link key={ index } to={ path }> { label }  </Link>
+							<Link key={ index } to={ path }> { label } </Link>
 						)) }
 					</div>
 				}
