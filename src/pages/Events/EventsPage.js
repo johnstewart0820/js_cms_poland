@@ -35,62 +35,17 @@ const sampleSlides = [
     }
 ];
 
-const slidesEvents = [
+const selectData = [
     {
-        id: 1,
-        title: 'Test test',
-        categories_labels: 'test',
-        original_image: '',
-        desc: 'fdsfsd',
-        event_end_date: '1598961600',
-        event_start_date: '1599004799',
+        value: 'test1',
+        label: 'Test',
     },
     {
-        id: 2,
-        title: 'Test test',
-        categories_labels: 'test',
-        original_image: '',
-        desc: 'fsdfsd',
-        event_end_date: '1598961600',
-        event_start_date: '1599004799',
-    },
-    {
-        id: 3,
-        title: 'Test test',
-        categories_labels: 'test',
-        original_image: '',
-        desc: '',
-        event_end_date: '1598961600',
-        event_start_date: '1599004799',
-    },
-    {
-        id: 4,
-        title: 'Test test',
-        categories_labels: 'test',
-        original_image: '',
-        desc: 'dsfds',
-        event_end_date: '1598961600',
-        event_start_date: '1599004799',
-    },
-    {
-        id: 5,
-        title: 'Test test',
-        categories_labels: 'test',
-        original_image: '',
-        desc: 'fdsfds',
-        event_end_date: '1598961600',
-        event_start_date: '1599004799',
-    },
-    {
-        id: 6,
-        title: 'Test test',
-        categories_labels: 'test',
-        original_image: '',
-        desc: 'fsfsdf',
-        event_end_date: '1598961600',
-        event_start_date: '1599004799',
+        value: 'test2',
+        label: 'Test',
     },
 ];
+
 
 const daysData = [
     {
@@ -217,8 +172,8 @@ const EventsPage = () => {
                     <InputComponent onClick={() => (show === false ? setShow(true) : setShow(false))} value={moment(calendarDate ,"DD-MM-YYYY").format('DD.MM.YYYY')} extraClasses={'search-date-input'} fieldName={'OD'}/>
                     <InputComponent value={moment(calendarDate ,"DD-MM-YYYY").format('DD.MM.YYYY')} extraClasses={'search-date-input'} fieldName={'DO'}/>
 
-                    <Select extra_classes={'search-option-select'} label={'Lokalizacja'} name={'locale'}/>
-                    <Select extra_classes={'search-option-select'} label={'Kategoria'} name={'category'}/>
+                    <Select extra_classes={'search-option-select'} options={selectData} label={'Lokalizacja'} name={'locale'}/>
+                    <Select extra_classes={'search-option-select'} options={selectData} label={'Kategoria'} name={'category'}/>
                     <button className="button-link green full-width">SZUKAJ</button>
                 </Row>
                 <Row>

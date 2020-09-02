@@ -46,10 +46,18 @@
   }
 }
 
-.day:hover * {
-  color: $green;
+.day:hover {
+  border: 2px solid $green;
 }
 
 .day:hover hr {
+  border: 1px solid $green;
+}
+
+.day:focus * {
+  color: $green;
+}
+
+.day:focus hr {
   border: 1px solid $green;
 }
