@@ -108,8 +108,7 @@ export default class StartPage extends Component{
 
 		API.get("contents/events", { params: {
 			limit: 10,
-			categories,
-			lang: this.lang
+			categories
 		}})
 		.then( res => {
 
@@ -142,11 +141,6 @@ export default class StartPage extends Component{
 			component: LoopNewsPost 
 		};
 
-		const map = {
-			map_id,
-			lang: this.lang
-		}
-
 		const carousels = { first_carousel, second_carousel };		
 
 		return (
@@ -171,7 +165,7 @@ export default class StartPage extends Component{
 				{ !loading &&
 					<>
 						<TwoCarouselsOneRow {...carousels } />
-						<MapWithPinsFiltering {...map } />
+						<MapWithPinsFiltering map_id={ map_id } />
 					</> 
 				}
 			</>
