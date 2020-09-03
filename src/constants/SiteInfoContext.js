@@ -37,9 +37,11 @@ class SiteInfoContextProvider extends Component{
 
 		this.setState({ site_info_loading: true });
 
+		const { active_language } = this.state;
+
 		const params = {
 			domain: SITES_DOMAIN[ SITE ],
-			lang: this.state.active_language
+			lang: active_language
 		}
 
 		API.get(`sites/getInfo`, { params })
@@ -48,7 +50,10 @@ class SiteInfoContextProvider extends Component{
 			const { info } = res.data;
 			// console.log( info );
 
-			const languages = info.languages ? info.languages.split(",") : ["pl"];
+			const languages = 
+				info.languages && info.languages !== active_language  
+					? info.languages.split(",") 
+					: [];
 
 			const widgets = info?.template?.layout?.["home-page"]?.widgets;
 			// console.log( widgets );
