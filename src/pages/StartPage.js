@@ -98,19 +98,10 @@ export default class StartPage extends Component{
 
 
 	getLastNews = categories => {
-
-		API.get("contents/posts", { params: {
-			limit: 10,
-			categories,
-			lang: this.lang
-		}})
-		.then( res => {
-			
-			const last_news = res.data.contents;
-			this.setState({ last_news, news_loading: false })
-		})
-		.catch( err => { })
-	}
+		API.getPosts(categories, 10)
+			.then(res => this.setState({last_news: res.data.contents, news_loading: false}))
+			.catch(console.log);
+	};
 
 
 	getLastEvents = categories => {

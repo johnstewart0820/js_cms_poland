@@ -13,12 +13,6 @@ import "./styles/main/main.scss";
 import "./styles/main/ci.scss";
 import "./styles/main/contrast.scss";
 
-/* FIXME move to locale switcher */
-import moment from 'moment';
-import 'moment/locale/pl';
-moment().locale('pl');
-
-
 const App = () => (
 	<Router basename={ router_basename }>
 		
