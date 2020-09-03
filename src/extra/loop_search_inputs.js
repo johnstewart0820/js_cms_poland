@@ -140,6 +140,8 @@ const EVENTS = [
 		selectImageColor: 'green',
 		options: [
 			{ value: "low_prices", label: "Niskie Ceny"},
+			{ value: "low_prices", label: "Niskie Ceny"},
+			{ value: "low_prices", label: "Niskie Ceny"},
 		],
 		Component: Select
 	},
@@ -149,6 +151,8 @@ const EVENTS = [
 		selectImageColor: 'green',
 		extra_classes: 'select-small',
 		options: [
+			{ value: "low_prices", label: "Niskie Ceny"},
+			{ value: "low_prices", label: "Niskie Ceny"},
 			{ value: "low_prices", label: "Niskie Ceny"},
 		],
 		Component: Select

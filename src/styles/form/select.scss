@@ -52,6 +52,13 @@
 		&:focus {
 			outline: none;
 		}
+		option {
+			font-size: 20px;
+			.gray & {
+				background-color: $gray;
+				color: white;
+			}
+		}
 	}
 }
 
