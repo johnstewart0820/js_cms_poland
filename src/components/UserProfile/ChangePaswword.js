@@ -50,7 +50,7 @@ export const ChangePassword = props => {
                     password={true}
                     onChange={e => setConfirmPass(e.target.value)}
                 />
-                <div className="button-container" style={{margin: "10px 10px 0px 0px"}}>
+                <div className="button-container" style={{margin: "10px 10px 5px 4px"}}>
                     <button
                         className="button-link green"
                         onClick={changePassword}

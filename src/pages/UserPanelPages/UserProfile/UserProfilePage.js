@@ -137,7 +137,6 @@ const UserProfilePage = () => {
                             disabled
                         />
                         <InputComponent
-                            containerStyles={{margin: '15px 5px 60px 5px'}}
                             fieldName={'EMAIL'}
                             name={'email'}
                             value={userContext.email}
@@ -153,7 +152,7 @@ const UserProfilePage = () => {
                             value={name}
                             onChange={e => setName(e.target.value)}
                         />
-                        <div className="button-container" style={{margin: "10px 10px 0px 0px"}}>
+                        <div className="button-container" style={{margin: "10px 10px 5px 4px"}}>
                             <button
                                 className="button-link green"
                                 onClick={updateUserData}
