@@ -5,13 +5,9 @@ import map_style from "../../extra/map_style.json";
 
 export class GoogleMap extends Component{
 
-	constructor(props){
-		super(props);
-
-		this.state = {
-			bounds: null,
-			center: null
-		}
+	state = {
+		bounds: null,
+		center: null
 	}
 
 

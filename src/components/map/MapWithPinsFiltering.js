@@ -1,19 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import { API } from "../../extra/API";
+
 
 import GoogleMap from "./GoogleMap";
 import Loader from "../general/Loader";
 import LinkToAll from "../buttons/LinkToAll";
-
-import { API } from '../../extra/API';
-// import { FILTERS, FILTERS_CONTENT } from "../../extra/map";
 import "../../styles/map/map-with-pins-filtering.scss";
 
 export default class MapWithPinsFiltering extends Component {
 
     static propTypes = {
-		  map_id: PropTypes.string.isRequired,
-		  lang: PropTypes.string
+		  map_id: PropTypes.string.isRequired
     }
 
     state = {
@@ -31,11 +29,10 @@ export default class MapWithPinsFiltering extends Component {
 
 	 getMap = () => {
 	
-		const { map_id, lang } = this.props;
-
+		const { map_id } = this.props;
 		if ( !map_id ) return;
 
-		API.get(`maps/${ map_id }?lang=${ lang || "pl" }`)
+		API.get(`maps/${ map_id }`)
 		.then( res => {
 			
 			const { map } = res.data;
@@ -151,7 +148,7 @@ export default class MapWithPinsFiltering extends Component {
 
                 </div>
 
-                <GoogleMap markers={markers}/>
+					{ !loading && markers && !!markers.length && <GoogleMap markers={ markers }/> }
             </div>
         )
     }
