@@ -3,10 +3,11 @@ import LocalStorage from "../constants/LocalStorage";
 
 const API_URL = "https://api.ustron.s3.netcore.pl/";
 const API = axios.create({ 
-	baseURL: API_URL 
+	baseURL: API_URL
 });
 
 API.interceptors.request.use(config => {
+	config.params = config.params || {}
 	config.params.lang = config.params?.lang || localStorage.getItem(LocalStorage.Locale) || 'pl';
 	return config;
 });
