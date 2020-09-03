@@ -140,10 +140,8 @@ const EventsPage = () => {
 
     const getEvents = () => {
         API.get(`contents/events?limit=5`)
-        .then( res => {
-            const { events } = res.data;
-            setEvents(events);
-        }).catch( err => console.log(err));
+        .then( res => setEvents(res.data.events))
+        .catch( err => console.log(err));
     }
 
     React.useEffect(() => {
