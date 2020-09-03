@@ -1,6 +1,7 @@
 @import "../general/colors";
 
 .yellow-discount {
+    max-width: 250px;
     &__amount {
         background-color: $light_yellow;
         display: flex;

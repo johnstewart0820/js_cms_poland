@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "../../styles/discounts/yellow-discount.scss";
 
 const YellowDiscountBlock = props => (
-    <div className="mx-2">
+    <div className="mx-2 yellow-discount">
         <div className="yellow-discount__amount">
             {props.amount}%
         </div>
