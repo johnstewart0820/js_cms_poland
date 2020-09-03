@@ -173,7 +173,13 @@ const EventsPage = () => {
 
             </MainHeaderSection>
 
-            <LoopSearchForm extraClasses={'gray'} type={'events'} submit_label={'SZUKAJ'} submitButtonExtraClasses={'small-filter-button'}/>
+            <LoopSearchForm
+                extraClasses={'gray'}
+                type={'events'}
+                submit_label={'SZUKAJ'}
+                submitButtonExtraClasses={'small-filter-button'}
+                submitCallback={(args) => {}}
+            />
 
             <DayCarousel days={days}/>
 

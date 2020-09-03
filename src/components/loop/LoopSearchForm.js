@@ -1,61 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 
 import LOOP_SEARCH_INPUTS from '../../extra/loop_search_inputs';
-import { isFunction } from "../../extra/functions";
+import {isFunction} from "../../extra/functions";
 
 import "../../styles/buttons/button-link.scss";
 import "../../styles/loop/loop-search-form.scss";
 
-export default class LoopSearchForm extends Component{
+const LoopSearchForm = props => {
+    const [values, setValues] = React.useState({});
 
-	static propTypes = {
-		heading: PropTypes.string,
-		submit_label: PropTypes.string,
-		submitCallback: PropTypes.func,
-		extraClasses: PropTypes.string,
-		submitButtonExtraClasses: PropTypes.string
-	}
+    const inputs = LOOP_SEARCH_INPUTS[props.type];
 
-	state = {
-		
-	}
+    if (!inputs?.length)
+        return null;
 
+    const submitForm = e => {
+        e.preventDefault();
+        isFunction(props.submitCallback) && props.submitCallback(values);
+    };
 
-	submitForm = e => {
-		e.preventDefault();
+    return (
+        <form className={`loop-search-form ${props.extraClasses || ''}`} onSubmit={submitForm}>
+            <div className="container">
+                <div className="heading">{props.heading}</div>
 
-		const { submitCallback } = this.props;
-		if ( isFunction( submitCallback ) ) submitCallback();
-	}
+                <div className="row">
+                    {inputs && !!inputs.length && inputs.map(item => {
+                        return (
+                            <item.Component
+                                key={item.id || item.name}
+                                {...item}
+                                onChange={e => setValues({...values, [e.target.name]: e.target.value})}
+                            />
+                        );
+                    })}
 
-
-	render(){
-
-		const { heading, submit_label, extraClasses, submitButtonExtraClasses } = this.props;
-		const inputs = LOOP_SEARCH_INPUTS[ this.props.type ];
-
-		if( !inputs || !inputs.length ) return null;
-
-		return(
-			<form className={`loop-search-form ${extraClasses || ''}`} onSubmit={ this.submitForm }>
-				<div className="container">
-
-					<div className="heading"> { heading } </div>
-
-					<div className="row">
-
-						{ inputs && !!inputs.length && 
-							inputs.map( item => (
-								<item.Component key={ item.id || item.name } {...item } />
-							))
-						}
-
-						<button type="submit" className={`button-link green ${submitButtonExtraClasses}`}> { submit_label || "Filtruj" }  </button>
-
-					</div>
-				</div>
-			</form>
-		)
-	}
+                    <button
+                        type="submit"
+                        className={`button-link green ${props.submitButtonExtraClasses}`}
+                    >
+                        {props.submit_label || "Filtruj"}
+                    </button>
+                </div>
+            </div>
+        </form>
+    );
 };
+
+LoopSearchForm.propTypes = {
+    heading: PropTypes.string,
+    submit_label: PropTypes.string,
+    submitCallback: PropTypes.func,
+    extraClasses: PropTypes.string,
+    submitButtonExtraClasses: PropTypes.string,
+};
+
+export default LoopSearchForm;

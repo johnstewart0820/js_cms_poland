@@ -1,7 +1,7 @@
 import Select from "../components/form/Select";
 import InputComponent from "../components/form/InputComponent";
 import {DatePicker} from "../components/form/DatePicker";
-import {GreenArrowIcon} from "../svg/icons";
+import moment from "moment";
 
 const NEWS = [
 	{ 

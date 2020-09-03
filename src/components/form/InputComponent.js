@@ -25,6 +25,8 @@ const InputComponent = props => {
                 name={props.name}
                 type={props.password ? visible === true ? 'text' : 'password' : props.type}
                 onChange={props.onChange}
+                onFocus={props.onFocus}
+                onBlur={props.onBlur}
                 disabled={props.disabled}
             />
             {props.visibilitySwitch && (

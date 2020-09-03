@@ -10,6 +10,7 @@ export const DayCarousel = ({days}) => {
             <div className="day-button-carousel">
                 <div className="day-button-wrap">
                     <Carousel
+                        heading={''}
                         items={days}
                         ItemComponent={dayButton}
                     />
