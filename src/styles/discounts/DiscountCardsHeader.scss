@@ -1,0 +1,35 @@
+@import "../general/colors";
+
+.discount-cards-header {
+  background-image: linear-gradient($gray, $dark_gray);
+  min-height: 280px;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .discount-card-header__title {
+    display: flex;
+    flex-basis: 60%;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-end;
+    p {
+      font-weight: bold;
+      font-size: 40px;
+      max-width: 400px;
+      color: white;
+      white-space: pre-line;
+    }
+  }
+
+  .discount-card-header__img {
+    display: flex;
+    flex-basis: 38%;
+    img {
+      position: absolute;
+      height: 400px;
+    }
+  }
+}

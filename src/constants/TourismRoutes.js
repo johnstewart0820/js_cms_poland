@@ -24,5 +24,6 @@ export default {
     EditObjectFormPage: '/object-edit',
     GameCardsPage: '/game',
     Events: '/events',
-    AttractionPage: '/attractions'
+    AttractionPage: '/attractions',
+    DiscountCardsPage: '/discount-cards'
 };
