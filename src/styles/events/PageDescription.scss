@@ -1,0 +1,27 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.gray-description {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 200px;
+  background-image: linear-gradient($gray, $dark_gray);
+  width: 100%;
+  .col {
+    h4 {
+      position: relative;
+      left: 30px;
+      bottom: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+    }
+
+    p {
+      color: white;
+      font-weight: bold;
+      white-space: pre-line;
+    }
+  }
+}

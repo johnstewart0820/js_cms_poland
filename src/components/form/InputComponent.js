@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/form/input.scss'
+import '../../styles/form/input.scss';
 
 const InputComponent = props => {
     const [visible, setVisible] = React.useState(false);
@@ -32,6 +32,7 @@ const InputComponent = props => {
                     <img  alt='' src={props.imageSrcForSwitch} />
                 </button>
             )}
+            {props.image && (props.image)}
         </div>
     )
 }

@@ -13,6 +13,8 @@ export default class LoopSearchForm extends Component{
 		heading: PropTypes.string,
 		submit_label: PropTypes.string,
 		submitCallback: PropTypes.func,
+		extraClasses: PropTypes.string,
+		submitButtonExtraClasses: PropTypes.string
 	}
 
 	state = {
@@ -30,13 +32,13 @@ export default class LoopSearchForm extends Component{
 
 	render(){
 
-		const { heading, submit_label } = this.props;
+		const { heading, submit_label, extraClasses, submitButtonExtraClasses } = this.props;
 		const inputs = LOOP_SEARCH_INPUTS[ this.props.type ];
 
 		if( !inputs || !inputs.length ) return null;
 
 		return(
-			<form className="loop-search-form" onSubmit={ this.submitForm }>
+			<form className={`loop-search-form ${extraClasses || ''}`} onSubmit={ this.submitForm }>
 				<div className="container">
 
 					<div className="heading"> { heading } </div>
@@ -49,7 +51,7 @@ export default class LoopSearchForm extends Component{
 							))
 						}
 
-						<button type="submit" className="button-link green"> { submit_label || "Filtruj" }  </button>
+						<button type="submit" className={`button-link green ${submitButtonExtraClasses}`}> { submit_label || "Filtruj" }  </button>
 
 					</div>
 				</div>

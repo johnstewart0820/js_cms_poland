@@ -17,6 +17,10 @@ import {API, MOCK_API} from "../../extra/API";
 import LoopEventsPost from "../../components/events/LoopEventsPost";
 import Col from "../../components/helpers/Col";
 import MapWithPinsFiltering from "../../components/map/MapWithPinsFiltering";
+import LoopSearchPostsContainer from "../../components/loop/LoopSearchPostsContainer";
+import LoopSearchForm from "../../components/loop/LoopSearchForm";
+import {PageDescription} from "../../components/events/PageDescription";
+import {DayCarousel} from "../../components/events/DayCarousel";
 
 const sampleSlides = [
     { url: "/img/slides/tourism-main.jpg" },
@@ -46,6 +50,11 @@ const selectData = [
     },
 ];
 
+const pageDescriptionText = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam\n' +
+    'nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.\n' +
+    'Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper\n' +
+    'suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel\n' +
+    'eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,';
 
 const daysData = [
     {
@@ -165,74 +174,20 @@ const EventsPage = () => {
                 <PicturesSlider slides={ slides } />
 
             </MainHeaderSection>
-            
-            <div className="search-options-bar-container">
-                <Row>
-                    <InputComponent extraClasses={'search-option-input'} fieldName={'NAZWA WYDARZENIA'}/>
-                    <InputComponent onClick={() => (show === false ? setShow(true) : setShow(false))} value={moment(calendarDate ,"DD-MM-YYYY").format('DD.MM.YYYY')} extraClasses={'search-date-input'} fieldName={'OD'}/>
-                    <InputComponent value={moment(calendarDate ,"DD-MM-YYYY").format('DD.MM.YYYY')} extraClasses={'search-date-input'} fieldName={'DO'}/>
 
-                    <Select extra_classes={'search-option-select'} options={selectData} label={'Lokalizacja'} name={'locale'}/>
-                    <Select extra_classes={'search-option-select'} options={selectData} label={'Kategoria'} name={'category'}/>
-                    <button className="button-link green full-width">SZUKAJ</button>
-                </Row>
-                <Row>
-                    <div className="calendar-container">
-                        {!!show && (
-                            <Calendar
-                                className='calendar calendar-left'
-                                onChange={setCalendarDate}
-                                value={calendarDate}
-                                locale={'pl'}
-                            />
-                        )}
-                    </div>
-                </Row>
-            </div>
+            <LoopSearchForm extraClasses={'gray'} type={'events'} submit_label={'SZUKAJ'} submitButtonExtraClasses={'small-filter-button'}/>
 
-            <div className="day-button-container">
-                <div className="day-button-carousel">
-                    <div className="day-button-wrap">
-                        <Carousel
-                            items={days}
-                            ItemComponent={dayButton}
-                        />
-                    </div>
-                </div>
-            </div>
+            <DayCarousel days={days}/>
 
-            <div className="events-container">
-                {events.length > 0 && (
-                    <Carousel heading="Najbliższe wydarzenia" items={events} ItemComponent={LoopEventsPost}/>
-                )}
-            </div>
+            {events.length > 0 && (
+                <Carousel heading="Najbliższe wydarzenia" containerStyles={{marginLeft: '90px'}} bodyStyles={{display: 'flex'}} items={events} ItemComponent={LoopEventsPost}/>
+            )}
 
-            <div className="gray-description">
-                <Col>
-                    <Row>
-                        <LogoWhite/>
-                        <h4>
-                            zgłos imprezę
-                        </h4>
-                    </Row>
-                </Col>
-
-                <Col>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam<br/>
-                        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<br/>
-                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper<br/>
-                        suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel<br/>
-                        eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,<br/>
-                    </p>
-                </Col>
-
-                <Col>
-                    <button className="button-link green full-width">
-                        zgłos imprezę
-                    </button>
-                </Col>
-            </div>
+            <PageDescription
+                logoText={'zgłos imprezę'}
+                descriptionText={pageDescriptionText}
+                buttonText={'zgłos imprezę'}
+            />
 
             <MapWithPinsFiltering type="attractions" />
         </>

@@ -1,0 +1,20 @@
+.day-button-container {
+  max-width: 100%;
+  padding-left: 90px;
+  .day-button-carousel {
+    display: flex;
+    overflow: hidden;
+    .day-button-wrap {
+      display: flex;
+      .carousel {
+        .carousel__body {
+          display: flex;
+          .arrows {
+            position: relative;
+            top: 45px;
+          }
+        }
+      }
+    }
+  }
+}

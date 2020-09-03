@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 
 import "../../styles/form/select.scss";
 import Angle from '../../svg/components/Angle';
+import {GreenArrowIcon} from "../../svg/icons";
 
-const Select = ({ name, id, options, label, extra_classes, onChange, addEmptyOption, emptyOptionLabel, defaultValue }) => (
+const Select = ({ name, id, options, label, extra_classes, onChange, addEmptyOption, emptyOptionLabel, defaultValue, selectImageColor }) => (
 	<div className={`form-select ${ extra_classes || "" }`} >
 		<label className="form-select__label" htmlFor={ name || id }> { label } </label>
 
-		<Angle direction="bottom" />
+		{selectImageColor === 'green' ? <GreenArrowIcon/> : <Angle direction="bottom" />}
 
 		<select defaultValue={defaultValue} name={ name } id={ name || id } onChange={ onChange } >
 

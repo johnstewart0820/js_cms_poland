@@ -1,4 +1,7 @@
 import Select from "../components/form/Select";
+import InputComponent from "../components/form/InputComponent";
+import {DatePicker} from "../components/form/DatePicker";
+import {GreenArrowIcon} from "../svg/icons";
 
 const NEWS = [
 	{ 
@@ -114,11 +117,50 @@ const WHAT_TO_VISIT = [
 	},
 ];
 
+const EVENTS = [
+	{
+		fieldName: 'NAZWA WYDARZENIA',
+		name: 'eventName',
+		Component: InputComponent
+	},
+	{
+		label: 'OD',
+		name: 'from',
+		Component: DatePicker
+	},
+	{
+		label: 'DO',
+		name: 'to',
+		Component: DatePicker
+	},
+	{
+		label: 'LOKALIZACJA',
+		name: 'locale',
+		extra_classes: 'select-small',
+		selectImageColor: 'green',
+		options: [
+			{ value: "low_prices", label: "Niskie Ceny"},
+		],
+		Component: Select
+	},
+	{
+		label: 'KATEGORIA',
+		name: 'category',
+		selectImageColor: 'green',
+		extra_classes: 'select-small',
+		options: [
+			{ value: "low_prices", label: "Niskie Ceny"},
+		],
+		Component: Select
+	}
+];
+
 const LOOP_SEARCH_INPUTS = {
 	"news": NEWS,
 	"photo-reports": PHOTO_REPORTS,
 	"accommodations": ACCOMMODATIONS,
 	"what-to-visit": WHAT_TO_VISIT,
+	"events" : EVENTS
 }
 
 
