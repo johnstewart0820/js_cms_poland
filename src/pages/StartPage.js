@@ -60,7 +60,7 @@ export default class StartPage extends Component{
 			heading: external_link_title,
 			href: external_link_url
 		}
-
+		
 
 		this.setState({ external_link, last_news_title, main_tiles, last_events_title, map_id, loading: false }, () => {
 
