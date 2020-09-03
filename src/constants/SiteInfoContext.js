@@ -99,7 +99,6 @@ class SiteInfoContextProvider extends Component{
 
 	render(){
 
-		const { site_info_loading } = this.state;
 		const { children } = this.props;
 
 		return(
@@ -107,7 +106,9 @@ class SiteInfoContextProvider extends Component{
 				...this.state,
 				changeLanguage: this.changeLanguage	
 			}} >
-				{ !site_info_loading ? children : <FullPageLoader /> }
+				<FullPageLoader>
+					{ children }
+				</FullPageLoader>
 			</SiteInfoContext.Provider>
 		)
 	}

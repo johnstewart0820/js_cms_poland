@@ -8,13 +8,12 @@
 	z-index: 99999;
 
 	background-color: #fafafa;
+
+	transition: all 1.6s;
 	opacity: 1;
 
-	transition: opacity 1.6s;
-	visibility: visible;
-
-	&.hide{
+	&.hidden{
 		opacity: 0;
-		// visibility: hidden;
+		z-index: -999;
 	}
 }
