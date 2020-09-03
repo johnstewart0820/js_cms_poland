@@ -9,6 +9,8 @@ import LocalStorage from "./LocalStorage";
 
 import moment from 'moment';
 import 'moment/locale/pl';
+import 'moment/locale/cs';
+import 'moment/locale/de';
 
 const SiteInfoContext = React.createContext(null);
 const SiteInfoContextConsumer = SiteInfoContext.Consumer;
