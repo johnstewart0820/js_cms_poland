@@ -7,6 +7,7 @@ import TourismRoutes from "../../../constants/TourismRoutes";
 import Loader from "../../../components/general/Loader";
 import '../../../styles/helpers/classes.scss';
 import humanizedDuration from "../../../extra/humanizedDuration";
+import ButtonX from "../../../components/buttons/ButtonX";
 
 const ReservationHistoryPage = () => {
     const [data, setData] = React.useState([]);
@@ -126,11 +127,7 @@ const ReservationHistoryPage = () => {
                                         </td>
                                         <td style={{padding: "20px 0 0 0"}}>
                                             {item.is_canceled === '0' && item.seconds_to_cancel >= 1 && (
-                                                <button
-                                                    onClick={() => cancelReservation(item.id)}
-                                                    className="list-view__button">
-                                                    <img alt='' src={require('../../../svg/icons/cross.svg')}/>
-                                                </button>
+                                                <ButtonX onClick={() => cancelReservation(item.id)}/>
                                             )}
                                         </td>
                                     </tr>
