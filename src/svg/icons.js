@@ -2,7 +2,7 @@ import React from "react";
 
 import { ReactComponent as EyeIcon } from "./icons/eye.svg";
 import { ReactComponent as UnderlineIcon } from "./icons/underline.svg";
-import { ReactComponent as BipIcon } from "./icons/bip.svg";
+import  BipIcon from "./jsx/Bip";
 import { ReactComponent as SearchIcon } from "./icons/search.svg";
 import { ReactComponent as UserIcon } from "./icons/user.svg";
 import { ReactComponent as EnvelopeIcon } from "./icons/envelope.svg";
