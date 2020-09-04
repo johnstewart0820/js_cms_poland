@@ -49,3 +49,16 @@
 	color: $light_gray;
 	margin-bottom: 12px;
 }
+
+
+
+
+@media (max-width: 430px){
+	.loop-news-post{
+		width: 254px;
+
+		&__thumbnail{
+			height: 136px;
+		}
+	}
+}

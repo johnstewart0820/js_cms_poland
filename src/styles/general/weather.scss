@@ -61,3 +61,19 @@
 		font-size: 3.6em;
 	}
 }
+
+@media (max-width: 600px){
+	.weather{
+		.arrows{
+			display: none;
+		}
+	}
+
+	.weather__info{
+		margin: 0;
+	}
+
+	.weather__info_degrees{
+		font-size: 3.7em;
+	}
+}
