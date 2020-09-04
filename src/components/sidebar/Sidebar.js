@@ -21,7 +21,7 @@ class Sidebar extends Component {
 
 	static propTypes = { }
 
-	location_path = this.props.history.location.pathname;
+	location_path = this.props?.history?.location?.pathname;
 
 	state = {
 		menu_open: false,

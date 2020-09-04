@@ -38,15 +38,11 @@ class SiteInfoContextProvider extends Component{
 	getSiteInfo = () => {
 
 		this.setState({ site_info_loading: true });
-
+		
 		const { active_language } = this.state;
+		
 
-		const params = {
-			domain: SITES_DOMAIN[ SITE ],
-			lang: active_language
-		}
-
-		API.get(`sites/getInfo`, { params })
+		API.get(`sites/getInfo?domain=${ SITES_DOMAIN[ SITE ] }`)
 		.then( res => {
 
 			const { info } = res.data;

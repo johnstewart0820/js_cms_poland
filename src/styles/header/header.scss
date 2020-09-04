@@ -50,12 +50,12 @@
 
 	svg{
 		max-width: 100%;
-		max-width: 281px;
 	}
 
 	span {
 		display: block;
-		padding-left: 124px;
+		// padding-left: 124px;
+		text-align: right;
 		padding-top: 8px;
 		text-transform: uppercase;
 		font-size: 12px;
@@ -146,5 +146,24 @@
 
 	> a:first-child{
 		margin-left: auto;
+	}
+}
+
+@media (max-width: 1440px){
+
+	.search-form{
+		width: 100vw;
+	}
+
+	.header-logo{
+		min-width: 241px;
+		width: 241px;
+	}
+}
+
+@media (max-width: 1199px){
+	.header-logo{
+		min-width: 190px;
+		width: 190px;
 	}
 }
