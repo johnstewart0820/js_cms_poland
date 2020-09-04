@@ -1,13 +1,14 @@
 import React from 'react';
 import '../../styles/buttons/planer-button.scss';
+import {NavLink} from "react-router-dom";
 
-const PlanerButton = ({number}) => {
+const PlanerButton = ({number, to}) => {
     return (
         <div className='planer-button-container'>
             <div className='wrapper-three'>
                 <div className='wrapper-two'>
                     <div className='wrapper-one'>
-                        <div className='planer-button'>
+                        <NavLink to={to || ''} className='planer-button'>
                             <p>
                                 PLANER
                             </p>
@@ -16,7 +17,7 @@ const PlanerButton = ({number}) => {
                                     +{number}
                                 </p>
                             </div>
-                        </div>
+                        </NavLink>
                     </div>
                 </div>
             </div>
