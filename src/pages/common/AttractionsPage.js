@@ -9,6 +9,7 @@ import LoopAttractionPost from "../../components/attractions/LoopAttractionPost"
 import {MOCK_API} from "../../extra/API";
 import Loader from "../../components/general/Loader";
 import PlanerButton from "../../components/buttons/PlanerButton";
+import TourismRoutes from "../../constants/TourismRoutes";
 
 const sort_options = [
     { value: 1, label: "Najbliższe aktualności" },
@@ -42,6 +43,7 @@ const AttractionPage = () => {
 
             <PlanerButton
                 number={'8'}
+                to={TourismRoutes.PlanerListPage}
             />
 
             <LoopSearchForm

@@ -26,5 +26,6 @@ export default {
     Events: '/events',
     AttractionPage: '/attractions',
     DiscountCardsPage: '/discount-cards',
-    TrailsPage: '/trails'
+    TrailsPage: '/trails',
+    PlanerListPage: '/planer-basket'
 };

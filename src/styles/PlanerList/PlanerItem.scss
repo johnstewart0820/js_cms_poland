@@ -1,0 +1,51 @@
+@import "../general/colors.scss";
+
+.item-container {
+  height: 250px;
+  width: 100%;
+  background-color: #e0e0e0;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  .item-image {
+    background-color: white;
+    height: 100%;
+    max-width: 355px;
+    display: flex;
+    .time {
+      width: 80px;
+      height: 45px;
+      position: absolute;
+      background: $yellow;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    button {
+      position: absolute;
+      width: 100%;
+      max-width: 355px;
+      margin-top: 194px;
+    }
+    img {
+      height: 100%;
+    }
+  }
+  .item-description {
+    margin: 50px;
+  }
+  .item-category {
+    .item-category-content {
+      margin-top: 70px;
+      margin-left: 100px;
+    }
+  }
+  .item-action {
+    position: relative;
+    left: 650px;
+    top: 100px;
+  }
+}
