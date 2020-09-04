@@ -1,0 +1,91 @@
+@import "../general/colors.scss";
+
+
+.planer-button-container {
+  position: fixed;
+  right: -25px;
+  top: 550px;
+  z-index: 1101;
+  .wrapper-three {
+    position: absolute;
+    right: -20px;
+    transition: 1.5s;
+    height: 210px;
+    width: 210px;
+    border-radius: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .wrapper-two {
+      transition: 1s;
+      height: 190px;
+      width: 190px;
+      border-radius: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .wrapper-one {
+        transition: 0.5s;
+        height: 170px;
+        width: 170px;
+        border-radius: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .planer-button {
+          background: radial-gradient(circle at 30px 125px, transparent 30px, #EFF0F1 31px);
+          height: 150px;
+          width: 150px;
+          border-radius: 100px;
+          transition: background 0.5s ease;
+          cursor: pointer;
+          p {
+            position: relative;
+            top: 45px;
+            text-align: center;
+            font-size: 18px;
+          }
+          .planer-button-inner {
+            transition: 0.5s;
+            background-color: #EFF0F1;
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            position: relative;
+            top: 40px;
+            left: 5px;
+            z-index: -1;
+            p {
+              position: relative;
+              top: 15px;
+              text-align: center;
+              font-size: 15px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.planer-button-container:hover {
+  .wrapper-three {
+    background-color: rgba(187, 234, 137, 0.27);
+    .wrapper-two {
+      background-color: rgba(133, 203, 63, 0.47);
+      .wrapper-one {
+        background-color: rgba(133, 203, 63, 0.87);
+        .planer-button {
+          background: radial-gradient(circle at 30px 125px, $green 30px, $green 20px);
+          p {
+            color: white;
+          }
+          .planer-button-inner {
+            left: 90px;
+          }
+        }
+      }
+    }
+  }
+}
