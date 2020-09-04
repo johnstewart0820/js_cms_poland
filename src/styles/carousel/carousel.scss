@@ -12,7 +12,7 @@
 				outline: none;
 			}
 		}
-	}
+	}	
 
 
 	&.arrows-on-right{
@@ -31,6 +31,11 @@
 	}
 }
 
+.carousel__arrows-placeholder{
+	height: 56px;
+	margin-bottom: 43px;
+}
+
 
 .carousel__overflow{
 	overflow: hidden;
@@ -40,4 +45,29 @@
 	position: relative;
 	width: 10000px;
 	display: flex;
+}
+
+@media (max-width: 600px){
+	
+	.carousel__arrows-placeholder{
+		display: none;
+	}
+
+	.carousel{
+		.arrows{
+			display: none;
+		}
+	}
+
+	.carousel__head{
+		flex-wrap: wrap;
+		> div{
+			width: 100%;
+		}
+
+		.link-to-all{
+			margin-left: 0;
+			margin-top: 20px;
+		}
+	}
 }

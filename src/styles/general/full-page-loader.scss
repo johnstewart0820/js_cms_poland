@@ -7,13 +7,26 @@
 	height: 100%;
 	z-index: 99999;
 
-	background-color: #fafafa;
-
-	transition: all 2s;
+	background-color: #f7f7f7;
 	opacity: 1;
 
 	&.hidden{
+		animation: hide 1.3s linear 1;
+
 		opacity: 0;
 		z-index: -999;
+	}
+}
+
+@keyframes hide {
+	from,
+	40% {
+		opacity: 1;
+		z-index: 9999;
+	} 
+
+	to {
+		opacity: 0;
+		z-index: -1;
 	}
 }

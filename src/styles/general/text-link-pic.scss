@@ -36,3 +36,44 @@
 		height: 563px;
 	}
 }
+
+
+
+@media (max-width: 1550px){
+	.text-link-pic {
+		.section-heading{
+			width: 100%;
+			margin-right: 0;
+		}
+
+		&__text{
+			max-width: 100%;
+			padding-right: 30px;
+		}
+	}
+}
+
+
+@media (max-width: 1100px){
+	.text-link-pic{
+		&__text{
+			width: 100%;
+			flex: 0 0 100%;
+			order: 1;
+		}
+
+		&__picture{
+			width: 100%;
+			min-width: auto;
+			max-width: 100%;
+			margin-bottom: 20px;
+		}
+	}
+}
+
+
+@media (max-width: 600px){
+	.text-link-pic{
+		padding: 30px 0;
+	}
+}

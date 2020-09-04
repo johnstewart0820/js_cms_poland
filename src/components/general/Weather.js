@@ -130,6 +130,20 @@ export default class Weather extends Component{
 	}
 
 
+	slideOnTouchStart = e => this.touch_start = e.changedTouches[0].screenX;
+
+
+	slideOnTouchEnd = e => {
+
+		const touch_end = e.changedTouches[0].screenX;
+		if ( Math.abs( this.touch_start - touch_end ) >= 24 ) {
+			
+			const action = this.touch_start > touch_end ? "next" : "prev";
+			this.switchWeather( action );
+		}
+	}
+
+	
 	render(){
 
 		const { loading } = this.state;
@@ -141,7 +155,11 @@ export default class Weather extends Component{
 		}
 
 		return(
-			<div className="weather">
+			<div 
+				className="weather" 
+				onTouchStart={ this.slideOnTouchStart }
+				onTouchEnd={ this.slideOnTouchEnd } 
+			>
 				{ this.getCurrentWeatherInfo() }
 				<Arrows onClick={ this.switchWeather } />
 			</div>

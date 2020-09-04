@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MAIN_MENU } from "../../extra/main_menu";
 
+import HeaderActions from '../header/HeaderActions';
 import "../../styles/sidebar/main-menu.scss";
 
 
@@ -38,6 +39,8 @@ const MainMenu = () => {
 					</div>
 				) 
 			}) }
+
+			<HeaderActions />
 		</div>
 	)
 }

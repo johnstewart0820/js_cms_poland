@@ -1,0 +1,74 @@
+@import "../helpers/mixins.scss";
+@import "../general/colors.scss";
+
+.header-actions{
+	display: flex;
+
+	.link{
+		margin: 0 20px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #3D5567;
+
+		&.active {
+
+			svg {
+				&.stroke{
+					path, line{
+						stroke: #fff;
+					}
+				}
+	
+			}
+	
+			&::before{
+				content: '';
+				display: block;
+				width: 88px;
+				height: 88px;
+		
+				top: 50%;
+				left: 50%;
+				margin-top: -44px;
+				margin-left: -44px;
+				z-index: -1;
+				background: $green;
+			}
+		}
+	
+		&.contrast{
+			margin-right: 40px;
+		}
+		
+		&.font-size-switch{
+			font-weight: bold;
+			font-size: 1.14em;
+			margin: 0 5px;
+	
+			&:first-child{
+				margin-left: 20px;
+			}
+		}
+	
+		&.bip{
+			margin-left: 40px;
+			svg{
+				max-width: 27px;
+				height: auto;
+			}
+		}
+	
+		
+		&.search{
+			margin-left: 60px;
+		}
+	
+		&.language-switcher{
+			font-weight: bold;
+			font-size: 1.14em;
+		}
+	}
+}
