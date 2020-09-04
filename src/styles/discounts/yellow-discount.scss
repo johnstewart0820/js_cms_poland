@@ -2,6 +2,8 @@
 
 .yellow-discount {
     max-width: 250px;
+    transition: 1s;
+    cursor: pointer;
     &__amount {
         background-color: $light_yellow;
         display: flex;
@@ -23,5 +25,9 @@
         color: $gray;
         font-size: 20px;
         font-weight: bold;
+    }
+    &:hover {
+        opacity: 0.5;
+        background-color: $gray_super_light_2;
     }
 }
