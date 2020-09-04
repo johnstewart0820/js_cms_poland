@@ -25,5 +25,6 @@ export default {
     GameCardsPage: '/game',
     Events: '/events',
     AttractionPage: '/attractions',
-    DiscountCardsPage: '/discount-cards'
+    DiscountCardsPage: '/discount-cards',
+    TrailsPage: '/trails'
 };

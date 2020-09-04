@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { API } from "../extra/API";
 import SiteInfoContext from "../constants/SiteInfoContext";
-
-
 import Loader from "../components/general/Loader";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
