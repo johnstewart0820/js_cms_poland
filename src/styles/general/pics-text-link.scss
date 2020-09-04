@@ -8,7 +8,7 @@
 
 .pics-text-link__pics{
 	@include flex-wrap;
-	width: 50%;
+	flex: 1 1;
 
 	.thumbnail{
 		@include flex-centered;
@@ -60,5 +60,31 @@
 		line-height: 28px;
 		margin-bottom: 44px;
 		margin-top: 0;
+	}
+}
+
+
+@media (max-width: 1550px){
+	.pics-text-link__text{
+		width: 100%;
+		max-width: 100%;
+		padding-left: 0;
+		margin-top: 15px;
+	}
+}
+
+
+@media (max-width: 843px){
+	.pics-text-link__pics {
+		.thumbnail{
+			width: 100%;
+			margin: 0 0 15px 0;
+		}
+	}
+}
+
+@media (max-width: 600px){
+	.pics-text-link{
+		padding: 30px 0;
 	}
 }

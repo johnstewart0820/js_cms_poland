@@ -140,6 +140,10 @@
 		min-width: 241px;
 		width: 241px;
 	}
+
+	.header-main__menu{
+		font-size: 1em;
+	}
 }
 
 @media (max-width: 1199px){
@@ -147,11 +151,17 @@
 		min-width: 190px;
 		width: 190px;
 	}
+
+	.header-logo span{
+		font-size: 10px;
+	}
 }
 
 
 @media (max-width: 1023px){
 	.header-main {
+
+		.header-main__menu,
 		.header-actions{
 			display: none;
 		}
@@ -160,12 +170,20 @@
 			margin-left: auto;
 		}
 	}
+
+	.header.has-menu .search-form, .header.has-menu .auth-panel{
+		top: 88px;
+	}
 }
 
 @media (max-width: 600px){
 	.header-logo{
 		min-width: 136px;
 		width: 136px;
+
+		span{
+			font-size: 8px;
+		}
 	}
 
 	.header{
@@ -190,7 +208,7 @@
 
 	.header{
 		.auth-panel{
-			top: 55px;
+			top: 55px !important;
 		}
 	}
 }
@@ -201,5 +219,9 @@
 		min-width: 100px;
 		max-width: 100px;
 		margin: 0;
+
+		span{
+			font-size: 5px;
+		}
 	}
 }
