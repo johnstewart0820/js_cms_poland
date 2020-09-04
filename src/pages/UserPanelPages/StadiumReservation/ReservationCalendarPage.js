@@ -139,7 +139,6 @@ const ReservationCalendarPage = props => {
                             <div className="day-button__container">
                                 {days.map((item) => {
                                     const date = moment(item.day, 'DD.MM.YYYY');
-                                    console.log(item.day)
                                     const convertedDate = date.format('DD.MM.YYYY');
                                     const convertedCalendarDate = moment(calendarDate).format('DD.MM.YYYY');
                                     return <DayButton
