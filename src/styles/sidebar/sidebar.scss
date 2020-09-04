@@ -46,3 +46,14 @@
 		margin: 5px 0;
 	}
 }
+
+
+@media (max-width: 1440px){
+	.sidebar{
+		height: 88px !important;
+	}
+
+	.sidebar__socials{
+		display: none;
+	}
+}

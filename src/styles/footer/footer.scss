@@ -199,3 +199,16 @@
 }
 
 
+@media (max-width: 1440px){
+
+	.footer-main__logo{
+		width: 241px;
+	}
+
+	.footer-main .footer-main__back,
+	.footer-main__link,
+	.footer-main__address_heading, 
+	.footer-main__address_bold{
+		font-size: 1em;
+	}
+}

@@ -98,7 +98,7 @@ export default class Weather extends Component{
 				
 				<div>
 					<strong> { weather } </strong>
-					<span> { day_num } { month_name } </span>
+					<span> { +day_num } { month_name } </span>
 					<strong> { day_name } </strong>
 				</div>
 			</div>

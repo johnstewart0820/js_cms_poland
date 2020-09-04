@@ -33,7 +33,7 @@
 	}
 
 	> .row{
-		max-height: 174px;
+		height: 174px;
 	}
 
 	.main-header-external-link{
@@ -42,5 +42,17 @@
 	
 	.weather{
 		width: 47.5982533%;
+	}
+}
+
+@media (max-width: 1440px){
+	.main-header-section__main{
+		width: 100%;
+	}
+}
+
+@media (max-height: 690px){
+	.main-header-section__main > .row{
+		height: 100px;
 	}
 }

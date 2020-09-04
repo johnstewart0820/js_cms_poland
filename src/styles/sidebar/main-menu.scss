@@ -55,10 +55,82 @@ $main-menu-colors:
 	padding-bottom: 30px;
 	padding-left: 45px;
 	text-transform: uppercase;
+
+	strong{
+		margin-right: 8px;
+		cursor: pointer;
+		display: none;
+	}
 }
 
 .main-menu__items{
 	padding-top: 45px;
 	padding-left: 45px;
 	line-height: 70px;
+}
+
+
+@media (max-width: 1700px){
+	.main-menu__items{
+		padding-top: 20px;
+		padding-left: 20px;
+	}
+
+	.main-menu__title{
+		padding-left: 20px;
+	}
+
+	.main-menu{
+		font-size: 1.2em;
+		padding: 20px;
+	}
+}
+
+
+@media (max-width: 1440px){
+	.main-menu{
+		font-size: 1.14em;
+	}
+
+	.main-menu__items{
+		line-height: 50px;
+	}
+}
+
+@media (max-width: 1300px){
+	.main-menu{
+		font-size: 1em;
+	}
+}
+
+
+@media (max-width: 1199px){
+	.main-menu__title {
+		border-color: transparent;
+		padding: 25px 0;
+		
+		strong{
+			display: inline-block;
+		}
+	}
+
+	.main-menu__items{
+		display: none;
+		padding: 0 0 0 40px;
+		line-height: 40px;
+	}
+
+	.main-menu{
+		display: block;
+		padding-top: 30px;
+		overflow: auto;
+		max-height: calc( 100vh - 30px);
+		min-height: auto;
+	}
+
+	.main-menu__column.mobile-open{
+		.main-menu__items{
+			display: block;
+		}
+	}
 }

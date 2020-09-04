@@ -50,7 +50,6 @@
 
 	svg{
 		max-width: 100%;
-		max-width: 281px;
 	}
 
 	span {
@@ -146,5 +145,16 @@
 
 	> a:first-child{
 		margin-left: auto;
+	}
+}
+
+@media (max-width: 1440px){
+	.header-logo{
+		min-width: 241px;
+		width: 241px;
+
+		svg{
+			max-width: 100%;
+		}
 	}
 }

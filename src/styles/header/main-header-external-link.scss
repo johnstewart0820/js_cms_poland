@@ -6,7 +6,7 @@
 	position: relative;
 	background: $aqua;
 	color: #fff;
-	padding: 40px 20px;
+	padding: 10px 20px;
 
 	> * {
 		position: relative;
@@ -33,5 +33,11 @@
 	
 		background: #fff;
 		border-radius: 10px;
+	}
+}
+
+@media (max-height: 690px) {
+	.main-header-external-link .heading{
+		margin: 10px 0;
 	}
 }
