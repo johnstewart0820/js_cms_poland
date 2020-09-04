@@ -56,3 +56,20 @@
 		height: 100px;
 	}
 }
+
+@media (max-width: 1199px){
+
+	.main-header-section{
+		min-height: auto;
+	}
+
+	.main-header-section__main > .row{
+		height: auto;
+
+		.main-header-external-link,
+		.weather{
+			width: 100%;
+			padding: 20px;
+		}
+	}
+}

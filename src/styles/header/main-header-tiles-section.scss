@@ -256,3 +256,24 @@ $tiles:
 		font-size: .65em;
 	}
 }
+
+@media (max-width: 1199px){
+
+	.main-header-tiles-section{
+		flex-wrap: wrap;
+	}
+
+	.main-header-tiles-section__left,
+	.main-header-tiles-section__right{
+		width: 100%;
+
+		.main-header-tiles-section__tile{
+			height: 240px;
+		}
+	}
+
+
+	.main-header-tiles-section__tile{
+		height: 240px;
+	}
+}
