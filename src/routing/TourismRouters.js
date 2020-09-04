@@ -31,7 +31,6 @@ const NewsSinglePage = asyncComponent( () => import( "../pages/common/NewsSingle
 const EventsPage = asyncComponent(() => import('../pages/Events/EventsPage'));
 const AttractionsPage = asyncComponent(() => import('../pages/common/AttractionsPage'));
 const DiscountCardsPage = asyncComponent(() => import('../pages/common/DiscountCardsPage'));
-const TrailsPage = asyncComponent(() => import('../pages/common/TrailsPage'));
 
 
 const TourismRouters = () => (
@@ -63,7 +62,6 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.Events} component={EventsPage}/>
 		<Route exact path={TourismRoutes.AttractionPage} component={AttractionsPage}/>
 		<Route exact path={TourismRoutes.DiscountCardsPage} component={DiscountCardsPage}/>
-		<Route exact path={TourismRoutes.TrailsPage} component={TrailsPage}/>
 	</>
 )
 
