@@ -12,20 +12,22 @@ import Header from "./components/header/Header";
 import "./styles/main/main.scss";
 import "./styles/main/ci.scss";
 import "./styles/main/contrast.scss";
+import {PlanerContextProvider} from "./constants/PlanerContext";
 
 const App = () => (
 	<Router basename={ router_basename }>
 		
 		<SiteInfoContextProvider>
 			<UserContextProvider>
-					
-				<Header />
-				<Sidebar />
-				<main>
-					<Routing />
-				</main>			
-				
-				<Footer />
+				<PlanerContextProvider>
+					<Header />
+					<Sidebar />
+					<main>
+						<Routing />
+					</main>
+
+					<Footer />
+				</PlanerContextProvider>
 			</UserContextProvider>
 		</SiteInfoContextProvider>			
 	

@@ -26,7 +26,7 @@ class SiteInfoContextProvider extends Component{
 	componentDidMount () {
 		if (!StoredLocale)
 			localStorage.setItem(LocalStorage.Locale, this.state.active_language);
-		moment().locale(this.state.active_language);
+		moment.locale(this.state.active_language);
 		this.checkTheme();
 		this.getSiteInfo();
 	}
@@ -90,7 +90,7 @@ class SiteInfoContextProvider extends Component{
 
 	changeLanguage = language => {
 		localStorage.setItem(LocalStorage.Locale, language);
-		moment().locale(language);
+		moment.locale(language);
 		this.setState({active_language: language}, this.getSiteInfo);
 	};
 

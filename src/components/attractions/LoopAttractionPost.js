@@ -6,7 +6,7 @@ import BicycleIcon from "../icons/BicycleIcon";
 import DisabilityIcon from "../icons/DisabilityIcon";
 import FamilyIcon from "../icons/FamilyIcon";
 
-export default function ({id, title, excerpt, category, thumbnail}) {
+export default function ({id, title, excerpt, category, thumbnail, onClick}) {
     return (
         <div className="loop-card">
             <a
@@ -34,7 +34,7 @@ export default function ({id, title, excerpt, category, thumbnail}) {
                 {excerpt && <div className="loop-card__text">{excerpt}</div>}
 
                 <div className="loop-card__action-buttons">
-                    <PlusButton/>
+                    <PlusButton onClick={onClick}/>
                     <ShareButton link_for_sharing={`${window.location.origin}/attractions/${id}`}/>
                 </div>
             </div>

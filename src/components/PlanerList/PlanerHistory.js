@@ -1,26 +1,40 @@
 import React from 'react';
 import '../../styles/PlanerList/PlanerHistory.scss';
 
-const PlanerHistory = () => {
+const planerHistory = [
+    {label: 'Ustroń – Skoczów / '},
+    {label: 'Chałupki / '},
+    {label: 'Wisła / '},
+    {label: 'Jasnowice'},
+];
+
+const PlanerHistory = ({totalDuration, route}) => {
+    let hours = totalDuration.hours() + ' godz.';
+    let minutes = totalDuration.minutes() + ' min';
+
     return (
-        <div className="planer-history-container">
-            <div className="planer-history-total-counter">
-                <h4>
-
-                </h4>
-                <h2>
-
-                </h2>
-                <hr/>
-                <h5>
-
-                </h5>
-            </div>
-            <div className="planer-history">
-
-            </div>
-            <div className="planer-history-button">
-
+        <div className="container">
+            <div className="planer-history-container">
+                <div className="planer-history-total-counter">
+                    <h2>
+                        CAŁKOWITY CZAS
+                    </h2>
+                    <h1>
+                        {hours}
+                    </h1>
+                    <hr/>
+                    <h3>
+                        {minutes}
+                    </h3>
+                </div>
+                <div className="planer-history">
+                    <h3>
+                        {route}
+                    </h3>
+                </div>
+                <div className="planer-history-button">
+                    <button className="button-link green full-width">ZAPISZ TRASĘ DO PDF</button>
+                </div>
             </div>
         </div>
     )

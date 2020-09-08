@@ -5,7 +5,24 @@
     }
 
     .list {
+      display: flex;
       margin-top: 60px;
+      flex-direction: column;
+      .col {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
+}
+
+.planer-dot {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: white;
+  border-radius: 60px;
+  border: 2px solid;
+  left: 123px;
+  bottom: 380px;
 }

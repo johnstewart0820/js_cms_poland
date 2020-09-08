@@ -10,6 +10,7 @@ import {MOCK_API} from "../../extra/API";
 import Loader from "../../components/general/Loader";
 import PlanerButton from "../../components/buttons/PlanerButton";
 import TourismRoutes from "../../constants/TourismRoutes";
+import PlanerContext from "../../constants/PlanerContext";
 
 const sort_options = [
     { value: 1, label: "Najbliższe aktualności" },
@@ -20,6 +21,8 @@ const AttractionPage = () => {
     const [slides, setSlides] = React.useState([]);
     const [data, setData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+
+    const planerContext = React.useContext(PlanerContext);
 
     React.useEffect(() => {
         getAttractions()
@@ -57,7 +60,7 @@ const AttractionPage = () => {
             >
                 {loading && <Loader style={{ width: "100%" }}/>}
                 {data.length > 0 && data.map((item, index) => (
-                    <LoopAttractionPost key={index} {...item}/>
+                    <LoopAttractionPost key={index} {...item} onClick={() => planerContext.add(item)}/>
                 ))}
             </LoopSearchPostsContainer>
         </>
