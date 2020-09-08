@@ -1,8 +1,13 @@
-const SITE = "TOURISM"; // MAIN TOURISM SPORT CULTURE
+const Sites = {
+	Main: 'MAIN',
+	Tourism: 'TOURISM',
+};
+
+const SITE = Sites.Tourism; // MAIN TOURISM SPORT CULTURE
 
 const SITES_DOMAIN = {
-	"MAIN": "ustron.s3.netcore.pl",
-	"TOURISM": "visit.ustron.s3.netcore.pl"
-}
+	[Sites.Main]: "ustron.s3.netcore.pl",
+	[Sites.Tourism]: "visit.ustron.s3.netcore.pl"
+};
 
-export { SITE, SITES_DOMAIN };
+export { Sites, SITE, SITES_DOMAIN };
