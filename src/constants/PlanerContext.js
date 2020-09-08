@@ -1,21 +1,37 @@
 import React from 'react';
 import axios from "axios";
+import Planer from "../extra/Planer";
 
 const PlanerContext = React.createContext([]);
 
 export const PlanerContextProvider = props => {
-    const [events, setEvents] = React.useState([]);
+    const [ids, setIds] = React.useState([]);
+    const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
-        axios.get('https://api.ustron.s3.netcore.pl/contents/events')
-            .then((response) => setEvents(response.data.events))
-    },[]);
+        let promises = [];
+
+        ids.forEach(id => {
+            const promise = axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${id}`)
+                .then(response => response.data.content);
+
+            promises.push(promise);
+        })
+
+        Promise.all(promises).then(setData);
+        Planer.saveData(ids);
+    }, [ids]);
+
+    React.useEffect(() => {
+        setData(Planer.getData())
+    },[ids])
 
     return (
         <PlanerContext.Provider value={{
-            events,
-            add: item => setEvents([...events, item]),
-            delete: id => setEvents(events.filter(event => event.id != id)),
+            ids,
+            data,
+            add: id => setIds([...ids, id]),
+            delete: id => setIds(ids.filter(event => event.id != id)),
         }}>
             {props.children}
         </PlanerContext.Provider>

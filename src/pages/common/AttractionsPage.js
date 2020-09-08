@@ -6,7 +6,7 @@ import LoopSearchForm from "../../components/loop/LoopSearchForm";
 import {sample_slides} from "../../mock/slides_example";
 import LoopSearchPostsContainer from "../../components/loop/LoopSearchPostsContainer";
 import LoopAttractionPost from "../../components/attractions/LoopAttractionPost";
-import {MOCK_API} from "../../extra/API";
+import {API} from "../../extra/API";
 import Loader from "../../components/general/Loader";
 import PlanerButton from "../../components/buttons/PlanerButton";
 import TourismRoutes from "../../constants/TourismRoutes";
@@ -31,8 +31,8 @@ const AttractionPage = () => {
 
     const getAttractions = () => {
         setLoading(false);
-        MOCK_API.get('attractions.json')
-            .then((res) => setData(res.data))
+        API.getPosts(155)
+            .then((res) => setData(res.data.contents))
     }
 
     return (
@@ -60,7 +60,7 @@ const AttractionPage = () => {
             >
                 {loading && <Loader style={{ width: "100%" }}/>}
                 {data.length > 0 && data.map((item, index) => (
-                    <LoopAttractionPost key={index} {...item} onClick={() => planerContext.add(item)}/>
+                    <LoopAttractionPost key={index} {...item} onClick={() => planerContext.add(item.id)}/>
                 ))}
             </LoopSearchPostsContainer>
         </>

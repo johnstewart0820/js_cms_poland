@@ -13,18 +13,18 @@ const PlanerListPage = () => {
 
     const totalDuration = React.useMemo(() => {
         let duration = moment.duration();
-        planerContext.events.forEach(event => duration.add(event.acf.field_map_minutes, 'minutes'));
+        planerContext.data.forEach(event => duration.add(event.acf.field_map_minutes, 'minutes'));
         return duration;
-    }, [planerContext.events.length]);
+    }, [planerContext.data.length]);
 
-    const totalRoute = React.useMemo(() => {
-        let route = [];
-        planerContext.events.forEach(event => {
-            route.push(event.custom_data.event.place);
-            route = route.filter((name, pos) => route.indexOf(name) == pos)
-        })
-        return route.join(' / ');
-    }, [planerContext.events.length])
+    // const totalRoute = React.useMemo(() => {
+    //     let route = [];
+    //     planerContext.data.forEach(event => {
+    //         route.push(event.custom_data.event.place);
+    //         route = route.filter((name, pos) => route.indexOf(name) == pos)
+    //     })
+    //     return route.join(' / ');
+    // }, [planerContext.data.length]);
 
 
     return(
@@ -32,7 +32,7 @@ const PlanerListPage = () => {
             <Breadcrumbs breadcrumbs={[{ label: "Visit.ustron.pl", to: "/" }, { label: " Jak dojechać", to: "/" }, {label: 'Wynik'}]} />
 
             <PlanerListContainer title={'PLANER PODROZY'}>
-                {planerContext.events.map((item, index) => {
+                {planerContext.data.map((item, index) => {
                     let category = item.categories[0]?.name
                     return (
                         <PlanerItem
@@ -48,7 +48,7 @@ const PlanerListPage = () => {
                 })}
             </PlanerListContainer>
 
-            <PlanerHistory totalDuration={totalDuration} route={totalRoute}/>
+            <PlanerHistory totalDuration={totalDuration}/>
 
             <MapWithPinsFiltering type="attractions" />
         </>
