@@ -17,8 +17,8 @@ export default function humanizedDuration(
         const amount = dur[unit]();
         if (!amount)
             continue;
-        moment.relativeTimeThreshold('h', 24);
-        moment.relativeTimeThreshold('m', 59);
+        moment.relativeTimeThreshold('h', 25);
+        moment.relativeTimeThreshold('m', 60);
         humanizedParts.push(moment.duration(amount, unit).humanize(suffix));
     }
 
