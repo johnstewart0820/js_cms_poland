@@ -28,7 +28,7 @@ API.getEvents = ({categories, ...rest}) => {
 	return API.get('contents/events', {params: {categories, ...rest}});
 };
 
-API.getPost = id => API.get('contents/events/' + id);
+API.getEvent = id => API.get('contents/events/' + id);
 
 API.getEntities = ({categories, ...rest}) => {
 	if (!Array.isArray(categories))
