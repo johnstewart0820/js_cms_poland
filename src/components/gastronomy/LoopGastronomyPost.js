@@ -46,24 +46,27 @@ const LoopGastronomyPostInfo = ({ phone, email, www }) => {
 	)
 }
 
-const LoopGastronomyPost = ({ id, title, category, thumbnail, address, phone, email, www }) => (
-	<a href={`/gastronomy/${ id }`} target="_blank" className="loop-gastronomy-post">
-		<div className="loop-gastronomy-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url(${ thumbnail })` }} >
-			<div className="loop-gastronomy-post__category"> { category } </div>
+const LoopGastronomyPost = ({id, title, categories_labels, image, acf}) => (
+	<a href={`/gastronomy/${id}`} target="_blank" className="loop-gastronomy-post">
+		<div className="loop-gastronomy-post__thumbnail has-overlay thumbnail" style={{backgroundImage: `url(${image})`}}>
+			<div className="loop-gastronomy-post__category">{categories_labels}</div>
 		</div>
 		
 		<div className="loop-gastronomy-post__content">
-			<div className="loop-gastronomy-post__title heading"> { title } </div>
+			<div className="loop-gastronomy-post__title heading">{title}</div>
 
-			{ address &&
+			{acf.field_map_address && (
 				<div className="loop-gastronomy-post__address">
-					<span> ADRES </span>
-					{ address } 
+					<span>ADRES</span>
+					{acf.field_map_address}
 				</div> 
-			}
+			)}
 
-			<LoopGastronomyPostInfo { ...{ phone, email, www } } />
-
+			<LoopGastronomyPostInfo
+				phone={acf.field_contact_phone}
+				email={acf.field_contact_email}
+				www={acf.field_contact_www}
+			/>
 
 			<div className="loop-gastronomy-post__bottom">
 				<ButtonLink extra_classes="green"> szybki kontakt  </ButtonLink>
@@ -73,8 +76,6 @@ const LoopGastronomyPost = ({ id, title, category, thumbnail, address, phone, em
 			</div>
 		</div>
 	</a>
-)
-
-LoopGastronomyPost.propTypes = { }
+);
 
 export default LoopGastronomyPost;
