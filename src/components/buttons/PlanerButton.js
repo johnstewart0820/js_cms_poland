@@ -1,8 +1,11 @@
 import React from 'react';
 import '../../styles/buttons/planer-button.scss';
 import {NavLink} from "react-router-dom";
+import PlanerContext from "../../constants/PlanerContext";
 
-const PlanerButton = ({number, to}) => {
+const PlanerButton = ({to}) => {
+    const planerContext = React.useContext(PlanerContext);
+    let planerEventsCount = planerContext.ids.length;
     return (
         <div className='planer-button-container'>
             <div className='wrapper-three'>
@@ -14,7 +17,7 @@ const PlanerButton = ({number, to}) => {
                             </p>
                             <div className='planer-button-inner'>
                                 <p>
-                                    +{number}
+                                    +{planerEventsCount || ''}
                                 </p>
                             </div>
                         </NavLink>

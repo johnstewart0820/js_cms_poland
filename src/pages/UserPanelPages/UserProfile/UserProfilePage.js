@@ -146,6 +146,7 @@ const UserProfilePage = () => {
                             {userDataNotice}
                         </div>
                         <InputComponent
+                            maxLength={'40'}
                             containerStyles={{marginTop: '70px'}}
                             fieldName={'IMIĘ NAZWISKO'}
                             name={'name'}
