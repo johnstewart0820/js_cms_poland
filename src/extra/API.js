@@ -19,6 +19,8 @@ API.getPosts = (categories, limit, page, query) => {
 	return API.get('contents/posts', {params: {categories, limit, page, query}});
 };
 
+API.getPost = id => API.get('contents/posts/' + id);
+
 const MOCK_API = axios.create({
 	baseURL: "/mock/"
 });
