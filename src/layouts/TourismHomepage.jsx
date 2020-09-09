@@ -22,17 +22,21 @@ export default function MainPage(props) {
     const [items4, setItems4] = React.useState(false);
 
     React.useEffect(() => {
-        let categories = acf.field_information_modules_visit[0].field_section_categories_visit.map(category => category.id);
-        API.getPosts(categories).then(res => setItems1(res.data.contents));
+        API.getEntities({
+            categories: acf.field_information_modules_visit[0].field_section_categories_visit,
+        }).then(res => setItems1(res.data.contents));
 
-        categories = acf.field_information_modules_visit[1].field_section_categories_visit.map(category => category.id);
-        API.getPosts(categories).then(res => setItems2(res.data.contents));
+        API.getEntities({
+            categories: acf.field_information_modules_visit[1].field_section_categories_visit,
+        }).then(res => setItems2(res.data.contents));
 
-        categories = acf.field_gastronomic_categories.map(category => category.id);
-        API.getPosts(categories).then(res => setItems3(res.data.contents));
+        API.getEntities({
+            categories: acf.field_gastronomic_categories,
+        }).then(res => setItems3(res.data.contents));
 
-        categories = acf.field_accommodation_categories.map(category => category.id);
-        API.getPosts(categories).then(res => setItems4(res.data.contents));
+        API.getEntities({
+            categories: acf.field_accommodation_categories,
+        }).then(res => setItems4(res.data.contents));
     }, []);
 
     return (
