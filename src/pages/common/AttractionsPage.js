@@ -45,7 +45,6 @@ const AttractionPage = () => {
             </MainHeaderSection>
 
             <PlanerButton
-                number={'8'}
                 to={TourismRoutes.PlanerListPage}
             />
 
