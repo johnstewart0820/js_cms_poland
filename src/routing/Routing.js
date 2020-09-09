@@ -1,20 +1,23 @@
 import React from 'react';
-import { Switch } from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
-import { SITE } from "../extra/site_settings.js";
+import {SITE} from "../extra/site_settings.js";
 
 import MainRouters from "./MainRouters";
 import TourismRouters from "./TourismRouters";
+import PageRenderer from "../extra/PageRenderer";
 
 const ROUTERS = {
-	"MAIN": <MainRouters/>,
-	"TOURISM": <TourismRouters/>
+    "MAIN": <MainRouters/>,
+    "TOURISM": <TourismRouters/>
 }
 
 const Routing = () => (
-	<Switch>
-		{ROUTERS[SITE]}
-	</Switch>
-)
+    <Switch>
+		<Route exact path={'/'} component={PageRenderer}/>
+		<Route exact path={'/page/:pageId'} component={PageRenderer}/>
+        {ROUTERS[SITE]}
+    </Switch>
+);
 
 export default Routing;

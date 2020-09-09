@@ -46,35 +46,36 @@ const LoopAccommodationPostInfo = ({ phone, email, www }) => {
 	)
 }
 
-const LoopAccommodationPost = ({ id, title, category, thumbnail, address, phone, email, www }) => (
-	<a href={`/accommodation/${ id }`} target="_blank" rel={'noopener noreferrer'} className="loop-accommodation-post">
-		<div className="loop-accommodation-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url(${ thumbnail })` }} >
-			<div className="loop-accommodation-post__category"> { category } </div>
+const LoopAccommodationPost = ({ id, title, categories_labels, image, acf}) => (
+	<a href={`/accommodation/${id}`} target="_blank" rel={'noopener noreferrer'} className="loop-accommodation-post">
+		<div className="loop-accommodation-post__thumbnail has-overlay thumbnail" style={{backgroundImage: `url("${image}")`}}>
+			<div className="loop-accommodation-post__category">{categories_labels}</div>
 		</div>
 		
 		<div className="loop-accommodation-post__content">
-			<div className="loop-accommodation-post__title heading"> { title } </div>
+			<div className="loop-accommodation-post__title heading">{title}</div>
 
-			{ address &&
-				<div className="loop-accommodation-post__address">  
-					<span> ADRES </span>
-					{ address } 
-				</div> 
-			}
+			{acf.field_map_address && (
+				<div className="loop-accommodation-post__address">
+					<span>ADRES</span>
+					{acf.field_map_address}
+				</div>
+			)}
 
-			<LoopAccommodationPostInfo { ...{ phone, email, www } } />
-
+			<LoopAccommodationPostInfo
+				phone={acf.field_contact_phone}
+				email={acf.field_contact_email}
+				www={acf.field_contact_www}
+			/>
 
 			<div className="loop-accommodation-post__bottom">
-				<ButtonLink extra_classes="green"> szybki kontakt  </ButtonLink>
+				<ButtonLink extra_classes="green">szybki kontakt</ButtonLink>
 
-				<a href="#"> <PlusIcon/> <span className="d-none"> add </span></a>
+				<a href="#"> <PlusIcon/> <span className="d-none">add</span></a>
 				<ShareButton link_for_sharing={`${window.location.origin}/accommodation/${id}`} />
 			</div>
 		</div>
 	</a>
-)
-
-LoopAccommodationPost.propTypes = { }
+);
 
 export default LoopAccommodationPost;
