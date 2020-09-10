@@ -8,20 +8,21 @@ import "../../styles/slider/pictures-slider.scss";
 import "../../styles/buttons/button-link.scss";
 
 
-const SlideContent = ({ title, desc, link, link_label, top_link, top_link_label, top_link_svg }) => (
+const SlideContent = ({ field_slide_title, field_slide_content, field_slide_button_title, field_slide_button_link }) => (
 	<>
 		<div className="pictures-slider__slide_content container">
 
-			{ top_link && 
+			{/* TODO Top link must be moved to menu */}
+			{/*{ top_link &&
 				<a href={ top_link } target="_blank" className="pictures-slider__slide_top_link" rel={'noopener noreferrer'}>
 					<em> { top_link_svg } </em>
 					<span> { top_link_label } </span>
 				</a>
-			}
+			}*/}
 
-			{ title && <div className="pictures-slider__slide_title"> { title } </div> }
-			{ desc && <div className="pictures-slider__slide_desc"> { desc } </div> }
-			{ link && <div className="button-link green"> { link_label} </div> }
+			{field_slide_title && <div className="pictures-slider__slide_title">{field_slide_title}</div>}
+			{field_slide_content && <div className="pictures-slider__slide_desc">{field_slide_content}</div>}
+			{field_slide_button_title && <a className="button-link green" href={field_slide_button_link}>{field_slide_button_title}</a>}
 		</div>
 	</>
 )
@@ -68,12 +69,12 @@ export default class PicturesSlider extends Component{
 
 	autoPlay = () => {
 		this.setState({ auto_playing: true });
-		
+
 		this.timer = setInterval(() => {
 			const { slides } = this.props;
-			const active_slide = 
+			const active_slide =
 				this.state.active_slide === slides.length - 1
-				? 0 
+				? 0
 				: this.state.active_slide + 1;
 
 			this.setState({ active_slide })
@@ -84,12 +85,12 @@ export default class PicturesSlider extends Component{
 	stopAutoPlay = () => { this.setState({ auto_playing: false }); clearInterval( this.timer ) };
 
 
-	changeSlide = ( action ) => { 
+	changeSlide = ( action ) => {
 
 		const { active_slide } = this.state;
 		const { slides } = this.props;
 
-		const index = 
+		const index =
 			toString.call( action ) === "[object Number]"
 			? action
 			: action === "prev"
@@ -97,7 +98,7 @@ export default class PicturesSlider extends Component{
 				: active_slide === slides.length - 1 ? 0 : active_slide + 1
 
 		this.stopAutoPlay();
-		this.setState({ active_slide: index }) 
+		this.setState({ active_slide: index })
 	};
 
 
@@ -107,35 +108,35 @@ export default class PicturesSlider extends Component{
 		const { active_slide, auto_playing } = this.state;
 
 		return(
-			<div className="pictures-slider">
+			<div className="pictures-slider" style={this.props.style}>
 
 				{ (!slides || !slides.length) && <Loader /> }
 
 				{ slides && !!slides.length && slides.map(( item, index ) => (
 
-					item.link 
+					item.link
 					? (
-						<a 
-							key={ index } 
+						<a
+							key={ index }
 							href={ item.link }
 							target="_blank"
 							rel={'noopener noreferrer'}
-							className={`pictures-slider__slide thumbnail ${ active_slide === index ? "active" : ""}`} 
+							className={`pictures-slider__slide thumbnail ${ active_slide === index ? "active" : ""}`}
 							style={{ backgroundImage: `url(${ item.url })`}}
 						>
 							<SlideContent {...item} />
 						</a>
 					)
 					: (
-						<div 
-							key={ index } 
-							className={`pictures-slider__slide thumbnail ${ active_slide === index ? "active" : ""}`} 
-							style={{ backgroundImage: `url(${ item.url })`}}
+						<div
+							key={ index }
+							className={`pictures-slider__slide thumbnail ${ active_slide === index ? "active" : ""}`}
+							style={{ backgroundImage: `url(${ item.field_slide_image })`}}
 						>
 							<SlideContent {...item} />
 						</div>
 					)
-					
+
 				)) }
 
 
@@ -153,16 +154,16 @@ export default class PicturesSlider extends Component{
 					}
 				</div>
 
-				{ slides && slides.length > 1 && 
+				{ slides && slides.length > 1 &&
 					<div className="pictures-slider__controls">
 						<button onClick={() => this.changeSlide("prev")}>
 							<Angle direction="left" /> <span className="d-none"> arrow </span>
 						</button>
-						
+
 						<button onClick={() => auto_playing ? this.stopAutoPlay() : this.autoPlay()}>
 							{ auto_playing && <StopIcon /> }
 							{ !auto_playing && <PlayIcon /> }
-							<span className="d-none"> stop/start </span> 
+							<span className="d-none"> stop/start </span>
 						</button>
 
 						<button onClick={() => this.changeSlide("next")}>
