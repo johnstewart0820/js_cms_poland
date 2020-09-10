@@ -7,12 +7,11 @@ import LoopNewsPost from "../components/news/LoopNewsPost";
 import Breadcrumbs from '../components/general/Breadcrumbs';
 import TextLinkPic from "../components/general/TextLinkPic";
 import PicsTextLink from "../components/general/PicsTextLink";
-import PicturesSlider from "../components/slider/PicturesSlider";
 import LoopAccommodationPost from '../components/accommodation/LoopAccommodationPost';
 import LoopGastronomyPost from "../components/gastronomy/LoopGastronomyPost";
 import LinksTiles from "../components/general/LinksTiles";
-import { sample_slides as slides } from "../mock/slides_example";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
+import linkGenerator from "../extra/linkGenerator";
 
 export default function MainPage(props) {
     const acf = props.page.acf;
@@ -50,8 +49,9 @@ export default function MainPage(props) {
             <TwoCarouselsOneRow
                 first_carousel={{
                     loading: items1 === false,
-                    path_to_all: '#',
+                    path_to_all: linkGenerator(acf.field_information_modules_visit[0].field_section_watch_all_entity),
                     heading: acf.field_information_modules_visit[0].field_section_title_visit,
+                    // TODO select entity renderer based on entity type
                     component: LoopEventsPost,
                     items: items1 || [],
                 }}
@@ -59,6 +59,7 @@ export default function MainPage(props) {
                     loading: items2 === false,
                     path_to_all: '#',
                     heading: acf.field_information_modules_visit[1].field_section_title_visit,
+                    // TODO select entity renderer based on entity type
                     component: LoopNewsPost,
                     items: items2 || [],
                 }}
