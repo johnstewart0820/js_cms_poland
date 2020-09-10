@@ -2,14 +2,15 @@
 
 .main-header-section {
 	@include flex-wrap;
-	min-height: calc( 100vh - 90px );
+	//min-height: calc( 100vh - 90px );
+	min-height: 231px;
 
 	&.subpage{
-		min-height: calc( 740px - 90px );
+		//min-height: calc( 740px - 90px );
 	}
 
 	&.single{
-		min-height: 449px;
+		//min-height: 449px;
 	}
 
 

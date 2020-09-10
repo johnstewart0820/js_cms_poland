@@ -12,6 +12,7 @@ import LoopAccommodationPost from '../components/accommodation/LoopAccommodation
 import LoopGastronomyPost from "../components/gastronomy/LoopGastronomyPost";
 import LinksTiles from "../components/general/LinksTiles";
 import { sample_slides as slides } from "../mock/slides_example";
+import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 
 export default function MainPage(props) {
     const acf = props.page.acf;
@@ -42,8 +43,8 @@ export default function MainPage(props) {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl "}]}/>
-                <PicturesSlider slides={slides}/>
+                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl "}]} />
+                <PageHeaderOrSlider page={props.page} />
             </MainHeaderSection>
 
             <TwoCarouselsOneRow
