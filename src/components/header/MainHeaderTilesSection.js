@@ -9,16 +9,14 @@ const MainHeaderTilesSection = ({ tiles }) => (
 	? (
 		<div className="main-header-tiles-section">
 			<div className="main-header-tiles-section__left">
-
 				{ tiles && tiles[0] &&
 					<MainHeaderTile {...tiles[0] } />
 				}
-
 			</div>
 
 			<div className="main-header-tiles-section__right">
 
-				{ tiles && tiles.length >= 4 && 
+				{ tiles && tiles.length >= 4 &&
 					tiles.map(( item, index ) => (
 						index > 0
 						? <MainHeaderTile key={ index } {...item} />
