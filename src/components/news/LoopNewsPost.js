@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import "../../styles/news/loop-news-post.scss";
+import DefaultImage from "../../constants/DefaultImage";
 
 const LoopNewsPost = ({id, title, categories_labels, image, short, published_from}) => (
 	<Link to={`/news/${id}`} className="loop-news-post">
-		<div className="loop-news-post__thumbnail has-overlay thumbnail" style={{backgroundImage: `url("${image}")`}}>
+		<div className="loop-news-post__thumbnail has-overlay thumbnail" style={{backgroundImage: `url("${image || DefaultImage}")`}}>
 			<div className="loop-news-post__category">{categories_labels}</div>
 		</div>
 		

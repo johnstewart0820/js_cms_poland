@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/events/loop-event-post.scss";
 
 import EventDates from "./EventDates";
+import DefaultImage from "../../constants/DefaultImage";
 
 const fromTimeStampToDateObj = timestamp => ( new Date( timestamp * 1000 ));
 
@@ -17,7 +18,7 @@ export default function LoopEventsPost (props) {
 
 	return (
 		<Link to={`/events/${id}`} className="loop-event-post">
-			<div className="loop-event-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url("${image}")` }}>
+			<div className="loop-event-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url("${image || DefaultImage}")` }}>
 				{categories_labels && (
 					<div className="loop-event-post__category">  
 						{categories_labels}
