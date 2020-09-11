@@ -7,6 +7,6 @@ export default function linkGenerator(entity) {
 
         default:
             // use /posts/:id as fallback?
-            throw `Cannot generate link for post type [${entity.post_type}]`;
+            throw new Error(`Cannot generate link for post type [${entity.post_type}]`);
     }
 }
