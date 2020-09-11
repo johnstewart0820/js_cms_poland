@@ -14,11 +14,15 @@ export default function PageRenderer(props) {
         if (!pageId) {
             // no page id = home page
             setPageData(defaultContent);
+            console.info('PAGE DATA', defaultContent);
             return;
         }
 
         API.getPost(pageId)
-            .then(res => setPageData(res.data.content))
+            .then(res => {
+                setPageData(res.data.content);
+                console.info('PAGE DATA', res.data.content);
+            })
             .catch(e => {
                 setPageData(false);
                 console.log(e);
