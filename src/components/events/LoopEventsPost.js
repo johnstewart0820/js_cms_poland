@@ -9,7 +9,7 @@ import DefaultImage from "../../constants/DefaultImage";
 const fromTimeStampToDateObj = timestamp => ( new Date( timestamp * 1000 ));
 
 export default function LoopEventsPost (props) {
-	const {id, image, title, categories_labels, event_start_date, event_end_date} = props;
+	const {image, title, categories_labels, event_start_date, event_end_date} = props;
 
 	const event_dates = {
 		start_date: event_start_date ? fromTimeStampToDateObj( event_start_date ) : null,
@@ -17,7 +17,7 @@ export default function LoopEventsPost (props) {
 	};
 
 	return (
-		<Link to={`/events/${id}`} className="loop-event-post">
+		<Link to={`/${props.slug}`} className="loop-event-post">
 			<div className="loop-event-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url("${image || DefaultImage}")` }}>
 				{categories_labels && (
 					<div className="loop-event-post__category">  

@@ -46,8 +46,8 @@ const LoopGastronomyPostInfo = ({ phone, email, www }) => {
 	)
 }
 
-const LoopGastronomyPost = ({id, title, categories_labels, image, acf}) => (
-	<a href={`/gastronomy/${id}`} target="_blank" className="loop-gastronomy-post">
+const LoopGastronomyPost = ({slug, title, categories_labels, image, acf}) => (
+	<a href={`/${slug}`} target="_blank" className="loop-gastronomy-post">
 		<div className="loop-gastronomy-post__thumbnail has-overlay thumbnail" style={{backgroundImage: `url(${image})`}}>
 			<div className="loop-gastronomy-post__category">{categories_labels}</div>
 		</div>
@@ -72,7 +72,7 @@ const LoopGastronomyPost = ({id, title, categories_labels, image, acf}) => (
 				<ButtonLink extra_classes="green"> szybki kontakt  </ButtonLink>
 
 				<a href="#"> <PlusIcon/> <span className="d-none"> add </span></a>
-				<ShareButton link_for_sharing={`${window.location.origin}/gastronomy/${id}`} />
+				<ShareButton link_for_sharing={`${window.location.origin}/${slug}`} />
 			</div>
 		</div>
 	</a>

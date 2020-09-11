@@ -6,7 +6,7 @@ import Loader from "../components/general/Loader";
 import Layouts from "../constants/Layouts";
 
 export default function PageRenderer(props) {
-    const {pageId} = useParams();
+    const {pageId, slug} = useParams();
     const defaultContent = React.useContext(SiteInfoContext).site_info.default_content;
     const [pageData, setPageData] = React.useState(null);
 

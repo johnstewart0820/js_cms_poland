@@ -1,5 +1,6 @@
 import axios from "axios";
 import LocalStorage from "../constants/LocalStorage";
+import wrapInArray from "./wrapInArray";
 
 const API_URL = "https://api.ustron.s3.netcore.pl/";
 const API = axios.create({
@@ -31,8 +32,10 @@ API.getEvents = ({categories, ...rest}) => {
 API.getEvent = id => API.get('contents/events/' + id);
 
 API.getEntities = ({categories, ...rest}) => {
-    if (!Array.isArray(categories))
-        categories = [categories];
+    categories = wrapInArray(categories);
+
+    if (typeof categories[0] !== 'object')
+        throw new Error('Only full category objects are allowed in getEntities(), instead got ' + JSON.stringify(categories[0]));
 
     let isEvents = false;
     for (const category of categories) {
@@ -78,10 +81,8 @@ API.getEntities = ({categories, ...rest}) => {
  *
  * @param {Config|Config[]} config
  * @param {QueryArgs} args
- *
- * @returns QueryArgs
  */
-API.getByConfig = (config, args) => {
+API.getByConfig = (config, args = {}) => {
     if ((Array.isArray(config) && config.length > 1) || typeof config !== 'object') {
         console.error(config);
         throw new Error('Cannot generate query params for config above');

@@ -16,6 +16,7 @@ const Routing = () => (
     <Switch>
 		<Route exact path={'/'} component={PageRenderer}/>
 		<Route exact path={'/page/:pageId'} component={PageRenderer}/>
+        <Route exact path={'/:slug'} component={PageRenderer}/>
         {ROUTERS[SITE]}
     </Switch>
 );
