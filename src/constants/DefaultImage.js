@@ -1,1 +1,1 @@
-export default '/img/slides/tourism-main.jpg';
+export default '/img/loop/1.jpg';
