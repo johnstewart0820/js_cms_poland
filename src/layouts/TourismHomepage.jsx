@@ -57,7 +57,7 @@ export default function MainPage(props) {
                 }}
                 second_carousel={{
                     loading: items2 === false,
-                    path_to_all: '#',
+                    path_to_all: linkGenerator(acf.field_information_modules_visit[1].field_section_watch_all_entity),
                     heading: acf.field_information_modules_visit[1].field_section_title_visit,
                     // TODO select entity renderer based on entity type
                     component: LoopNewsPost,
