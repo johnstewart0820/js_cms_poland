@@ -12,6 +12,7 @@ import Pagination from "../components/loop/Pagination";
 import {sample_slides as slides} from "../mock/slides_example";
 import PageHeaderSection from "../components/header/PageHeaderSection";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
+import Select from "../components/form/Select";
 
 const sort_options = [
     {value: 1, label: "Najbliższe aktualności"},
@@ -22,33 +23,45 @@ export default function TourismNews(props) {
     const acf = props.page.acf;
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
+    const [filterArgs, setFilterArgs] = React.useState({page: 0});
 
     const fetchData = args => {
-        API.getPosts({
-            categories: acf.field_events_category.map(category => category.id),
-            ...args,
-        }).then(response => setData(response.data));
+        setData(null);
+        API.getByConfig(acf.field_information_module_news, args).then(response => setData(response.data));
     };
 
+    // fetch posts when filterArgs change
     React.useEffect(() => {
-        fetchData({page: 0});
-    }, []);
+        fetchData(filterArgs);
+    }, [filterArgs]);
 
     const onFilterSubmit = args => {
+        if (args.categories)
+            args.categories = acf.field_news_filtering_categories.find(category => String(category.id) === String(args.categories));
+        setFilterArgs({...filterArgs, ...args});
         window.scrollTo({top: container.current.getBoundingClientRect().top + window.scrollY});
     };
 
-    const onPageChange = page => fetchData({page});
+    const onPageChange = page => setFilterArgs({...filterArgs, page});
 
     return (
         <>
             <MainHeaderSection>
-                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {label: props.page.title}]} />
-                <PageHeaderOrSlider page={props.page} />
+                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {label: props.page.title}]}/>
+                <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
             <LoopSearchForm
                 type="news"
+                inputs={{
+                    label: 'Kategoria',
+                    name: 'categories',
+                    options: acf.field_news_filtering_categories.map(category => ({
+                        value: category.id,
+                        label: category.name,
+                    })),
+                    Component: Select,
+                }}
                 heading="Filtr Kategorii"
                 submitCallback={onFilterSubmit}
             />
@@ -59,7 +72,7 @@ export default function TourismNews(props) {
                 heading="WSZYSTKIE AKTUALNOŚCI"
                 sort_options={sort_options}
             >
-                {!data && <Loader style={{width: "100%"}} />}
+                {!data && <Loader style={{width: "100%"}}/>}
 
                 {!!data && (
                     <>

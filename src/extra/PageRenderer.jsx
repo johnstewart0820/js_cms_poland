@@ -6,7 +6,7 @@ import Loader from "../components/general/Loader";
 import Layouts from "../constants/Layouts";
 
 export default function PageRenderer(props) {
-    const {pageId} = useParams();
+    const {pageId, slug} = useParams();
     const defaultContent = React.useContext(SiteInfoContext).site_info.default_content;
     const [pageData, setPageData] = React.useState(null);
 
@@ -14,11 +14,15 @@ export default function PageRenderer(props) {
         if (!pageId) {
             // no page id = home page
             setPageData(defaultContent);
+            console.info('PAGE DATA', defaultContent);
             return;
         }
 
         API.getPost(pageId)
-            .then(res => setPageData(res.data.content))
+            .then(res => {
+                setPageData(res.data.content);
+                console.info('PAGE DATA', res.data.content);
+            })
             .catch(e => {
                 setPageData(false);
                 console.log(e);
