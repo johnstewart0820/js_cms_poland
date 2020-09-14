@@ -11,14 +11,14 @@ export default function PageRenderer(props) {
     const [pageData, setPageData] = React.useState(null);
 
     React.useEffect(() => {
-        if (!pageId) {
-            // no page id = home page
+        if (!pageId && !slug) {
+            // no page id/slug = home page
             setPageData(defaultContent);
             console.info('PAGE DATA', defaultContent);
             return;
         }
 
-        API.getPost(pageId)
+        API.getPost(pageId || slug)
             .then(res => {
                 setPageData(res.data.content);
                 console.info('PAGE DATA', res.data.content);
@@ -27,7 +27,7 @@ export default function PageRenderer(props) {
                 setPageData(false);
                 console.log(e);
             });
-    }, [pageId, defaultContent?.id]);
+    }, [pageId, slug, defaultContent?.id]);
 
     // null while loading
     if (pageData === null)
