@@ -55,18 +55,20 @@ const LoopAccommodationPost = ({ id, title, categories_labels, image, acf}) => (
 		<div className="loop-accommodation-post__content">
 			<div className="loop-accommodation-post__title heading">{title}</div>
 
-			{acf.field_map_address && (
+			{acf !== undefined && acf.field_map_address && (
 				<div className="loop-accommodation-post__address">
 					<span>ADRES</span>
 					{acf.field_map_address}
 				</div>
 			)}
 
-			<LoopAccommodationPostInfo
-				phone={acf.field_contact_phone}
-				email={acf.field_contact_email}
-				www={acf.field_contact_www}
-			/>
+            {acf !== undefined && (
+                <LoopAccommodationPostInfo
+                    phone={acf.field_contact_phone}
+                    email={acf.field_contact_email}
+                    www={acf.field_contact_www}
+                />
+            )}
 
 			<div className="loop-accommodation-post__bottom">
 				<ButtonLink extra_classes="green">szybki kontakt</ButtonLink>
