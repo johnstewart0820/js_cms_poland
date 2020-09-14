@@ -21,7 +21,11 @@
 			margin-bottom: 30px;
 		}
 	}
+	&.main-tiles{
+		min-height: calc( 850px - 90px );
+	}
 }
+
 
 .main-header-section__main{
 	width: calc(100% - 88px);

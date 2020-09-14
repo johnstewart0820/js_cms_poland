@@ -32,7 +32,7 @@ export default class MainHeaderTile extends Component{
 
 	render(){
 
-		const { main_href, title, svg, items, bg, extra_class } = this.props;
+		const { main_href, title, svg, items, bg, extra_class, svgSrc } = this.props;
 		const { show_links } = this.state;
 
 		return(
@@ -51,13 +51,12 @@ export default class MainHeaderTile extends Component{
 					<div className="heading"> { title } </div>
 					<span/>
 				</div>
-
 				{ items && !!items.length &&
 					<div className="main-header-tiles-section__tile_links">
 					{ items.map(({ svg, title, href }, index) => (
-						
+
 						<a href={ href } target="_blank" rel={'noopener noreferrer'} key={ index } >
-							{ svg }
+							{ <img alt='' src={svg}/> }
 							<div> { title } </div>
 							<span/>
 						</a>
