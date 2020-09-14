@@ -5,9 +5,11 @@ import axios from '../../../extra/axios';
 import {useHistory} from 'react-router-dom';
 import User from "../../../extra/User";
 import UserContext from "../../../constants/UserContext";
+import PlanerContext from "../../../constants/PlanerContext";
 
 const LoginPage = () => {
     const history = useHistory();
+    const planerContext = React.useContext(PlanerContext);
     const [errors, setErrors] = React.useState([]);
     const [state, setState] = React.useState({
         login: '',
@@ -15,6 +17,10 @@ const LoginPage = () => {
     });
     const user = React.useContext(UserContext);
     let token = '';
+
+    React.useEffect(() => {
+        planerContext.setVisible(false);
+    },[]);
 
     const handleChange = e => {
         const value = e.target.value;

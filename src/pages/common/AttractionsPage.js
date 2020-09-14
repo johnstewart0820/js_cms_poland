@@ -44,10 +44,6 @@ const AttractionPage = () => {
 
             </MainHeaderSection>
 
-            <PlanerButton
-                to={TourismRoutes.PlanerListPage}
-            />
-
             <LoopSearchForm
                 type="what-to-visit"
                 heading="FILTR KATEGORII"

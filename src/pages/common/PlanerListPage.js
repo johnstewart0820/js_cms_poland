@@ -17,6 +17,10 @@ const PlanerListPage = () => {
         return duration;
     }, [planerContext.data.length]);
 
+    React.useEffect(() => {
+        planerContext.setVisible(false);
+    },[]);
+
     // const totalRoute = React.useMemo(() => {
     //     let route = [];
     //     planerContext.data.forEach(event => {

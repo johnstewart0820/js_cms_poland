@@ -7,6 +7,8 @@ const PlanerContext = React.createContext([]);
 export const PlanerContextProvider = props => {
     const [ids, setIds] = React.useState([]);
     const [data, setData] = React.useState([]);
+    const [visible, setVisible] = React.useState(true);
+
 
     React.useEffect(() => {
         let promises = [];
@@ -32,6 +34,8 @@ export const PlanerContextProvider = props => {
             data,
             add: id => setIds([...ids, id]),
             delete: id => setIds(ids.filter(event => event.id != id)),
+            visible,
+            setVisible,
         }}>
             {props.children}
         </PlanerContext.Provider>

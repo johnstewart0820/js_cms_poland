@@ -6,25 +6,28 @@ import PlanerContext from "../../constants/PlanerContext";
 const PlanerButton = ({to}) => {
     const planerContext = React.useContext(PlanerContext);
     let planerEventsCount = planerContext.ids.length;
+
     return (
-        <div className='planer-button-container'>
-            <div className='wrapper-three'>
-                <div className='wrapper-two'>
-                    <div className='wrapper-one'>
-                        <NavLink to={to || ''} className='planer-button'>
-                            <p>
-                                PLANER
-                            </p>
-                            <div className='planer-button-inner'>
+        planerContext.visible && planerEventsCount > 0 && (
+            <div className='planer-button-container'>
+                <div className='wrapper-three'>
+                    <div className='wrapper-two'>
+                        <div className='wrapper-one'>
+                            <NavLink to={to || ''} className='planer-button'>
                                 <p>
-                                    +{planerEventsCount || ''}
+                                    PLANER
                                 </p>
-                            </div>
-                        </NavLink>
+                                <div className='planer-button-inner'>
+                                    <p>
+                                        +{planerEventsCount || ''}
+                                    </p>
+                                </div>
+                            </NavLink>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        )
     )
 }
 
