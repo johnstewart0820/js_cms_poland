@@ -13,6 +13,8 @@ import "./styles/main/main.scss";
 import "./styles/main/ci.scss";
 import "./styles/main/contrast.scss";
 import {PlanerContextProvider} from "./constants/PlanerContext";
+import TourismRoutes from "./constants/TourismRoutes";
+import PlanerButton from "./components/buttons/PlanerButton";
 
 const App = () => (
 	<Router basename={ router_basename }>
@@ -22,6 +24,9 @@ const App = () => (
 				<PlanerContextProvider>
 					<Header />
 					<Sidebar />
+                    <PlanerButton
+                        to={TourismRoutes.PlanerListPage}
+                    />
 					<main>
 						<Routing />
 					</main>
