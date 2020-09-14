@@ -41,7 +41,7 @@ export default function PageRenderer(props) {
     const Layout = Layouts[layoutValue];
 
     if (!Layout) {
-        console.warn(`Could not render layout [${layoutValue}]`);
+        console.error(`Could not render layout [${layoutValue}]`);
         return null;
     }
 
