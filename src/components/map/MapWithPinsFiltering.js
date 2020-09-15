@@ -24,6 +24,8 @@ export default function MapWithPinsFiltering ( props ) {
 
 		const { map_id } = props;
 		if ( !map_id ) return;
+
+		setLoading( true );
 	
 		API.get(`maps/${ map_id }`)
 		.then( res => {
@@ -68,7 +70,7 @@ export default function MapWithPinsFiltering ( props ) {
 				: null;
 	}
 
-	
+
 	return (
 			<div className={`map-with-pins-filtering ${ props.extra_classes || "" }`}>
 
