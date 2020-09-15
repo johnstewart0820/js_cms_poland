@@ -20,7 +20,7 @@ export default function MapWithPinsFiltering ( props ) {
 
 	const [ info, setInfo] = useState( {} );
 
-	useState(() => {
+	useEffect(() => {
 
 		const { map_id } = props;
 		if ( !map_id ) return;
@@ -41,10 +41,10 @@ export default function MapWithPinsFiltering ( props ) {
 		})
 		.catch( err => { });
 
-	}, [ ]);
+	}, [ props.map_id ]);
 
 
-	useState(() => setMarkers( getMarkers()), [ filter_by ]);
+	useEffect(() => setMarkers( getMarkers()), [ filter_by ]);
 
 
 	function getFilters ( categories ) {
@@ -68,7 +68,7 @@ export default function MapWithPinsFiltering ( props ) {
 				: null;
 	}
 
-
+	
 	return (
 			<div className={`map-with-pins-filtering ${ props.extra_classes || "" }`}>
 
@@ -116,7 +116,7 @@ export default function MapWithPinsFiltering ( props ) {
 
 				</div>
 
-			{ !loading && markers && !!markers.length && <GoogleMap markers={ markers }/> }
+			{ !loading && markers && <GoogleMap markers={ markers }/> }
 		</div>
 	)
 }
