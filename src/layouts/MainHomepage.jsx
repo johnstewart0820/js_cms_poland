@@ -15,13 +15,18 @@ import LoopEventsPost from "../components/events/LoopEventsPost";
 import LoopNewsPost from "../components/news/LoopNewsPost";
 
 const MainHomepage = props => {
+
 	const acf = props.page.acf;
 	const [loading, setLoading] = React.useState(false);
 	const [tiles , setTiles] = React.useState([]);
 	const [posts, setPosts] = React.useState(false);
 	const [posts1, setPosts1] = React.useState(false);
+	const [map_id, setMapId] = React.useState(false);
+
 	const solidBlueLink = acf.field_homepage_block_solid_blue[0].field_solid_blue_block_link;
 	const solidBlueTitle = acf.field_homepage_block_solid_blue[0].field_solid_blue_block_text;
+
+	React.useEffect(() => setMapId( acf?.field_homepage_block_map ), [] );
 
 	React.useEffect(() => {
 		const blue = acf.field_homepage_block_blue[0],
@@ -103,9 +108,10 @@ const MainHomepage = props => {
 							items: posts1 || [],
 						}}
 					/>
-					<MapWithPinsFiltering/>
 				</>
 			}
+
+			{ map_id && <MapWithPinsFiltering map_id={ map_id } /> }
 		</>
 	)
 }

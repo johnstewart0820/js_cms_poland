@@ -6,6 +6,7 @@ import {SITE} from "../extra/site_settings.js";
 import MainRouters from "./MainRouters";
 import TourismRouters from "./TourismRouters";
 import PageRenderer from "../extra/PageRenderer";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const ROUTERS = {
     "MAIN": <MainRouters/>,
@@ -17,6 +18,7 @@ const Routing = () => (
 		<Route exact path={'/'} component={PageRenderer}/>
 		<Route exact path={'/page/:pageId'} component={PageRenderer}/>
         <Route exact path={'/:slug'} component={PageRenderer}/>
+        <Route component={NotFoundPage}/>
         {ROUTERS[SITE]}
     </Switch>
 );
