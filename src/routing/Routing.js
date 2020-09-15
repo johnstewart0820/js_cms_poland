@@ -15,10 +15,10 @@ const ROUTERS = {
 
 const Routing = () => (
     <Switch>
+        <Route exact path={'/error'} component={NotFoundPage}/>
 		<Route exact path={'/'} component={PageRenderer}/>
 		<Route exact path={'/page/:pageId'} component={PageRenderer}/>
         <Route exact path={'/:slug'} component={PageRenderer}/>
-        <Route component={NotFoundPage}/>
         {ROUTERS[SITE]}
     </Switch>
 );

@@ -1,0 +1,30 @@
+
+.page-header-section__main {
+    padding: 0;
+    .background-error {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background-image:
+                linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.81)),
+                url('../img/forest-image.png');
+        height: 100%;
+        min-height: 800px;
+        padding: 100px;
+        .page-title {
+            line-height: 0;
+            p {
+                line-height: normal;
+                width: 650px;
+                white-space: normal;
+                word-break: break-all;
+            }
+            button {
+                font-size: 13px;
+                font-weight: normal;
+                width: 100%;
+                max-width: 370px;
+            }
+        }
+    }
+}
