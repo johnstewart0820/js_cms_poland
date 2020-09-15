@@ -4,13 +4,9 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import LoopNewsPost from "../components/news/LoopNewsPost";
 import Breadcrumbs from '../components/general/Breadcrumbs';
 import Loader from "../components/general/Loader";
-import PicturesSlider from "../components/slider/PicturesSlider";
 import LoopSearchForm from "../components/loop/LoopSearchForm";
 import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContainer";
 import Pagination from "../components/loop/Pagination";
-
-import {sample_slides as slides} from "../mock/slides_example";
-import PageHeaderSection from "../components/header/PageHeaderSection";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import Select from "../components/form/Select";
 
