@@ -4,7 +4,8 @@ import Parser from "html-react-parser";
 
 import ButtonLink from "../buttons/ButtonLink";
 import "../../styles/map/map-popup-info.scss";
-import { PhoneIcon, EmailIcon, WWWIcon, PlusIcon } from "../../svg/icons";
+import { PhoneIcon, EmailIcon, WWWIcon } from "../../svg/icons";
+import { getArticleLink } from "../../extra/functions";
 
 const MapPopupInfo = props => {
 
@@ -85,7 +86,7 @@ const MapPopupInfo = props => {
 						}
 
 						{ ( article?.slug && article?.id ) && 
-							<a href={`/${article.slug },${ article.id }`} className="button-link green" target="_blank" > WIĘCEJ </a>
+							<a href={ getArticleLink( article )} className="button-link green" target="_blank" > WIĘCEJ </a>
 						} 
 						
 					</div>
