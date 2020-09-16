@@ -141,7 +141,6 @@ export default class Carousel extends Component{
 					</div>
 
 					<div className="carousel__body" style={ bodyStyles }>
-
 						{ items && items.length >= this.min_slides && 
 							<Arrows onClick={ this.moveItems } /> 
 						}

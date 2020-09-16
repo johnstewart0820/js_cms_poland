@@ -140,7 +140,7 @@ const EventsPage = () => {
 
     const getEvents = () => {
         API.get(`contents/events?limit=5`)
-        .then( res => setEvents(res.data.events))
+        .then( res => setEvents(res.data.contents))
         .catch( err => console.log(err));
     }
 

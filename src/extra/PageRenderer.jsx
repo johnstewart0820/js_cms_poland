@@ -20,6 +20,7 @@ export default function PageRenderer(props) {
 
         API.getPost(pageId || slug)
             .then(res => {
+                console.log(slug)
                 setPageData(res.data.content);
                 console.info('PAGE DATA', res.data.content);
             })

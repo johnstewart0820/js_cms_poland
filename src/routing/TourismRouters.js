@@ -61,7 +61,7 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
 		<Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
 		<Route exact path={TourismRoutes.Events} component={EventsPage}/>
-		<Route exact path={TourismRoutes.AttractionPage} component={AttractionsPage}/>
+		<Route exact path={TourismRoutes.AttractionsPage} component={AttractionsPage}/>
 		<Route exact path={TourismRoutes.DiscountCardsPage} component={DiscountCardsPage}/>
 		<Route exact path={TourismRoutes.PlanerListPage} component={PlanerListPage}/>
 	</>

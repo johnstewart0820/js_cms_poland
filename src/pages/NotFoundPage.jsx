@@ -5,7 +5,7 @@ import '../styles/notFoundPage.scss';
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import TourismRoutes from "../constants/TourismRoutes";
 
-export default function NotFoundPage(props) {
+export default function NotFoundPage() {
     return (
         <MainHeaderSection>
             <Breadcrumbs breadcrumbs={[{ label: "404" }]}/>

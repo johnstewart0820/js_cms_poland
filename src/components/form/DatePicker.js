@@ -38,7 +38,7 @@ export const DatePicker = ({name, value, label, onChange}) => {
     };
 
     return(
-        <div ref={ref}>
+        <div className='date-picker-container' ref={ref}>
             <InputComponent
                 extraClasses={'date-picker'}
                 fieldName={label}

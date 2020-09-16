@@ -9,6 +9,7 @@ const dayButton = ({disabled, active, containerStyles, monthName, dayName, date,
             onClick={onClick}
             style={containerStyles}
         >
+            {console.log(dayName)}
             <h3>{monthName}</h3>
             <h1>{date}</h1>
             <hr/>
