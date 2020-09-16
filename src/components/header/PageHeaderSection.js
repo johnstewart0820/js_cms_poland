@@ -10,7 +10,7 @@ const PageHeaderSection = ({ extra_classes, thumbnail, children }) => (
 		</div>	
 
 		{ thumbnail && 
-			<div className="page-header-section__thumbnail thumbnail" style={{ backgroundImage: `url(${ thumbnail })` }} />
+			<div className="page-header-section__thumbnail thumbnail" style={{ backgroundImage: `url("${ thumbnail }")` }} />
 		}
 	</div>
 )

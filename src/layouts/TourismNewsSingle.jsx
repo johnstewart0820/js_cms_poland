@@ -9,30 +9,45 @@ import NewsSingleHead from "../components/news/NewsSingleHead";
 import LoopNewsPost from "../components/news/LoopNewsPost";
 import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
+import {API} from "../extra/API";
 
 export default function NewsSinglePage(props) {
     const acf = props.page.acf;
+    const [news, setNews] = React.useState(null);
+
+    React.useEffect(() => {
+        API.getEntities({categories: props.page.categories})
+            .then(res => setNews(res.data.contents))
+            .catch(e => {
+                console.error(e);
+                setNews(false);
+            });
+    }, []);
 
     return (
         <>
             <MainHeaderSection extra_classes="single">
                 <Breadcrumbs breadcrumbs={[]}/>
-                <NewsSingleHead/>
+                <NewsSingleHead {...props.page}/>
             </MainHeaderSection>
 
-            {/*{!loading && content && (
-                <>
-                    <SingleContainer title={title}>
-                        <div> {Parser(content)} </div>
+            {props.page.body && (
+                <SingleContainer title={props.page.title}>
+                    <div> {Parser(props.page.body)} </div>
+                    <SingleContentBottom/>
+                </SingleContainer>
+            )}
 
-                        <SingleContentBottom/>
-                    </SingleContainer>
+            {!!props.page.gallery?.length && <Gallery items={props.page.gallery}/>}
 
-                    {gallery && !!gallery.length && <Gallery items={gallery}/>}
-                </>
-            )}*/}
-
-            <OneCarouseInRow/>
+            {news !== false && (
+                <OneCarouseInRow carousel={{
+                    loading: news === null,
+                    heading: 'Ostatnie aktualności',
+                    ItemComponent: LoopNewsPost,
+                    items: news || [],
+                }} />
+            )}
         </>
-    )
+    );
 };

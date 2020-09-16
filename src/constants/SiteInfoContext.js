@@ -11,6 +11,7 @@ import moment from 'moment';
 import 'moment/locale/pl';
 import 'moment/locale/cs';
 import 'moment/locale/de';
+import {getArticleLink} from "../extra/functions";
 
 const SiteInfoContext = React.createContext(null);
 const SiteInfoContextConsumer = SiteInfoContext.Consumer;
@@ -68,7 +69,7 @@ class SiteInfoContextProvider extends Component{
 			const footer_links = widgets?.["footer-links"]?.elements?.[0]?.content;
 
 			const header_menu = header_menu_structure.map(({ item }) => (
-				{label: item.name, path: item.article?.slug || item.url || "#"}
+				{label: item.name, path: (item.article ? getArticleLink(item.article) : item.url) || "#"}
 			));
 
 			this.setState({ 	
