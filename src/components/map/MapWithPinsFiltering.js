@@ -8,7 +8,9 @@ import MapPopupInfo from "./MapPopupInfo";
 
 import Loader from "../general/Loader";
 import "../../styles/map/map-with-pins-filtering.scss";
+import { isFunction } from '../../extra/functions';
 
+let all_categories = [];
 let all_markers = [];
 
 export default function MapWithPinsFiltering ( props ) {
@@ -21,39 +23,50 @@ export default function MapWithPinsFiltering ( props ) {
 	const [ filters, setFilters ] = useState( [] );
 	const [ info, setInfo ] = useState( {} );
 
-	const markers = useMemo (() => (
-		all_markers && !!all_markers.length
-			? all_markers.filter( item => ( item.category === filter_by || filter_by === "*" ))
+	const markers = useMemo (() => {
+		return all_markers && !!all_markers.length && filter_by
+			? all_markers.filter( item => (( item.category === filter_by || filter_by === "*" ) && ( item.lat && item.lng )))
 				.map(({ id, lat, lng, category, map_image }) => (
-					{ id, lat, lng, category, icon: { url: map_image, width: 46, height: 57 }}
+					{ id, lat, lng, category, icon: { url: map_image || getIconFromCategory( category ), width: 60 }}
 				))	
-			: null
-	), [ filter_by ]);
+			: []
+
+	}, [ filter_by ]);
+		
+
+	const getIconFromCategory = cat => ( all_categories.filter( item => ( item.id === cat ))?.[0]?.map_image );
 
 
 	useEffect(() => {
 
-		const { map_id } = props;
-		if ( !map_id ) return;
+		function getMapById () {
+			const { map_id } = props;
+			if ( !map_id ) return;
 
-		setLoading( true );
-	
-		API.get(`maps/${ map_id }`)
-		.then( res => {
+			setLoading( true );
 			
-			const { map } = res.data;
-			const { name, points, categories } = map;
-	
-			all_markers = [...points ];
+			API.get(`maps/${ map_id }`)
+			.then( res => {
+				
+				const { map } = res.data;
+				const { name, points, categories } = map;
 
-			setFilters( getFilters( Object.values( categories )));
-			setFilterBy("*");
-			setInfo({ heading: name });
-			setLoading( false );
-	
-		})
-		.catch( err => { });
+				const categories_arr = Object.values( categories ); 
+				
+				all_categories = [...categories_arr ];
+				all_markers = [...points] ;
 
+				setFilters( getFilters( categories_arr ));
+				setFilterBy("*");
+				setInfo({ heading: name });
+				setLoading( false );
+		
+			})
+			.catch( err => { });
+		}
+	
+		getMapById();
+		
 	}, [ props.map_id ]);
 
 
@@ -94,7 +107,7 @@ export default function MapWithPinsFiltering ( props ) {
 		setView("");
 
 		setTimeout(() => {
-			func();
+			if ( isFunction( func )) func();
 			setLoading( false );
 		}, 250)
 	}
@@ -109,7 +122,7 @@ export default function MapWithPinsFiltering ( props ) {
 		setFilterBy
 	}
 
-	// console.log( markers );
+	// console.log( loading, view, info, markers, filter_by, filters );
 
 	return (
 		<div className={`map-with-pins-filtering ${ props.extra_classes || "" }`}>

@@ -84,8 +84,8 @@ const MapPopupInfo = props => {
 							</>
 						}
 
-						{ article?.slug && 
-							<a href={ article.slug } className="button-link green" target="_blank" > WIĘCEJ </a>
+						{ ( article?.slug && article?.id ) && 
+							<a href={`/${article.slug },${ article.id }`} className="button-link green" target="_blank" > WIĘCEJ </a>
 						} 
 						
 					</div>

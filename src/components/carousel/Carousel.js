@@ -29,11 +29,25 @@ export default class Carousel extends Component{
 		wrap_left: 0,
 		transition: true,
 	}
+
+
+
+	componentDidUpdate ( prev_props ) {
+		if ( prev_props.items !== this.props.items ) {
+			this.setState({
+				loading: true,
+				items: this.props.items,
+				posts_length: 0,
+				wrap_left: 0,
+				transition: true,
+			})
+		}
+	}
 	
 
 	moveItems = action => {
 
-		if( this.movement || this.state.items.length < this.min_slides ) return;
+		if ( this.movement || this.state.items.length < this.min_slides ) return;
 		this.movement = true;
 		
 		const item = this.carousel_wrap.children[0]

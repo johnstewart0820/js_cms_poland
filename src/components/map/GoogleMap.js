@@ -75,11 +75,14 @@ const GoogleMap = props => {
 			{ markers && !!markers.length &&
 				markers.map(({ id, lat, lng, name, icon }, index) => {
 
+					if ( !lat || !lng ) return null;
+
 					const prop_icon = 
 						icon && icon.url && icon.width
 							? {
 								url: icon.url,
 								anchor: new window.google.maps.Point( icon.width, icon.height || icon.width ),
+								scaledSize:  new props.google.maps.Size( icon.width, icon.height || icon.width )
 							}
 							: null;
 

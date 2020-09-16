@@ -51,7 +51,7 @@ MapFilters.propTypes = {
 	info: PropTypes.object,
 	link_to_all: PropTypes.string,
 	filters: PropTypes.array.isRequired, 
-	filter_by: PropTypes.string.isRequired, 
+	filter_by: PropTypes.string, 
 	setFilterBy: PropTypes.func
 }
 
