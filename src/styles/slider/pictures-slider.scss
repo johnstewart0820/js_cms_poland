@@ -73,7 +73,7 @@
 
 .pictures-slider__slide_content{
 	color: #fff;
-	padding-top: 7%;
+	padding-top: 7% !important;
 
 	.button-link{
 		height: 62px;
@@ -86,11 +86,13 @@
 	font-size: 3.42em;
 	line-height: 1.1;
 	margin-bottom: 60px;
+    text-shadow: black 1px 1px 10px;
 }
 
 .pictures-slider__slide_desc{
 	margin-bottom: 24px;
 	max-width: 500px;
+    text-shadow: black 2px 2px 2px;
 }
 
 .pictures-slider__controls{
