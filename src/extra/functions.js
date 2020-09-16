@@ -1,14 +1,14 @@
-const addZeroIfNeeded = num => ( num < 10 ? `0${+num}` :  num );
+export const addZeroIfNeeded = num => ( num < 10 ? `0${+num}` :  num );
 
-const removeHtmlTags = content => {
+export const removeHtmlTags = content => {
 	content = content.replace(/<[^<>]+>/g, ' ');
 	content = content.replace(/\s\s+/, ' ');
 	return content;
-};
+}; 
 
-const isMobile = () => ( window.navigator.userAgent.toLowerCase().includes("mobi") );
+export const isMobile = () => ( window.navigator.userAgent.toLowerCase().includes("mobi") );
 
-const getMobileDeviceOS = () => {
+export const getMobileDeviceOS = () => {
 	const user_agent =  window.navigator.userAgent.toLowerCase();
 	return user_agent.includes("mac os") 
 		? "ios"
@@ -17,12 +17,6 @@ const getMobileDeviceOS = () => {
 				: undefined;
 };
 
-const isFunction = func => ( toString.call(func) === "[object Function]" )
+export const isFunction = func => ( toString.call(func) === "[object Function]" )
 
-export {
-	addZeroIfNeeded,
-	removeHtmlTags,
-	isMobile,
-	getMobileDeviceOS,
-	isFunction
-}
+export const getArticleLink = article => '/' + article.slug + ',' + article.id;

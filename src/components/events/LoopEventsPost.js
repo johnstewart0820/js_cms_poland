@@ -5,6 +5,7 @@ import "../../styles/events/loop-event-post.scss";
 
 import EventDates from "./EventDates";
 import DefaultImage from "../../constants/DefaultImage";
+import {getArticleLink} from "../../extra/functions";
 
 const fromTimeStampToDateObj = timestamp => ( new Date( timestamp * 1000 ));
 
@@ -17,7 +18,7 @@ export default function LoopEventsPost (props) {
 	};
 
 	return (
-		<Link to={`/${props.slug}`} className="loop-event-post">
+		<Link to={getArticleLink(props)} className="loop-event-post">
 			<div className="loop-event-post__thumbnail has-overlay thumbnail" style={{ backgroundImage: `url("${image || DefaultImage}")` }}>
 				{categories_labels && (
 					<div className="loop-event-post__category">  

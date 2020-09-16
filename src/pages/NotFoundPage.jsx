@@ -4,6 +4,7 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import '../styles/notFoundPage.scss';
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import TourismRoutes from "../constants/TourismRoutes";
+import {Link} from "react-router-dom";
 
 export default function NotFoundPage() {
     return (
@@ -16,12 +17,12 @@ export default function NotFoundPage() {
                         <p>
                             Strona o podanym adresie nie została znaleziona
                         </p>
-                        <button
+                        <Link
                             className="button-link green full-width"
-                            onClick={TourismRoutes.Main}
+                            to={TourismRoutes.Main}
                         >
                             wróc na glowną
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </PageHeaderSection>
