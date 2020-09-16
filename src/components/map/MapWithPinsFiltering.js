@@ -49,7 +49,7 @@ export default function MapWithPinsFiltering ( props ) {
 			.then( res => {
 				
 				const { map } = res.data;
-				const { name, points, categories } = map;
+				const { name, description, points, categories } = map;
 
 				const categories_arr = Object.values( categories ); 
 				
@@ -58,7 +58,7 @@ export default function MapWithPinsFiltering ( props ) {
 
 				setFilters( getFilters( categories_arr ));
 				setFilterBy("*");
-				setInfo({ heading: name });
+				setInfo({ heading: name, description });
 				setLoading( false );
 		
 			})

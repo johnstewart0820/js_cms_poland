@@ -12,7 +12,7 @@ const MapFilters = ({ loading, info, link_to_all, filters, filter_by, setFilterB
 			<>
 				<div className="map-with-pins-filtering-info__main">
 					<div className="heading"> { info?.heading } </div>
-					<div className="map-with-pins-filtering-info__text"> { info?.text } </div>
+					<div className="map-with-pins-filtering-info__text"> { info?.description } </div>
 
 					{ link_to_all && <LinkToAll path={ link_to_all } label="Dowiedz się więcej"/> }
 				</div>
