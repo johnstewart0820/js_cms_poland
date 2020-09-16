@@ -26,3 +26,5 @@ export {
 	getMobileDeviceOS,
 	isFunction
 }
+
+export const getArticleLink = article => '/' + article.slug + ',' + article.id;
