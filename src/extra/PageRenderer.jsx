@@ -5,6 +5,7 @@ import {API} from "./API";
 import Loader from "../components/general/Loader";
 import Layouts from "../constants/Layouts";
 import NotFoundPage from "../pages/NotFoundPage";
+import {SITE} from "./site_settings";
 
 export default function PageRenderer(props) {
     const {pageId, slug} = useParams();
@@ -38,7 +39,11 @@ export default function PageRenderer(props) {
     if (!pageData)
         return <NotFoundPage/>;
 
-    const layoutValue = pageData.acf['field_layout'];
+    let layoutValue;
+    if (pageData.post_type === 'news')
+        layoutValue = SITE.toLowerCase() + '_news_single';
+    else
+        layoutValue = pageData.acf['field_layout'];
     const Layout = Layouts[layoutValue];
 
     if (!Layout) {
