@@ -1,102 +1,108 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { google_key } from "../../extra/API";
+import { isFunction } from "../../extra/functions";
 import map_style from "../../extra/map_style.json";
 
-export class GoogleMap extends Component{
 
-	state = {
-		bounds: null,
-		center: null
-	}
+const GoogleMap = props => {
+	
+	const { markers, onMarkerClick } = props;
 
-
-	componentDidMount(){
-		this.getBounds() 
-	}
+	const [ bounds, setBounds ] = useState( null );
+	const [ initial_center, setInitialCenter ] = useState( {} );
 
 
-	componentDidUpdate( prev_props ) {
-		if( prev_props.markers !== this.props.markers ) this.getBounds();
-	}
+	useEffect(() => {
 
+		const initial_center = markers && !!markers.length
+			? { lat: markers[0].lat, lng: markers[0].lng }
+			: { lat: 49.7205859, lng: 18.8085521 };
 
-	getBounds = () => {
-		const { markers } = this.props;
-		if( !markers || !(markers.length > 1) ) return null;
+		setInitialCenter( initial_center );
 
-		const bounds = new window.google.maps.LatLngBounds();
+	}, []);
+		
 
-		for (let i = 0; i < markers.length; i++) {
-			const { lat, lng } = markers[ i ];
-			bounds.extend( new window.google.maps.LatLng(lat, lng) );
+	useEffect(() => {
+		
+		const getBounds = () => {
+			const { markers } = props;
+			if ( !markers || !(markers.length > 1) ) return null;
+	
+			const bounds = new window.google.maps.LatLngBounds();
+	
+			for ( let i = 0; i < markers.length; i++ ) {
+				const { lat, lng } = markers[ i ];
+				bounds.extend( new window.google.maps.LatLng( lat, lng ));
+			}
+	
+			setBounds( bounds ); 
 		}
+	
 
-		this.setState({ bounds }); 
-	}
+		getBounds();
+		
+	}, [ props.markers ]);
 
 
-	_mapLoaded( mapProps, map ) {
+	const mapLoaded = ( mapProps, map ) => {
 		map.setOptions({
 			styles: map_style
 		})
 	}
 
-	render(){
 
-		const { markers } = this.props;
+	return (
+		<Map 
+			google={ props.google }
+			zoom={ 14 }
+			containerStyle={{ width: "100%", height: "100%" }}
 
-		const initialCenter = 
-			markers && !!markers.length
-			? { lat: markers[0].lat, lng: markers[0].lng }
-			: { lat: 49.7205859, lng: 18.8085521 };
+			zoomControl={ true }
+			mapTypeControl={ false }
+			fullscreenControl={ false }
+			streetViewControl={ false }
 
-
-		return(
-			<Map 
-				google={ this.props.google }
-				zoom={ 14 }
-				containerStyle={{ width: "100%", height: "100%" }}
-
-				zoomControl={ false }
-				mapTypeControl={ false }
-				fullscreenControl={ false }
-				streetViewControl={ false }
-
-				initialCenter={ initialCenter }
-				center={ this.state.center }
-				bounds={ this.state.bounds }
-
-				onReady={( mapProps, map ) => this._mapLoaded(mapProps, map) }
-			>
+			initialCenter={ initial_center }
+			bounds={ bounds }
+			onReady={( mapProps, map ) => mapLoaded( mapProps, map )}
+		>
 
 
-				{ markers && markers.length > 0 &&
-					markers.map(({ lat, lng, name, icon }, index) => {
+			{ markers && !!markers.length &&
+				markers.map(({ id, lat, lng, name, icon }, index) => {
 
-						const prop_icon = icon && icon.url && icon.width
+					const prop_icon = 
+						icon && icon.url && icon.width
 							? {
 								url: icon.url,
 								anchor: new window.google.maps.Point( icon.width, icon.height || icon.width ),
 							}
-							: null
+							: null;
 
-						return (
-							<Marker 
-								key={ index }	
-								name={ name } 
-								position={{ lat, lng }}
-								icon={ prop_icon } 
-							/>
-						)
-					})
-				}
- 
-			
-		 </Map>
-		)
-	}
-};
+					return (
+						<Marker 
+							key={ index }	
+							name={ name } 
+							position={{ lat, lng }}
+							icon={ prop_icon }
+							onClick={ e => {
+								if ( isFunction(onMarkerClick )) onMarkerClick( id, lat, lng ) 
+							}} 
+						/>
+					)
+				})
+			}
+
+		
+		</Map>
+	)
+}
+
+GoogleMap.propTypes = {}
 
 export default GoogleApiWrapper({
 	apiKey: ( google_key )
