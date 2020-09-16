@@ -4,6 +4,7 @@ import SiteInfoContext from "../constants/SiteInfoContext";
 import {API} from "./API";
 import Loader from "../components/general/Loader";
 import Layouts from "../constants/Layouts";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export default function PageRenderer(props) {
     const {pageId, slug} = useParams();
@@ -33,9 +34,9 @@ export default function PageRenderer(props) {
     if (pageData === null)
         return <Loader/>;
 
-    // false if something wrong
+    // 404 if no page found in DB
     if (!pageData)
-        return null;
+        return <NotFoundPage/>;
 
     const layoutValue = pageData.acf['field_layout'];
     const Layout = Layouts[layoutValue];
