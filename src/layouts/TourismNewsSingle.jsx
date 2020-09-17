@@ -12,7 +12,6 @@ import SingleContentBottom from "../components/common-single/SingleContentBottom
 import {API} from "../extra/API";
 
 export default function NewsSinglePage(props) {
-    const acf = props.page.acf;
     const [news, setNews] = React.useState(null);
 
     React.useEffect(() => {
@@ -32,8 +31,8 @@ export default function NewsSinglePage(props) {
             </MainHeaderSection>
 
             {props.page.body && (
-                <SingleContainer title={props.page.title}>
-                    <div> {Parser(props.page.body)} </div>
+                <SingleContainer>
+                    <div>{Parser(props.page.body)}</div>
                     <SingleContentBottom/>
                 </SingleContainer>
             )}
