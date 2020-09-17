@@ -3,6 +3,8 @@ import ButtonLink from "../buttons/ButtonLink";
 import ShareButton from '../buttons/ShareButton';
 import "../../styles/accommodations/loop-accommodation-post.scss";
 import {PhoneIcon, EmailIcon, WWWIcon, PlusIcon} from "../../svg/icons";
+import DefaultImage from "../../constants/DefaultImage";
+import {getArticleLink} from "../../extra/functions";
 
 const LoopAccommodationPostInfo = ({phone, email, www}) => {
     const info = [
@@ -45,28 +47,28 @@ const LoopAccommodationPostInfo = ({phone, email, www}) => {
     )
 }
 
-const LoopAccommodationPost = ({id, title, categories_labels, image, acf}) => (
-    <a href={`/accommodation/${id}`} target="_blank" rel={'noopener noreferrer'} className="loop-accommodation-post">
+const LoopAccommodationPost = (post) => (
+    <a href={getArticleLink(post)} target="_blank" rel={'noopener noreferrer'} className="loop-accommodation-post">
         <div className="loop-accommodation-post__thumbnail has-overlay thumbnail"
-             style={{backgroundImage: `url("${image}")`}}>
-            <div className="loop-accommodation-post__category">{categories_labels}</div>
+             style={{backgroundImage: `url("${post.image || DefaultImage}")`}}>
+            <div className="loop-accommodation-post__category">{post.categories_labels}</div>
         </div>
 
         <div className="loop-accommodation-post__content">
-            <div className="loop-accommodation-post__title heading">{title}</div>
+            <div className="loop-accommodation-post__title heading">{post.title}</div>
 
-            {acf !== undefined && acf.field_map_address && (
+            {post.acf !== undefined && post.acf.field_map_address && (
                 <div className="loop-accommodation-post__address">
                     <span>ADRES</span>
-                    {acf.field_map_address}
+                    {post.acf.field_map_address}
                 </div>
             )}
 
-            {acf !== undefined && (
+            {post.acf !== undefined && (
                 <LoopAccommodationPostInfo
-                    phone={acf.field_contact_phone}
-                    email={acf.field_contact_email}
-                    www={acf.field_contact_www}
+                    phone={post.acf.field_contact_phone}
+                    email={post.acf.field_contact_email}
+                    www={post.acf.field_contact_www}
                 />
             )}
 
@@ -74,7 +76,7 @@ const LoopAccommodationPost = ({id, title, categories_labels, image, acf}) => (
                 <ButtonLink extra_classes="green">szybki kontakt</ButtonLink>
 
                 <a href="#"> <PlusIcon/> <span className="d-none">add</span></a>
-                <ShareButton link_for_sharing={`${window.location.origin}/accommodation/${id}`}/>
+                <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
             </div>
         </div>
     </a>

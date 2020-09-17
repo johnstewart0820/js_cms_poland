@@ -3,6 +3,8 @@ import ButtonLink from "../buttons/ButtonLink";
 import ShareButton from '../buttons/ShareButton';
 import "../../styles/gastronomy/loop-gastronomy-post.scss";
 import {PhoneIcon, EmailIcon, WWWIcon, PlusIcon} from "../../svg/icons";
+import {getArticleLink} from "../../extra/functions";
+import DefaultImage from "../../constants/DefaultImage";
 
 const LoopGastronomyPostInfo = ({phone, email, www}) => {
     const info = [
@@ -45,28 +47,28 @@ const LoopGastronomyPostInfo = ({phone, email, www}) => {
     );
 };
 
-const LoopGastronomyPost = ({slug, title, categories_labels, image, acf}) => (
-    <a href={`/${slug}`} target="_blank" className="loop-gastronomy-post">
+const LoopGastronomyPost = post => (
+    <a href={getArticleLink(post)} target="_blank" className="loop-gastronomy-post">
         <div className="loop-gastronomy-post__thumbnail has-overlay thumbnail"
-             style={{backgroundImage: `url(${image})`}}>
-            <div className="loop-gastronomy-post__category">{categories_labels}</div>
+             style={{backgroundImage: `url(${post.image || DefaultImage})`}}>
+            <div className="loop-gastronomy-post__category">{post.categories_labels}</div>
         </div>
 
         <div className="loop-gastronomy-post__content">
-            <div className="loop-gastronomy-post__title heading">{title}</div>
+            <div className="loop-gastronomy-post__title heading">{post.title}</div>
 
-            {acf !== undefined && acf.field_map_address && (
+            {post.acf !== undefined && post.acf.field_map_address && (
                 <div className="loop-gastronomy-post__address">
                     <span>ADRES</span>
-                    {acf.field_map_address}
+                    {post.acf.field_map_address}
                 </div>
             )}
 
-            {acf !== undefined && (
+            {post.acf !== undefined && (
                 <LoopGastronomyPostInfo
-                    phone={acf.field_contact_phone}
-                    email={acf.field_contact_email}
-                    www={acf.field_contact_www}
+                    phone={post.acf.field_contact_phone}
+                    email={post.acf.field_contact_email}
+                    www={post.acf.field_contact_www}
                 />
             )}
 
@@ -74,7 +76,7 @@ const LoopGastronomyPost = ({slug, title, categories_labels, image, acf}) => (
                 <ButtonLink extra_classes="green"> szybki kontakt </ButtonLink>
 
                 <a href="#"> <PlusIcon/> <span className="d-none"> add </span></a>
-                <ShareButton link_for_sharing={`${window.location.origin}/${slug}`}/>
+                <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
             </div>
         </div>
     </a>
