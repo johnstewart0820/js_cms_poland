@@ -10,22 +10,28 @@ import Carousel from "../components/carousel/Carousel";
 import {PageDescription} from "../components/events/PageDescription";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
 import LoopEventsPost from "../components/events/LoopEventsPost";
-
 import '../styles/EventsPage/EventsPage.scss';
-import '../styles/Calendar/Calendar.scss';
 import {API} from "../extra/API";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 
 const EventsPage = props => {
     const acf = props.page.acf;
     const [events, setEvents] = React.useState([]);
-    const [slides, setSlides] = React.useState(null);
+    const [data, setData] = React.useState(null);
 
     const [calendarDate, setCalendarDate] = React.useState(new Date());
     const [selectedDay, setSelectedDay] = React.useState(null);
     const prevCalendarDate = usePrevious(calendarDate);
     const [monthDays, setMonthDays] = React.useState([]);
+    const [dateFrom, setDateFrom] = React.useState(null);
+    const [dateTill, setDateTill] = React.useState(null);
 
+    const fetchData = args => {
+        API.getEntities({
+            categories: acf.field_nearest_events_information_module[0].field_section_categories_visit,
+            ...args,
+        }).then(res => setData(res.data));
+    }
 
     const pageDescription = {
         buttonText: acf.field_new_event_button_title,
@@ -40,40 +46,33 @@ const EventsPage = props => {
 
 
     React.useEffect(() => {
+        fetchData();
     },[]);
 
     React.useEffect(() => {
-        API.getEntities({
-            categories: acf.field_nearest_events_information_module[0].field_section_categories_visit,
-        }).then(res => setSlides(res.data.contents));
-    },[]);
+        if (!dateFrom || !dateTill || moment(dateFrom).isAfter(moment(dateTill)))
+            return;
 
-    React.useEffect(() => {
-        let daysInMonth = moment().daysInMonth();
-        const currentDay = moment().day();
         const days = [];
 
-        for (let i = 1; i <= daysInMonth; i++) {
-            let current = moment().day(i);
-
+        for (const cycleDate = moment(dateFrom); cycleDate.isSameOrBefore(dateTill); cycleDate.add('1', 'day')) {
             days.push({
-                key: current.format('DD.MM.YYYY'),
-                active: (i === currentDay),
-                onClick: () => setCalendarDate(current.toDate()),
-                dayName: current.format('dddd').toUpperCase(),
-                monthName: current.format('MMMM').toUpperCase(),
-                date: i
+                key: cycleDate.format('DD.MM.YYYY'),
+                active: moment().isSame(cycleDate),
+                onClick: () => setCalendarDate(cycleDate.toDate()),
+                dayName: cycleDate.format('dddd').toUpperCase(),
+                monthName: cycleDate.format('MMMM').toUpperCase(),
+                date: cycleDate.date(),
             });
         }
 
         setMonthDays(days);
-    }, []);
 
-
-    React.useEffect(() => {
-        setSelectedDay(monthDays.find(item => item.day === moment(calendarDate).format('DD.MM.YYYY')) || null);
-    }, [calendarDate, monthDays]);
-
+        fetchData({
+            from: moment(dateFrom, 'DD.MM.YYYY')?.format('DD.MM.YYYY'),
+            to: moment(dateTill, 'DD.MM.YYYY')?.format('DD.MM.YYYY'),
+        });
+    }, [dateFrom, dateTill]);
 
     return (
         <>
@@ -89,17 +88,20 @@ const EventsPage = props => {
                 type={'events'}
                 submit_label={'SZUKAJ'}
                 submitButtonExtraClasses={'small-filter-button'}
-                submitCallback={(args) => {}}
+                submitCallback={(args) => {
+                    setDateFrom(args.from);
+                    setDateTill(args.to);
+                }}
             />
 
             {monthDays?.length && <DayCarousel days={monthDays}/>}
 
-            {slides && (
+            {data && (
                 <Carousel
                     heading={'NAJBLIŻSZE WYDARZENIA'}
                     containerStyles={{marginLeft: '90px'}}
                     bodyStyles={{display: 'flex'}}
-                    items={slides}
+                    items={data.posts}
                     ItemComponent={LoopEventsPost}
                 />
             )}
