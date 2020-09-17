@@ -1,8 +1,6 @@
 import React from 'react';
 import {Switch, Route} from "react-router-dom";
-
 import {SITE} from "../extra/site_settings.js";
-
 import MainRouters from "./MainRouters";
 import TourismRouters from "./TourismRouters";
 import PageRenderer from "../extra/PageRenderer";
