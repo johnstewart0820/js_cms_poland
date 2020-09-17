@@ -10,6 +10,7 @@ import PlanerContext from "../constants/PlanerContext";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import Pagination from "../components/loop/Pagination";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
+import Select from "../components/form/Select";
 
 const sort_options = [
     { value: 1, label: "Najbliższe aktualności" },
@@ -19,20 +20,32 @@ const sort_options = [
 const AttractionPage = props => {
     const acf = props.page.acf;
     const [loading, setLoading] = React.useState(true);
-    const [posts, setPosts] = React.useState([]);
+    const [data, setData] = React.useState(null);
     const [filterArgs, setFilterArgs] = React.useState({page: 0});
     const planerContext = React.useContext(PlanerContext);
 
+    const attractionsType = acf.field_information_modules_attractions[0].field_section_categories_visit;
+    const priceVariants = acf.field_prices_variant;
+    const recommendedFor = acf.field_recommended_for;
+
+
+    const getPosts = args => {
+        setData(null);
+        API.getByConfig( acf.field_information_modules_attractions, args).then(res => {
+            setData(res.data);
+            setLoading(false);
+        });
+    }
 
     React.useEffect(() => {
         getPosts(filterArgs);
     },[filterArgs]);
 
-    const getPosts = args => {
-        API.getByConfig( acf.field_information_modules_attractions, args).then(res => {
-            setPosts(res.data.contents);
-            setLoading(false);
-        });
+    const onFilterSubmit = args => {
+        if (args.categories)
+            args.categories = acf.field_information_modules_attractions[0].field_section_categories_visit.find(category => String(category.id) === String(args.categories));
+
+        setFilterArgs({...filterArgs, ...args});
     }
 
     const onPageChange = page => setFilterArgs({...filterArgs, page});
@@ -47,6 +60,36 @@ const AttractionPage = props => {
             <LoopSearchForm
                 type="what-to-visit"
                 heading="FILTR KATEGORII"
+                inputs={[
+                    {
+                        label: "Polecane dla",
+                        name: "recommended_for",
+                        options: recommendedFor?.map(option => ({
+                            value: option,
+                            label: option
+                        })),
+                        Component: Select
+                    },
+                    {
+                        label: "Typ Atrakcji",
+                        name: "type",
+                        options: attractionsType?.map(option => ({
+                            value: option.id,
+                            label: option.name,
+                        })),
+                        Component: Select
+                    },
+                    {
+                        label: "Przedział cenowy",
+                        name: "price_range",
+                        options: priceVariants?.map(option => ({
+                            value: option,
+                            label: option
+                        })),
+                        Component: Select
+                    }
+                ]}
+                submitCallback={onFilterSubmit}
             />
 
             <LoopSearchPostsContainer
@@ -54,16 +97,19 @@ const AttractionPage = props => {
                 sort_options={sort_options}
             >
                 {loading && <Loader style={{ width: "100%" }}/>}
-                {posts.length > 0 && posts.map((item, index) => (
-                    <LoopAttractionPost key={index} {...item} onClick={() => planerContext.add(item.id)}/>
-                ))}
+                {!!data && (
+                    <>
+                        {data.contents?.length > 0 && data.contents.map((item, index) => (
+                            <LoopAttractionPost key={index} {...item} onClick={() => planerContext.add(item.id)}/>
+                        ))}
 
-                <Pagination
-                    active_page={posts.currentPage}
-                    total_amount={posts.pageCount}
-                    pageChangeCallback={onPageChange}
-                />
-
+                        <Pagination
+                            active_page={data.pages.currentPage}
+                            total_amount={data.pages.pageCount}
+                            pageChangeCallback={onPageChange}
+                        />
+                    </>
+                )}
                 <MapWithPinsFiltering type="attractions" />
             </LoopSearchPostsContainer>
         </>
