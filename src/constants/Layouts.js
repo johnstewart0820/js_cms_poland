@@ -4,6 +4,7 @@ import TourismNews from "../layouts/TourismNews";
 import EventsPage from "../layouts/EventsPage";
 import TourismNewsSingle from "../layouts/TourismNewsSingle";
 import AttractionPage from "../layouts/AttractionsPage";
+import TourismEventSingle from "../layouts/TourismEventSingle";
 
 export default {
     main_homepage: MainHomepage,
@@ -11,5 +12,6 @@ export default {
     tourism_news: TourismNews,
     tourism_events: EventsPage,
     tourism_news_single: TourismNewsSingle,
-    tourism_attractions: AttractionPage
+    tourism_attractions: AttractionPage,
+    tourism_events_single: TourismEventSingle
 };
