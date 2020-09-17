@@ -79,9 +79,13 @@ const RegisterToEvent = () => {
         })) : [];
     }, [events]);
 
-    const makeSubscription = () => {
+    const makeSubscription = (e) => {
         let cityData = state.address.split(' ' || ',');
-        if(!!event && !!cityData && !!state.userName && !!nationality && !!state.email && !!gender && !!birthDate && state.postalCode && !!state.pesel) {
+        let pattern = new RegExp(
+            /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+        );
+        if(!!event && !!cityData && !!state.userName && !!nationality && !!state.email
+            && !!gender && !!birthDate && state.postalCode && !!state.pesel) {
             let data = {
                 name: state.userName,
                 nationality: nationality,
@@ -94,9 +98,20 @@ const RegisterToEvent = () => {
                 city: cityData[0],
                 address: (cityData[1] + cityData[2])
             }
-            axios.post(`https://api.ustron.s3.netcore.pl/subscription-events/${event}/makeSubscription`, data)
-                .then(response => history.push(TourismRoutes.RegisterToEventConfirmationPage + '?id=' + response.data.id))
-                .catch((error) => setNotification(error.response.data.errors.join('\n')))
+
+            if(!pattern.test(state.email)){
+                setNotification('Proszę wpisac poprawny e-mail, np. przykladowy@mail.pl');
+            }if(state.pesel.length !== 9){
+                setNotification('Pesel powinien zawierac 9cyfr');
+            }
+            if(!state.postalCode.charAt(2)=='-' || state.postalCode.length==!6){
+                setNotification('Proszę wpisać poprawny kod pocztowy, np. 11-111 ');
+            }
+            else {
+                axios.post(`https://api.ustron.s3.netcore.pl/subscription-events/${event}/makeSubscription`, data)
+                    .then(response => history.push(TourismRoutes.RegisterToEventConfirmationPage + '?id=' + response.data.id))
+                    .catch((error) => setNotification(error.response.data.errors.join('\n')))
+            }
         } else {
             setNotification('Proszę wypełnić wszystkie ważne pola');
         }
