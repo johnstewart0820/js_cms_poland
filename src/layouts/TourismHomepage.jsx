@@ -67,14 +67,22 @@ export default function MainPage(props) {
 
             <PicsTextLink
                 heading={acf.field_city_title}
-                pics={acf.field_city.map(item => ({label: item.field_city_photo_text, url: item.field_city_photo}))}
+                pics={acf.field_city.map(item => ({
+                    label: item.field_city_photo_text,
+                    url: item.field_city_photo,
+                    link: item.field_city_link,
+                }))}
                 text={acf.field_city_description}
                 link_label={acf.field_city_button_title}
                 link={'#'}
             />
             <PicsTextLink
                 heading={acf.field_what_to_visit_title}
-                pics={acf.field_what_to_visit.map(item => ({label: item.field_what_to_visit_text, url: item.field_what_to_visit_photo}))}
+                pics={acf.field_what_to_visit.map(item => ({
+                    label: item.field_what_to_visit_text,
+                    url: item.field_what_to_visit_photo,
+                    link: item.field_what_to_visit_link,
+                }))}
                 text={acf.field_what_to_visit_description}
                 link_label={acf.field_what_to_visit_button_title}
                 link={'#'}
