@@ -11,7 +11,7 @@ import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
 import LoopNewsPost from "../components/news/LoopNewsPost";
 
-export default function TourismEventSingle(props) {
+export default function EventSingle(props) {
     const  [items, setItems] = React.useState(null);
 
     React.useEffect(() => {
