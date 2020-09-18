@@ -1,12 +1,6 @@
 import React from 'react';
 import '../../styles/PlanerList/PlanerHistory.scss';
 
-const planerHistory = [
-    {label: 'Ustroń – Skoczów / '},
-    {label: 'Chałupki / '},
-    {label: 'Wisła / '},
-    {label: 'Jasnowice'},
-];
 
 const PlanerHistory = ({totalDuration, route}) => {
     let hours = totalDuration.hours() + ' godz.';

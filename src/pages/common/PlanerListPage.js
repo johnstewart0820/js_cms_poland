@@ -21,14 +21,15 @@ const PlanerListPage = () => {
         planerContext.setVisible(false);
     },[]);
 
-    // const totalRoute = React.useMemo(() => {
-    //     let route = [];
-    //     planerContext.data.forEach(event => {
-    //         route.push(event.custom_data.event.place);
-    //         route = route.filter((name, pos) => route.indexOf(name) == pos)
-    //     })
-    //     return route.join(' / ');
-    // }, [planerContext.data.length]);
+    const totalRoute = React.useMemo(() => {
+        console.log(planerContext.data)
+        let route = [];
+        planerContext.data.forEach(event => {
+            route.push(event.title);
+            route = route.filter((name, pos) => route.indexOf(name) == pos)
+        })
+        return route.join(' / ');
+    }, [planerContext.data.length]);
 
 
     return(
@@ -52,7 +53,8 @@ const PlanerListPage = () => {
                 })}
             </PlanerListContainer>
 
-            <PlanerHistory totalDuration={totalDuration}/>
+            {console.log(totalDuration)}
+            <PlanerHistory route={totalRoute} totalDuration={totalDuration}/>
 
             <MapWithPinsFiltering type="attractions" />
         </>
