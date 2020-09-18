@@ -44,6 +44,28 @@
 	height: 100%;
 }
 
+.page-header-section.single-news{
+	min-height: 357px;
+	position: relative;
+	padding-right: 700px;
+
+	.page-header-section__thumbnail{
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 413px;
+	}
+}
+
+
+.page-header-section.single-event{
+	min-height: 407px;
+
+	.page-header-section__main{
+		padding-right: 15px;
+	}
+}
+
 .page-header-section.single-news,
 .page-header-section.single-event{
 	.page-header-section__main{

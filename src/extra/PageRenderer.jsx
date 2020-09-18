@@ -42,16 +42,16 @@ export default function PageRenderer(props) {
 
     let layoutValue;
     if (pageData.post_type === 'news')
-        layoutValue = SITE.toLowerCase() + '_news_single';
+        layoutValue = 'news_single';
     else if (pageData.post_type === 'events')
-        layoutValue = SITE.toLowerCase() + '_events_single';
+        layoutValue = 'events_single';
     else
         layoutValue = pageData.acf['field_layout'];
     const Layout = Layouts[layoutValue];
 
     if (!Layout) {
         console.error(`Could not render layout [${layoutValue}]`);
-        return null;
+        return <NotFoundPage/>;
     }
 
     return <Layout {...props} page={pageData} />;
