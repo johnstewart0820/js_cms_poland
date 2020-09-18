@@ -13,7 +13,8 @@
 
 .weather__info{
 	@include flex-a-center;
-	margin-right: 140px;
+	margin-right: 100px;
+	width: 320px;	
 
 	> div {
 		line-height: 19px;
