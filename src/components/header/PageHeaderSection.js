@@ -2,15 +2,17 @@ import React from 'react';
 import "../../styles/header/page-header-section.scss";
 import DefaultImage from "../../constants/DefaultImage";
 
-const PageHeaderSection = ({extra_classes, thumbnail, children}) => (
+const PageHeaderSection = ({extra_classes, thumbnail, children, noDefaultImage}) => (
     <div className={`page-header-section ${extra_classes || ""}`}>
         <div className="page-header-section__main">
             {children}
         </div>
-        <div
-            className="page-header-section__thumbnail thumbnail"
-            style={{backgroundImage: `url("${thumbnail || DefaultImage}")`}}
-        />
+        {(thumbnail || (!thumbnail && !noDefaultImage)) && (
+            <div
+                className="page-header-section__thumbnail thumbnail"
+                style={{backgroundImage: `url("${thumbnail || DefaultImage}")`}}
+            />
+        )}
     </div>
 );
 
