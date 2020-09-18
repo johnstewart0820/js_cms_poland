@@ -10,7 +10,7 @@ export default function NotFoundPage() {
     return (
         <MainHeaderSection>
             <Breadcrumbs breadcrumbs={[{ label: "404" }]}/>
-            <PageHeaderSection>
+            <PageHeaderSection noDefaultImage>
                 <div className="background-error">
                     <div className="page-title">
                         404<br/>

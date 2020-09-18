@@ -51,7 +51,7 @@ export default function PageRenderer(props) {
 
     if (!Layout) {
         console.error(`Could not render layout [${layoutValue}]`);
-        return null;
+        return <NotFoundPage/>;
     }
 
     return <Layout {...props} page={pageData} />;
