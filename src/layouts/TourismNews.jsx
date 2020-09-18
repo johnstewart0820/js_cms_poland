@@ -10,16 +10,20 @@ import Pagination from "../components/loop/Pagination";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import Select from "../components/form/Select";
 
-const sort_options = [
-    {value: 1, label: "Najbliższe aktualności"},
-    {value: 2, label: "Najstarszy aktualności"},
+const OrderOptions = [
+    {value: 'desc', label: 'Najbliższe aktualności'},
+    {value: 'asc', label: 'Najstarszy aktualności'},
 ];
 
 export default function TourismNews(props) {
     const acf = props.page.acf;
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
-    const [filterArgs, setFilterArgs] = React.useState({page: 0});
+    const [filterArgs, setFilterArgs] = React.useState({
+        page: 0,
+        orderby: 'date',
+        order: 'desc',
+    });
 
     const fetchData = args => {
         setData(null);
@@ -39,6 +43,8 @@ export default function TourismNews(props) {
     };
 
     const onPageChange = page => setFilterArgs({...filterArgs, page});
+
+    const changeSort = e => setFilterArgs({...filterArgs, order: e.target.value});
 
     return (
         <>
@@ -66,7 +72,8 @@ export default function TourismNews(props) {
                 onRef={ref => container.current = ref}
                 extra_classes="news"
                 heading="WSZYSTKIE AKTUALNOŚCI"
-                sort_options={sort_options}
+                sort_options={OrderOptions}
+                sortOnChange={changeSort}
             >
                 {!data && <Loader style={{width: "100%"}}/>}
 
