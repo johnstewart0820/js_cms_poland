@@ -5,7 +5,6 @@ import {API} from "./API";
 import Loader from "../components/general/Loader";
 import Layouts from "../constants/Layouts";
 import NotFoundPage from "../pages/NotFoundPage";
-import {SITE} from "./site_settings";
 
 export default function PageRenderer(props) {
     const {pageId, slug} = useParams();
@@ -22,7 +21,6 @@ export default function PageRenderer(props) {
 
         API.getPost(pageId || slug)
             .then(res => {
-                console.log(slug)
                 setPageData(res.data.content);
                 console.info('PAGE DATA', res.data.content);
             })

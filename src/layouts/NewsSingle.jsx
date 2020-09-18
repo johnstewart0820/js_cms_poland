@@ -3,7 +3,6 @@ import Parser from "html-react-parser";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
-import Loader from "../components/general/Loader";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import NewsSingleHead from "../components/news/NewsSingleHead";
 import LoopNewsPost from "../components/news/LoopNewsPost";
