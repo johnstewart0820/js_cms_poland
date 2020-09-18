@@ -31,7 +31,7 @@ export default function NewsSinglePage(props) {
             </MainHeaderSection>
 
             {props.page.body && (
-                <SingleContainer>
+                <SingleContainer extra_classes="single-news-container">
                     <div>{Parser(props.page.body)}</div>
                     <SingleContentBottom/>
                 </SingleContainer>
