@@ -31,6 +31,8 @@ API.getEvents = ({categories, ...rest}) => {
 
 API.getEvent = id => API.get('contents/events/' + id);
 
+API.getOrganizers = () => API.get('contents/organizers');
+
 API.getEntities = ({categories, ...rest}) => {
     categories = wrapInArray(categories);
 
