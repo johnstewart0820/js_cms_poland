@@ -9,6 +9,7 @@ import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContaine
 import Pagination from "../components/loop/Pagination";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import Select from "../components/form/Select";
+import {handleFilteringCategories} from "../extra/functions";
 
 const OrderOptions = [
     {value: 'desc', label: 'Najbliższe aktualności'},
@@ -36,8 +37,7 @@ export default function TourismNews(props) {
     }, [filterArgs]);
 
     const onFilterSubmit = args => {
-        if (args.categories)
-            args.categories = acf.field_news_filtering_categories.find(category => String(category.id) === String(args.categories));
+        handleFilteringCategories(args, acf.field_news_filtering_categories);
         setFilterArgs({...filterArgs, ...args});
         window.scrollTo({top: container.current.getBoundingClientRect().top + window.scrollY});
     };
