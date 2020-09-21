@@ -3,7 +3,7 @@ const Sites = {
 	Tourism: 'TOURISM',
 };
 
-const SITE = Sites.Main; // MAIN TOURISM SPORT CULTURE
+const SITE = Sites.Tourism; // MAIN TOURISM SPORT CULTURE
 
 const SITES_DOMAIN = {
 	[Sites.Main]: "ustron.s3.netcore.pl",
