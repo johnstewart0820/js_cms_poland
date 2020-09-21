@@ -47,7 +47,9 @@ const EventsPage = props => {
     const [selectedDate, setSelectedDate] = React.useState(null);
     const [filterArgs, setFilterArgs] = React.useState({});
 
-    const fetchData = () => {
+    /* fetch new data */
+    React.useEffect(() => {
+        setData(null);
         API.getByConfig(acf.field_nearest_events_information_module, {
             ...filterArgs,
             date: dateOrDate(selectedDate, filterArgs.date),
@@ -58,13 +60,9 @@ const EventsPage = props => {
             console.error(err);
             setData(false);
         });
-    };
-
-    React.useEffect(() => {
-        setData(null);
-        fetchData();
     }, [filterArgs, selectedDate]);
 
+    /* calc new dates */
     React.useEffect(() => {
         if (!filterArgs.date || !filterArgs.date_to || moment(filterArgs.date).isAfter(moment(filterArgs.date_to)))
             return;
@@ -160,7 +158,7 @@ const EventsPage = props => {
 
             <MapWithPinsFiltering map_id={acf.field_new_event_map}/>
         </>
-    )
-}
+    );
+};
 
 export default EventsPage;
