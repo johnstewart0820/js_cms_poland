@@ -22,7 +22,6 @@ const PlanerListPage = () => {
     },[]);
 
     const totalRoute = React.useMemo(() => {
-        console.log(planerContext.data)
         let route = [];
         planerContext.data.forEach(event => {
             route.push(event.title);
@@ -37,6 +36,7 @@ const PlanerListPage = () => {
             <Breadcrumbs breadcrumbs={[{ label: "Visit.ustron.pl", to: "/" }, { label: " Jak dojechać", to: "/" }, {label: 'Wynik'}]} />
 
             <PlanerListContainer title={'PLANER PODROZY'}>
+                {console.log(planerContext)}
                 {planerContext.data.map((item, index) => {
                     let category = item.categories[0]?.name
                     return (
@@ -54,7 +54,7 @@ const PlanerListPage = () => {
             </PlanerListContainer>
 
             {console.log(totalDuration)}
-            <PlanerHistory route={totalRoute} totalDuration={totalDuration}/>
+            {!!totalRoute && !!totalDuration && <PlanerHistory route={totalRoute} totalDuration={totalDuration}/>}
 
             <MapWithPinsFiltering type="attractions" />
         </>
