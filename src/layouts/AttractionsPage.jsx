@@ -22,7 +22,6 @@ const AttractionPage = props => {
     const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState(null);
     const [filterArgs, setFilterArgs] = React.useState({page: 0});
-    const planerContext = React.useContext(PlanerContext);
 
     const attractionsType = acf.field_information_modules_attractions[0].field_section_categories_visit;
     const priceVariants = acf.field_prices_variant;
@@ -100,7 +99,7 @@ const AttractionPage = props => {
                 {!!data && (
                     <>
                         {data.contents?.length > 0 && data.contents.map((item, index) => (
-                            <LoopAttractionPost key={index} {...item} onClick={() => planerContext.add(item.id)}/>
+                            <LoopAttractionPost key={index} {...item}/>
                         ))}
 
                         <Pagination

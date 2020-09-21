@@ -88,14 +88,14 @@ export default function MainPage(props) {
             <TwoCarouselsOneRow
                 first_carousel={{
                     loading: items3 === false,
-                    path_to_all: '#',
+                    path_to_all: getArticleLink(acf.field_visit_homepage_second_information_modules[0].field_section_watch_all_entity),
                     heading: acf.field_visit_homepage_second_information_modules[0].field_section_title_visit,
                     component: LoopGastronomyPost,
                     items: items3 || [],
                 }}
                 second_carousel={{
                     loading: items4 === false,
-                    path_to_all: '#',
+                    path_to_all: getArticleLink(acf.field_visit_homepage_second_information_modules[1].field_section_watch_all_entity),
                     heading: acf.field_visit_homepage_second_information_modules[1].field_section_title_visit,
                     component: LoopAccommodationPost,
                     items: items4 || [],

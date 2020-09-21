@@ -5,8 +5,11 @@ import '../../styles/attractions/loop-attraction-post.scss';
 import BicycleIcon from "../icons/BicycleIcon";
 import DisabilityIcon from "../icons/DisabilityIcon";
 import FamilyIcon from "../icons/FamilyIcon";
+import PlanerContext from "../../constants/PlanerContext";
 
-export default function ({id, title, excerpt, category, thumbnail, onClick}) {
+export default function ({id, title, excerpt, category, thumbnail}) {
+    const planerContext = React.useContext(PlanerContext);
+
     return (
         <div className="loop-card">
             <a
@@ -34,7 +37,7 @@ export default function ({id, title, excerpt, category, thumbnail, onClick}) {
                 {excerpt && <div className="loop-card__text">{excerpt}</div>}
 
                 <div className="loop-card__action-buttons">
-                    <PlusButton onClick={onClick}/>
+                    <PlusButton onClick={() => planerContext.add(id)}/>
                     <ShareButton link_for_sharing={`${window.location.origin}/attractions/${id}`}/>
                 </div>
             </div>

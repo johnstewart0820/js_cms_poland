@@ -36,26 +36,48 @@ const MainHomepage = props => {
 			  blocks = [yellow, green, blue, red],
 			  itemsClasses = ['main', 'tourism', 'culture', 'sport'];
 
+		const subitems = [
+		    null,
+            [],
+            [],
+            [],
+        ];
+
+        for (let i = 1; i <= 7; i++) {
+            subitems[1].push({
+                title: green['field_green_fields_title_' + i],
+                link: green['field_green_fields_link_' + i],
+                svg: green['field_green_fields_icon_' + i],
+            });
+        }
+
+        for (let i = 1; i <= 5; i++) {
+            subitems[2].push({
+                title: blue['field_blue_block_title_' + i],
+                link: blue['field_blue_block_link_' + i],
+                svg: blue['field_blue_block_icon_' + i],
+            });
+        }
+
+        for (let i = 1; i <= 6; i++) {
+            subitems[3].push({
+                title: red['field_red_block_title_' + i],
+                link: red['field_red_block_link_' + i],
+                svg:  red['field_red_block_icon_' + i],
+            });
+        }
 
 		setTiles(blocks.map((item, index) => {
-			const greenBlock = [];
-
-			if (item === green) {
-				for (let i = 1; i <= 7; i++) {
-					greenBlock.push({
-						title: green['field_green_fields_title_' + i],
-						link: green['field_green_fields_link_' + i],
-						svg: green['field_green_fields_icon_' + i],
-					});
-				}
-			}
-
 			const title = item.field_homepage_block_title || '',
 				main_href = item.field_homepage_block_link || '',
-				bg = item.field_homepage_block_image ? item.field_homepage_block_image : item.field_green_fields_lmage || '',
+				bg = item.field_homepage_block_image
+                    || item.field_green_fields_image
+                    || item.field_blue_block_image
+                    || item.field_red_block_image,
 				extra_class = itemsClasses[index],
 				svg = index === 0 ? <HerbIcon/> : null,
-				items = greenBlock;
+				items = subitems[index];
+
 			return {title, svg, main_href, bg, extra_class, items};
 		}));
 	}, []);

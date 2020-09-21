@@ -5,12 +5,16 @@ import Planer from "../extra/Planer";
 const PlanerContext = React.createContext([]);
 
 export const PlanerContextProvider = props => {
-    const [ids, setIds] = React.useState([]);
+    const [ids, setIds] = React.useState(null);
     const [data, setData] = React.useState([]);
     const [visible, setVisible] = React.useState(true);
 
 
     React.useEffect(() => {
+        if (!ids) {
+            setIds(Planer.getData());
+            return;
+        }
         let promises = [];
 
         ids.forEach(id => {
@@ -24,16 +28,12 @@ export const PlanerContextProvider = props => {
         Planer.saveData(ids);
     }, [ids]);
 
-    React.useEffect(() => {
-        setData(Planer.getData())
-    },[ids])
 
     return (
         <PlanerContext.Provider value={{
-            ids,
+            ids: ids || [],
             data,
             add: id => setIds([...ids, id]),
-            delete: id => setIds(ids.filter(event => event.id != id)),
             visible,
             setVisible,
         }}>
