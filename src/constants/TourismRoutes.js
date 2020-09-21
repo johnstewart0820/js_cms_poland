@@ -27,5 +27,6 @@ export default {
     AttractionsPage: '/attractions',
     DiscountCardsPage: '/discount-cards',
     TrailsPage: '/trails',
-    PlanerListPage: '/planer-basket'
+    PlanerListPage: '/planer-basket',
+    SingleGamePage: '/single-game-page'
 };

@@ -15,6 +15,7 @@ const GameCardsPage = () => {
     return(
         <Container
             containerTitle={'NAZWA GRY'}
+            extraClasses={'container-white'}
         >
             <div className="container-inner">
                 <Row>
@@ -30,9 +31,9 @@ const GameCardsPage = () => {
                     <ProgressBar bgcolor={"#85CB3F"} completed={100}/>
                 </Row>
                 <Row>
-                    <ButtonUnderline buttonText={'Nieodkryte'}/>
-                    <ButtonUnderline buttonText={'Odkryte'}/>
-                    <ButtonUnderline buttonText={'wszystkie'}/>
+                    <ButtonUnderline extraClasses={'bg-white'} buttonText={'Nieodkryte'}/>
+                    <ButtonUnderline extraClasses={'bg-white'} buttonText={'Odkryte'}/>
+                    <ButtonUnderline extraClasses={'bg-white'} buttonText={'wszystkie'}/>
                 </Row>
                 <Row>
                     <Card

@@ -31,6 +31,10 @@ API.getEvents = ({categories, ...rest}) => {
 
 API.getEvent = id => API.get('contents/events/' + id);
 
+API.getOrganizers = () => API.get('contents/organizers');
+
+API.getCustomField = field => API.get('contents/custom-fields/' + field);
+
 API.getEntities = ({categories, ...rest}) => {
     categories = wrapInArray(categories);
 
@@ -89,6 +93,16 @@ API.getByConfig = (config, args = {}) => {
     }
 
     config = Array.isArray(config) ? config[0] : config;
+    // copy override args to prevent accidental direct state modification
+    const overrides = {...args};
+
+    /**
+     * Fail-save to use default categories if overriding args.categories
+     * have invalid value (null, '', undefined).
+     * Note that empty arrays are still supported.
+     */
+    if (!overrides.categories)
+        overrides.categories = config.field_section_categories_visit;
 
     config = {
         categories: config.field_section_categories_visit,
@@ -96,7 +110,7 @@ API.getByConfig = (config, args = {}) => {
         limit: config.field_section_posts_count_visit,
         order: config.field_section_order_visit,
         orderby: config.field_section_sorting_visit,
-        ...args, // overrides previous keys
+        ...overrides, // overrides previous keys
     };
 
     return API.getEntities(config);

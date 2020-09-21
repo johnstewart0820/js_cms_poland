@@ -15,7 +15,7 @@ export const Container = props => {
     return(
         <>
             <Breadcrumbs breadcrumbs={[{ label: "Panel użytkownika", to: "/" }]} />
-            <div className="custom-container">
+            <div className={`custom-container ${props.extraClasses} || ''`}>
                 <UserPanel/>
                 <div className="container-fluid">
                     {props.setNotification && <Notification message={props.notificationMessage}/>}
@@ -23,7 +23,7 @@ export const Container = props => {
                         <div className="page-title">
                             <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
                             <h3>
-                                {props.containerTitle}
+                                {props.containerTitle.toUpperCase()}
                             </h3>
                         </div>
                         {props.addContainerButton && (

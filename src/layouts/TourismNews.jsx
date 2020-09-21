@@ -9,17 +9,22 @@ import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContaine
 import Pagination from "../components/loop/Pagination";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import Select from "../components/form/Select";
+import {handleFilteringCategories} from "../extra/functions";
 
-const sort_options = [
-    {value: 1, label: "Najbliższe aktualności"},
-    {value: 2, label: "Najstarszy aktualności"},
+const OrderOptions = [
+    {value: 'desc', label: 'Najbliższe aktualności'},
+    {value: 'asc', label: 'Najstarszy aktualności'},
 ];
 
 export default function TourismNews(props) {
     const acf = props.page.acf;
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
-    const [filterArgs, setFilterArgs] = React.useState({page: 0});
+    const [filterArgs, setFilterArgs] = React.useState({
+        page: 0,
+        orderby: 'date',
+        order: 'desc',
+    });
 
     const fetchData = args => {
         setData(null);
@@ -32,13 +37,16 @@ export default function TourismNews(props) {
     }, [filterArgs]);
 
     const onFilterSubmit = args => {
-        if (args.categories)
-            args.categories = acf.field_news_filtering_categories.find(category => String(category.id) === String(args.categories));
+        handleFilteringCategories(args, acf.field_news_filtering_categories);
         setFilterArgs({...filterArgs, ...args});
+    };
+
+    const onPageChange = page => {
+        setFilterArgs({...filterArgs, page});
         window.scrollTo({top: container.current.getBoundingClientRect().top + window.scrollY});
     };
 
-    const onPageChange = page => setFilterArgs({...filterArgs, page});
+    const changeSort = e => setFilterArgs({...filterArgs, order: e.target.value});
 
     return (
         <>
@@ -66,7 +74,8 @@ export default function TourismNews(props) {
                 onRef={ref => container.current = ref}
                 extra_classes="news"
                 heading="WSZYSTKIE AKTUALNOŚCI"
-                sort_options={sort_options}
+                sort_options={OrderOptions}
+                sortOnChange={changeSort}
             >
                 {!data && <Loader style={{width: "100%"}}/>}
 

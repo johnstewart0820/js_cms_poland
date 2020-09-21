@@ -22,21 +22,10 @@ export default function MainPage(props) {
     const [items4, setItems4] = React.useState(false);
 
     React.useEffect(() => {
-        API.getEntities({
-            categories: acf.field_information_modules_visit[0].field_section_categories_visit,
-        }).then(res => setItems1(res.data.contents));
-
-        API.getEntities({
-            categories: acf.field_information_modules_visit[1].field_section_categories_visit,
-        }).then(res => setItems2(res.data.contents));
-
-        API.getEntities({
-            categories: acf.field_gastronomic_categories,
-        }).then(res => setItems3(res.data.contents));
-
-        API.getEntities({
-            categories: acf.field_accommodation_categories,
-        }).then(res => setItems4(res.data.contents));
+        API.getByConfig(acf.field_information_modules_visit[0]).then(res => setItems1(res.data.contents));
+        API.getByConfig(acf.field_information_modules_visit[1]).then(res => setItems2(res.data.contents));
+        API.getByConfig(acf.field_visit_homepage_second_information_modules[0]).then(res => setItems3(res.data.contents));
+        API.getByConfig(acf.field_visit_homepage_second_information_modules[1]).then(res => setItems4(res.data.contents));
     }, []);
 
     return (
@@ -99,15 +88,15 @@ export default function MainPage(props) {
             <TwoCarouselsOneRow
                 first_carousel={{
                     loading: items3 === false,
-                    path_to_all: '#',
-                    heading: acf.field_gastronomic_title,
+                    path_to_all: getArticleLink(acf.field_visit_homepage_second_information_modules[0].field_section_watch_all_entity),
+                    heading: acf.field_visit_homepage_second_information_modules[0].field_section_title_visit,
                     component: LoopGastronomyPost,
                     items: items3 || [],
                 }}
                 second_carousel={{
                     loading: items4 === false,
-                    path_to_all: '#',
-                    heading: acf.field_accommodation_title,
+                    path_to_all: getArticleLink(acf.field_visit_homepage_second_information_modules[1].field_section_watch_all_entity),
+                    heading: acf.field_visit_homepage_second_information_modules[1].field_section_title_visit,
                     component: LoopAccommodationPost,
                     items: items4 || [],
                 }}

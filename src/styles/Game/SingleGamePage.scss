@@ -1,0 +1,64 @@
+@import "../general/colors.scss";
+
+.single-game-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 80px 0 20px;
+
+    .single-game-header-gray {
+        background: $gray;
+        min-width: 100%;
+        min-height: 200px;
+        padding: 20px 0 0 90px;
+
+        .single-game-category {
+            color: white;
+            opacity: 0.8;
+        }
+
+        .single-game-header-gray-title {
+            p {
+                line-height: 0;
+                font-size: 40px;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .single-game-header-image {
+        position: absolute;
+        margin-left: 48%;
+
+        img {
+            width: 550px;
+            height: 320px;
+            display: flex;
+            align-self: flex-end;
+        }
+    }
+}
+
+.buttons-category{
+    display:flex;
+    flex-direction: row;
+    padding:20px;
+    margin-left:7vw;
+    button{
+        margin-right:.6vw;
+    }
+}
+.description{
+    max-width:850px;
+    margin: 3vw 0 1vw 3vw;
+}
+.court-description {
+    display: block;
+    text-align: left;
+}
+.court-description ul {
+    text-align: left;
+}
+
+

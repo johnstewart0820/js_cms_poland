@@ -7,7 +7,7 @@ const ButtonUnderline = props => {
         <>
             <button
                 onClick={props.onClick}
-                className="button-with-underline">
+                className={`button-with-underline ${props.extraClasses}`}>
                 {props.buttonText.toUpperCase()}
                 <hr/>
             </button>

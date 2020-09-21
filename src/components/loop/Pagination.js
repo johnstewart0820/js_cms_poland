@@ -14,7 +14,7 @@ export default class Pagination extends Component{
 	}
 
 	state = {
-		active_page: this.props.active_page || 1
+		active_page: (this.props.active_page || 0) + 1,
 	}
 
 
@@ -61,7 +61,7 @@ export default class Pagination extends Component{
 		return ( 
 			<button
 				key={ action || num }
-				onClick={ e => { e.preventDefault(); this.changePage( num ) }} 
+				onClick={ e => { e.preventDefault(); this.changePage( num ) }}
 				className={ classes }> 
 					{ !action && num } 
 
@@ -77,7 +77,7 @@ export default class Pagination extends Component{
 		this.setState({ active_page: num }, () => {
 			const { pageChangeCallback } = this.props;
 
-			if( isFunction( pageChangeCallback )) pageChangeCallback( num );
+			if( isFunction( pageChangeCallback )) pageChangeCallback( num - 1 );
 		})
 	}
 
