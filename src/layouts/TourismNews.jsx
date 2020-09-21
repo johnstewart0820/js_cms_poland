@@ -39,10 +39,12 @@ export default function TourismNews(props) {
     const onFilterSubmit = args => {
         handleFilteringCategories(args, acf.field_news_filtering_categories);
         setFilterArgs({...filterArgs, ...args});
-        window.scrollTo({top: container.current.getBoundingClientRect().top + window.scrollY});
     };
 
-    const onPageChange = page => setFilterArgs({...filterArgs, page});
+    const onPageChange = page => {
+        setFilterArgs({...filterArgs, page});
+        window.scrollTo({top: container.current.getBoundingClientRect().top + window.scrollY});
+    };
 
     const changeSort = e => setFilterArgs({...filterArgs, order: e.target.value});
 
