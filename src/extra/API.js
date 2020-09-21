@@ -33,6 +33,8 @@ API.getEvent = id => API.get('contents/events/' + id);
 
 API.getOrganizers = () => API.get('contents/organizers');
 
+API.getCustomField = field => API.get('contents/custom-fields/' + field);
+
 API.getEntities = ({categories, ...rest}) => {
     categories = wrapInArray(categories);
 
