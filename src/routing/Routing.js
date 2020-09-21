@@ -21,6 +21,7 @@ import RegisterToEventConfirmationPage from "../pages/UserPanelPages/RegisterToE
 import ObjectListPage from "../pages/UserPanelPages/Objects/ObjectsListPage";
 import EditObjectFormPage from "../pages/UserPanelPages/Objects/EditObjectFormPage";
 import GameCardsPage from "../pages/UserPanelPages/Game/GameCardsPage";
+import SingleGamePage from "../pages/UserPanelPages/Game/SingleGamePage";
 import RegisterToEventFormPage from "../pages/UserPanelPages/RegisterToEvent/RegisterToEventFormPage";
 
 const ROUTERS = {
@@ -51,6 +52,7 @@ const Routing = () => (
         <Route exact path={TourismRoutes.ObjectListPage} component={ObjectListPage}/>
         <Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
         <Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
+        <Route exact path={TourismRoutes.SingleGamePage} component={SingleGamePage}/>
 
         {/* Routes for pages which controlled from CMS */}
         <Route exact path={'/'} component={PageRenderer}/>
