@@ -13,7 +13,7 @@ const ref = React.createRef();
 const PlanerListPage = () => {
     const planerContext = React.useContext(PlanerContext);
     const optionsForPdf = {
-        orientation: 'landscape',
+        orientation: 'portrait',
         unit: 'in',
         format: [1903, 1431]
     };
@@ -48,7 +48,7 @@ const PlanerListPage = () => {
 
     return(
         <>
-           <div ref={ref}>
+           <div ref={ref} style={{width: '100%', height: '100%'}}>
                <Breadcrumbs breadcrumbs={[{ label: "Visit.ustron.pl", to: "/" }, { label: " Jak dojechać", to: "/" }, {label: 'Wynik'}]} />
 
                <PlanerListContainer title={'PLANER PODROZY'}>
