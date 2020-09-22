@@ -27,7 +27,7 @@ export default function MapWithPinsFiltering ( props ) {
 		return all_markers && !!all_markers.length && filter_by
 			? all_markers.filter( item => (( item.category === filter_by || filter_by === "*" ) && ( item.lat && item.lng )))
 				.map(({ id, lat, lng, category, map_image }) => (
-					{ id, lat, lng, category, icon: { url: map_image || getIconFromCategory( category ), width: 60 }}
+					{ id, lat, lng, category, icon: { url: map_image || getIconFromCategory( category ), width: 80 }}
 				))	
 			: []
 
@@ -62,7 +62,9 @@ export default function MapWithPinsFiltering ( props ) {
 				setLoading( false );
 		
 			})
-			.catch( err => { });
+			.catch( err => {
+				console.log(err);
+			});
 		}
 	
 		getMapById();
@@ -102,14 +104,14 @@ export default function MapWithPinsFiltering ( props ) {
 	}
 
 
-	const loadingWrap = func => {
+	const loadingWrap = ( func, ms = 250 ) => {
 		setLoading( true );
 		setView("");
 
 		setTimeout(() => {
 			if ( isFunction( func )) func();
 			setLoading( false );
-		}, 250)
+		}, ms )
 	}
 
 

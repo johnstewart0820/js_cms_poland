@@ -14,6 +14,8 @@ import useCustomField from "../hooks/useCustomField";
 import Select from "../components/form/Select";
 
 export default function GastronomyPage(props) {
+
+	 const acf = props.page.acf;
     const container = React.useRef(null);
     const recommendedFor = useCustomField('recomended_for');
     const pricesVariant = useCustomField('prices_variant');
@@ -25,7 +27,7 @@ export default function GastronomyPage(props) {
 
     React.useEffect(() => {
         setData(null);
-        API.getByConfig(props.page.acf.field_information_modules_attractions, {
+        API.getByConfig(acf.field_information_modules_attractions, {
             page: filters.page,
             filters: prepApiFilters(filters, 'page'),
         })
@@ -88,7 +90,7 @@ export default function GastronomyPage(props) {
                 )}
             </LoopSearchPostsContainer>
 
-            {/*<MapWithPinsFiltering map_id={props.page.acf.field_attractions_map}/>*/}
+				{/* { !!acf?.field_attractions_map && <MapWithPinsFiltering map_id={ acf?.field_attractions_map }/> } */}
         </>
     );
 };

@@ -62,6 +62,7 @@
 	}
 }
 
+
 @media (max-width: 1199px){
 
 	.main-header-section{
@@ -76,5 +77,11 @@
 			width: 100%;
 			padding: 20px;
 		}
+	}
+}
+
+@media (max-width: 610px){
+	.main-header-section.main-tiles{
+		min-height: auto;
 	}
 }

@@ -74,3 +74,43 @@ export const withDefaultOption = (options, overrides = {}) => ([
     },
     ...options,
 ]);
+
+/**
+ *
+ * @param {string} to Email address
+ * @param {{
+ *     subject?: string,
+ *     cc?: string|string[],
+ *     bcc?: string|string[],
+ *     body?: string,
+ * }} args Link arguments such as subject, CC, BCC, etc
+ * @return {string}
+ */
+export const getMailToLink = (to, args = {}) => {
+    if (!to)
+        return '#';
+
+    let link = 'mailto:' + to;
+
+    let isFirstParam = true;
+    let queryString = '';
+    const queryParams = {...args};
+    Object.keys(queryParams).forEach(key => {
+        let value = queryParams[key];
+
+        if (Array.isArray(value))
+            value = value.join(', ');
+
+        if (isFirstParam)
+            isFirstParam = false;
+        else
+            queryString += '&';
+
+        queryString += key + '=' + value;
+    });
+
+    if (queryString)
+        link += '?' + queryString;
+
+    return link;
+};

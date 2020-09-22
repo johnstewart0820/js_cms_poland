@@ -14,7 +14,7 @@
 .weather__info{
 	@include flex-a-center;
 	margin-right: 100px;
-	width: 320px;	
+	width: 400px;	
 
 	> div {
 		line-height: 19px;
@@ -60,6 +60,10 @@
 @media (max-height: 690px){
 	.weather__info_degrees{
 		font-size: 3.6em;
+	}
+
+	.weather__info{
+		width: auto;
 	}
 }
 
