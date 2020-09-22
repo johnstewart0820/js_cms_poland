@@ -15,6 +15,7 @@ import "./styles/main/contrast.scss";
 import {PlanerContextProvider} from "./constants/PlanerContext";
 import TourismRoutes from "./constants/TourismRoutes";
 import PlanerButton from "./components/buttons/PlanerButton";
+import ScrollToTop from "./extra/ScrollToTop";
 
 const App = () => (
 	<Router basename={ router_basename }>
@@ -22,16 +23,18 @@ const App = () => (
 		<SiteInfoContextProvider>
 			<UserContextProvider>
 				<PlanerContextProvider>
-					<Header />
-					<Sidebar />
-                    <PlanerButton
-                        to={TourismRoutes.PlanerListPage}
-                    />
-					<main>
-						<Routing />
-					</main>
+                    <ScrollToTop>
+                        <Header />
+                        <Sidebar />
+                        <PlanerButton
+                            to={TourismRoutes.PlanerListPage}
+                        />
+                        <main>
+                            <Routing />
+                        </main>
 
-					<Footer />
+                        <Footer />
+                    </ScrollToTop>
 				</PlanerContextProvider>
 			</UserContextProvider>
 		</SiteInfoContextProvider>			
