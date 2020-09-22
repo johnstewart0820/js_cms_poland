@@ -3,8 +3,8 @@ import '../../styles/PlanerList/PlanerHistory.scss';
 
 
 const PlanerHistory = ({totalDuration, route}) => {
-    let hours = totalDuration.hours() + ' godz.';
-    let minutes = totalDuration.minutes() + ' min';
+    let hours = totalDuration ? totalDuration.hours() + ' godz.' : '';
+    let minutes = totalDuration ? totalDuration.minutes() + ' min' : '';
 
     return (
         <div className="container">
