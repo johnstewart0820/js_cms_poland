@@ -16,7 +16,7 @@ import {DatePicker} from "../components/form/DatePicker";
 import Select from "../components/form/Select";
 import useOrganizers from "../hooks/useOrganizers";
 import Loader from "../components/general/Loader";
-import {handleFilteringCategories} from "../extra/functions";
+import {handleFilteringCategories, withDefaultOption} from "../extra/functions";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)
@@ -29,18 +29,13 @@ const EventsPage = props => {
     const acf = props.page.acf;
     const organizers = useOrganizers(true);
     const categoriesOptions = React.useMemo(() => {
-        return [
-            {
-                key: 0,
-                value: '',
-                label: 'Wszystkie',
-            },
+        return withDefaultOption([
             ...acf.field_nearest_events_information_module[0].field_section_categories_visit.map(category => ({
                 key: category.id,
                 value: category.id,
                 label: category.name,
             })),
-        ];
+        ]);
     }, []);
     const [data, setData] = React.useState(null);
     const [carouselDates, setCarouselDates] = React.useState([]);
@@ -120,7 +115,7 @@ const EventsPage = props => {
                         name: 'organizer_id',
                         extra_classes: 'select-small',
                         selectImageColor: 'green',
-                        options: organizers,
+                        options: withDefaultOption(organizers || []),
                         Component: Select,
                     },
                     {
