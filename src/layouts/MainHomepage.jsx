@@ -29,7 +29,7 @@ const MainHomepage = props => {
 	React.useEffect(() => setMapId( acf?.field_homepage_block_map ), [] );
 
 	React.useEffect(() => {
-		console.log(acf);
+		// console.log(acf);
 		const 
 			  blue = acf.field_homepage_block_blue[0],
 			  red = acf.field_homepage_block_red[0],
