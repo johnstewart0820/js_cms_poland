@@ -36,7 +36,7 @@ const GoogleMap = props => {
 	
 			for ( let i = 0; i < markers.length; i++ ) {
 				const { lat, lng } = markers[ i ];
-				bounds.extend( new window.google.maps.LatLng( lat, lng ));
+				if ( lat && lng ) bounds.extend( new window.google.maps.LatLng( lat, lng ));
 			}
 	
 			setBounds( bounds ); 

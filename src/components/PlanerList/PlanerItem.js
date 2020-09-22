@@ -3,7 +3,7 @@ import '../../styles/PlanerList/PlanerItem.scss';
 import ButtonX from "../buttons/ButtonX";
 
 
-const PlanerItem = ({duration, description, category, imageSrc, step, onClick}) => {
+const PlanerItem = ({duration, description, category, imageSrc, step, deleteOnClick}) => {
     return (
         <>
             <div className='item-container'>
@@ -32,7 +32,7 @@ const PlanerItem = ({duration, description, category, imageSrc, step, onClick}) 
                         </div>
                     </div>
                     <div className='item-action'>
-                        <ButtonX onClick={onClick}/>
+                        <ButtonX onClick={deleteOnClick}/>
                     </div>
                 </div>
             </div>
