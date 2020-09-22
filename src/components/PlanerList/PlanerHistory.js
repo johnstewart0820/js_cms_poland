@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/PlanerList/PlanerHistory.scss';
 
 
-const PlanerHistory = ({totalDuration, route}) => {
+const PlanerHistory = ({totalDuration, route, children}) => {
     let hours = totalDuration ? totalDuration.hours() + ' godz.' : '';
     let minutes = totalDuration ? totalDuration.minutes() + ' min' : '';
 
@@ -27,7 +27,7 @@ const PlanerHistory = ({totalDuration, route}) => {
                     </h3>
                 </div>
                 <div className="planer-history-button">
-                    <button className="button-link green full-width">ZAPISZ TRASĘ DO PDF</button>
+                    {children}
                 </div>
             </div>
         </div>
