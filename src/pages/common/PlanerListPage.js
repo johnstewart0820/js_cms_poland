@@ -47,12 +47,12 @@ const PlanerListPage = () => {
 
             <PlanerListContainer title={'PLANER PODROZY'}>
                 {planerContext?.data?.map((item, index) => {
-
-                    let category = '';
-                    if (item.category !== undefined)
-                        category = item.categories[0];
-
+                    let categoryName = '';
                     let minutes = '';
+
+                    if (item.categories !== undefined)
+                        categoryName = item.categories[0].name;
+
                     if (typeof item.acf?.field_map_minutes === 'string')
                         minutes = item.acf?.field_map_minutes.replace(/ .*/,'');
 
@@ -63,7 +63,7 @@ const PlanerListPage = () => {
                             description={item.title}
                             step={index + 1}
                             imageSrc={item.original_image || require('../../img/errorImage.png')}
-                            category={category || 'N/A'}
+                            category={categoryName || 'N/A'}
                             onClick={() => console.log('remove from map')}
                         />
                     )
