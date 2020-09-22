@@ -29,15 +29,15 @@ const MainHomepage = props => {
 	React.useEffect(() => setMapId( acf?.field_homepage_block_map ), [] );
 
 	React.useEffect(() => {
-
+		console.log(acf);
 		const 
-			  main_titles = [ null, "Portal Turystyczny", "Kultura", "Sport" ],
 			  blue = acf.field_homepage_block_blue[0],
 			  red = acf.field_homepage_block_red[0],
 			  green = acf.field_homepage_block_green[0],
 			  yellow = acf.field_homepage_block_yellow[0],
 			  blocks = [yellow, green, blue, red],
-			  itemsClasses = ['main', 'tourism', 'culture', 'sport'];
+			  itemsClasses = ['main', 'tourism', 'culture', 'sport'],
+			  main_titles = [ null, green?.field_green_fields_title, blue?.field_blue_fields_title, red?.field_red_fields_title ];
 
 		const subitems = [
 		    null,
