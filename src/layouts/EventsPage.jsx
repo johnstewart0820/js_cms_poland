@@ -16,7 +16,7 @@ import {DatePicker} from "../components/form/DatePicker";
 import Select from "../components/form/Select";
 import useOrganizers from "../hooks/useOrganizers";
 import Loader from "../components/general/Loader";
-import {handleFilteringCategories, withDefaultOption} from "../extra/functions";
+import {getMailToLink, handleFilteringCategories, withDefaultOption} from "../extra/functions";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)
@@ -149,6 +149,7 @@ const EventsPage = props => {
                 logoText={acf.field_new_event_title}
                 descriptionText={acf.field_new_event_description}
                 buttonText={acf.field_new_event_button_title}
+                href={getMailToLink(acf.field_new_event_button_mail_address, {subject: acf.field_new_event_button_mail_heading})}
             />
 
             <MapWithPinsFiltering map_id={acf.field_new_event_map}/>
