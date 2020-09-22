@@ -64,7 +64,7 @@ const PlanerListPage = () => {
                             step={index + 1}
                             imageSrc={item.original_image || require('../../img/errorImage.png')}
                             category={categoryName || 'N/A'}
-                            onClick={() => console.log('remove from map')}
+                            deleteOnClick={() => planerContext.delete(index)}
                         />
                     )
                 })}
