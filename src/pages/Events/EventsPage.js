@@ -12,7 +12,7 @@ import moment from "moment";
 import '../../styles/Calendar/Calendar.scss';
 import usePrevious from "../../hooks/usePrevious";
 import Carousel from "../../components/carousel/Carousel";
-import dayButton from "../../components/StadiumReservationComponents/DayButton";
+import DayButton from "../../components/StadiumReservationComponents/DayButton";
 import {API, MOCK_API} from "../../extra/API";
 import LoopEventsPost from "../../components/events/LoopEventsPost";
 import Col from "../../components/helpers/Col";

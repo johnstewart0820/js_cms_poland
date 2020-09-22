@@ -1,7 +1,7 @@
 import React from "react";
 import '../../styles/StadiumReservationPages/DayButton.scss';
 
-const dayButton = ({disabled, active, containerStyles, monthName, dayName, date, onClick}) => {
+const DayButton = ({disabled, active, containerStyles, monthName, dayName, date, onClick}) => {
     const classes = disabled ? ' disabled' : active ? ' active' : '';
     return (
         <button
@@ -17,4 +17,4 @@ const dayButton = ({disabled, active, containerStyles, monthName, dayName, date,
     )
 }
 
-export default dayButton;
+export default DayButton;
