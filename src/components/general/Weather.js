@@ -33,7 +33,7 @@ export default function Weather () {
 		const locale = localStorage.getItem( LocalStorage.Locale );
 		return TRANSLATIONS[ locale ];
 	});
-	
+
 	const current_weather_info = useMemo( getCurrentWeatherInfo, [ current_index ])
 
 
@@ -45,7 +45,7 @@ export default function Weather () {
 			.then( res => {
 				// console.log( res.data.reduce(( total, item ) => { total[item.weather] = 1; return total }, {} ));
 
-				setWeatherDays(  getWeatherForEachDay( res.data ));
+				setWeatherDays( getWeatherForEachDay( res.data ));
 				setCurrentIndex( 0 );
 				setLoading( false );
 			})
