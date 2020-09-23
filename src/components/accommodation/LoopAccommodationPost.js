@@ -5,6 +5,7 @@ import "../../styles/accommodations/loop-accommodation-post.scss";
 import {PhoneIcon, EmailIcon, WWWIcon, PlusIcon} from "../../svg/icons";
 import DefaultImage from "../../constants/DefaultImage";
 import {getArticleLink} from "../../extra/functions";
+import {Link} from "react-router-dom";
 
 const LoopAccommodationPostInfo = ({phone, email, www}) => {
     const info = [
@@ -48,7 +49,7 @@ const LoopAccommodationPostInfo = ({phone, email, www}) => {
 }
 
 const LoopAccommodationPost = (post) => (
-    <a href={getArticleLink(post)} target="_blank" rel={'noopener noreferrer'} className="loop-accommodation-post">
+    <Link to={getArticleLink(post)} className="loop-accommodation-post">
         <div className="loop-accommodation-post__thumbnail has-overlay thumbnail"
              style={{backgroundImage: `url("${post.image || DefaultImage}")`}}>
             <div className="loop-accommodation-post__category">{post.categories_labels}</div>
@@ -79,7 +80,7 @@ const LoopAccommodationPost = (post) => (
                 <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
             </div>
         </div>
-    </a>
+    </Link>
 );
 
 export default LoopAccommodationPost;
