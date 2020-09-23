@@ -1,43 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper, Polyline } from 'google-maps-react';
 import { google_key } from "../../extra/API";
 import { isFunction } from "../../extra/functions";
 import map_style from "../../extra/map_style.json";
 
-
 const GoogleMap = props => {
 	
-	const { markers, onMarkerClick } = props;
+	const { markers, trails, onMarkerClick } = props;
+	const has_markers = !!markers?.length;
+	const has_trails = !!trails?.length; 
 
 	const [ bounds, setBounds ] = useState( null );
-	const [ initial_center, setInitialCenter ] = useState( {} );
+	const [ center, setCenter ] = useState( {} );
 
 
 	useEffect(() => {
 
-		const initial_center = markers && !!markers.length
+		const center = 
+			has_markers
 			? { lat: markers[0].lat, lng: markers[0].lng }
 			: { lat: 49.7205859, lng: 18.8085521 };
 
-		setInitialCenter( initial_center );
+			setCenter( center );
 
 	}, []);
-		
+
 
 	useEffect(() => {
 		
 		const getBounds = () => {
-			const { markers } = props;
-			if ( !markers || !(markers.length > 1) ) return null;
+
+			if ( !has_markers && !has_trails ) return null;
+
+			const trails_points = [];
+			if ( has_trails )
+				trails.forEach( trail => trail.forEach( point => trails_points.push( point )));	
+
+			const points = 
+				has_markers && has_trails  
+					? [...markers,...trails_points ]
+					: has_markers && !has_trails
+						? [...markers ]
+							: [...trails_points ];
 	
 			const bounds = new window.google.maps.LatLngBounds();
-	
-			for ( let i = 0; i < markers.length; i++ ) {
-				const { lat, lng } = markers[ i ];
+			points.forEach(({ lat, lng }) => {
 				if ( lat && lng ) bounds.extend( new window.google.maps.LatLng( lat, lng ));
-			}
+			})
 	
 			setBounds( bounds ); 
 		}
@@ -45,7 +56,7 @@ const GoogleMap = props => {
 
 		getBounds();
 		
-	}, [ props.markers ]);
+	}, [ props.markers, props.trails ]);
 
 
 	const mapLoaded = ( mapProps, map ) => {
@@ -66,10 +77,23 @@ const GoogleMap = props => {
 			fullscreenControl={ false }
 			streetViewControl={ false }
 
-			initialCenter={ initial_center }
+			center={ center }
 			bounds={ bounds }
+
 			onReady={( mapProps, map ) => mapLoaded( mapProps, map )}
 		>
+
+			{ trails && !!trails.length && 
+				trails.map(( item, index) => (
+					<Polyline
+						key={ index }
+						path={ item }
+						strokeColor="rgb(130, 195, 65)"
+						strokeOpacity={ 1 }
+						strokeWeight={ 4 } 
+					/>
+				))	
+			}
 
 
 			{ markers && !!markers.length &&
@@ -105,7 +129,12 @@ const GoogleMap = props => {
 	)
 }
 
-GoogleMap.propTypes = {}
+
+GoogleMap.propTypes = {
+	markers: PropTypes.array,
+	trails: PropTypes.array, 
+	onMarkerClick: PropTypes.func
+}
 
 export default GoogleApiWrapper({
 	apiKey: ( google_key )
