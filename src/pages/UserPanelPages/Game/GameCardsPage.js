@@ -5,17 +5,38 @@ import '../../../styles/Game/GameCardsPage.scss';
 import ProgressBar from "../../../components/Object/ProgressBar";
 import ButtonUnderline from "../../../components/Object/ButtonUnderline";
 import Card from "../../../components/StadiumReservationComponents/Card";
+import axios from '../../../extra/axios';
+import Loader from "../../../components/general/Loader";
 
 
 const GameCardsPage = () => {
+    const [games, setGames] = React.useState(null);
+    const [level, setLevel] = React.useState(null);
+    const [completedGames, setCompletedGames] = React.useState(null);
+    const [notification, setNotification] = React.useState('');
+    const [loading, setLoading] = React.useState(true);
 
-    const [completed, setCompleted] = React.useState(0);
+    React.useEffect(() => {
+        axios.get('https://api.ustron.s3.netcore.pl/games')
+            .then((res) => {
+                setGames(res.data.games);
+                setLevel(res.data.info.level);
+                setCompletedGames(res.data.info.completed);
+                setLoading(false);
+            })
+            .catch((err) => setNotification(err));
+    },[]);
 
+
+    if (!!loading)
+        return <Loader/>
 
     return(
         <Container
             containerTitle={'NAZWA GRY'}
             extraClasses={'container-white'}
+            setNotification={!!notification && true}
+            notificationMessage={notification}
         >
             <div className="container-inner">
                 <Row>
@@ -36,27 +57,19 @@ const GameCardsPage = () => {
                     <ButtonUnderline extraClasses={'bg-white'} buttonText={'wszystkie'}/>
                 </Row>
                 <Row>
-                    <Card
-                        name={'kategoria'}
-                        extraClasses={'game-card'}
-                        title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
-                        thumbnail={'../../../img/loop/1.jpg'}
-                        greenButtonText={'dowiedz się wiecej'}
-                    />
-                    <Card
-                        name={'kategoria'}
-                        extraClasses={'game-card'}
-                        title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
-                        thumbnail={'../../../img/loop/1.jpg'}
-                        greenButtonText={'dowiedz się wiecej'}
-                    />
-                    <Card
-                        name={'kategoria'}
-                        extraClasses={'game-card'}
-                        title={'Boisko piłkarskie ze sztuczną nawierzchnią'}
-                        thumbnail={'../../../img/loop/1.jpg'}
-                        greenButtonText={'dowiedz się wiecej'}
-                    />
+                    {games?.map((game, index) => {
+                        return (
+                            <Card
+                                key={index}
+                                name={game.categories[0].name}
+                                extraClasses={'game-card'}
+                                title={game.title}
+                                thumbnail={'../../../img/loop/1.jpg'}
+                                greenButtonText={'dowiedz się wiecej'}
+                            />
+                        )
+                    })}
+
                 </Row>
             </div>
         </Container>
