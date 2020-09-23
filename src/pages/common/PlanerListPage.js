@@ -1,5 +1,5 @@
 import React from 'react';
-import MapWithPinsFiltering from "../../components/map/MapWithPinsFiltering";
+import GoogleMap from '../../components/map/GoogleMap';
 import Breadcrumbs from "../../components/general/Breadcrumbs";
 import PlanerListContainer from "../../components/PlanerList/PlanerListContainer";
 import PlanerItem from "../../components/PlanerList/PlanerItem";
@@ -7,16 +7,52 @@ import PlanerHistory from "../../components/PlanerList/PlanerHistory";
 import PlanerContext from "../../constants/PlanerContext";
 import moment from "moment";
 import Loader from "../../components/general/Loader";
-// import Pdf from "react-to-pdf";
+import html2canvas from "html2canvas";
+import jsPDF from 'jspdf';
 
-const ref = React.createRef();
 const PlanerListPage = () => {
+    const ref = React.useRef();
+    const buttonRef = React.useRef();
+    const height = document.documentElement.scrollHeight;
     const planerContext = React.useContext(PlanerContext);
-    const optionsForPdf = {
-        orientation: 'portrait',
-        unit: 'in',
-        format: [1903, 1431]
-    };
+    let coords = [];
+
+
+    const createPdf = () => {
+        if (ref.current !== undefined) {
+            const planer = ref.current;
+
+            html2canvas(planer)
+                .then((canvas) => {
+                    const imgData = canvas.toDataURL('image/png'),
+                        pdf = new jsPDF({
+                            orientation: "portrait",
+                            unit: "in",
+                            format: [height, 20]
+                        });
+                    pdf.addImage(imgData, 'JPEG', 0, 0);
+                    pdf.save('planer.pdf');
+                });
+        }
+    }
+
+    const generatePdf = () => {
+        let head = document.head.innerHTML,
+            planer = document.getElementById('planer').innerHTML,
+            pdfWindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+
+        pdfWindow.document.write(`<html><head>${head}</head><body>`);
+        pdfWindow.document.write(planer);
+        pdfWindow.document.write('</body></html>');
+
+        pdfWindow.focus();
+
+        setTimeout(() => {
+            pdfWindow.print();
+        }, 1000)
+
+        return true;
+    }
 
     const totalDuration = React.useMemo(() => {
         if (planerContext.data.length > 0) {
@@ -43,18 +79,30 @@ const PlanerListPage = () => {
         return route.join(' / ');
     }, [planerContext.data.length]);
 
+    const scrollToMap = () => window.scrollTo(0, document.body.scrollHeight);
+
+
     if (planerContext.data.length <= 0)
         return <Loader/>
 
     return(
         <>
-           <div ref={ref} style={{width: '100%', height: '100%'}}>
+            <button ref={buttonRef} onClick={() => createPdf()}>
+                create pdf
+            </button>
+           <div id='planer' ref={ref} style={{width: '100%', height: '100%'}}>
                <Breadcrumbs breadcrumbs={[{ label: "Visit.ustron.pl", to: "/" }, { label: " Jak dojechać", to: "/" }, {label: 'Wynik'}]} />
 
                <PlanerListContainer title={'PLANER PODROZY'}>
                    {planerContext?.data?.map((item, index) => {
                        let categoryName = '';
                        let minutes = '';
+
+                       let gps = item.acf.field_map_gps.split(';');
+                        coords.push({
+                            lat: gps[0],
+                            lng: gps[1]
+                        })
 
                        if (item.categories !== undefined)
                            categoryName = item.categories[0].name;
@@ -71,6 +119,7 @@ const PlanerListPage = () => {
                                imageSrc={item.original_image || require('../../img/errorImage.png')}
                                category={categoryName || 'N/A'}
                                deleteOnClick={() => planerContext.delete(index)}
+                               onMapCheck={scrollToMap}
                            />
                        )
                    })}
@@ -80,19 +129,15 @@ const PlanerListPage = () => {
                    <PlanerHistory
                        route={totalRoute}
                        totalDuration={totalDuration}
-                       >
-                       {/*<Pdf*/}
-                       {/*    options={optionsForPdf}*/}
-                       {/*    filename='planer.pdf'*/}
-                       {/*    targetRef={ref}>*/}
-                       {/*    {({toPdf}) => <button*/}
-                       {/*        className='button-link green full-width'*/}
-                       {/*        onClick={toPdf}>ZAPISZ TRASĘ DO PDF</button>}*/}
-                       {/*</Pdf>*/}
-                   </PlanerHistory>
+                       generatePdfOnClick={generatePdf}
+                   />
                )}
 
-               <MapWithPinsFiltering type="attractions" />
+               <div>
+                   {console.log(coords)}
+                   <GoogleMap markers={coords}/>
+               </div>
+
            </div>
        </>
     )
