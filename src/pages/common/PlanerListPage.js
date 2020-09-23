@@ -7,7 +7,7 @@ import PlanerHistory from "../../components/PlanerList/PlanerHistory";
 import PlanerContext from "../../constants/PlanerContext";
 import moment from "moment";
 import Loader from "../../components/general/Loader";
-import Pdf from "react-to-pdf";
+// import Pdf from "react-to-pdf";
 
 const ref = React.createRef();
 const PlanerListPage = () => {
@@ -81,14 +81,14 @@ const PlanerListPage = () => {
                        route={totalRoute}
                        totalDuration={totalDuration}
                        >
-                       <Pdf
-                           options={optionsForPdf}
-                           filename='planer.pdf'
-                           targetRef={ref}>
-                           {({toPdf}) => <button
-                               className='button-link green full-width'
-                               onClick={toPdf}>ZAPISZ TRASĘ DO PDF</button>}
-                       </Pdf>
+                       {/*<Pdf*/}
+                       {/*    options={optionsForPdf}*/}
+                       {/*    filename='planer.pdf'*/}
+                       {/*    targetRef={ref}>*/}
+                       {/*    {({toPdf}) => <button*/}
+                       {/*        className='button-link green full-width'*/}
+                       {/*        onClick={toPdf}>ZAPISZ TRASĘ DO PDF</button>}*/}
+                       {/*</Pdf>*/}
                    </PlanerHistory>
                )}
 
