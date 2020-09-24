@@ -41,7 +41,9 @@ export default function MapWithPinsFiltering ( props ) {
 		return all_points && !!all_points.length && filter_by
 			? all_points
 				.filter( item => ( item.type === "trail" && ( item.category === filter_by || filter_by === "*" ) && ( item.points && !!item.points.length )))
-				.map( item => ( item.points.map( point => ({ lat: +point.lat, lng: +point.lng }))))
+				.map( item => ( 
+					item.points.map( point => ({ lat: +point.lat, lng: +point.lng, icon: { url: item.map_image || getIconFromCategory( item.category )} }) ))
+				)
 			: []
 
 	}, [ filter_by ]);
