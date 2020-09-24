@@ -7,12 +7,13 @@ import ButtonsContainer from "../../../components/GamePagesComponents/SingleGame
 import SingeGamePageHeader from "../../../components/GamePagesComponents/SingleGamePageHeader";
 import Parser from "html-react-parser";
 
-const pageId = 562;
 
-const SingleGamePage = () => {
+const SingleGamePage = props => {
+    const pageId = props.match.params.id;
     const [data, setData] = React.useState(null);
     const [notification, setNotification] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
+
 
     React.useEffect(() => {
         axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
@@ -22,11 +23,11 @@ const SingleGamePage = () => {
             })
     },[]);
 
+
     if (!!loading)
         return <Loader/>
 
     return(
-
         <Container
             containerTitle={'nazwa gry'}
         >

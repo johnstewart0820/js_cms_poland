@@ -7,7 +7,10 @@ import ButtonUnderline from "../../../components/Object/ButtonUnderline";
 import Card from "../../../components/StadiumReservationComponents/Card";
 import axios from '../../../extra/axios';
 import Loader from "../../../components/general/Loader";
+import {useHistory} from "react-router-dom";
+
 import {AxeAndShovelIcon, CampFireIcon, FishIcon, MapWithMarkerIcon, TwoMarkersIcon} from "../../../svg/icons";
+import TourismRoutes from "../../../constants/TourismRoutes";
 
 
 const items = [
@@ -47,6 +50,7 @@ const GameCardsPage = () => {
     const [notification, setNotification] = React.useState('');
     const [loading, setLoading] = React.useState(true);
     const [gamesFilter, setGamesFilter] = React.useState(Filters.All);
+    const history = useHistory();
 
     const buttons = [
         {
@@ -142,6 +146,7 @@ const GameCardsPage = () => {
                                 title={game.title}
                                 thumbnail={game.original_image}
                                 greenButtonText={'dowiedz się wiecej'}
+                                greenButtonOnСlick={() => history.push(TourismRoutes.SingleGamePage(game.id))}
                             />
                         )
                     })}

@@ -28,5 +28,5 @@ export default {
     DiscountCardsPage: '/discount-cards',
     TrailsPage: '/trails',
     PlanerListPage: '/planer-basket',
-    SingleGamePage: '/single-game-page'
+    SingleGamePage: (id = ':id') => `/single-game-page/${id}`,
 };
