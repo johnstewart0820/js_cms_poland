@@ -5,7 +5,6 @@ import {API} from "./API";
 import Loader from "../components/general/Loader";
 import Layouts from "../constants/Layouts";
 import NotFoundPage from "../pages/NotFoundPage";
-import wrapInArray from "./wrapInArray";
 
 export default function PageRenderer(props) {
     const {locale, slug} = useParams();
@@ -13,7 +12,7 @@ export default function PageRenderer(props) {
     const [pageData, setPageData] = React.useState(null);
 
     React.useEffect(() => {
-        if (!locale || !wrapInArray(siteInfo.languages).includes(locale)) {
+        if (!locale || !siteInfo.languages.split(',').includes(locale)) {
             /* show 404 if invalid locale */
             setPageData(false);
             return;
