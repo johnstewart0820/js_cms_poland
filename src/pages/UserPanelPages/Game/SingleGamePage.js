@@ -1,10 +1,8 @@
 import React from 'react';
 import {Container} from "../../../components/UserPanel/Container";
-import Col from "../../../components/helpers/Col";
 import '../../../styles/Game/SingleGamePage.scss';
 import axios from "../../../extra/axios";
 import Loader from "../../../components/general/Loader";
-import Row from "../../../components/helpers/Row";
 import ButtonsContainer from "../../../components/GamePagesComponents/SingleGamePageButtonsContainer";
 import SingeGamePageHeader from "../../../components/GamePagesComponents/SingleGamePageHeader";
 import Parser from "html-react-parser";
@@ -19,7 +17,6 @@ const SingleGamePage = () => {
     React.useEffect(() => {
         axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
             .then((res) => {
-                console.log(res.data.content)
                 setData(res.data.content)
                 setLoading(false);
             })
@@ -28,7 +25,6 @@ const SingleGamePage = () => {
     if (!!loading)
         return <Loader/>
 
-    {console.log(data)}
     return(
 
         <Container
