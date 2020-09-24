@@ -6,9 +6,12 @@ import Loader from "../../../components/general/Loader";
 import ButtonsContainer from "../../../components/GamePagesComponents/SingleGamePageButtonsContainer";
 import SingeGamePageHeader from "../../../components/GamePagesComponents/SingleGamePageHeader";
 import Parser from "html-react-parser";
+import {useHistory} from 'react-router-dom';
+import TourismRoutes from "../../../constants/TourismRoutes";
 
 
 const SingleGamePage = props => {
+    const history = useHistory();
     const pageId = props.match.params.id;
     const [data, setData] = React.useState(null);
     const [notification, setNotification] = React.useState(null);
@@ -39,7 +42,10 @@ const SingleGamePage = props => {
             <div className={'description'}>
                 <div className={'court-description'}>{Parser(data.body)}</div>
             </div>
-            <ButtonsContainer/>
+            <ButtonsContainer
+                qrButtonOnClick={() => console.log('qr')}
+                visitButtonOnClick={() => history.push(TourismRoutes.QuizPage)}
+            />
         </Container>
     )
 }
