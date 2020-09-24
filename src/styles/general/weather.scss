@@ -61,10 +61,6 @@
 	.weather__info_degrees{
 		font-size: 3.6em;
 	}
-
-	.weather__info{
-		width: auto;
-	}
 }
 
 @media (max-width: 600px){
@@ -76,6 +72,7 @@
 
 	.weather__info{
 		margin: 0;
+		width: auto;
 	}
 
 	.weather__info_degrees{
