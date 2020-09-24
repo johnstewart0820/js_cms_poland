@@ -1,4 +1,5 @@
 import wrapInArray from "./wrapInArray";
+import LocalStorage from "../constants/LocalStorage";
 
 export const addZeroIfNeeded = num => ( num < 10 ? `0${+num}` :  num );
 
@@ -21,7 +22,10 @@ export const getMobileDeviceOS = () => {
 
 export const isFunction = func => ( toString.call(func) === "[object Function]" )
 
-export const getArticleLink = article => '/' + article.slug + ',' + article.id;
+export const getArticleLink = article => {
+    const locale = localStorage.getItem(LocalStorage.Locale) || 'pl';
+    return `/${locale}/${article.slug},${article.id}`;
+};
 
 export const handleFilteringCategories = (args, categories) => {
     /**

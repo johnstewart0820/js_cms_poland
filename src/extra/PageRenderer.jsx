@@ -5,21 +5,28 @@ import {API} from "./API";
 import Loader from "../components/general/Loader";
 import Layouts from "../constants/Layouts";
 import NotFoundPage from "../pages/NotFoundPage";
+import wrapInArray from "./wrapInArray";
 
 export default function PageRenderer(props) {
-    const {pageId, slug} = useParams();
-    const defaultContent = React.useContext(SiteInfoContext).site_info.default_content;
+    const {locale, slug} = useParams();
+    const siteInfo = React.useContext(SiteInfoContext).site_info;
     const [pageData, setPageData] = React.useState(null);
 
     React.useEffect(() => {
-        if (!pageId && !slug) {
-            // no page id/slug = home page
-            setPageData(defaultContent);
-            console.info('PAGE DATA', defaultContent);
+        if (!locale || !wrapInArray(siteInfo.languages).includes(locale)) {
+            /* show 404 if invalid locale */
+            setPageData(false);
             return;
         }
 
-        API.getPost(pageId || slug)
+        if (!slug) {
+            // no page id/slug = home page
+            setPageData(siteInfo.default_content);
+            console.info('PAGE DATA', siteInfo.default_content);
+            return;
+        }
+
+        API.getPost(slug)
             .then(res => {
                 setPageData(res.data.content);
                 console.info('PAGE DATA', res.data.content);
@@ -28,7 +35,7 @@ export default function PageRenderer(props) {
                 setPageData(false);
                 console.log(e);
             });
-    }, [pageId, slug, defaultContent?.id]);
+    }, [locale, slug, siteInfo.default_content?.id]);
 
     // null while loading
     if (pageData === null)
