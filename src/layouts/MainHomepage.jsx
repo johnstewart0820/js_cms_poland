@@ -37,7 +37,7 @@ const MainHomepage = props => {
 			  yellow = acf.field_homepage_block_yellow[0],
 			  blocks = [yellow, green, blue, red],
 			  itemsClasses = ['main', 'tourism', 'culture', 'sport'],
-			  main_titles = [ null, green?.field_green_fields_title, blue?.field_blue_fields_title, red?.field_red_fields_title ];
+			  main_titles = [ null, green?.field_tile, blue?.field_tile, red?.field_tile ];
 
 		const subitems = [
 		    null,

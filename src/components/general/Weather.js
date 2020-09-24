@@ -62,7 +62,7 @@ export default function Weather () {
 						if ( !total[0] ) total[0] = current;
 					} else {
 		
-						if ( new Date( timestamp * 1000 ).getHours() === 12 )
+						if ( new Date( timestamp * 1000 ).getUTCHours() === 12 )
 							total.push( current );
 					}
 		

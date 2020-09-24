@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import {SITE} from "../extra/site_settings.js";
 import MainRouters from "./MainRouters";
 import TourismRouters from "./TourismRouters";
@@ -23,47 +23,52 @@ import EditObjectFormPage from "../pages/UserPanelPages/Objects/EditObjectFormPa
 import GameCardsPage from "../pages/UserPanelPages/Game/GameCardsPage";
 import SingleGamePage from "../pages/UserPanelPages/Game/SingleGamePage";
 import RegisterToEventFormPage from "../pages/UserPanelPages/RegisterToEvent/RegisterToEventFormPage";
+import SiteInfoContext from "../constants/SiteInfoContext";
 
 const ROUTERS = {
     "MAIN": <MainRouters/>,
     "TOURISM": <TourismRouters/>
 }
 
-const Routing = () => (
-    <Switch>
-        {/* Planer list */}
-        <Route exact path={TourismRoutes.PlanerListPage} component={PlanerListPage}/>
+const Routing = () => {
+    const context = React.useContext(SiteInfoContext);
 
-        {/* Authorization pages */}
-        <Route exact path={TourismRoutes.Login} component={LoginPage} />
-        <Route exact path={TourismRoutes.Registration} component={RegistrationPage} />
-        <Route exact path={TourismRoutes.RegistrationConfirmation} component={RegistrationConfirmationPage} />
-        <Route exact path={TourismRoutes.ActivateAccount} component={ActivateAccountPage}/>
+    return (
+        <Switch>
+            {/* Planer list */}
+            <Route exact path={TourismRoutes.PlanerListPage} component={PlanerListPage}/>
 
-        {/* User panel pages */}
-        <Route exact path={TourismRoutes.UserProfile} component={UserProfilePage}/>
-        <Route exact path={TourismRoutes.StadiumReservation} component={CourtsWithCardsPage}/>
-        <Route exact path={TourismRoutes.ReservationConfirmationPage} component={ReservationConfirmationPage}/>
-        <Route exact path={TourismRoutes.Reservation()} component={ReservationCalendarPage}/>
-        <Route exact path={TourismRoutes.ReservationHistoryPage} component={ReservationHistoryPage}/>
-        <Route exact path={TourismRoutes.RegisterToEventList} component={RegisterToEventListPage}/>
-        <Route exact path={TourismRoutes.RegisterToEventForm} component={RegisterToEventFormPage}/>
-        <Route exact path={TourismRoutes.RegisterToEventConfirmationPage} component={RegisterToEventConfirmationPage}/>
-        <Route exact path={TourismRoutes.ObjectListPage} component={ObjectListPage}/>
-        <Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
-        <Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
-        <Route exact path={TourismRoutes.SingleGamePage} component={SingleGamePage}/>
+            {/* Authorization pages */}
+            <Route exact path={TourismRoutes.Login} component={LoginPage} />
+            <Route exact path={TourismRoutes.Registration} component={RegistrationPage} />
+            <Route exact path={TourismRoutes.RegistrationConfirmation} component={RegistrationConfirmationPage} />
+            <Route exact path={TourismRoutes.ActivateAccount} component={ActivateAccountPage}/>
 
-        {/* Routes for pages which controlled from CMS */}
-        <Route exact path={'/'} component={PageRenderer}/>
-        <Route exact path={'/page/:pageId'} component={PageRenderer}/>
-        <Route exact path={'/:slug'} component={PageRenderer}/>
+            {/* User panel pages */}
+            <Route exact path={TourismRoutes.UserProfile} component={UserProfilePage}/>
+            <Route exact path={TourismRoutes.StadiumReservation} component={CourtsWithCardsPage}/>
+            <Route exact path={TourismRoutes.ReservationConfirmationPage} component={ReservationConfirmationPage}/>
+            <Route exact path={TourismRoutes.Reservation()} component={ReservationCalendarPage}/>
+            <Route exact path={TourismRoutes.ReservationHistoryPage} component={ReservationHistoryPage}/>
+            <Route exact path={TourismRoutes.RegisterToEventList} component={RegisterToEventListPage}/>
+            <Route exact path={TourismRoutes.RegisterToEventForm} component={RegisterToEventFormPage}/>
+            <Route exact path={TourismRoutes.RegisterToEventConfirmationPage} component={RegisterToEventConfirmationPage}/>
+            <Route exact path={TourismRoutes.ObjectListPage} component={ObjectListPage}/>
+            <Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
+            <Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
+            <Route exact path={TourismRoutes.SingleGamePage} component={SingleGamePage}/>
 
-        {/* 404 page */}
-        <Route component={NotFoundPage}/>
+            {/* Routes for pages which controlled from CMS */}
+            <Redirect exact from={'/'} to={'/' + context.active_language}/>
+            <Route exact path={'/:locale'} component={PageRenderer}/>
+            <Route exact path={'/:locale/:slug'} component={PageRenderer}/>
 
-        {ROUTERS[SITE]}
-    </Switch>
-);
+            {/* 404 page */}
+            <Route component={NotFoundPage}/>
+
+            {ROUTERS[SITE]}
+        </Switch>
+    );
+}
 
 export default Routing;
