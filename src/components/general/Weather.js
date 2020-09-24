@@ -62,7 +62,7 @@ export default function Weather () {
 						if ( !total[0] ) total[0] = current;
 					} else {
 		
-						if ( new Date( timestamp * 1000 ).getHours() === 12 )
+						if ( new Date( timestamp * 1000 ).getUTCHours() === 12 )
 							total.push( current );
 					}
 		
@@ -167,8 +167,7 @@ export default function Weather () {
 			onTouchEnd={ slideOnTouchEnd } 
 		>
 			{ current_weather_info }
-			{/* { weather_days && weather_days.length > 1 && <Arrows onClick={ switchWeather } /> } */}
-			<Arrows onClick={ switchWeather } />
+			{ weather_days && weather_days.length > 1 && <Arrows onClick={ switchWeather } /> }
 		</div>
 	)
 }
