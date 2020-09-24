@@ -5,19 +5,67 @@
   width: 70%;
   display: flex;
   align-items: center;
-  margin-left: 150px;
-  .progress-container {
-    height: 5px;
-    width: 15%;
-    background-color: $gray;
-    border-radius: 60px;
-    .filler {
-      height: 100%;
-      text-align: right;
-      transition: width 2s ease-in-out;
-      border-radius: 60px;
+  margin-left: 60px;
+    svg {
+        position: absolute;
+        bottom: 220px;
     }
-  }
+
+    .progress-container-0 {
+        height: 5px;
+        width: 25%;
+        background-color: $gray;
+        border-radius: 60px;
+        .filler {
+            height: 100%;
+            text-align: right;
+            transition: width 2s ease-in-out;
+            border-radius: 60px;
+        }
+    }
+
+    .progress-container-1 {
+        height: 5px;
+        width: 15%;
+        background-color: $gray;
+        border-radius: 60px;
+        .filler {
+            height: 100%;
+            text-align: right;
+            transition: width 2s ease-in-out;
+            border-radius: 60px;
+        }
+    }
+
+    .progress-container-2 {
+        height: 5px;
+        width: 15%;
+        background-color: $gray;
+        border-radius: 60px;
+        .filler {
+            height: 100%;
+            text-align: right;
+            transition: width 2s ease-in-out;
+            border-radius: 60px;
+        }
+    }
+
+    .progress-container-3 {
+        height: 5px;
+        width: 10%;
+        background-color: $gray;
+        border-radius: 60px;
+        .filler {
+            height: 100%;
+            text-align: right;
+            transition: width 2s ease-in-out;
+            border-radius: 60px;
+        }
+    }
+
+    .green {
+        background-color: $green;
+    }
 
   .dot {
     width: 20px;
@@ -26,4 +74,8 @@
     border: 2px solid;
     margin: 5px;
   }
+    .green-dot {
+        border-color: $green;
+        background: $green;
+    }
 }
