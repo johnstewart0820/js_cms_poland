@@ -167,7 +167,8 @@ export default function Weather () {
 			onTouchEnd={ slideOnTouchEnd } 
 		>
 			{ current_weather_info }
-			{ weather_days && weather_days.length > 1 && <Arrows onClick={ switchWeather } /> }
+			{/* { weather_days && weather_days.length > 1 && <Arrows onClick={ switchWeather } /> } */}
+			<Arrows onClick={ switchWeather } />
 		</div>
 	)
 }
