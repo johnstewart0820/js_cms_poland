@@ -6,74 +6,92 @@
   display: flex;
   align-items: center;
   margin-left: 60px;
+  font-weight: bold;
     svg {
-        position: absolute;
-        bottom: 220px;
+
     }
 
-    .progress-container-0 {
-        height: 5px;
-        width: 25%;
-        background-color: $gray;
-        border-radius: 60px;
-        .filler {
-            height: 100%;
-            text-align: right;
-            transition: width 2s ease-in-out;
-            border-radius: 60px;
+    .progress-bar-item {
+        width: 20%;
+
+        p {
+            position: relative;
+            left: -15px;
+        }
+
+        &:last-child .progress-bar-children .progress-line {
+            display: none;
+        }
+
+        &.green-items {
+            p {
+                color: $green;
+            }
+            svg path,
+            svg circle,
+            svg ellipse,
+            svg line,
+            svg rect {
+                stroke: $green;
+            }
+            .dot {
+                background: $green;
+            }
+        }
+
+        .progress-line-inner.green {
+            width: 100%;
         }
     }
 
-    .progress-container-1 {
-        height: 5px;
-        width: 15%;
-        background-color: $gray;
-        border-radius: 60px;
-        .filler {
-            height: 100%;
-            text-align: right;
-            transition: width 2s ease-in-out;
-            border-radius: 60px;
-        }
+    .progress-bar-children {
+        display: flex;
+        align-items: center;
     }
 
-    .progress-container-2 {
+    .progress-line {
         height: 5px;
-        width: 15%;
+        width: 100%;
         background-color: $gray;
         border-radius: 60px;
-        .filler {
-            height: 100%;
-            text-align: right;
-            transition: width 2s ease-in-out;
-            border-radius: 60px;
-        }
+        position: relative;
+    }
+    .progress-line-0{
+        width: 30%;
+    }
+    .progress-line-1,
+    .progress-line-2 {
+        width: 20%;
     }
 
-    .progress-container-3 {
-        height: 5px;
+    .progress-line-3{
         width: 10%;
-        background-color: $gray;
-        border-radius: 60px;
-        .filler {
-            height: 100%;
-            text-align: right;
-            transition: width 2s ease-in-out;
-            border-radius: 60px;
-        }
+    }
+
+    .progress-line-inner {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: $green;
+        width: 0;
+        height: 100%;
+        transition: 1s;
     }
 
     .green {
         background-color: $green;
     }
 
-  .dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50px;
-    border: 2px solid;
-    margin: 5px;
-  }
+    .dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+        border: 2px solid;
+        margin: 5px;
+    }
+
     .green-dot {
         border-color: $green;
         background: $green;

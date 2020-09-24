@@ -7,13 +7,21 @@ const ProgressBar = ({items, progress}) => {
             {items.map((item, index) => {
                 const extraClassesDot = progress >= index + 1 && 'green-dot';
                 const extraClassesLine = progress >= index + 2 && 'green';
+                const extraClassesItem = progress >= index + 1 && 'green-items';
 
                 return (
                     <>
-                        {item.image}
-                        <div className={`dot ${extraClassesDot}`}></div>
-                        <div className={`progress-container-${index} ${extraClassesLine}`}>
-
+                        <div className={`progress-bar-item progress-line-${index} ${extraClassesItem}`}>
+                            {item.image}
+                            <div className="progress-bar-children">
+                                <div className={`dot ${extraClassesDot}`}/>
+                                <div className={`progress-line`}>
+                                    <div className={`progress-line-inner ${extraClassesLine}`}/>
+                                </div>
+                            </div>
+                            <p>
+                                {item.name.toUpperCase()}
+                            </p>
                         </div>
                     </>
                 )

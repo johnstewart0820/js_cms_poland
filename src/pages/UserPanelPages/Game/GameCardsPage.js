@@ -12,46 +12,92 @@ import {AxeAndShovelIcon, CampFireIcon, FishIcon, MapWithMarkerIcon, TwoMarkersI
 
 const items = [
     {
-        image: <TwoMarkersIcon/>
+        image: <TwoMarkersIcon/>,
+        name: 'Nowicjusz'
     },
     {
-        image: <CampFireIcon/>
+        image: <CampFireIcon/>,
+        name: 'Mały odkrywca'
     },
     {
-        image: <FishIcon/>
+        image: <FishIcon/>,
+        name: 'Zawodowiec'
     },
     {
-        image: <AxeAndShovelIcon/>
+        image: <AxeAndShovelIcon/>,
+        name: 'Ekspert'
     },
     {
-        image: <MapWithMarkerIcon/>
+        image: <MapWithMarkerIcon/>,
+        name: 'Mistrz'
     }
 ]
 
+const Filters = {
+    All: 'all',
+    Closed: 'closed',
+    Opened: 'opened',
+};
 
 const GameCardsPage = () => {
     const [games, setGames] = React.useState(null);
+    const [data, setData] = React.useState(null);
     const [level, setLevel] = React.useState(null);
     const [completedGames, setCompletedGames] = React.useState(null);
     const [notification, setNotification] = React.useState('');
     const [loading, setLoading] = React.useState(true);
+    const [gamesFilter, setGamesFilter] = React.useState(Filters.All);
+
+    const buttons = [
+        {
+            extraClasses: 'bg-white',
+            buttonText: 'Nieodkryte',
+            filter: Filters.Closed,
+            onClick: () => setGamesFilter(Filters.Closed)
+        },
+        {
+            extraClasses: 'bg-white',
+            buttonText: 'Odkryte',
+            filter: Filters.Opened,
+            onClick: () => setGamesFilter(Filters.Opened)
+        },
+        {
+            extraClasses: 'bg-white',
+            buttonText: 'wszystkie',
+            filter: Filters.All,
+            onClick: () => setGamesFilter(Filters.All)
+        }
+    ];
 
     React.useEffect(() => {
         axios.get('https://api.ustron.s3.netcore.pl/games')
             .then((res) => {
+                setData(res.data.games);
                 setGames(res.data.games);
                 setLevel(res.data.info.level);
                 setCompletedGames(res.data.info.completed);
-                setLoading(false);
             })
-            .catch((err) => setNotification(err));
+            .catch((err) => setNotification(err))
+            .finally(() => setLoading(false));
     },[]);
 
-    console.log(level)
+    React.useEffect(() => {
+        if (!data)
+            return;
+
+        setGames(data.filter(game => {
+            switch (gamesFilter) {
+                case Filters.All: return true;
+                case Filters.Opened: return completedGames.includes(game.id);
+                case Filters.Closed: return !completedGames.includes(game.id);
+                default: return false;
+            }
+        }));
+    },[gamesFilter]);
 
 
     if (!!loading)
-        return <Loader/>
+        return <Loader/>;
 
     return(
         <Container
@@ -77,9 +123,14 @@ const GameCardsPage = () => {
                     />
                 </Row>
                 <Row>
-                    <ButtonUnderline extraClasses={'bg-white'} buttonText={'Nieodkryte'}/>
-                    <ButtonUnderline extraClasses={'bg-white'} buttonText={'Odkryte'}/>
-                    <ButtonUnderline extraClasses={'bg-white'} buttonText={'wszystkie'}/>
+                    {buttons.map((button, index) => (
+                        <ButtonUnderline
+                            key={index}
+                            extraClasses={button.extraClasses + (button.filter === gamesFilter ? ' active' : '')}
+                            buttonText={button.buttonText}
+                            onClick={button.onClick}
+                        />
+                    ))}
                 </Row>
                 <Row>
                     {games?.map((game, index) => {
@@ -89,12 +140,11 @@ const GameCardsPage = () => {
                                 name={game.categories[0].name}
                                 extraClasses={'game-card'}
                                 title={game.title}
-                                thumbnail={'../../../img/loop/1.jpg'}
+                                thumbnail={game.original_image}
                                 greenButtonText={'dowiedz się wiecej'}
                             />
                         )
                     })}
-
                 </Row>
             </div>
         </Container>
