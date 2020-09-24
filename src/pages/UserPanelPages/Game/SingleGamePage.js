@@ -44,7 +44,7 @@ const SingleGamePage = props => {
             </div>
             <ButtonsContainer
                 qrButtonOnClick={() => console.log('qr')}
-                visitButtonOnClick={() => history.push(TourismRoutes.QuizPage)}
+                visitButtonOnClick={() => history.push(TourismRoutes.QuizPage(pageId))}
             />
         </Container>
     )

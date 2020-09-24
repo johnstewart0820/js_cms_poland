@@ -58,7 +58,7 @@ const Routing = () => {
             <Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
             <Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
             <Route exact path={TourismRoutes.SingleGamePage()} component={SingleGamePage}/>
-            <Route exact path={TourismRoutes.QuizPage} component={QuizPage}/>
+            <Route exact path={TourismRoutes.QuizPage()} component={QuizPage}/>
 
             {/* Routes for pages which controlled from CMS */}
             <Redirect exact from={'/'} to={'/' + context.active_language}/>
