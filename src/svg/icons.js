@@ -58,10 +58,16 @@ import { ReactComponent as LogoWhite} from "./icons/logo-white.svg";
 import { ReactComponent as CalendarIcon} from "./icons/calendar.svg";
 import { ReactComponent as GreenArrowIcon} from "./icons/green-arrow.svg";
 
+import { ReactComponent as TwoMarkersIcon} from "./icons/two-markers.svg";
+import { ReactComponent as AxeAndShovelIcon} from "./icons/axe-and-shovel.svg";
+import { ReactComponent as CampFireIcon} from "./icons/camp-fire.svg";
+import { ReactComponent as FishIcon} from "./icons/fish.svg";
+import { ReactComponent as MapWithMarkerIcon} from "./icons/map-with-marker.svg";
+
 import herb_src from "../img/herb.png";
 const HerbIcon = () => ( <em className="ci ci-herb" style={{ backgroundImage: `url(${ herb_src })` }} /> )
 
-export { 
+export {
 	HerbIcon,
 	EyeIcon,
 	UnderlineIcon,
@@ -118,4 +124,10 @@ export {
 	LogoWhite,
 	CalendarIcon,
 	GreenArrowIcon,
+
+    TwoMarkersIcon,
+    AxeAndShovelIcon,
+    CampFireIcon,
+    FishIcon,
+    MapWithMarkerIcon
 }

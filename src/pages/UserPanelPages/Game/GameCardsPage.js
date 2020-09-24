@@ -7,6 +7,26 @@ import ButtonUnderline from "../../../components/Object/ButtonUnderline";
 import Card from "../../../components/StadiumReservationComponents/Card";
 import axios from '../../../extra/axios';
 import Loader from "../../../components/general/Loader";
+import {AxeAndShovelIcon, CampFireIcon, FishIcon, MapWithMarkerIcon, TwoMarkersIcon} from "../../../svg/icons";
+
+
+const items = [
+    {
+        image: <TwoMarkersIcon/>
+    },
+    {
+        image: <CampFireIcon/>
+    },
+    {
+        image: <FishIcon/>
+    },
+    {
+        image: <AxeAndShovelIcon/>
+    },
+    {
+        image: <MapWithMarkerIcon/>
+    }
+]
 
 
 const GameCardsPage = () => {
@@ -26,6 +46,8 @@ const GameCardsPage = () => {
             })
             .catch((err) => setNotification(err));
     },[]);
+
+    console.log(level)
 
 
     if (!!loading)
@@ -49,7 +71,10 @@ const GameCardsPage = () => {
                             KOMORKOWE<br/>
                         </h4>
                     </div>
-                    <ProgressBar bgcolor={"#85CB3F"} completed={100}/>
+                    <ProgressBar
+                        items={items}
+                        progress={level || ''}
+                    />
                 </Row>
                 <Row>
                     <ButtonUnderline extraClasses={'bg-white'} buttonText={'Nieodkryte'}/>
