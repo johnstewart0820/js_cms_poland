@@ -9,6 +9,7 @@ export default function TourismHotels(props) {
     const acf = props.page.acf;
     const recommendedFor = useCustomField('recomended_for');
     const pricesVariant = useCustomField('prices_variant');
+    const facilities = useCustomField('facilities_apartments');
     const categories = React.useMemo(() => {
         let obj = {
             key: 'categories',
@@ -25,7 +26,7 @@ export default function TourismHotels(props) {
     const inputs = React.useMemo(() => {
         const fields = [];
 
-        for (const field of [categories, recommendedFor, pricesVariant]) {
+        for (const field of [categories, recommendedFor, pricesVariant, facilities]) {
             if (!field)
                 return null;
 
@@ -38,7 +39,7 @@ export default function TourismHotels(props) {
         }
 
         return fields;
-    }, [categories, recommendedFor, pricesVariant]);
+    }, [categories, recommendedFor, pricesVariant, facilities]);
 
     return (
         <PaginatedPage
