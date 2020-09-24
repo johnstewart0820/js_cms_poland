@@ -137,8 +137,6 @@ const MainHomepage = props => {
 			}
 
 			{ map_id && <MapWithPinsFiltering map_id={ map_id } /> }
-			{ map_id && <MapWithPinsFiltering map_id={ "14" } /> }
-
 		</>
 	)
 }
