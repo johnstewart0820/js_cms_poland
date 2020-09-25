@@ -29,5 +29,6 @@ export default {
     TrailsPage: '/trails',
     PlanerListPage: '/planer-basket',
     SingleGamePage: (id = ':id') => `/single-game-page/${id}`,
-    QuizPage: (id = ':id') => `/quiz-page/${id}`,
+    QuizPageByQr: (id = ':id') => `/quiz-page/${id}/completeByQRCode`,
+    QuizPageByGps: (id = ':id') => `/quiz-page/${id}/completeByGPS`,
 };
