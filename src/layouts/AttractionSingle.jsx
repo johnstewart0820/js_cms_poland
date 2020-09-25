@@ -4,7 +4,6 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
 import Breadcrumbs from "../components/general/Breadcrumbs";
-import NewsSingleHead from "../components/news/NewsSingleHead";
 import LoopNewsPost from "../components/news/LoopNewsPost";
 import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
@@ -12,7 +11,6 @@ import {API} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import AttractionSingleHead from "../components/attractions/AttractionSingleHead";
-import {Container} from "../components/UserPanel/Container";
 import '../styles/attractions/AttractionSinglePage.scss'
 
 const pageId = 100;
