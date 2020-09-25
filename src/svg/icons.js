@@ -63,6 +63,9 @@ import { ReactComponent as AxeAndShovelIcon} from "./icons/axe-and-shovel.svg";
 import { ReactComponent as CampFireIcon} from "./icons/camp-fire.svg";
 import { ReactComponent as FishIcon} from "./icons/fish.svg";
 import { ReactComponent as MapWithMarkerIcon} from "./icons/map-with-marker.svg";
+import { ReactComponent as RedEyeIcon} from "./icons/red-eye.svg";
+import { ReactComponent as GreenEyeIcon} from "./icons/green-eye.svg";
+import { ReactComponent as QuizPrizeIcon} from "./icons/quiz-prize.svg";
 
 import herb_src from "../img/herb.png";
 const HerbIcon = () => ( <em className="ci ci-herb" style={{ backgroundImage: `url(${ herb_src })` }} /> )
@@ -129,5 +132,8 @@ export {
     AxeAndShovelIcon,
     CampFireIcon,
     FishIcon,
-    MapWithMarkerIcon
+    MapWithMarkerIcon,
+    RedEyeIcon,
+    GreenEyeIcon,
+    QuizPrizeIcon,
 }
