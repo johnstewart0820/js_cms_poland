@@ -80,6 +80,7 @@
 
 		svg{
 			width: 20px;
+			min-width: 20px;
 			margin-right: 10px;
 		}
 	}
@@ -123,5 +124,18 @@
 		&__bottom{
 			display: none;
 		}
+	}
+
+	.loop-accommodation-post__category{
+		padding: 13px;
+		font-size: 0.9em;
+	}
+
+	.loop-accommodation-post__address{
+		max-width: 100%;
+	}
+
+	.loop-accommodation-post__info>a{
+		font-size: 0.9em;
 	}
 }

@@ -80,6 +80,7 @@
 
 		svg{
 			width: 20px;
+			min-width: 20px;
 			margin-right: 10px;
 		}
 	}
@@ -124,5 +125,18 @@
 		&__bottom{
 			display: none;
 		}
+	}
+
+	.loop-gastronomy-post__category{
+		padding: 13px;
+		font-size: 0.9em;
+	}
+
+	.loop-gastronomy-post__address{
+		max-width: 100%;
+	}
+
+	.loop-gastronomy-post__info>a{
+		font-size: 0.9em;
 	}
 }

@@ -95,10 +95,10 @@ const AttractionPage = props => {
                 heading={'ATRAKCJE'}
                 sort_options={sort_options}
             >
-                {loading && <Loader style={{ width: "100%" }}/>}
-                {!!data && (
+                { loading && <Loader style={{ width: "100%" }}/>}
+                { !!data && (
                     <>
-                        {data.contents?.length > 0 && data.contents.map((item, index) => (
+                        { data.contents?.length > 0 && data.contents.map((item, index) => (
                             <LoopAttractionPost key={index} {...item}/>
                         ))}
 
@@ -109,7 +109,9 @@ const AttractionPage = props => {
                         />
                     </>
                 )}
-                <MapWithPinsFiltering type="attractions" />
+                
+					 
+					{ !!acf?.field_attractions_map && <MapWithPinsFiltering map_id={ acf?.field_attractions_map } /> }
             </LoopSearchPostsContainer>
         </>
     )

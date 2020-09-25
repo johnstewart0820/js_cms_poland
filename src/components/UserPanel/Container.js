@@ -5,21 +5,23 @@ import {useHistory} from "react-router-dom";
 import Notification from "../notification/Notification";
 import Breadcrumbs from "../general/Breadcrumbs";
 
+const locations = {
+    reservation: '/reservation-history',
+    registerToEvent: '/register-event',
+};
+
+
 export const Container = props => {
     const history = useHistory();
-    const locations = {
-      reservation: '/reservation-history',
-      registerToEvent: '/register-event'
-    };
 
-    return(
+    return (
         <>
-            <Breadcrumbs breadcrumbs={[{ label: "Panel użytkownika", to: "/" }]} />
+            <Breadcrumbs breadcrumbs={[{label: "Panel użytkownika", to: "/"}]}/>
             <div className={`custom-container ${props.extraClasses} || ''`}>
                 <UserPanel/>
                 <div className="container-fluid">
                     {props.setNotification && <Notification message={props.notificationMessage}/>}
-                    <div className='row' style={!!locations.reservation && !!locations.registerToEvent ? {justifyContent: 'space-between'} : {justifyContent: ''}}>
+                    <div className='row' style={{justifyContent: !!locations.reservation && !!locations.registerToEvent ? 'space-between' : ''}}>
                         <div className="page-title">
                             <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
                             <h3>
@@ -31,7 +33,9 @@ export const Container = props => {
                                 <button
                                     className="button-link green full-width"
                                     onClick={() => history.push(props.routeForContainerButton)}
-                                >{props.textForContainerButton}</button>
+                                >
+                                    {props.textForContainerButton}
+                                </button>
                             </div>
                         )}
                     </div>

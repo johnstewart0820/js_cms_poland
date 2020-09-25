@@ -16,6 +16,9 @@ import {
 	PartlyCloudy
 } from "../../svg/weather-icons";
 
+import TRANSLATIONS from "../../extra/translations";
+import LocalStorage from "../../constants/LocalStorage";
+
 
 let touch_start;
 const today_date = getLocalDateString( new Date());
@@ -25,7 +28,14 @@ export default function Weather () {
 	const [ loading, setLoading ] = useState( true );
 	const [ current_index, setCurrentIndex ] = useState( null );
 	const [ weather_days, setWeatherDays ] = useState( [] );
+
+	const current_translations = useMemo(() => {
+		const locale = localStorage.getItem( LocalStorage.Locale );
+		return TRANSLATIONS[ locale ];
+	});
+
 	const current_weather_info = useMemo( getCurrentWeatherInfo, [ current_index ])
+
 
 	useEffect(() => {
 
@@ -35,7 +45,7 @@ export default function Weather () {
 			.then( res => {
 				// console.log( res.data.reduce(( total, item ) => { total[item.weather] = 1; return total }, {} ));
 
-				setWeatherDays(  getWeatherForEachDay( res.data ));
+				setWeatherDays( getWeatherForEachDay( res.data ));
 				setCurrentIndex( 0 );
 				setLoading( false );
 			})
@@ -52,7 +62,7 @@ export default function Weather () {
 						if ( !total[0] ) total[0] = current;
 					} else {
 		
-						if ( new Date( timestamp * 1000 ).getHours() === 12 )
+						if ( new Date( timestamp * 1000 ).getUTCHours() === 12 )
 							total.push( current );
 					}
 		
@@ -86,17 +96,21 @@ export default function Weather () {
 			"broken clouds": <PartlyCloudy/>,
 			"scattered clouds": <MainlyCloudy/>,
 			"overcast clouds": <MainlyCloudy/>,
-		}
+		};
+
+
+		const svg = weather_icons[ weather ];
+		const weather_label = current_translations?.[ weather ] || weather; 
 	
 		return (
 			<div className="weather__info">
 	
-				{ weather_icons[ weather ] || <img src={ icon_url } alt={ weather } /> }
+				{ svg || <img src={ icon_url } alt={ weather } /> }
 				
 				<span className="weather__info_degrees"> { Math.round( temp ) } </span>
 				
 				<div>
-					<strong> { weather } </strong>
+					<strong> { weather_label } </strong>
 					<span> { +day_num } { month_name } </span>
 					<strong> { day_name } </strong>
 				</div>

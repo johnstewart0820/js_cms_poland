@@ -1,4 +1,5 @@
 import wrapInArray from "./wrapInArray";
+import LocalStorage from "../constants/LocalStorage";
 
 export const addZeroIfNeeded = num => ( num < 10 ? `0${+num}` :  num );
 
@@ -21,7 +22,10 @@ export const getMobileDeviceOS = () => {
 
 export const isFunction = func => ( toString.call(func) === "[object Function]" )
 
-export const getArticleLink = article => '/' + article.slug + ',' + article.id;
+export const getArticleLink = article => {
+    const locale = localStorage.getItem(LocalStorage.Locale) || 'pl';
+    return `/${locale}/${article.slug},${article.id}`;
+};
 
 export const handleFilteringCategories = (args, categories) => {
     /**
@@ -74,3 +78,45 @@ export const withDefaultOption = (options, overrides = {}) => ([
     },
     ...options,
 ]);
+
+/**
+ *
+ * @param {string} to Email address
+ * @param {{
+ *     subject?: string,
+ *     cc?: string|string[],
+ *     bcc?: string|string[],
+ *     body?: string,
+ * }} args Link arguments such as subject, CC, BCC, etc
+ * @return {string}
+ */
+export const getMailToLink = (to, args = {}) => {
+    if (!to)
+        return '#';
+
+    let link = 'mailto:' + to;
+
+    let isFirstParam = true;
+    let queryString = '';
+    const queryParams = {...args};
+    Object.keys(queryParams).forEach(key => {
+        let value = queryParams[key];
+
+        if (Array.isArray(value))
+            value = value.join(', ');
+
+        if (isFirstParam)
+            isFirstParam = false;
+        else
+            queryString += '&';
+
+        queryString += key + '=' + value;
+    });
+
+    if (queryString)
+        link += '?' + queryString;
+
+    return link;
+};
+
+export const ucfirst = string => string.charAt(0).toUpperCase() + string.slice(1);

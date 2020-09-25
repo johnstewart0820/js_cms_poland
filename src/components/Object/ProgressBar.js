@@ -1,73 +1,31 @@
 import React from "react";
 import '../../styles/ObjectPages/ProgressBar.scss';
 
-const Breakpoints = [
-    {
-        title: 'zolupa',
-        progress: 50,
-    },
-    {
-        title: 'gaeeee',
-        progress: 75,
-    },
-];
-
-const sortBreakpoints = arr => arr.sort((a, b) => a.progress - b.progress);
-
-const ProgressBar = props => {
-    const {bgcolor, completed} = props;
-
-    let segment;
-    for (const breakpoint of Breakpoints) {
-        if (completed <= breakpoint.progress)
-            segment = breakpoint;
-    }
-
+const ProgressBar = ({items, progress}) => {
     return(
         <div className="progress-bar">
-            <div className='dot'>
+            {items.map((item, index) => {
+                const extraClassesDot = progress >= index + 1 && 'green-dot';
+                const extraClassesLine = progress >= index + 2 && 'green';
+                const extraClassesItem = progress >= index + 1 && 'green-items';
 
-            </div>
-            <div className="progress-container">
-                {completed > 25 && (
-                    <div style={{width: `${completed}%`, backgroundColor: bgcolor,}} className="filler">
-
-                    </div>
-                )}
-            </div>
-            <div className='dot'>
-
-            </div>
-            <div className="progress-container">
-                {completed > 50 && (
-                    <div style={{width: `${completed}%`, backgroundColor: bgcolor,}} className="filler">
-
-                    </div>
-                )}
-            </div>
-            <div className='dot'>
-
-            </div>
-            <div className="progress-container">
-                {completed > 75 && (
-                    <div style={{width: `${completed}%`, backgroundColor: bgcolor,}} className="filler">
-
-                    </div>
-                )}
-            </div>
-            <div className='dot'>
-
-            </div>
-            <div className="progress-container">
-                {completed > 100 && (
-                    <div style={{width: `${completed}%`, backgroundColor: bgcolor,}} className="filler">
-
-                    </div>
-                )}
-            </div>
-            <div className='dot'>
-
-            </div>
+                return (
+                    <>
+                        <div className={`progress-bar-item progress-line-${index} ${extraClassesItem}`}>
+                            {item.image}
+                            <div className="progress-bar-children">
+                                <div className={`dot ${extraClassesDot}`}/>
+                                <div className={`progress-line`}>
+                                    <div className={`progress-line-inner ${extraClassesLine}`}/>
+                                </div>
+                            </div>
+                            <p>
+                                {item.name.toUpperCase()}
+                            </p>
+                        </div>
+                    </>
+                )
+            })}
         </div>
     )
 }

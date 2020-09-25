@@ -124,7 +124,6 @@ export default class Carousel extends Component{
 
 	slideOnTouchEnd = e => {
 
-		console.log( this.touch_start );
 		const touch_end = e.changedTouches[0].screenX;
 		if ( Math.abs( this.touch_start - touch_end ) >= 24 ) {
 			

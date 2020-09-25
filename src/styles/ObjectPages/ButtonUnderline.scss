@@ -3,32 +3,40 @@
 
 
 .button-with-underline {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 160px;
-  height: 60px;
-  border: none;
-  background-color: white;
-  color: $gray;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 20px 0 30px 0;
-  hr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 160px;
+    height: 60px;
     border: none;
-    margin-top: 10px;
-    width: 60px;
-  }
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    color: $green;
-    font-weight: bold;
+    background-color: white;
+    color: $gray;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 40px 0 30px 30px;
+
     hr {
-      display: block;
-      border: 1px $green solid;
+        border: none;
+        margin-top: 10px;
+        width: 60px;
     }
-  }
+
+    &:focus {
+        outline: none;
+    }
+    &.active {
+        color: $green;
+        font-weight: bold;
+    }
+
+    &:hover {
+        color: $green;
+        font-weight: bold;
+
+        hr {
+            display: block;
+            border: 1px $green solid;
+        }
+    }
 }

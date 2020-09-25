@@ -17,7 +17,7 @@ const MapFilters = ({ loading, info, link_to_all, filters, filter_by, setFilterB
 					{ link_to_all && <LinkToAll path={ link_to_all } label="Dowiedz się więcej"/> }
 				</div>
 
-				<div className="map-with-pins-filtering-filters">
+				<div className="map-with-pins-filtering-filters has-scrollbar">
 					{ filters && !!filters.length &&
 						filters.map(({ icon, label, extra_label, value }) => {
 
