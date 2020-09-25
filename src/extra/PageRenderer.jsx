@@ -45,7 +45,9 @@ export default function PageRenderer(props) {
         return <NotFoundPage/>;
 
     let layoutValue;
-    if (pageData.post_type === 'news')
+    if (pageData.post_type === 'attractions')
+        layoutValue = 'attractions_single';
+    else if (pageData.post_type === 'news')
         layoutValue = 'news_single';
     else if (pageData.post_type === 'events')
         layoutValue = 'events_single';
