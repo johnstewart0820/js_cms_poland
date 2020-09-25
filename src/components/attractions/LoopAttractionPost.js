@@ -6,20 +6,21 @@ import BicycleIcon from "../icons/BicycleIcon";
 import DisabilityIcon from "../icons/DisabilityIcon";
 import FamilyIcon from "../icons/FamilyIcon";
 import PlanerContext from "../../constants/PlanerContext";
+import {getArticleLink} from "../../extra/functions";
 
-export default function ({id, title, excerpt, category, thumbnail}) {
+export default function (attraction) {
     const planerContext = React.useContext(PlanerContext);
 
     return (
         <div className="loop-card">
             <a
-                href={`/attractions/${id}`}
+                href={getArticleLink(attraction)}
                 target={'_blank'}
                 rel={'noopener noreferrer'}
                 className="loop-card__thumbnail has-overlay thumbnail"
-                style={{backgroundImage: `url(${thumbnail})`}}
+                style={{backgroundImage: `url(${attraction.thumbnail})`}}
             >
-                <div className="loop-card__thumbnail-text">{category}</div>
+                <div className="loop-card__thumbnail-text">{attraction.category}</div>
             </a>
 
             <div className="loop-card__content-container">
@@ -29,16 +30,16 @@ export default function ({id, title, excerpt, category, thumbnail}) {
                     <FamilyIcon/>
                 </div>
                 <div className="loop-card__title heading">
-                    <a href={`/attractions/${id}`} target={'_blank'} rel={'noopener noreferrer'}>
-                        {title}
+                    <a href={getArticleLink(attraction)} target={'_blank'} rel={'noopener noreferrer'}>
+                        {attraction.title}
                     </a>
                 </div>
 
-                {excerpt && <div className="loop-card__text">{excerpt}</div>}
+                {attraction.excerpt && <div className="loop-card__text">{attraction.excerpt}</div>}
 
                 <div className="loop-card__action-buttons">
-                    <PlusButton onClick={() => planerContext.add(id)}/>
-                    <ShareButton link_for_sharing={`${window.location.origin}/attractions/${id}`}/>
+                    <PlusButton onClick={() => planerContext.add(attraction.id)}/>
+                    <ShareButton link_for_sharing={window.location.origin + getArticleLink(attraction)}/>
                 </div>
             </div>
         </div>

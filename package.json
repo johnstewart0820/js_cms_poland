@@ -43,5 +43,6 @@
   },
   "devDependencies": {
     "prop-types": "^15.7.2"
-  }
+  },
+    "include": ["src/components", "src/custom.d.ts"]
 }

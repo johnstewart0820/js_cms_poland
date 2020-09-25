@@ -51,8 +51,9 @@ export default class ExpandedGallery extends Component{
 
 		const { active_photo } = this.state;
 		const { items, closeHandler } = this.props;
-
+        console.log("ccscw"+items)
 		if( !items || !items.length ) return null;
+
 
 		return(
 			<div className="expanded-gallery">

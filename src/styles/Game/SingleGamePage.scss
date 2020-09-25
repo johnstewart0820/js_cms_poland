@@ -56,9 +56,10 @@
 .court-description {
     display: block;
     text-align: left;
+    ul{
+        text-align: left;
+    }
 }
-.court-description ul {
-    text-align: left;
-}
+
 
 
