@@ -22,4 +22,20 @@
             margin-right: 30px;
         }
     }
+    h3 {
+        margin-left: 220px;
+    }
+}
+
+.quiz-page-button {
+    margin: 50px 10px 10px 140px;
+}
+
+.quiz-container-green {
+    background: rgba(133, 203, 63, 0.52);
+    color: $green;
+}
+
+.quiz-container-red {
+    background: rgba(253, 79, 79, 0.52);
 }

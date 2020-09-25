@@ -43,8 +43,8 @@ const SingleGamePage = props => {
                 <div className={'court-description'}>{Parser(data.body)}</div>
             </div>
             <ButtonsContainer
-                qrButtonOnClick={() => console.log('qr')}
-                visitButtonOnClick={() => history.push(TourismRoutes.QuizPage(pageId))}
+                qrButtonOnClick={() => history.push(TourismRoutes.QuizPageByQr(pageId))}
+                visitButtonOnClick={() => history.push(TourismRoutes.QuizPageByGps(pageId))}
             />
         </Container>
     )
