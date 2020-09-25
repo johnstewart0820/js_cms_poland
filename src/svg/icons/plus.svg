@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="14.833" height="14.833" viewBox="0 0 14.833 14.833">
-    <g id="Group_8005" data-name="Group 8005" transform="translate(1 1)">
-        <line id="Line_729" data-name="Line 729" y2="12.833" transform="translate(6.417)" fill="none" stroke="#3d5567" stroke-linecap="round" stroke-width="2"/>
-        <line id="Line_730" data-name="Line 730" y1="12.833" transform="translate(12.833 6.417) rotate(90)" fill="none" stroke="#3d5567" stroke-linecap="round" stroke-width="2"/>
-    </g>
+<svg id="plus" id="stroke" xmlns="http://www.w3.org/2000/svg" width="13.542" height="13.542" viewBox="0 0 13.542 13.542">
+  <g transform="translate(1 1)">
+    <line y2="11.542" transform="translate(5.771)" fill="none" stroke="#3d5567" stroke-linecap="round" stroke-width="2"/>
+    <line y1="11.542" transform="translate(11.542 5.771) rotate(90)" fill="none" stroke="#3d5567" stroke-linecap="round" stroke-width="2"/>
+  </g>
 </svg>
-

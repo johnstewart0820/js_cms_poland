@@ -34,7 +34,6 @@ export default class Gallery extends Component{
 
 		if( !this.props.items || !this.props.items.length ) return null;
 
-
 		const { expanded, active_photo } = this.state;
 		const items = this.props.items.map(( item, index ) => ({...item, index, onClick: this.itemClick }));
 
