@@ -9,7 +9,7 @@ import {useLocation} from 'react-router-dom';
 import PlanerContext from "../../constants/PlanerContext";
 
 
-const Card = ({id, name, title, address, thumbnail, postCode ,city, greenButtonOnСlick, greenButtonText, extraClasses}) => {
+const Card = ({id, name, title, address, thumbnail, postCode ,city, greenButtonOnСlick, greenButtonText, extraClasses, eyeButtonImage}) => {
     const location = useLocation();
     let pathname = location.pathname;
     const planerContext = React.useContext(PlanerContext);
@@ -21,7 +21,7 @@ const Card = ({id, name, title, address, thumbnail, postCode ,city, greenButtonO
                     <div className="card__name">
                         {name}
                     </div>
-                    {pathname === '/game' && <button className="button__eye"><EyeIcon/></button>}
+                    {pathname === '/game' && <button className="button__eye">{eyeButtonImage}</button>}
                 </div>
 
                 <div className="card__content">

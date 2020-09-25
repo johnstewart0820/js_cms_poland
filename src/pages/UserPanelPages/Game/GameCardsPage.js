@@ -9,7 +9,14 @@ import axios from '../../../extra/axios';
 import Loader from "../../../components/general/Loader";
 import {useHistory} from "react-router-dom";
 
-import {AxeAndShovelIcon, CampFireIcon, FishIcon, MapWithMarkerIcon, TwoMarkersIcon} from "../../../svg/icons";
+import {
+    AxeAndShovelIcon,
+    CampFireIcon,
+    FishIcon, GreenEyeIcon,
+    MapWithMarkerIcon,
+    RedEyeIcon,
+    TwoMarkersIcon,
+} from "../../../svg/icons";
 import TourismRoutes from "../../../constants/TourismRoutes";
 
 
@@ -146,6 +153,7 @@ const GameCardsPage = () => {
                                 title={game.title}
                                 thumbnail={game.original_image}
                                 greenButtonText={'dowiedz się wiecej'}
+                                eyeButtonImage={completedGames.includes(game.id) ? <GreenEyeIcon/> : <RedEyeIcon/>}
                                 greenButtonOnСlick={() => history.push(TourismRoutes.SingleGamePage(game.id))}
                             />
                         )
