@@ -3,7 +3,6 @@ import PageHeaderSection from "../header/PageHeaderSection";
 import '../../styles/attractions/AttractionSinglePage.scss';
 import '../../svg/icons/tourist.svg';
 
-
 function AttractionSingleHead  ({title, categories_labels, image, acf})  {
 
     const iconsBoard = acf.field_recomended_for;
@@ -34,7 +33,6 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
                 <div className="page-title">{title}</div>
                 <div className="single-attraction-container">
                     <div className={'icons-container'}>
-                        {/*{acf.field_map_adapted_for_disabled && <img className={'icons'} alt='' src={require('../../svg/icons/disabled.svg')}/>}*/}
                         {icons}</div>
                     <div className={'time-attraction-container'}>{acf.field_map_minutes &&
                     <>
@@ -47,6 +45,7 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
                 </div>
             </div>
 
+            {!openHours &&
             <div className={"hours-open"}>
                 <p>GODZINY OTWARCIA:</p>
                 <div className={'container-hours'}>
@@ -61,7 +60,7 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
                         {(openHours['7_from']&&openHours['7_to'])&& <div>niedziela: {openHours['7_from']} - {openHours['7_to']}</div>}
                     </div>
                 </div>
-            </div>
+            </div>}
 
 
             {(acf.field_map_address && acf.field_map_city) &&
@@ -97,7 +96,7 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
 
             <div className={'buttons-container'}>
                 <button className="button-planer button-link green " >
-                    dodaj do pplanera
+                    dodaj do planera
                     <img alt='' src={require('../../svg/icons/plus.svg')}/>
                 </button>
                 <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>

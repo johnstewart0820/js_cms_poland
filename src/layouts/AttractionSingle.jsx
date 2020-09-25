@@ -17,13 +17,15 @@ import '../styles/attractions/AttractionSinglePage.scss'
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
 import GoogleMap from "../components/map/GoogleMap";
 
-const pageId = 100;
 
 export default function AttractionSingle(props) {
+    const pageId = props.page.id;
 
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [news, setNews] = React.useState(null);
+    const [gallery, setGallery] = React.useState(props.page.gallery);
+    const newArrayItems = [];
 
     React.useEffect(() => {
         API.getEntities({categories: props.page.categories})
@@ -38,26 +40,54 @@ export default function AttractionSingle(props) {
     React.useEffect(() => {
         axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
             .then((res) => {
-
                 setDate(res.data.content)
                 setLoading(false);
             })
     }, []);
 
+
+    React.useEffect(() => {
+        gallery.forEach((element => {
+            newArrayItems.push({
+               description: element.description,
+               name: element.url,
+               title: element.title,
+               url: element.name
+            });
+        }));
+    }, [gallery]);
+
+
     if (!!loading)
         return <Loader/>
 
 
-    let a = props.page.gallery.map(r => {
-        r.url = r.name
-    })
 
-    console.log(a);
+    function transplatePrice (priceInEnglisz){
+        if(priceInEnglisz === 'low-prices') return  'niskie';
+        else if(priceInEnglisz === 'medium-prices') return  'umiarkowane';
+        else if(priceInEnglisz === 'high-prices') return  'wysokie';
+    }
 
 
-    let k = props.page.acf.field_service_languages.map(r => <div><img alt={''}
-                                                                      src={require('../svg/icons/logo-black.svg')}/>{r}
-    </div>)
+    let coords = [];
+    const gps = props.page.acf.field_map_gps.split(';');
+    coords.push({
+        lat: gps[0],
+        lng: gps[1]
+    });
+
+
+    let nameOfLanguage = props.page.acf.field_service_languages.map(el =>{
+        if(el === 'polish')  el = 'polski' ;
+        if(el === 'english')  el = 'angielski' ;
+        if(el === 'dutch')  el = 'niemiecki' ;
+        if(el === 'czech')  el = 'czeski' ;
+        return(
+            <div className={'language-container'}>
+                <img alt={''} src={require('../svg/icons/ok.svg')}/>
+                <div className={'language-info'}>{el}</div>
+            </div>)});
 
     return (
         <>
@@ -65,40 +95,44 @@ export default function AttractionSingle(props) {
                 <Breadcrumbs breadcrumbs={[]}/>
                 <AttractionSingleHead {...props.page}/>
             </MainHeaderSection>
-            {/*<SingleContainer extra_classes="single-news-container">*/}
-            {/*    /!*<div>{Parser(props.page.acf.field_description)}</div>*!/*/}
-            {/*    /!*<SingleContentBottom/>*!/*/}
-            {/*</SingleContainer>*/}
 
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                    <h3>OBSŁUGA W JĘZYKU</h3>
+                    <div className={'name-info'}>OBSŁUGA W JĘZYKU</div>
                 </div>
-                <h2>{k}</h2>
+                <h2 className={''}>{nameOfLanguage}</h2>
             </div>
 
 
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                    <h3>OPdIS</h3>
-                </div>
-                <h2 className={'description'}>{Parser(props.page.acf.field_description)}</h2>
+                    <div className={'name-info'}>OPIS</div>
+            </div>
+            <h2 className={' description-main'}>{Parser(props.page.acf.field_description)}</h2>
             </div>
 
 
-            <Gallery items={a}/>
+            <div className="section-info">
+                <div className={'section-title'}>
+                    <img alt="" src={require('../svg/icons/logo-black.svg')}/>
+                    <div className={'name-info'}>Ceny</div>
+                </div>
+                <h2 className={' description-main'}>{transplatePrice(props.page.acf.field_prices_variant)}</h2>
+            </div>
 
+            {newArrayItems}
+            <Gallery items={newArrayItems}/>
 
             <OneCarouseInRow carousel={{
                 loading: news === null,
-                heading: 'Ostatnie aktualności',
+                heading: 'Ostatnie aktgualności',
                 ItemComponent: LoopNewsPost,
                 items: news || [],
             }}/>
 
-            <GoogleMap markers={[]}/>
+            <GoogleMap markers={coords}/>
         </>
     );
 };
