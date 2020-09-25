@@ -5,6 +5,7 @@ import "../../styles/gastronomy/loop-gastronomy-post.scss";
 import {PhoneIcon, EmailIcon, WWWIcon, PlusIcon} from "../../svg/icons";
 import {getArticleLink} from "../../extra/functions";
 import DefaultImage from "../../constants/DefaultImage";
+import {Link} from "react-router-dom";
 
 const LoopGastronomyPostInfo = ({phone, email, www}) => {
     const info = [
@@ -48,7 +49,7 @@ const LoopGastronomyPostInfo = ({phone, email, www}) => {
 };
 
 const LoopGastronomyPost = post => (
-    <a href={getArticleLink(post)} target="_blank" className="loop-gastronomy-post">
+    <Link to={getArticleLink(post)} className="loop-gastronomy-post">
         <div className="loop-gastronomy-post__thumbnail has-overlay thumbnail"
              style={{backgroundImage: `url(${post.image || DefaultImage})`}}>
             <div className="loop-gastronomy-post__category">{post.categories_labels}</div>
@@ -79,7 +80,7 @@ const LoopGastronomyPost = post => (
                 <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
             </div>
         </div>
-    </a>
+    </Link>
 );
 
 export default LoopGastronomyPost;

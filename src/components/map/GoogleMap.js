@@ -1,43 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper, Polyline } from 'google-maps-react';
 import { google_key } from "../../extra/API";
 import { isFunction } from "../../extra/functions";
 import map_style from "../../extra/map_style.json";
 
-
 const GoogleMap = props => {
 	
-	const { markers, onMarkerClick } = props;
+	const { markers, trails, onMarkerClick } = props;
+	const has_markers = !!markers?.length;
+	const has_trails = !!trails?.length; 
 
 	const [ bounds, setBounds ] = useState( null );
-	const [ initial_center, setInitialCenter ] = useState( {} );
+	const [ center, setCenter ] = useState( {} );
+
+	const trails_markers = useMemo(() => {
+		return trails && !!trails.length
+			? trails.map( trail => ( trail?.[ 0 ] ))
+			: []
+	}, [ props.trails ])
 
 
 	useEffect(() => {
 
-		const initial_center = markers && !!markers.length
+		const center = 
+			has_markers
 			? { lat: markers[0].lat, lng: markers[0].lng }
 			: { lat: 49.7205859, lng: 18.8085521 };
 
-		setInitialCenter( initial_center );
+			setCenter( center );
 
 	}, []);
-		
+
 
 	useEffect(() => {
 		
 		const getBounds = () => {
-			const { markers } = props;
-			if ( !markers || !(markers.length > 1) ) return null;
+
+			if ( !has_markers && !has_trails ) return null;
+
+			const trails_points = [];
+			if ( has_trails )
+				trails.forEach( trail => trail.forEach( point => trails_points.push( point )));	
+
+			const points = 
+				has_markers && has_trails  
+					? [...markers,...trails_points ]
+					: has_markers && !has_trails
+						? [...markers ]
+							: [...trails_points ];
 	
 			const bounds = new window.google.maps.LatLngBounds();
-	
-			for ( let i = 0; i < markers.length; i++ ) {
-				const { lat, lng } = markers[ i ];
-				bounds.extend( new window.google.maps.LatLng( lat, lng ));
-			}
+			points.forEach(({ lat, lng }) => {
+				if ( lat && lng ) bounds.extend( new window.google.maps.LatLng( lat, lng ));
+			})
 	
 			setBounds( bounds ); 
 		}
@@ -45,13 +62,20 @@ const GoogleMap = props => {
 
 		getBounds();
 		
-	}, [ props.markers ]);
+	}, [ props.markers, props.trails ]);
 
 
-	const mapLoaded = ( mapProps, map ) => {
-		map.setOptions({
-			styles: map_style
-		})
+	const mapLoaded = ( mapProps, map ) => map.setOptions({ styles: map_style });
+
+
+	const getProperIcon = icon => {
+		return icon && icon.url
+			? {
+				url: icon.url,
+				anchor: new window.google.maps.Point( icon.width || 80, icon.height || icon.width || 80 ),
+				scaledSize:  new props.google.maps.Size( icon.width || 80, icon.height || icon.width || 80 )
+			}
+			: null;
 	}
 
 
@@ -66,38 +90,56 @@ const GoogleMap = props => {
 			fullscreenControl={ false }
 			streetViewControl={ false }
 
-			initialCenter={ initial_center }
+			center={ center }
 			bounds={ bounds }
+
 			onReady={( mapProps, map ) => mapLoaded( mapProps, map )}
 		>
 
+			{ trails && !!trails.length && 
+				trails.map(( item, index) => (
+					<Polyline
+						key={ index }
+						path={ item }
+						strokeColor="rgb(130, 195, 65)"
+						strokeOpacity={ 1 }
+						strokeWeight={ 4 } 
+					/>
+				))	
+			}
+
+
+			{ trails_markers && !!trails_markers.length &&
+				trails_markers.map(({ lat, lng, icon }, index ) => (
+					( lat && lng ) 
+						? (
+							<Marker 
+								key={ index }	
+								position={{ lat, lng }}
+								icon={ getProperIcon( icon ) }
+							/>
+						)
+						: null					
+				))
+			}
+
 
 			{ markers && !!markers.length &&
-				markers.map(({ id, lat, lng, name, icon }, index) => {
-
-					if ( !lat || !lng ) return null;
-
-					const prop_icon = 
-						icon && icon.url && icon.width
-							? {
-								url: icon.url,
-								anchor: new window.google.maps.Point( icon.width, icon.height || icon.width ),
-								scaledSize:  new props.google.maps.Size( icon.width, icon.height || icon.width )
-							}
-							: null;
-
-					return (
-						<Marker 
-							key={ index }	
-							name={ name } 
-							position={{ lat, lng }}
-							icon={ prop_icon }
-							onClick={ e => {
-								if ( isFunction(onMarkerClick )) onMarkerClick( id, lat, lng ) 
-							}} 
-						/>
-					)
-				})
+				markers.map(({ id, lat, lng, name, icon }, index ) => (
+					( lat && lng )
+						?  (
+							<Marker 
+								key={ index }	
+								name={ name } 
+								position={{ lat, lng }}
+								icon={ getProperIcon( icon ) }
+								onClick={ e => {
+									if ( isFunction(onMarkerClick )) onMarkerClick( id, lat, lng ) 
+								}} 
+							/>
+						)
+						: null
+				))
 			}
 
 		
@@ -105,7 +147,12 @@ const GoogleMap = props => {
 	)
 }
 
-GoogleMap.propTypes = {}
+
+GoogleMap.propTypes = {
+	markers: PropTypes.array,
+	trails: PropTypes.array, 
+	onMarkerClick: PropTypes.func
+}
 
 export default GoogleApiWrapper({
 	apiKey: ( google_key )

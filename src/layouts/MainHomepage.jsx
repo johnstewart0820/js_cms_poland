@@ -29,12 +29,15 @@ const MainHomepage = props => {
 	React.useEffect(() => setMapId( acf?.field_homepage_block_map ), [] );
 
 	React.useEffect(() => {
-		const blue = acf.field_homepage_block_blue[0],
+		// console.log(acf);
+		const 
+			  blue = acf.field_homepage_block_blue[0],
 			  red = acf.field_homepage_block_red[0],
 			  green = acf.field_homepage_block_green[0],
 			  yellow = acf.field_homepage_block_yellow[0],
 			  blocks = [yellow, green, blue, red],
-			  itemsClasses = ['main', 'tourism', 'culture', 'sport'];
+			  itemsClasses = ['main', 'tourism', 'culture', 'sport'],
+			  main_titles = [ null, green?.field_tile, blue?.field_tile, red?.field_tile ];
 
 		const subitems = [
 		    null,
@@ -68,7 +71,7 @@ const MainHomepage = props => {
         }
 
 		setTiles(blocks.map((item, index) => {
-			const title = item.field_homepage_block_title || '',
+			const title = item.field_homepage_block_title || main_titles[ index ],
 				main_href = item.field_homepage_block_link || '',
 				bg = item.field_homepage_block_image
                     || item.field_green_fields_image

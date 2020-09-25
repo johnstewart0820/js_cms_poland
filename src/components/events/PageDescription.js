@@ -4,7 +4,9 @@ import Row from "../helpers/Row";
 import {LogoWhite} from "../../svg/icons";
 import '../../styles/events/PageDescription.scss';
 
-export const PageDescription = ({logoText, descriptionText, buttonText}) => {
+export const PageDescription = ({logoText, descriptionText, buttonText, href, onClick}) => {
+    const ButtonContainer = href ? 'a' : 'button';
+
     return (
         <div className="gray-description">
             <Col>
@@ -23,9 +25,9 @@ export const PageDescription = ({logoText, descriptionText, buttonText}) => {
             </Col>
 
             <Col>
-                <button className="button-link green full-width">
+                <ButtonContainer className="button-link green full-width" href={href} onClick={onClick}>
                     {buttonText.toUpperCase()}
-                </button>
+                </ButtonContainer>
             </Col>
         </div>
     )

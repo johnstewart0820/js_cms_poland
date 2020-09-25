@@ -8,6 +8,7 @@
 
 #ustron-app, body, html{
 	height: 100%;
+    scroll-behavior: smooth;
 }
 
 #ustron-app{
@@ -40,6 +41,26 @@ a{
 	text-decoration: none;
 	&:hover{
 		text-decoration: none;
+	}
+}
+
+.has-scrollbar{
+	overflow: auto;
+
+	scrollbar-width: thin;
+	scrollbar-color: #fff $gray;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+	
+	&::-webkit-scrollbar-track {
+		background: $gray;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(255, 255, 255, .6);
+		outline: none;
 	}
 }
 

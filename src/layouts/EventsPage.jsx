@@ -3,7 +3,6 @@ import moment from "moment";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import LoopSearchForm from "../components/loop/LoopSearchForm";
-import {DayCarousel} from "../components/events/DayCarousel";
 import Carousel from "../components/carousel/Carousel";
 import {PageDescription} from "../components/events/PageDescription";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
@@ -16,7 +15,8 @@ import {DatePicker} from "../components/form/DatePicker";
 import Select from "../components/form/Select";
 import useOrganizers from "../hooks/useOrganizers";
 import Loader from "../components/general/Loader";
-import {handleFilteringCategories} from "../extra/functions";
+import {getMailToLink, handleFilteringCategories, withDefaultOption} from "../extra/functions";
+import {DayCarousel} from "../components/events/DayCarousel";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)
@@ -29,21 +29,15 @@ const EventsPage = props => {
     const acf = props.page.acf;
     const organizers = useOrganizers(true);
     const categoriesOptions = React.useMemo(() => {
-        return [
-            {
-                key: 0,
-                value: '',
-                label: 'Wszystkie',
-            },
+        return withDefaultOption([
             ...acf.field_nearest_events_information_module[0].field_section_categories_visit.map(category => ({
                 key: category.id,
                 value: category.id,
                 label: category.name,
             })),
-        ];
+        ]);
     }, []);
     const [data, setData] = React.useState(null);
-    const [carouselDates, setCarouselDates] = React.useState([]);
     const [selectedDate, setSelectedDate] = React.useState(null);
     const [filterArgs, setFilterArgs] = React.useState({});
 
@@ -60,28 +54,6 @@ const EventsPage = props => {
             console.error(err);
             setData(false);
         });
-    }, [filterArgs, selectedDate]);
-
-    /* calc new dates */
-    React.useEffect(() => {
-        if (!filterArgs.date || !filterArgs.date_to || moment(filterArgs.date).isAfter(moment(filterArgs.date_to)))
-            return;
-
-        const dates = [];
-
-        for (const cycleDate = moment(filterArgs.date); cycleDate.isSameOrBefore(filterArgs.date_to); cycleDate.add('1', 'day')) {
-            const clone = cycleDate.clone();
-            dates.push({
-                key: cycleDate.format('DD.MM.YYYY'),
-                active: selectedDate ? moment(selectedDate).isSame(cycleDate) : false,
-                onClick: () => setSelectedDate(clone.toDate()),
-                dayName: cycleDate.format('dddd').toUpperCase(),
-                monthName: cycleDate.format('MMMM').toUpperCase(),
-                date: cycleDate.date(),
-            });
-        }
-
-        setCarouselDates(dates);
     }, [filterArgs, selectedDate]);
 
     const onFiltersSubmit = args => {
@@ -120,7 +92,7 @@ const EventsPage = props => {
                         name: 'organizer_id',
                         extra_classes: 'select-small',
                         selectImageColor: 'green',
-                        options: organizers,
+                        options: withDefaultOption(organizers || []),
                         Component: Select,
                     },
                     {
@@ -137,7 +109,12 @@ const EventsPage = props => {
                 submitCallback={onFiltersSubmit}
             />
 
-            {carouselDates?.length && <DayCarousel days={carouselDates}/>}
+            <DayCarousel
+                startDate={moment().subtract(3, 'days')}
+                selectedDate={selectedDate}
+                onDayClick={date => setSelectedDate(date)}
+                amount={7}
+            />
 
             {data === null && <Loader/>}
             {!!data?.contents && (
@@ -154,6 +131,7 @@ const EventsPage = props => {
                 logoText={acf.field_new_event_title}
                 descriptionText={acf.field_new_event_description}
                 buttonText={acf.field_new_event_button_title}
+                href={getMailToLink(acf.field_new_event_button_mail_address, {subject: acf.field_new_event_button_mail_heading})}
             />
 
             <MapWithPinsFiltering map_id={acf.field_new_event_map}/>

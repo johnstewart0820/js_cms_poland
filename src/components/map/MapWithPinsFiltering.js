@@ -10,12 +10,14 @@ import Loader from "../general/Loader";
 import "../../styles/map/map-with-pins-filtering.scss";
 import { isFunction } from '../../extra/functions';
 
-let all_categories = [];
-let all_markers = [];
 
 export default function MapWithPinsFiltering ( props ) {
 	
 	const [ loading, setLoading ] = useState( true );
+
+	const [ all_points, setAllPoints ] = useState( null );
+	const [ all_categories, setAllCategories ] = useState( null );
+
 	const [ view, setView ] = useState("filters");
 	const [ popup_info, setPopupInfo ] = useState( {} );
 	
@@ -24,16 +26,29 @@ export default function MapWithPinsFiltering ( props ) {
 	const [ info, setInfo ] = useState( {} );
 
 	const markers = useMemo (() => {
-		return all_markers && !!all_markers.length && filter_by
-			? all_markers.filter( item => (( item.category === filter_by || filter_by === "*" ) && ( item.lat && item.lng )))
+		return all_points && !!all_points.length && filter_by
+			? all_points
+				.filter( item => ( item.type === "point" && ( item.category === filter_by || filter_by === "*" ) && ( item.lat && item.lng )))
 				.map(({ id, lat, lng, category, map_image }) => (
-					{ id, lat, lng, category, icon: { url: map_image || getIconFromCategory( category ), width: 60 }}
+					{ id, lat, lng, category, icon: { url: map_image || getIconFromCategory( category ), width: 80 }}
 				))	
 			: []
 
 	}, [ filter_by ]);
-		
 
+
+	const trails = useMemo(() => {
+		return all_points && !!all_points.length && filter_by
+			? all_points
+				.filter( item => ( item.type === "trail" && ( item.category === filter_by || filter_by === "*" ) && ( item.points && !!item.points.length )))
+				.map( item => ( 
+					item.points.map( point => ({ lat: +point.lat, lng: +point.lng, icon: { url: item.map_image || getIconFromCategory( item.category )} }) ))
+				)
+			: []
+
+	}, [ filter_by ]);
+		
+	
 	const getIconFromCategory = cat => ( all_categories.filter( item => ( item.id === cat ))?.[0]?.map_image );
 
 
@@ -53,16 +68,26 @@ export default function MapWithPinsFiltering ( props ) {
 
 				const categories_arr = Object.values( categories ); 
 				
-				all_categories = [...categories_arr ];
-				all_markers = [...points] ;
+				setAllPoints([ ...points ]);
+				setAllCategories([ ...categories_arr ]);
+
+				const start_filter_by = 
+					categories_arr?.[0]?.id
+						? categories_arr?.[0]?.name === "Wszystkie"
+							? "*"
+							: categories_arr?.[0]?.id
+						: "*";
+
 
 				setFilters( getFilters( categories_arr ));
-				setFilterBy("*");
+				setFilterBy( start_filter_by );
 				setInfo({ heading: name, description });
 				setLoading( false );
 		
 			})
-			.catch( err => { });
+			.catch( err => {
+				console.log(err);
+			});
 		}
 	
 		getMapById();
@@ -80,7 +105,7 @@ export default function MapWithPinsFiltering ( props ) {
 
 
 	const onMarkerClick = id => {
-		const founded_by_id = all_markers.filter( item => ( item.id === id ))?.[0]
+		const founded_by_id = all_points.filter( item => ( item.id === id ))?.[0]
 		if ( founded_by_id ) {
 
 			loadingWrap(() => {
@@ -102,14 +127,14 @@ export default function MapWithPinsFiltering ( props ) {
 	}
 
 
-	const loadingWrap = func => {
+	const loadingWrap = ( func, ms = 250 ) => {
 		setLoading( true );
 		setView("");
 
 		setTimeout(() => {
 			if ( isFunction( func )) func();
 			setLoading( false );
-		}, 250)
+		}, ms )
 	}
 
 
@@ -122,7 +147,6 @@ export default function MapWithPinsFiltering ( props ) {
 		setFilterBy
 	}
 
-	// console.log( loading, view, info, markers, filter_by, filters );
 
 	return (
 		<div className={`map-with-pins-filtering ${ props.extra_classes || "" }`}>
@@ -138,9 +162,10 @@ export default function MapWithPinsFiltering ( props ) {
 				/> 
 			}
 
-			{ !loading && markers && 
+			{ !loading && ( markers || trails ) &&
 				<GoogleMap 
 					markers={ markers }
+					trails={ trails }
 					onMarkerClick={ onMarkerClick }
 				/> 
 			}

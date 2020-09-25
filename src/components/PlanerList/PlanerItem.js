@@ -3,7 +3,7 @@ import '../../styles/PlanerList/PlanerItem.scss';
 import ButtonX from "../buttons/ButtonX";
 
 
-const PlanerItem = ({duration, description, category, imageSrc, step, onClick}) => {
+const PlanerItem = ({duration, description, category, imageSrc, step, deleteOnClick, onMapCheck}) => {
     return (
         <>
             <div className='item-container'>
@@ -19,7 +19,7 @@ const PlanerItem = ({duration, description, category, imageSrc, step, onClick}) 
                             </div>
                         )}
                         <img alt='' src={imageSrc || ''}/>
-                        <button className='button-link green full-width'>ZOBACZ NA MAPIE</button>
+                        <button className='button-link green full-width' onClick={onMapCheck}>ZOBACZ NA MAPIE</button>
                     </div>
                     <div className='item-description'>
                         <h4>
@@ -32,7 +32,7 @@ const PlanerItem = ({duration, description, category, imageSrc, step, onClick}) 
                         </div>
                     </div>
                     <div className='item-action'>
-                        <ButtonX onClick={onClick}/>
+                        <ButtonX onClick={deleteOnClick}/>
                     </div>
                 </div>
             </div>
