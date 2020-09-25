@@ -7,7 +7,7 @@ import "../../styles/gallery/expanded-gallery-item.scss";
 const ExpandedGalleryItem = ({ url, title, active }) => (
 	<div className={`expanded-gallery-item ${ active ? "active" : "" }`}>
 		<div className="expanded-gallery-item__photo">
-			<img src={ url } alt={ title } />
+			<img src={ url } alt={ title }/>
 		</div>
 	</div>
 )
