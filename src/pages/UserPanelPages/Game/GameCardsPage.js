@@ -8,6 +8,7 @@ import Card from "../../../components/StadiumReservationComponents/Card";
 import axios from '../../../extra/axios';
 import Loader from "../../../components/general/Loader";
 import {useHistory} from "react-router-dom";
+import TourismRoutes from "../../../constants/TourismRoutes";
 
 import {
     AxeAndShovelIcon,
@@ -17,7 +18,6 @@ import {
     RedEyeIcon,
     TwoMarkersIcon,
 } from "../../../svg/icons";
-import TourismRoutes from "../../../constants/TourismRoutes";
 
 
 const items = [
