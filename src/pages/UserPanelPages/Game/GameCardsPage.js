@@ -107,8 +107,15 @@ const GameCardsPage = () => {
     },[gamesFilter]);
 
 
-    if (!!loading)
-        return <Loader/>;
+    if (!!loading) return <Container
+        containerTitle={'NAZWA GRY'}
+        setNotification={!!notification && true}
+        notificationMessage={notification}
+    >
+        <div className="loader-container">
+            <Loader/>
+        </div>
+    </Container>
 
     return(
         <Container
