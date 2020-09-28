@@ -98,8 +98,8 @@ export default function CityPage(props) {
                 heading={acf.field_turists_information_title}
                 picture_url={acf.field_turists_information_image}
                 text={acf.field_turists_information_description}
-                link={"#"}
-                link_label={"Formularz Kontaktowy"}
+                href={acf.field_turists_information_button_link || '#'}
+                link_label={acf.field_turists_information_button_title}
             />
 
             <MapWithPinsFiltering map_id={acf.field_visit_ustron_map} />
