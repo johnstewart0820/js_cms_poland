@@ -23,11 +23,14 @@ const AmountsWithIcon = ({ heading, loading, items, path_to_all }) => (
 
 					<div className="row amounts-with-icons__body">
 						{ items && items.length > 0 &&
-							items.map(({ label, amount, min_amount, max_amount, which, svg }, index ) => (
+							items.map(({ label, amount, min_amount, max_amount, which, svg, image }, index ) => (
 								<div key={ index } className="amounts-with-icons__item"> 
 
 									<div> { label } </div>
-									<span className="amounts-with-icons__item_circle"> <span> { svg } </span> </span>
+                                    {!!image && <img className="amounts-with-icons__item_image" src={image} alt={''} />}
+                                    {!!svg && (
+                                        <span className="amounts-with-icons__item_circle"> <span> { svg } </span> </span>
+                                    )}
 									<div> 
 										{ (amount || ( min_amount && max_amount )) && 
 											<AnimatedAmountCounter 

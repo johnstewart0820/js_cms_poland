@@ -9,7 +9,7 @@ const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", link, link_
 		<div className="container">
 			<div className="row">
 
-				{ picture_url && <div className="pic-text-info__picture thumbnail" style={{ backgroundImage: `url(${ picture_url })` }} /> }
+				{ picture_url && <div className="pic-text-info__picture thumbnail" style={{ backgroundImage: `url("${picture_url}")` }} /> }
 
 				<div className="pic-text-info__info">
 					{ heading && 

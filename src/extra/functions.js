@@ -23,6 +23,9 @@ export const getMobileDeviceOS = () => {
 export const isFunction = func => ( toString.call(func) === "[object Function]" )
 
 export const getArticleLink = article => {
+    if (!article.slug && !article.id)
+        return '#';
+
     const locale = localStorage.getItem(LocalStorage.Locale) || 'pl';
     return `/${locale}/${article.slug},${article.id}`;
 };

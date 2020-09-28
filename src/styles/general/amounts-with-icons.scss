@@ -41,6 +41,10 @@
 	min-width: 50%;
 }
 
+.amounts-with-icons__item_image {
+    margin: 0 35px;
+}
+
 .amounts-with-icons__item_circle{
 	@include flex-centered;
 	width: 117px;

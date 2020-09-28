@@ -8,6 +8,7 @@ import EventSingle from "../layouts/EventSingle";
 import TourismGastronomies from "../layouts/TourismGastronomies";
 import TourismHotels from "../layouts/TourismHotels";
 import AttractionSingle from "../layouts/AttractionSingle";
+import TourismCity from "../layouts/TourismCity";
 
 export default {
     main_homepage: MainHomepage,
@@ -17,6 +18,7 @@ export default {
     news_single: NewsSingle,
     tourism_attractions: AttractionPage,
     tourism_gastronomies: TourismGastronomies,
+    tourism_city: TourismCity,
     events_single: EventSingle,
     attractions_single:AttractionSingle,
     tourism_hotels: TourismHotels,

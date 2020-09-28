@@ -32,8 +32,7 @@ const PicsTextLink = ({heading, pics, text, link, link_label}) => (
                 <div className="pics-text-link__text">
                     {text && <p> {text} </p>}
                     {link && (
-                        <a href={link} target="_blank" rel={'noopener noreferrer'}
-                           className="button-link green-transparent">
+                        <a href={link} className="button-link green-transparent">
                             {link_label}
                         </a>
                     )}

@@ -63,7 +63,7 @@ export default function MainPage(props) {
                 }))}
                 text={acf.field_city_description}
                 link_label={acf.field_city_button_title}
-                link={'#'}
+                link={acf.field_city_button_link || '#'}
             />
             <PicsTextLink
                 heading={acf.field_what_to_visit_title}
@@ -74,7 +74,7 @@ export default function MainPage(props) {
                 }))}
                 text={acf.field_what_to_visit_description}
                 link_label={acf.field_what_to_visit_button_title}
-                link={'#'}
+                link={acf.field_city_button_link || '#'}
             />
 
             <TextLinkPic
