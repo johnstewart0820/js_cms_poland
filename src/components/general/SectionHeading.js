@@ -20,7 +20,7 @@ const SectionHeading = ({ heading, extra_classes, headingLink, headingLinkText }
 )
 
 SectionHeading.propTypes = {
-	heading: PropTypes.node.isRequired,
+	heading: PropTypes.node,
 	extra_classes: PropTypes.string,
 	headingLink: PropTypes.string,
 	headingLinkText: PropTypes.string,
