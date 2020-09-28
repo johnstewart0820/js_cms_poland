@@ -38,7 +38,7 @@ export default class AnimatedAmountCounter extends Component{
 
 		const component = this.component.current;
 
-		const component_bottom = component.getBoundingClientRect().bottom + window.pageYOffset;
+		const component_bottom = component?.getBoundingClientRect().bottom + window.pageYOffset;
 		const window_bottom = window.pageYOffset + window.innerHeight;
 
 		if( component_bottom <= window_bottom ) this.startAnimation();

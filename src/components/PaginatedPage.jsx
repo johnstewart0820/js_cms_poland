@@ -90,9 +90,12 @@ const PaginatedPage = props => {
 
 PaginatedPage.propTypes = {
     page: PropTypes.object.isRequired,
-    config: PropTypes.object.isRequired,
+    config: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
+    ]).isRequired,
     inputs: PropTypes.array.isRequired,
-    itemComponent: PropTypes.node.isRequired,
+    itemComponent: PropTypes.func.isRequired,
     breadcrumbs: PropTypes.array,
     filtersHeader: PropTypes.string,
     containerHeader: PropTypes.string,
