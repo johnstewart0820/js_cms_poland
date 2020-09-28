@@ -37,6 +37,7 @@ const AttractionPage = () => {
 
     return (
         <>
+
             <MainHeaderSection extra_classes="subpage">
 
                 <Breadcrumbs breadcrumbs={[{ label: "Visit.ustron.pl", to: "/" }, { label: "Noclegi" }]} />
