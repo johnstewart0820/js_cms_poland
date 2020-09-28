@@ -20,15 +20,15 @@ export default function PageRenderer(props) {
 
         if (!slug) {
             // no page id/slug = home page
-            setPageData(siteInfo.default_content);
             console.info('PAGE DATA', siteInfo.default_content);
+            setPageData(siteInfo.default_content);
             return;
         }
 
         API.getPost(slug)
             .then(res => {
-                setPageData(res.data.content);
                 console.info('PAGE DATA', res.data.content);
+                setPageData(res.data.content);
             })
             .catch(e => {
                 setPageData(false);
