@@ -13,6 +13,7 @@ import '../../../styles/helpers/classes.scss';
 import Row from "../../../components/helpers/Row";
 import Col from "../../../components/helpers/Col";
 
+
 const UserProfilePage = () => {
     const userContext = React.useContext(UserContext);
 
