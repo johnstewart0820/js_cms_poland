@@ -36,7 +36,7 @@ const Header = props => {
                 hidden_text: "login / logout",
                 onClick: userContext.id
                     ? () => (props.history.push('/profile'))
-                    : () => {setShow(true)}
+                    : () => setShow(prevState => !prevState)
             }
         ]
 
