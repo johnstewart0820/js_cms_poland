@@ -27,7 +27,7 @@ const PaginatedPage = props => {
             console.error(err);
             setData(false);
         });
-    }, [filters]);
+    }, [props.config, filters]);
 
     const onFilterSubmit = args => setFilters({...args, page: filters.page});
 
@@ -35,6 +35,8 @@ const PaginatedPage = props => {
         setFilters({...filters, page});
         window.scrollTo({top: container.current.getBoundingClientRect().top + window.scrollY});
     };
+
+    const changeSort = e => setFilters({...filters, order: e.target.value});
 
     return (
         <>
@@ -61,13 +63,15 @@ const PaginatedPage = props => {
                 onRef={el => container.current = el}
                 extra_classes={props.containerClasses}
                 heading={props.containerHeader}
+                sort_options={OrderOptions}
+                sortOnChange={changeSort}
             >
                 {data === null && <Loader/>}
 
                 {!!data?.contents && (
                     <>
                         {!data.contents.length && (
-                            <h2 className="text-center w-100">
+                            <h2 style={{textAlign: 'center', width: '100%'}}>
                                 Brak wydarzeń dla podanych kryteriów
                             </h2>
                         )}
