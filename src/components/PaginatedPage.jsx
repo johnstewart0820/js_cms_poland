@@ -11,6 +11,11 @@ import LoopSearchPostsContainer from "./loop/LoopSearchPostsContainer";
 import Pagination from "./loop/Pagination";
 import MapWithPinsFiltering from "./map/MapWithPinsFiltering";
 
+const OrderOptions = [
+    {value: 'desc', label: 'Najbliższe aktualności'},
+    {value: 'asc', label: 'Najstarszy aktualności'},
+];
+
 const PaginatedPage = props => {
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
@@ -20,7 +25,8 @@ const PaginatedPage = props => {
         setData(null);
         API.getByConfig(props.config, {
             page: filters.page,
-            filters: prepApiFilters(filters, 'page'),
+            order: filters.order,
+            filters: prepApiFilters(filters, ['page', 'order', 'orderby']),
         }).then(res => {
             setData(res.data);
         }).catch(err => {
