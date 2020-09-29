@@ -95,30 +95,35 @@ const UserProfilePage = () => {
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <div style={{display: 'inline-block'}}>
                                 <Checkbox
+                                    labelRight={true}
                                     label={'systemowe'}
                                     name={'system'}
                                     checked={notifications_area.includes('system')}
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    labelRight={true}
                                     label={'kultura'}
                                     name={'culture'}
                                     checked={notifications_area.includes('culture')}
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    labelRight={true}
                                     label={'oświata'}
                                     name={'education'}
                                     checked={notifications_area.includes('education')}
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    labelRight={true}
                                     label={'sport'}
                                     name={'sport'}
                                     checked={notifications_area.includes('sport')}
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    labelRight={true}
                                     label={'turystyka'}
                                     name={'turism'}
                                     checked={notifications_area.includes('turism')}
