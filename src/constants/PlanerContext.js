@@ -12,7 +12,7 @@ export const PlanerContextProvider = props => {
 
     React.useEffect(() => {
         if (!ids) {
-            setIds(Planer.getData);
+            setIds(Planer.getData());
             return;
         }
         let promises = [];

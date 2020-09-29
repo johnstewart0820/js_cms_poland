@@ -98,11 +98,13 @@ const PlanerListPage = () => {
                        let categoryName = '';
                        let minutes = '';
 
-                       let gps = item.acf.field_map_gps.split(';');
-                        coords.push({
-                            lat: gps[0],
-                            lng: gps[1]
-                        });
+                       let gps = item.acf.field_map_gps?.split(';');
+                        if (gps != undefined) {
+                            coords.push({
+                                lat: gps[0],
+                                lng: gps[1]
+                            });
+                        }
 
                        if (item.categories !== undefined)
                            categoryName = item.categories[0].name;

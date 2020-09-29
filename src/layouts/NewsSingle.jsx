@@ -9,8 +9,10 @@ import LoopNewsPost from "../components/news/LoopNewsPost";
 import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
 import {API} from "../extra/API";
+import PlanerContext from "../constants/PlanerContext";
 
 export default function NewsSinglePage(props) {
+    const planerContext = React.useContext(PlanerContext);
     const [news, setNews] = React.useState(null);
 
     React.useEffect(() => {
@@ -32,7 +34,7 @@ export default function NewsSinglePage(props) {
             {props.page.body && (
                 <SingleContainer extra_classes="single-news-container">
                     <div>{Parser(props.page.body)}</div>
-                    <SingleContentBottom/>
+                    <SingleContentBottom onAddToPlaner={() => planerContext.add(props.page.id)}/>
                 </SingleContainer>
             )}
 

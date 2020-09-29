@@ -6,6 +6,7 @@ import {PhoneIcon, EmailIcon, WWWIcon, PlusIcon} from "../../svg/icons";
 import {getArticleLink} from "../../extra/functions";
 import DefaultImage from "../../constants/DefaultImage";
 import {Link} from "react-router-dom";
+import PlanerContext from "../../constants/PlanerContext";
 
 const LoopGastronomyPostInfo = ({phone, email, www}) => {
     const info = [
@@ -48,39 +49,48 @@ const LoopGastronomyPostInfo = ({phone, email, www}) => {
     );
 };
 
-const LoopGastronomyPost = post => (
-    <Link to={getArticleLink(post)} className="loop-gastronomy-post">
-        <div className="loop-gastronomy-post__thumbnail has-overlay thumbnail"
-             style={{backgroundImage: `url(${post.image || DefaultImage})`}}>
-            <div className="loop-gastronomy-post__category">{post.categories_labels}</div>
-        </div>
-
-        <div className="loop-gastronomy-post__content">
-            <div className="loop-gastronomy-post__title heading">{post.title}</div>
-
-            {post.acf !== undefined && post.acf.field_map_address && (
-                <div className="loop-gastronomy-post__address">
-                    <span>ADRES</span>
-                    {post.acf.field_map_address}
-                </div>
-            )}
-
-            {post.acf !== undefined && (
-                <LoopGastronomyPostInfo
-                    phone={post.acf.field_contact_phone}
-                    email={post.acf.field_contact_email}
-                    www={post.acf.field_contact_www}
-                />
-            )}
-
-            <div className="loop-gastronomy-post__bottom">
-                <ButtonLink extra_classes="green"> szybki kontakt </ButtonLink>
-
-                <a href="#"> <PlusIcon/> <span className="d-none"> add </span></a>
-                <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
+const LoopGastronomyPost = post => {
+    const planerContext = React.useContext(PlanerContext);
+    return (
+        <Link to={getArticleLink(post)} className="loop-gastronomy-post">
+            <div className="loop-gastronomy-post__thumbnail has-overlay thumbnail"
+                 style={{backgroundImage: `url(${post.image || DefaultImage})`}}>
+                <div className="loop-gastronomy-post__category">{post.categories_labels}</div>
             </div>
-        </div>
-    </Link>
-);
+
+            <div className="loop-gastronomy-post__content">
+                <div className="loop-gastronomy-post__title heading">{post.title}</div>
+
+                {post.acf !== undefined && post.acf.field_map_address && (
+                    <div className="loop-gastronomy-post__address">
+                        <span>ADRES</span>
+                        {post.acf.field_map_address}
+                    </div>
+                )}
+
+                {post.acf !== undefined && (
+                    <LoopGastronomyPostInfo
+                        phone={post.acf.field_contact_phone}
+                        email={post.acf.field_contact_email}
+                        www={post.acf.field_contact_www}
+                    />
+                )}
+
+                <div className="loop-gastronomy-post__bottom">
+                    <ButtonLink extra_classes="green"> szybki kontakt </ButtonLink>
+
+                    <a href="#" onClick={(e) => {
+                        e.preventDefault()
+                        planerContext.add(post.id);
+                    }}>
+                        <PlusIcon/>
+                        <span className="d-none"> add </span>
+                    </a>
+                    <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
+                </div>
+            </div>
+        </Link>
+    )
+};
 
 export default LoopGastronomyPost;
