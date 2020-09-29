@@ -5,6 +5,7 @@ import SectionHeading from "./SectionHeading";
 
 import "../../styles/general/pics-text-link.scss";
 import "../../styles/buttons/button-link.scss";
+import {Link} from "react-router-dom";
 
 const PicsTextLink = ({heading, pics, text, link, link_label}) => (
     <section className="pics-text-link">
@@ -17,14 +18,14 @@ const PicsTextLink = ({heading, pics, text, link, link_label}) => (
                 {pics && pics.length > 0 && (
                     <div className="pics-text-link__pics">
                         {pics.map(({url, label, link}, index) => (
-                            <a
+                            <Link
                                 key={index}
-                                href={link || '#'}
+                                to={link || '#'}
                                 className="thumbnail has-overlay"
                                 style={{backgroundImage: `url("${url}")`}}
                             >
                                 {label}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 )}
@@ -32,9 +33,9 @@ const PicsTextLink = ({heading, pics, text, link, link_label}) => (
                 <div className="pics-text-link__text">
                     {text && <p> {text} </p>}
                     {link && (
-                        <a href={link} className="button-link green-transparent">
+                        <Link to={link} className="button-link green-transparent">
                             {link_label}
-                        </a>
+                        </Link>
                     )}
                 </div>
 
