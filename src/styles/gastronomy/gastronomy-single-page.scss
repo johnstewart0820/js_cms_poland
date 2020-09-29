@@ -1,0 +1,22 @@
+.single-attraction-container{
+    max-width:35vw;
+}
+.buttons-container{
+    margin-bottom: 25px;
+}
+.hours-open-gastronomy{
+    margin-top:30px;
+    width:250px;
+    opacity:0.8;
+    p{
+        height:20px;
+    }
+    .container-hours{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+    }
+}
+.name-facilities{
+    margin-top:35px;
+}
