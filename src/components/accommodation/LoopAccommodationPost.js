@@ -6,6 +6,7 @@ import {PhoneIcon, EmailIcon, WWWIcon, PlusIcon} from "../../svg/icons";
 import DefaultImage from "../../constants/DefaultImage";
 import {getArticleLink} from "../../extra/functions";
 import {Link} from "react-router-dom";
+import PlanerContext from "../../constants/PlanerContext";
 
 const LoopAccommodationPostInfo = ({phone, email, www}) => {
     const info = [
@@ -48,39 +49,46 @@ const LoopAccommodationPostInfo = ({phone, email, www}) => {
     )
 }
 
-const LoopAccommodationPost = (post) => (
-    <Link to={getArticleLink(post)} className="loop-accommodation-post">
-        <div className="loop-accommodation-post__thumbnail has-overlay thumbnail"
-             style={{backgroundImage: `url("${post.image || DefaultImage}")`}}>
-            <div className="loop-accommodation-post__category">{post.categories_labels}</div>
-        </div>
+const LoopAccommodationPost = post => {
+    const planerContext = React.useContext(PlanerContext);
 
-        <div className="loop-accommodation-post__content">
-            <div className="loop-accommodation-post__title heading">{post.title}</div>
-
-            {post.acf !== undefined && post.acf.field_map_address && (
-                <div className="loop-accommodation-post__address">
-                    <span>ADRES</span>
-                    {post.acf.field_map_address}
-                </div>
-            )}
-
-            {post.acf !== undefined && (
-                <LoopAccommodationPostInfo
-                    phone={post.acf.field_contact_phone}
-                    email={post.acf.field_contact_email}
-                    www={post.acf.field_contact_www}
-                />
-            )}
-
-            <div className="loop-accommodation-post__bottom">
-                <ButtonLink extra_classes="green">szybki kontakt</ButtonLink>
-
-                <a href="#"> <PlusIcon/> <span className="d-none">add</span></a>
-                <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
+    return (
+        <Link to={getArticleLink(post)} className="loop-accommodation-post">
+            <div className="loop-accommodation-post__thumbnail has-overlay thumbnail"
+                 style={{backgroundImage: `url("${post.image || DefaultImage}")`}}>
+                <div className="loop-accommodation-post__category">{post.categories_labels}</div>
             </div>
-        </div>
-    </Link>
-);
+
+            <div className="loop-accommodation-post__content">
+                <div className="loop-accommodation-post__title heading">{post.title}</div>
+
+                {post.acf !== undefined && post.acf.field_map_address && (
+                    <div className="loop-accommodation-post__address">
+                        <span>ADRES</span>
+                        {post.acf.field_map_address}
+                    </div>
+                )}
+
+                {post.acf !== undefined && (
+                    <LoopAccommodationPostInfo
+                        phone={post.acf.field_contact_phone}
+                        email={post.acf.field_contact_email}
+                        www={post.acf.field_contact_www}
+                    />
+                )}
+
+                <div className="loop-accommodation-post__bottom">
+                    <ButtonLink extra_classes="green">szybki kontakt</ButtonLink>
+
+                    <a href='#' onClick={(e) => {
+                        e.preventDefault()
+                        planerContext.add(post.id);
+                    }}> <PlusIcon/> <span className="d-none">add</span></a>
+                    <ShareButton link_for_sharing={window.location.origin + getArticleLink(post)}/>
+                </div>
+            </div>
+        </Link>
+    )
+};
 
 export default LoopAccommodationPost;

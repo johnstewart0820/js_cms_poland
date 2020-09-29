@@ -8,8 +8,10 @@ import EventSingleHead from "../components/events/EventSingleHead";
 import LoopEventsPost from "../components/events/LoopEventsPost";
 import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
+import PlanerContext from "../constants/PlanerContext";
 
 export default function EventSingle(props) {
+    const planerContext = React.useContext(PlanerContext);
     const [items, setItems] = React.useState(null);
 
     React.useEffect(() => {
@@ -25,7 +27,7 @@ export default function EventSingle(props) {
             {props.page.body && (
                 <SingleContainer>
                     <div>{Parser(props.page.body)}</div>
-                    <SingleContentBottom/>
+                    <SingleContentBottom onAddToPlaner={() => planerContext.add(props.page.id)}/>
                 </SingleContainer>
             )}
             <OneCarouseInRow carousel={{

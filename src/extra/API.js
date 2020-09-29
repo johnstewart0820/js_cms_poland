@@ -38,7 +38,7 @@ API.getCustomField = field => API.get('contents/custom-fields/' + field);
 API.getEntities = ({categories, ...rest}) => {
     categories = wrapInArray(categories);
 
-    if (typeof categories[0] !== 'object')
+    if (categories.length && typeof categories[0] !== 'object')
         throw new Error('Only full category objects are allowed in getEntities(), instead got ' + JSON.stringify(categories[0]));
 
     let isEvents = false;

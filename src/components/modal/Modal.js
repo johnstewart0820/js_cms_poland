@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/modal/Modal.scss';
 
-const Modal = ({handleClose, show, children}) => {
+const Modal = ({handleClose, show, children, extraClasses}) => {
     const isShowClassName = show ? 'modal display-block' : 'modal display-none';
 
     return (
