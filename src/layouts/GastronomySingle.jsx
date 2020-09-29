@@ -8,25 +8,24 @@ import LoopNewsPost from "../components/news/LoopNewsPost";
 import {API} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
-import AttractionSingleHead from "../components/attractions/AttractionSingleHead";
-import '../styles/attractions/AttractionSinglePage.scss'
+import GastronomySingleHead from "../components/gastronomy/GastronomySingleHead";
+import '../styles/gastronomy/gastronomy-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import Footer from "../components/footer/Footer";
 
-export default function AttractionSingle(props) {
+export default function GastronomySingle(props) {
     const pageId = props.page.id;
     let keyId = 0;
 
-    const categories = props.page.categories;
-    const {field_map_gps, field_service_languages, field_description, field_prices_variant, field_is_free_entrance} = props.page.acf;
+    const {categories, body} = props.page;
+    const {field_map_gps, field_service_languages, field_additional_description_history, field_prices_variant, field_is_free_entrance, field_facilities_restaurants} = props.page.acf;
 
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [news, setNews] = React.useState(null);
     const [gallery, setGallery] = React.useState(props.page.gallery);
     const [worthSeeing, setWorthSeeing] = React.useState(props.page.acf.field_worth_seeing);
-    const [ifTrail, setIfTrail] = React.useState(false);
-    // const trails = React.useMemo(() => [ JSON.parse(props.page.acf['field_map_gpstrack'])], []);
+
 
     React.useEffect(() => {
         API.getEntities({categories: categories})
@@ -44,11 +43,6 @@ export default function AttractionSingle(props) {
             })
     }, []);
 
-    React.useEffect(() => {
-        categories.forEach(element => {
-            if (element.slug === "szlaki") setIfTrail(true);
-        })
-    }, []);
 
     React.useEffect(() => {
         gallery.forEach(element => {
@@ -76,24 +70,8 @@ export default function AttractionSingle(props) {
     }, [worthSeeing]);
 
 
-    if (props.page.acf['field_map_gpstrack']) {
-        var trails = JSON.parse(props.page.acf['field_map_gpstrack']);
-        trails.forEach(
-            element => {
-                element.lat = parseFloat(element.lat);
-                element.lng = parseFloat(element.lng);
-            },
-        )
-    }
-
     if (!!loading)
         return <Loader/>
-
-    function transplatePrice(priceInEnglisz) {
-        if (priceInEnglisz === 'low-prices') return 'niskie';
-        else if (priceInEnglisz === 'medium-prices') return 'umiarkowane';
-        else if (priceInEnglisz === 'high-prices') return 'wysokie';
-    }
 
 
     let coords = [];
@@ -121,43 +99,74 @@ export default function AttractionSingle(props) {
         );
     }
 
+    if (field_facilities_restaurants) {
+        var nameOfFacilities = field_facilities_restaurants.map(el => {
+                if (el === 'garden') el = 'ogródek';
+                if (el === 'live-music') el = 'muzyka na żywo';
+                return (
+                    <div key={keyId++} className={'language-container'}>
+                        <img alt={''} src={require('../svg/icons/ok.svg')}/>
+                        <div className={'language-info'}> {el} </div>
+                    </div>
+                )
+            },
+        );
+    }
+
     return (
         <>
             <MainHeaderSection extra_classes="single">
                 <Breadcrumbs breadcrumbs={[]}/>
-                <AttractionSingleHead {...props.page}/>
+                <GastronomySingleHead {...props.page}/>
             </MainHeaderSection>
+            {(!field_is_free_entrance && field_prices_variant) &&
+            <div className="section-info">
+                <div className={'section-title'}>
+                    <img alt="" src={require('../svg/icons/logo-black.svg')}/>
+                    <div className={'name-info'}>CENNIK</div>
+                </div>
+                <button className="button-planer button-link green ">ZOBACZ MENU</button>
+            </div>
+            }
             {field_service_languages &&
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                    <div className={'name-info'}> OBSŁUGA W JĘZYKU</div>
+                    <div className={'name-info'}>OBSŁUGA W JĘZYKU</div>
                 </div>
                 <h2>{nameOfLanguage}</h2>
             </div>
             }
-            {field_description &&
+            {body &&
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>OPIS</div>
                 </div>
-                <h2 className={' description-main'}>{Parser(field_description)}</h2>
+                <h2 className={' description-main'}>{Parser(body)}</h2>
             </div>
             }
-            {(!field_is_free_entrance && field_prices_variant) &&
+            {field_facilities_restaurants &&
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                    <div className={'name-info'}>CENY</div>
+                    <div className={'name-info'}>UDOGODNIENIA</div>
                 </div>
-                <h2 className={'description-main'}> {transplatePrice(field_prices_variant)} </h2>
+                <h2 className={'name-facilities'}>{nameOfFacilities}</h2>
             </div>
             }
 
-            {ifTrail && (gallery || worthSeeing) ?
-                <Gallery heading='warto zobaczyć na trasie' items={worthSeeing}/> :
-                <Gallery items={gallery}/>}
+            {gallery && <Gallery items={gallery}/>}
+
+            {field_additional_description_history &&
+            <div className="section-info">
+                <div className={'section-title'}>
+                    <img alt="" src={require('../svg/icons/logo-black.svg')}/>
+                    <div className={'name-info'}>HISTORIA</div>
+                </div>
+                <h2 className={' description-main'}>{Parser(field_additional_description_history)}</h2>
+            </div>
+            }
 
             <OneCarouseInRow className={'news-loop'} carousel={{
                 loading: news === null,
@@ -167,7 +176,6 @@ export default function AttractionSingle(props) {
             }}/>
 
             {coords && <GoogleMap className={'map'} markers={coords}/>}
-            {trails && <GoogleMap className={'map'} trails={[trails]}/>}
 
             <Footer/>
         </>

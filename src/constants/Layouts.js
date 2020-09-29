@@ -10,6 +10,7 @@ import TourismHotels from "../layouts/TourismHotels";
 import AttractionSingle from "../layouts/AttractionSingle";
 import TourismCity from "../layouts/TourismCity";
 import TourismPhotoReports from "../layouts/TourismPhotoReports";
+import GastronomySingle from "../layouts/GastronomySingle";
 
 export default {
     main_homepage: MainHomepage,
@@ -18,6 +19,7 @@ export default {
     tourism_events: EventsPage,
     news_single: NewsSingle,
     tourism_attractions: AttractionPage,
+    gastronomy_single: GastronomySingle,
     tourism_gastronomies: TourismGastronomies,
     tourism_city: TourismCity,
     tourism_photo_reports: TourismPhotoReports,

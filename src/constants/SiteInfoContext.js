@@ -33,7 +33,7 @@ class SiteInfoContextProvider extends Component{
 	}
 
 
-	checkTheme = () => { if ( isContrastThemeOn ) turnOnContrastTheme(); }
+	checkTheme = () => { if ( isContrastThemeOn() ) turnOnContrastTheme(); }
 
 
 	getSiteInfo = () => {

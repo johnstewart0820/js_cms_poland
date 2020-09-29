@@ -83,7 +83,7 @@ const GoogleMap = props => {
         <Map
             google={props.google}
             zoom={15}
-            containerStyle={{width: "100%", height: "85%"}}
+            containerStyle={{width: "100%", height: "500px"}}
 
             zoomControl={true}
             mapTypeControl={false}
