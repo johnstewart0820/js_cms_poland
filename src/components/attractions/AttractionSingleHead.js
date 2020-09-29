@@ -3,11 +3,20 @@ import PageHeaderSection from "../header/PageHeaderSection";
 import '../../styles/attractions/AttractionSinglePage.scss';
 import '../../svg/icons/tourist.svg';
 
-function AttractionSingleHead  ({title, categories_labels, image, acf})  {
+
+function AttractionSingleHead  ({ title, categories, categories_labels, image, acf })  {
+
+    let keyId = 0;
     const iconsBoard = acf.field_recomended_for;
     const openHours = acf.field_openinghours;
     const visibleEmail = acf.field_contact_email_is_visible;
-    let keyId = 0;
+    const [ifTrail, setIfTrail] = React.useState(false);
+
+    React.useEffect(() => {
+        categories.forEach(element => {
+            if (element.slug === "szlaki") setIfTrail(true);
+        })
+    }, []);
 
      if (iconsBoard){
          var icons =  iconsBoard.map( result => {
@@ -29,14 +38,27 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
      }
 
     function howManyHours( minutes ){
-        return Math.round(minutes/60 );
+        let rest =minutes % 60;
+        if (acf.field_trails_info_time)
+            return (
+                <div className={'time-during'}>
+                    <div>Czas trwania </div>&nbsp;&nbsp;&nbsp;
+                    <div className={'trip-time'}>{Math.round(minutes/60)} h {rest} min</div>
+                </div>
+            );
+        return Math.round(minutes /60 );
     }
+
 
     return(
         <PageHeaderSection extra_classes="single-attraction-head" thumbnail={image}>
             <div className='single-attraction-main-info'>
                 <div className="category">{categories_labels}</div>
                 <div className="page-title">{title}</div>
+                {acf.field_trails_info_time && <div className={'time-during-container'}><img alt='' src={require('../../svg/icons/walking.svg')}/>&nbsp;&nbsp;&nbsp;{howManyHours(acf.field_trails_info_time)}</div>}
+                {acf.field_trails_info_distance && <div className={'trail-main-info'}>Dystans: {acf.field_trails_info_distance}km </div>}
+                {acf.field_trails_info_elevation && <div className={'trail-main-info'}>Przewyższenie: {acf.field_trails_info_elevation}m </div>}
+                {acf.field_trails_info_difficulty && <div className={'trail-main-info uppercase'}>STOPIEŃ TRUDNOŚCI: {acf.field_trails_info_difficulty} </div>}
                 <div className="single-attraction-container">
                     {icons && <div className={'icons-container'}>
                         {icons}</div>}
@@ -49,7 +71,8 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
                     {acf.field_map_distance_from_center &&
                         (<div className={'text'}> ODLEGŁOŚĆ OD CENTRUM
                         &nbsp;&nbsp;&nbsp;{acf.field_map_distance_from_center} KM
-                        </div>)}
+                        </div>)
+                    }
                 </div>
             </div>
             {openHours &&
@@ -92,7 +115,7 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
                 }
                 <br/>
                 {acf.field_contact_www &&
-                    <div className={' www-container'}>
+                    <div className={'www-container'}>
                         <img alt='' src={require('../../svg/icons/www_white.svg')}/>
                         <div className={'www'}>{acf.field_contact_www}</div>
                     </div>
@@ -105,10 +128,12 @@ function AttractionSingleHead  ({title, categories_labels, image, acf})  {
                 </button>
                 <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>
             </div>
-            <button className="button-download button-link  full-width" >
-                POBIERZ PRZEWODNIK
-                <img alt='' src={require('../../svg/icons/download.svg')}/>
-            </button>
+
+            { !ifTrail && <button className="button-download button-link  full-width">
+                    POBIERZ PRZEWODNIK
+                    <img alt='' src={require('../../svg/icons/download.svg')}/>
+                </button>
+            }
         </PageHeaderSection>
     );
 }

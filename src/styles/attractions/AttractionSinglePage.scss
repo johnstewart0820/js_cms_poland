@@ -20,7 +20,28 @@
     }
     .single-attraction-main-info{
         padding-top:50px;
-        padding-right:130px
+        padding-right:130px;
+        .trail-main-info{
+            margin-top:10px;
+            font-size: 14px;
+        }
+        .uppercase{
+            text-transform: uppercase;
+        }
+        .time-during-container{
+            display:flex;
+            flex-direction: row;
+            margin-bottom:20px;
+            .time-during{
+                display:flex;
+                flex-direction: row;
+                align-items:flex-end;
+                .trip-time{
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
+         }
     }
 }
     .single-attraction-container {
@@ -157,10 +178,4 @@
         letter-spacing: .5px;
         font-weight:normal;
     }
-}
-.news-loop{
-    margin-bottom:60vw;
-}
-.map{
-    margin-top:-1900px;
 }
