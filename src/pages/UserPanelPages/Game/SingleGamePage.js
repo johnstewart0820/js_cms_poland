@@ -20,7 +20,6 @@ const SingleGamePage = props => {
     const [loading, setLoading] = React.useState(true);
     const [show, setShow] = React.useState(false);
     const [scan, setScan] = React.useState({result: ''});
-    const [source, setSource] = React.useState(null);
 
 
     React.useEffect(() => {
@@ -65,7 +64,6 @@ const SingleGamePage = props => {
             </Container>
 
 
-            {console.log(scan.result)}
             <Modal
                 show={show}
             >

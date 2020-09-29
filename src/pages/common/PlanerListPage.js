@@ -95,11 +95,12 @@ const PlanerListPage = () => {
 
                <PlanerListContainer title={'PLANER PODROZY'}>
                    {planerContext?.data?.map((item, index) => {
-                       let categoryName = '';
-                       let minutes = '';
+                        let categoryName = '';
+                        let minutes = '';
+                        let gps = '';
 
-                       let gps = item.acf.field_map_gps?.split(';');
-                        if (gps != undefined) {
+                        if (!!gps) {
+                            gps = item.acf.field_map_gps.split(';');
                             coords.push({
                                 lat: gps[0],
                                 lng: gps[1]
