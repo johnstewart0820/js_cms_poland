@@ -69,7 +69,8 @@ const LoginPage = () => {
     }
 
     const onEnterPress = e => {
-        if (e.keyCode === 13) {
+        const enterButton = e.keyCode || e.which;
+        if (enterButton === 13) {
             loginUser()
         }
     }
