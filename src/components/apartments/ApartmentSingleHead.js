@@ -1,35 +1,23 @@
 import React from 'react';
 import PageHeaderSection from "../header/PageHeaderSection";
-import '../../styles/gastronomy/gastronomy-single-page.scss';
+import '../../styles/apartments/apartments-single-page.scss';
 import '../../svg/icons/tourist.svg';
 
 
-function GastronomySingleHead({title, categories_labels, image, acf}) {
+function ApartmentSingleHead({title, categories_labels, image, acf}) {
     let keyId = 0;
-    const iconsBoard = acf.field_recomended_for;
     const openHours = acf.field_openinghours;
     const visibleEmail = acf.field_contact_email_is_visible;
 
 
-    if (iconsBoard) {
-        var icons = iconsBoard.map(result => {
-            if (result === 'bike')
-                return <img
-                    key={keyId++}
-                    className={'icons'}
-                    key={result}
-                    alt=''
-                    src={require('../../svg/icons/' + result + '_green.svg')}
-                />
-            return <img
-                className={'icons'}
-                key={keyId++}
-                alt=''
-                src={require('../../svg/icons/' + result + '.svg')}
-            />
-        });
+    function isForDisabled() {
+        return <img
+            className={'icons'}
+            key={keyId++}
+            alt=''
+            src={require('../../svg/icons/disabled.svg')}
+        />
     }
-
 
     return (
         <PageHeaderSection extra_classes="single-attraction-head" thumbnail={image}>
@@ -37,8 +25,8 @@ function GastronomySingleHead({title, categories_labels, image, acf}) {
                 <div className="category">{categories_labels}</div>
                 <div className="page-title">{title}</div>
                 <div className="single-attraction-container">
-                    {icons && <div className={'icons-container'}>
-                        {icons}</div>}
+                    {acf.field_map_adapted_for_disabled && <div className={'icons-container'}>
+                        {isForDisabled()}</div>}
                     {acf.field_map_distance_from_center &&
                     (<div className={'text'}> ODLEGŁOŚĆ OD CENTRUM
                         &nbsp;&nbsp;&nbsp;{acf.field_map_distance_from_center} KM
@@ -92,6 +80,7 @@ function GastronomySingleHead({title, categories_labels, image, acf}) {
                 </div>
                 }
                 {!visibleEmail || !acf.field_contact_email ? "" : <br/>}
+
                 {acf.field_contact_www &&
                 <div className={'www-container'}>
                     <img alt='' src={require('../../svg/icons/www_white.svg')}/>
@@ -111,4 +100,4 @@ function GastronomySingleHead({title, categories_labels, image, acf}) {
     );
 }
 
-export default GastronomySingleHead;
+export default ApartmentSingleHead;

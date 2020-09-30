@@ -9,7 +9,7 @@ import {API} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import AttractionSingleHead from "../components/attractions/AttractionSingleHead";
-import '../styles/attractions/AttractionSinglePage.scss'
+import '../styles/attractions/attraction-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import Footer from "../components/footer/Footer";
 

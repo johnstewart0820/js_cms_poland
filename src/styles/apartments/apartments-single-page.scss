@@ -1,0 +1,50 @@
+.section-title-facilities {
+    margin-right: 40px;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    .name-info-facilities {
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+        font-size: 20px;
+        color: #3D5567;
+        letter-spacing: 2.3px;
+        display: inline;
+        width: 120px;
+    }
+    img {
+        height: 50px;
+        width: 50px;
+        margin-right: 45px;
+    }
+}
+
+.facilities-container {
+    display: flex;
+    margin-top: 40px;
+    .item-facilities {
+        margin: 0 30px 22px 0
+    }
+}
+
+table {
+    .first-row {
+        margin: 0 60px 20px 0;
+        .cell-first-row {
+            padding: 0 60px 20px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    .cell-second-row {
+        padding: 0 60px 20px 0;
+    }
+
+    .first-column {
+        padding: 0 20px 20px 0;
+    }
+}
+
+
