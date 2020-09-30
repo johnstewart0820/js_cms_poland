@@ -52,7 +52,7 @@ const CourtsWithCardsPage = () => {
                         postCode={item.acf.field_map_postcode}
                         city={item.acf.field_map_city}
                         thumbnail={'../../img/loop/1.jpg'}
-                        greenButtonOnclick={() => history.push(TourismRoutes.Reservation(item.id))}
+                        onClickGreenButton={() => history.push(TourismRoutes.Reservation(item.id))}
                     />
                 ))}
             </Row>
