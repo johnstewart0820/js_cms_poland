@@ -1,55 +1,52 @@
 import React from 'react';
-import Breadcrumbs from "../components/general/Breadcrumbs";
-import MainHeaderSection from "../components/header/MainHeaderSection";
-import LoopSearchForm from "../components/loop/LoopSearchForm";
-import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContainer";
 import LoopAttractionPost from "../components/attractions/LoopAttractionPost";
-import {API} from "../extra/API";
-import Loader from "../components/general/Loader";
-import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
-import Pagination from "../components/loop/Pagination";
-import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
+import PaginatedPage from "../components/PaginatedPage";
+import useCustomField from "../hooks/useCustomField";
+import {withDefaultOption} from "../extra/functions";
 import Select from "../components/form/Select";
 
-const sort_options = [
-    { value: 1, label: "Najbliższe aktualności" },
-    { value: 2, label: "Najstarszy aktualności" },
-];
-
 const AttractionPage = props => {
-    const acf = props.page.acf;
-    const [loading, setLoading] = React.useState(true);
-    const [data, setData] = React.useState(null);
-    const [filterArgs, setFilterArgs] = React.useState({page: 0});
+    const recommendedFor = useCustomField('recomended_for');
+    const priceVariants = useCustomField('prices_variant');
+    const categories = React.useMemo(() => {
+        let obj = {
+            key: 'categories',
+            label: 'Rodzaj',
+            choices: {},
+        };
 
-    const attractionsType = acf.field_information_modules_attractions[0].field_section_categories_visit;
-    const priceVariants = acf.field_prices_variant;
-    const recommendedFor = acf.field_recommended_for;
-
-
-    const getPosts = args => {
-        setData(null);
-        API.getByConfig( acf.field_information_modules_attractions, args).then(res => {
-            setData(res.data);
-            setLoading(false);
+        props.page.acf.field_news_filtering_categories.forEach(category => {
+            obj.choices[category.id] = category.name;
         });
-    }
 
-    React.useEffect(() => {
-        getPosts(filterArgs);
-    },[filterArgs]);
+        return obj;
+    }, []);
+    const inputs = React.useMemo(() => {
+        const fields = [];
 
-    const onFilterSubmit = args => {
-        if (args.categories)
-            args.categories = acf.field_information_modules_attractions[0].field_section_categories_visit.find(category => String(category.id) === String(args.categories));
+        for (const field of [recommendedFor, categories, priceVariants]) {
+            if (!field)
+                return null;
 
-        setFilterArgs({...filterArgs, ...args});
-    }
+            fields.push({
+                label: field.label,
+                name: field.key,
+                options: withDefaultOption(Object.keys(field.choices).map(key => ({value: key, label: field.choices[key]}))),
+                Component: Select,
+            });
+        }
 
-    const onPageChange = page => setFilterArgs({...filterArgs, page});
+        return fields;
+    }, [recommendedFor, categories, priceVariants]);
 
     return (
-        <>
+        <PaginatedPage
+            page={props.page}
+            config={props.page.acf.field_information_module_news}
+            inputs={inputs}
+            itemComponent={LoopAttractionPost}
+        />
+        /*<>
             <MainHeaderSection extra_classes="subpage">
                 <Breadcrumbs breadcrumbs={[{ label: "Visit.ustron.pl", to: "/" }, { label: "Noclegi" }]} />
                 <PageHeaderOrSlider page={props.page}/>
@@ -112,7 +109,7 @@ const AttractionPage = props => {
 					 
 					{ !!acf?.field_attractions_map && <MapWithPinsFiltering map_id={ acf?.field_attractions_map } /> }
             </LoopSearchPostsContainer>
-        </>
+        </>*/
     )
 }
 
