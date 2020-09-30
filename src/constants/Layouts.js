@@ -11,6 +11,7 @@ import AttractionSingle from "../layouts/AttractionSingle";
 import TourismCity from "../layouts/TourismCity";
 import TourismPhotoReports from "../layouts/TourismPhotoReports";
 import GastronomySingle from "../layouts/GastronomySingle";
+import ApartamentSingle from "../layouts/ApartamentSingle";
 
 export default {
     main_homepage: MainHomepage,
@@ -26,4 +27,5 @@ export default {
     events_single: EventSingle,
     attractions_single:AttractionSingle,
     tourism_hotels: TourismHotels,
+    apartament_single: ApartamentSingle
 };

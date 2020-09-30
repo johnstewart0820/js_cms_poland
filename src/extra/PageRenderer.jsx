@@ -45,8 +45,10 @@ export default function PageRenderer(props) {
         return <NotFoundPage/>;
 
     let layoutValue;
-    if (pageData.post_type === 'restaurants')
-        layoutValue = 'gastronomy_single'
+    if (pageData.post_type === 'apartments')
+        layoutValue = 'apartament_single';
+    else if (pageData.post_type === 'restaurants')
+        layoutValue = 'gastronomy_single';
     else if (pageData.post_type === 'attractions')
         layoutValue = 'attractions_single';
     else if (pageData.post_type === 'news')
