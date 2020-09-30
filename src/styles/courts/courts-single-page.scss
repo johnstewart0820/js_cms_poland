@@ -1,0 +1,40 @@
+.courts-info-container {
+    align-items: flex-start;
+    font-size: 15px;
+    .parameters-container {
+        .size-court {
+            margin-top: 5px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.parameters-price-container {
+    margin-top: 40px;
+    .price-court {
+        margin-top: 5px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+}
+
+.hours-open-court {
+    margin-top: 30px;
+    width: 250px;
+    opacity: 0.8;
+    .container-hours {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+.button-rezerwation {
+    color: #fff;
+    border: #85cb3f solid 2px;
+    font-size: 15px;
+    font-weight: lighter;
+}

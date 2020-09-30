@@ -12,6 +12,9 @@ import TourismCity from "../layouts/TourismCity";
 import TourismPhotoReports from "../layouts/TourismPhotoReports";
 import GastronomySingle from "../layouts/GastronomySingle";
 import ApartamentSingle from "../layouts/ApartamentSingle";
+import DefaultSingle from "../layouts/DefaultSingle";
+import CourtSingle from "../layouts/CourtSingle";
+import TourismPaths from "../layouts/TourismPaths";
 
 export default {
     main_homepage: MainHomepage,
@@ -22,10 +25,13 @@ export default {
     tourism_attractions: AttractionPage,
     gastronomy_single: GastronomySingle,
     tourism_gastronomies: TourismGastronomies,
+    tourism_paths: TourismPaths,
     tourism_city: TourismCity,
     tourism_photo_reports: TourismPhotoReports,
     events_single: EventSingle,
     attractions_single:AttractionSingle,
     tourism_hotels: TourismHotels,
-    apartament_single: ApartamentSingle
+    apartament_single: ApartamentSingle,
+    default_single: DefaultSingle,
+    courts_single: CourtSingle
 };
