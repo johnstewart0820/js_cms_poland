@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {API} from "../extra/API";
-import {getArticleLink, prepApiFilters} from "../extra/functions";
+import {getArticleLink, handleFilteringCategories, prepApiFilters} from "../extra/functions";
 import MainHeaderSection from "./header/MainHeaderSection";
 import Breadcrumbs from "./general/Breadcrumbs";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
@@ -26,7 +26,8 @@ const PaginatedPage = props => {
         API.getByConfig(props.config, {
             page: filters.page,
             order: filters.order,
-            filters: prepApiFilters(filters, ['page', 'order', 'orderby']),
+            categories: filters.categories,
+            filters: prepApiFilters(filters, ['categories', 'page', 'order', 'orderby']),
         }).then(res => {
             setData(res.data);
         }).catch(err => {
@@ -35,7 +36,10 @@ const PaginatedPage = props => {
         });
     }, [props.config, filters]);
 
-    const onFilterSubmit = args => setFilters({...args, page: filters.page});
+    const onFilterSubmit = args => {
+        const config = Array.isArray(props.config) ? props.config[0] : props.config;
+        setFilters({...handleFilteringCategories(args, config.field_section_categories_visit), page: filters.page});
+    }
 
     const onPageChange = page => {
         setFilters({...filters, page});
@@ -104,7 +108,7 @@ PaginatedPage.propTypes = {
         PropTypes.object,
         PropTypes.array,
     ]).isRequired,
-    inputs: PropTypes.array.isRequired,
+    inputs: PropTypes.array,
     itemComponent: PropTypes.func.isRequired,
     breadcrumbs: PropTypes.array,
     filtersHeader: PropTypes.string,
