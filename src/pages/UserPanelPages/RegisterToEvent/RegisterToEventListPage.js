@@ -74,7 +74,7 @@ const RegisterToEventListPage = () => {
                                     Status
                                 </td>
                                 <td>
-                                    Action
+
                                 </td>
                             </tr>
                             </thead>

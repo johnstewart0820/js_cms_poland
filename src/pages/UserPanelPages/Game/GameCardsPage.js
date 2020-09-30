@@ -106,6 +106,12 @@ const GameCardsPage = () => {
         }));
     },[gamesFilter]);
 
+    const openOnGoogleMap = coords => {
+        const coordinates = coords.split(';');
+        const url = `https://maps.google.com/?q=${coordinates[0]},${coordinates[1]}`;
+        window.open(url, '_blank');
+    }
+
 
     if (!!loading) return <Container
         containerTitle={'NAZWA GRY'}
@@ -161,7 +167,8 @@ const GameCardsPage = () => {
                                 thumbnail={game.original_image}
                                 greenButtonText={'dowiedz się wiecej'}
                                 eyeButtonImage={completedGames.includes(game.id) ? <GreenEyeIcon/> : <RedEyeIcon/>}
-                                greenButtonOnСlick={() => history.push(TourismRoutes.SingleGamePage(game.id))}
+                                onClickGreenButton={() => history.push(TourismRoutes.SingleGamePage(game.id))}
+                                onClickPlaneButton={() => openOnGoogleMap(game.acf.field_map_gps)}
                             />
                         )
                     })}

@@ -114,7 +114,7 @@ const RegisterToEvent = () => {
                     .catch((error) => setNotification(error.response.data.errors.join('\n')))
             }
         } else {
-            setNotification('Proszę wypełnić wszystkie ważne pola');
+            setNotification('Proszę uzupełnić wszystkie pola');
         }
     }
 
@@ -191,13 +191,11 @@ const RegisterToEvent = () => {
                             <InputComponent
                                 type="number"
                                 onChange={handleInputChange}
-                                placeholder={'50100'}
                                 extraClasses={'container-inner-input__margin-top'}
                                 fieldName={'KOD MIASTA'} name={'postalCode'}/>
                         </div>
                         <div className="container-inner-col">
                             <InputComponent
-                                placeholder={'Wrocław, Nowowiejska 72'}
                                 onChange={handleInputChange}
                                 extraClasses={'container-inner-input__margin-top'}
                                 fieldName={'MIASTO, ULICA, NR. DOMU'}

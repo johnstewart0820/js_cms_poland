@@ -107,6 +107,12 @@
       margin-left: 20px;
       border: none;
       background: white;
+      cursor: pointer;
+      transition: 1s;
+        border-radius: 5px;
+        &:hover {
+            background: #d6d6d6;
+        }
     }
 
     .button-link{
