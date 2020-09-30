@@ -6,6 +6,7 @@ import BicycleIcon from "../icons/BicycleIcon";
 import DisabilityIcon from "../icons/DisabilityIcon";
 import FamilyIcon from "../icons/FamilyIcon";
 import PlanerContext from "../../constants/PlanerContext";
+import DefaultImage from "../../constants/DefaultImage";
 
 export default function ({id, title, excerpt, category, thumbnail}) {
     const planerContext = React.useContext(PlanerContext);
@@ -17,7 +18,7 @@ export default function ({id, title, excerpt, category, thumbnail}) {
                 target={'_blank'}
                 rel={'noopener noreferrer'}
                 className="loop-card__thumbnail has-overlay thumbnail"
-                style={{backgroundImage: `url(${thumbnail})`}}
+                style={{backgroundImage: `url("${thumbnail || DefaultImage}")`}}
             >
                 <div className="loop-card__thumbnail-text">{category}</div>
             </a>
