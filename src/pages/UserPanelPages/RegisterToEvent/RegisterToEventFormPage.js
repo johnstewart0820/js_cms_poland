@@ -114,7 +114,7 @@ const RegisterToEvent = () => {
                     .catch((error) => setNotification(error.response.data.errors.join('\n')))
             }
         } else {
-            setNotification('Proszę wypełnić wszystkie ważne pola');
+            setNotification('Proszę uzupełnić wszystkie pola');
         }
     }
 
