@@ -8,8 +8,6 @@ import LoopSearchPostsContainer from "../../components/loop/LoopSearchPostsConta
 import LoopAttractionPost from "../../components/attractions/LoopAttractionPost";
 import {API} from "../../extra/API";
 import Loader from "../../components/general/Loader";
-import PlanerButton from "../../components/buttons/PlanerButton";
-import TourismRoutes from "../../constants/TourismRoutes";
 import PlanerContext from "../../constants/PlanerContext";
 
 const sort_options = [

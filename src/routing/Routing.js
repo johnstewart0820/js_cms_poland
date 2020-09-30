@@ -25,6 +25,7 @@ import SingleGamePage from "../pages/UserPanelPages/Game/SingleGamePage";
 import RegisterToEventFormPage from "../pages/UserPanelPages/RegisterToEvent/RegisterToEventFormPage";
 import SiteInfoContext from "../constants/SiteInfoContext";
 import QuizPage from "../pages/UserPanelPages/Game/QuizPage";
+import AuthRoute from "./AuthRoute";
 
 const ROUTERS = {
     "MAIN": <MainRouters/>,
@@ -46,20 +47,20 @@ const Routing = () => {
             <Route exact path={TourismRoutes.ActivateAccount} component={ActivateAccountPage}/>
 
             {/* User panel pages */}
-            <Route exact path={TourismRoutes.UserProfile} component={UserProfilePage}/>
-            <Route exact path={TourismRoutes.StadiumReservation} component={CourtsWithCardsPage}/>
-            <Route exact path={TourismRoutes.ReservationConfirmationPage} component={ReservationConfirmationPage}/>
-            <Route exact path={TourismRoutes.Reservation()} component={ReservationCalendarPage}/>
-            <Route exact path={TourismRoutes.ReservationHistoryPage} component={ReservationHistoryPage}/>
-            <Route exact path={TourismRoutes.RegisterToEventList} component={RegisterToEventListPage}/>
-            <Route exact path={TourismRoutes.RegisterToEventForm} component={RegisterToEventFormPage}/>
-            <Route exact path={TourismRoutes.RegisterToEventConfirmationPage} component={RegisterToEventConfirmationPage}/>
-            <Route exact path={TourismRoutes.ObjectListPage} component={ObjectListPage}/>
-            <Route exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
-            <Route exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
-            <Route exact path={TourismRoutes.SingleGamePage()} component={SingleGamePage}/>
-            <Route exact path={TourismRoutes.QuizPageByQr()} component={QuizPage}/>
-            <Route exact path={TourismRoutes.QuizPageByGps()} component={QuizPage}/>
+            <AuthRoute exact path={TourismRoutes.UserProfile} component={UserProfilePage}/>
+            <AuthRoute exact path={TourismRoutes.StadiumReservation} component={CourtsWithCardsPage}/>
+            <AuthRoute exact path={TourismRoutes.ReservationConfirmationPage} component={ReservationConfirmationPage}/>
+            <AuthRoute exact path={TourismRoutes.Reservation()} component={ReservationCalendarPage}/>
+            <AuthRoute exact path={TourismRoutes.ReservationHistoryPage} component={ReservationHistoryPage}/>
+            <AuthRoute exact path={TourismRoutes.RegisterToEventList} component={RegisterToEventListPage}/>
+            <AuthRoute exact path={TourismRoutes.RegisterToEventForm} component={RegisterToEventFormPage}/>
+            <AuthRoute exact path={TourismRoutes.RegisterToEventConfirmationPage} component={RegisterToEventConfirmationPage}/>
+            <AuthRoute exact path={TourismRoutes.ObjectListPage} component={ObjectListPage}/>
+            <AuthRoute exact path={TourismRoutes.EditObjectFormPage} component={EditObjectFormPage}/>
+            <AuthRoute exact path={TourismRoutes.GameCardsPage} component={GameCardsPage}/>
+            <AuthRoute exact path={TourismRoutes.SingleGamePage()} component={SingleGamePage}/>
+            <AuthRoute exact path={TourismRoutes.QuizPageByQr()} component={QuizPage}/>
+            <AuthRoute exact path={TourismRoutes.QuizPageByGps()} component={QuizPage}/>
 
             {/* Routes for pages which controlled from CMS */}
             <Redirect exact from={'/'} to={'/' + context.active_language}/>

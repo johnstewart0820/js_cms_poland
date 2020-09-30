@@ -6,7 +6,6 @@ import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContaine
 import LoopAttractionPost from "../components/attractions/LoopAttractionPost";
 import {API} from "../extra/API";
 import Loader from "../components/general/Loader";
-import PlanerContext from "../constants/PlanerContext";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import Pagination from "../components/loop/Pagination";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";

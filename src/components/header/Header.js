@@ -1,5 +1,5 @@
-import React, {Component, useMemo} from 'react';
-import { Link, withRouter } from "react-router-dom";
+import React, {useMemo} from 'react';
+import { Link } from "react-router-dom";
 
 import HeaderMenu from "./HeaderMenu";
 import HeaderActions from "./HeaderActions";
@@ -8,8 +8,8 @@ import AuthPanel from "../auth/AuthPanel";
 import LanguageSwitcher from "../general/LanguageSwitcher";
 
 import MainLogo from "../../svg/components/MainLogo";
-import { UserIcon } from "../../svg/icons";
-import { SITE } from "../../extra/site_settings";
+import {UserIcon} from "../../svg/icons";
+import {SITE} from "../../extra/site_settings";
 import UserContext from "../../constants/UserContext";
 import {useHistory} from 'react-router-dom';
 
@@ -17,64 +17,56 @@ import {useHistory} from 'react-router-dom';
 import "../../styles/header/header.scss";
 import TourismRoutes from "../../constants/TourismRoutes";
 
-const Header = props => {
+const Titles = {
+    "TOURISM": "Portal Turystyczny",
+    "SPORT": "Sport",
+    "CULTURE": "Kultura",
+};
+
+const Header = () => {
     const history = useHistory();
     const userContext = React.useContext(UserContext);
-	const [show, setShow] = React.useState(false);
+    const [show, setShow] = React.useState(false);
     const headerClasses = ["header"];
 
-
-	const getHeaderExtraActions = useMemo(() => {
+    const getHeaderExtraActions = useMemo(() => {
         const actions = [
             {
                 component: LanguageSwitcher,
-                props: {	extra_classes:"header__link" },
+                props: {extra_classes: "header__link"},
             },
             {
-                svg: <UserIcon />,
+                svg: <UserIcon/>,
                 extra_classes: `has-overlay ${show ? "active" : ''}`,
                 hidden_text: "login / logout",
                 onClick: userContext.id
-                    ? () => (props.history.push('/profile'))
-                    : () => setShow(prevState => !prevState)
-            }
-        ]
+                    ? () => history.push(TourismRoutes.UserProfile)
+                    : () => setShow(prevState => !prevState),
+            },
+        ];
 
-        return actions.map(( item, index ) => (
+        return actions.map((item, index) => (
             item.component
                 ? (
-                    <item.component key={ index } {...item.props } />
+                    <item.component key={index} {...item.props} />
                 )
                 : (
                     <SimpleLink
-                        key={ index }
+                        key={index}
                         {...item}
-                        extra_classes={`header__link ${ item.extra_classes || "" }`}
+                        extra_classes={`header__link ${item.extra_classes || ""}`}
                     />
                 )
-        ))
-    },[]);
+        ));
+    }, [userContext.id]);
 
-	const getHeaderSubtitle = useMemo(() => {
-        if( !SITE ) return null;
-
-        const subtitles = {
-            "TOURISM": "Portal Turystyczny",
-            "SPORT": "Sport",
-            "CULTURE": "Kultura",
-        }
-
-        return subtitles[ SITE ];
-    },[]);
-
-
-    if ( SITE !== "MAIN" ) headerClasses.push("has-menu");
+    if (SITE !== "MAIN") headerClasses.push("has-menu");
 
     return (
-        <header id="header" className={ headerClasses.join(" ") }>
+        <header id="header" className={headerClasses.join(" ")}>
             <Link to="/" className="header-logo">
-                <MainLogo />
-                { getHeaderSubtitle &&  <span> { getHeaderSubtitle } </span> }
+                <MainLogo/>
+                {<span>{Titles[SITE]}</span>}
             </Link>
 
             <div className="header-main">
@@ -83,9 +75,9 @@ const Header = props => {
                     { getHeaderExtraActions }
                 </div>
 
-                <HeaderMenu />
+                <HeaderMenu/>
             </div>
-            { !userContext.id && show && (
+            {!userContext.id && show && (
                 <AuthPanel
                     onClickLogin={() => {
                         setShow(false)
@@ -101,4 +93,4 @@ const Header = props => {
     )
 }
 
-export default withRouter(Header);
+export default Header;
