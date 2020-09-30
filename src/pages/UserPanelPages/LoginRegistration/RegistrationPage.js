@@ -47,6 +47,12 @@ const RegistrationPage = () => {
         }
     }
 
+    const onEnterPress = e => {
+        if (e.keyCode === 13) {
+            submitFormData()
+        }
+    }
+
     return(
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
@@ -66,6 +72,7 @@ const RegistrationPage = () => {
                     onChange={e => setLogin(e.target.value)}
                     value={login}
                     name={'login'}
+                    onKeyPress={e => onEnterPress(e)}
                 />
                 <InputComponent
                     containerStyles={{margin: '5px 5px 40px 5px'}}
@@ -73,12 +80,14 @@ const RegistrationPage = () => {
                     onChange={e => setName(e.target.value)}
                     value={name}
                     name={'name'}
+                    onKeyPress={e => onEnterPress(e)}
                 />
                 <InputComponent
                     fieldName={'EMAIL'}
                     onChange={e => setEmail(e.target.value)}
                     value={email}
                     name={'email'}
+                    onKeyPress={e => onEnterPress(e)}
                 />
                 <InputComponent
                     fieldName={'HASŁO'}
@@ -86,6 +95,7 @@ const RegistrationPage = () => {
                     password={true}
                     onChange={e => setPassword(e.target.value)}
                     imageSrcForSwitch={require('../../../svg/icons/passwordVisible.svg')}
+                    onKeyPress={e => onEnterPress(e)}
                 />
 
                 <PasswordStrengthMeter password={password}/>

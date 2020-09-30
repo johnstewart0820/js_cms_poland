@@ -21,7 +21,7 @@ export const UserContextProvider = props => {
                 console.log(err)
                 if (err) {
                     setContext(User.clearData());
-                    history.push(TourismRoutes.Login);
+                    //history.push(TourismRoutes.Login);
                 }
             });
     },[]);

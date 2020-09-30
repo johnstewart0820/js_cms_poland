@@ -6,7 +6,6 @@ import {useHistory} from 'react-router-dom';
 import User from "../../../extra/User";
 import UserContext from "../../../constants/UserContext";
 import PlanerContext from "../../../constants/PlanerContext";
-import Loader from "../../../components/general/Loader";
 import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 
 const LoginPage = () => {
@@ -69,6 +68,12 @@ const LoginPage = () => {
         });
     }
 
+    const onEnterPress = e => {
+        if (e.keyCode === 13) {
+            loginUser()
+        }
+    }
+
     return(
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
@@ -92,6 +97,7 @@ const LoginPage = () => {
                     name={'login'}
                     value={state.login}
                     onChange={handleChange}
+                    onKeyPress={e => onEnterPress(e)}
                 />
                 <InputComponent
                     fieldName={'HASŁO'}
@@ -101,6 +107,7 @@ const LoginPage = () => {
                     containerStyles={{margin: '5px 5px 50px 5px'}}
                     password={true}
                     onChange={handleChange}
+                    onKeyPress={e => onEnterPress(e)}
                 />
 
                 <ButtonWithLoader
