@@ -3,6 +3,7 @@ import '../../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import PasswordStrengthMeter from "../../../components/form/PasswordStrengthMeter";
 import * as axios from "axios";
 import InputComponent from "../../../components/form/InputComponent";
+import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 
 export default class RegistrationPage extends Component {
 
@@ -16,13 +17,14 @@ export default class RegistrationPage extends Component {
             name: '',
             windowLocation: '',
             privacyPolicy: false,
-            userDataPolicy: false
+            userDataPolicy: false,
+            isLoading: false,
         }
     }
 
     render() {
         const {history} = this.props;
-        const {password, email, login, name, privacyPolicy, userDataPolicy} = this.state;
+        const {password, email, login, name, privacyPolicy, userDataPolicy, isLoading} = this.state;
         return(
             <div className="registration-container" style={{padding: 0}}>
                 <div className="container__photo">
@@ -61,7 +63,11 @@ export default class RegistrationPage extends Component {
 
                     <PasswordStrengthMeter password={password}/>
 
-                    <button className="button-link green full-width" onClick={this.submitFormData}>WYŚLIJ</button>
+                    <ButtonWithLoader
+                        buttonText={'WYŚLIJ'}
+                        onClick={this.submitFormData}
+                        isLoading={isLoading}
+                    />
 
                     <div className="bottom-container">
                         <div className='row'>
@@ -110,6 +116,7 @@ export default class RegistrationPage extends Component {
             alert('Proszę wypełnić wszystkie pola !');
         } else {
             if (privacyPolicy !== false && userDataPolicy !== null) {
+                this.setState({isLoading: true});
                 axios.post(`https://api.ustron.s3.netcore.pl/users/register`, {
                     password: password,
                     login: email,

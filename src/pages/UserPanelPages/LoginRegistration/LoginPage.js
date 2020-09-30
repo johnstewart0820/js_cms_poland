@@ -6,11 +6,14 @@ import {useHistory} from 'react-router-dom';
 import User from "../../../extra/User";
 import UserContext from "../../../constants/UserContext";
 import PlanerContext from "../../../constants/PlanerContext";
+import Loader from "../../../components/general/Loader";
+import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 
 const LoginPage = () => {
     const history = useHistory();
     const planerContext = React.useContext(PlanerContext);
     const [errors, setErrors] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
     const [state, setState] = React.useState({
         login: '',
         password: '',
@@ -36,6 +39,7 @@ const LoginPage = () => {
             `https://api.ustron.s3.netcore.pl/users/login`, userData
         ).then((response) => {
             token = response.data.token;
+            setLoading(true);
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
             if (responseErrors)
@@ -99,12 +103,11 @@ const LoginPage = () => {
                     onChange={handleChange}
                 />
 
-                <button
-                    className="button-link green full-width"
+                <ButtonWithLoader
                     onClick={loginUser}
-                >
-                    Zaloguj Się
-                </button>
+                    buttonText={'Zaloguj Się'}
+                    isLoading={loading}
+                />
 
                 <div className="bottom-container" style={{margin: '5px 5px -10px 5px'}}>
                     <div className="login-container">
