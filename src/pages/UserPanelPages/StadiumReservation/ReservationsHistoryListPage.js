@@ -83,7 +83,7 @@ const ReservationHistoryPage = () => {
                                         Status
                                     </td>
                                     <td>
-                                        Action
+
                                     </td>
                                 </tr>
                             </thead>
