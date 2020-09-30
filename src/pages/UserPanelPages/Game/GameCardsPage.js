@@ -161,7 +161,7 @@ const GameCardsPage = () => {
                                 thumbnail={game.original_image}
                                 greenButtonText={'dowiedz się wiecej'}
                                 eyeButtonImage={completedGames.includes(game.id) ? <GreenEyeIcon/> : <RedEyeIcon/>}
-                                greenButtonOnСlick={() => history.push(TourismRoutes.SingleGamePage(game.id))}
+                                onClickGreenButton={() => history.push(TourismRoutes.SingleGamePage(game.id))}
                             />
                         )
                     })}
