@@ -82,7 +82,7 @@ const PaginatedPage = props => {
                     <>
                         {!data.contents.length && (
                             <h2 style={{textAlign: 'center', width: '100%'}}>
-                                Brak wydarzeń dla podanych kryteriów
+                                Brak treści dla podanych kryteriów
                             </h2>
                         )}
                         {data.contents.map(post => <props.itemComponent key={post.id} {...post} />)}
