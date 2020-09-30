@@ -23,7 +23,12 @@ const RegisterToEventListPage = () => {
         .then((response) => {
             setData(response.data.subscriptions);
             setLoading(false);
-        }).catch((error) => setNotification(error.response.data))
+        }).catch((error) => {
+            if (error.status === '-403') {
+                return TourismRoutes.Login
+            }
+            setNotification(error.response.data)
+        })
     }
 
     const cancelSubscription = id => {

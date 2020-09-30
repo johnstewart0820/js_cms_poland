@@ -88,7 +88,12 @@ const GameCardsPage = () => {
                 setLevel(res.data.info.level);
                 setCompletedGames(res.data.info.completed);
             })
-            .catch((err) => setNotification(err))
+            .catch((err) => {
+                if (err.status === '-403') {
+                    return TourismRoutes.Login
+                }
+                setNotification(err)
+            })
             .finally(() => setLoading(false));
     },[]);
 

@@ -24,7 +24,9 @@ const ReservationHistoryPage = () => {
             setData(response.data.reservations);
             setLoading(false)
         }).catch((error) => {
-            console.log(error);
+            if (error.status === '-403') {
+                return TourismRoutes.Login
+            }
             setNotification(error.response.data)
         });
     };
