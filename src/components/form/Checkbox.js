@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/form/checkbox.scss';
 
 const Checkbox = props => (
-    <div className="checkbox-container">
+    <div className="checkbox-container" style={props.containerStyles}>
         <label>
             {props.labelLeft && props.label.toUpperCase()}
             <input

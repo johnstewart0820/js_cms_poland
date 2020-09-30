@@ -96,6 +96,7 @@ const UserProfilePage = () => {
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <div style={{display: 'inline-block'}}>
                                 <Checkbox
+                                    containerStyles={{marginTop:'20px'}}
                                     labelRight={true}
                                     label={'systemowe'}
                                     name={'system'}
@@ -103,6 +104,7 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    containerStyles={{marginTop:'20px'}}
                                     labelRight={true}
                                     label={'kultura'}
                                     name={'culture'}
@@ -110,6 +112,7 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    containerStyles={{marginTop:'20px'}}
                                     labelRight={true}
                                     label={'oświata'}
                                     name={'education'}
@@ -117,6 +120,7 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    containerStyles={{marginTop:'20px'}}
                                     labelRight={true}
                                     label={'sport'}
                                     name={'sport'}
@@ -124,6 +128,7 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
+                                    containerStyles={{marginTop:'20px'}}
                                     labelRight={true}
                                     label={'turystyka'}
                                     name={'turism'}
