@@ -6,11 +6,13 @@ import {useHistory} from 'react-router-dom';
 import User from "../../../extra/User";
 import UserContext from "../../../constants/UserContext";
 import PlanerContext from "../../../constants/PlanerContext";
+import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 
 const LoginPage = () => {
     const history = useHistory();
     const planerContext = React.useContext(PlanerContext);
     const [errors, setErrors] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
     const [state, setState] = React.useState({
         login: '',
         password: '',
@@ -36,6 +38,7 @@ const LoginPage = () => {
             `https://api.ustron.s3.netcore.pl/users/login`, userData
         ).then((response) => {
             token = response.data.token;
+            setLoading(true);
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
             if (responseErrors)
@@ -65,6 +68,12 @@ const LoginPage = () => {
         });
     }
 
+    const onEnterPress = e => {
+        if (e.keyCode === 13) {
+            loginUser()
+        }
+    }
+
     return(
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
@@ -72,7 +81,7 @@ const LoginPage = () => {
             </div>
             <div className="container__form">
                 {!!errors.length && (
-                    <div>
+                    <div className='container__form-notice'>
                         {errors.map((error, index) => (
                             <React.Fragment key={index}>
                                 {error}<br/>
@@ -88,6 +97,7 @@ const LoginPage = () => {
                     name={'login'}
                     value={state.login}
                     onChange={handleChange}
+                    onKeyPress={e => onEnterPress(e)}
                 />
                 <InputComponent
                     fieldName={'HASŁO'}
@@ -97,14 +107,14 @@ const LoginPage = () => {
                     containerStyles={{margin: '5px 5px 50px 5px'}}
                     password={true}
                     onChange={handleChange}
+                    onKeyPress={e => onEnterPress(e)}
                 />
 
-                <button
-                    className="button-link green full-width"
+                <ButtonWithLoader
                     onClick={loginUser}
-                >
-                    Zaloguj Się
-                </button>
+                    buttonText={'Zaloguj Się'}
+                    isLoading={loading}
+                />
 
                 <div className="bottom-container" style={{margin: '5px 5px -10px 5px'}}>
                     <div className="login-container">

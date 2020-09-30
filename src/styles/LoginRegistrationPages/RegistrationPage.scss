@@ -25,6 +25,15 @@
     align-items: center;
     padding: 50px;
     min-height: 700px;
+    .container__form-notice {
+        background: red;
+        border-radius: 2px;
+        color: white;
+        padding: 5px;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
 
     p {
       font-size: 34px;

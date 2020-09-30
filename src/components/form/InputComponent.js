@@ -29,6 +29,7 @@ const InputComponent = props => {
                 onFocus={props.onFocus}
                 onBlur={props.onBlur}
                 disabled={props.disabled}
+                onKeyPress={props.onKeyPress}
             />
             {props.visibilitySwitch && (
                 <button className="button-password" onClick={handleSwitch}>

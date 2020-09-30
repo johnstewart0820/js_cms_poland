@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, useMemo} from 'react';
 import { Link, withRouter } from "react-router-dom";
 
 import HeaderMenu from "./HeaderMenu";
@@ -11,99 +11,94 @@ import MainLogo from "../../svg/components/MainLogo";
 import { UserIcon } from "../../svg/icons";
 import { SITE } from "../../extra/site_settings";
 import UserContext from "../../constants/UserContext";
+import {useHistory} from 'react-router-dom';
 
 
 import "../../styles/header/header.scss";
+import TourismRoutes from "../../constants/TourismRoutes";
+
+const Header = props => {
+    const history = useHistory();
+    const userContext = React.useContext(UserContext);
+	const [show, setShow] = React.useState(false);
+    const headerClasses = ["header"];
 
 
-class Header extends Component {
+	const getHeaderExtraActions = useMemo(() => {
+        const actions = [
+            {
+                component: LanguageSwitcher,
+                props: {	extra_classes:"header__link" },
+            },
+            {
+                svg: <UserIcon />,
+                extra_classes: `has-overlay ${show ? "active" : ''}`,
+                hidden_text: "login / logout",
+                onClick: userContext.id
+                    ? () => (props.history.push('/profile'))
+                    : () => setShow(prevState => !prevState)
+            }
+        ]
 
-	static contextType = UserContext;
+        return actions.map(( item, index ) => (
+            item.component
+                ? (
+                    <item.component key={ index } {...item.props } />
+                )
+                : (
+                    <SimpleLink
+                        key={ index }
+                        {...item}
+                        extra_classes={`header__link ${ item.extra_classes || "" }`}
+                    />
+                )
+        ))
+    },[]);
 
-	state = {
-		show_auth: false
-	}
+	const getHeaderSubtitle = useMemo(() => {
+        if( !SITE ) return null;
 
+        const subtitles = {
+            "TOURISM": "Portal Turystyczny",
+            "SPORT": "Sport",
+            "CULTURE": "Kultura",
+        }
 
-	toggleAuth = e => {
-		e.preventDefault();
-		this.setState({ show_auth: !this.state.show_auth });
-	}
-
-
-	getHeaderExtraActions = () => {
-		const actions = [
-			{
-				component: LanguageSwitcher,
-				props: {	extra_classes:"header__link" },
-			},
-			{
-				svg: <UserIcon />,
-				extra_classes: `has-overlay ${this.state.show_auth ? "active" : ""} `,
-				hidden_text: "login / logout",
-				onClick: this.context.id ? () => (this.props.history.push('/profile')) : this.toggleAuth
-			}
-		]
-
-
-		return actions.map(( item, index ) => (
-			item.component 
-			? (
-				<item.component key={ index } {...item.props } />
-			)
-			: (
-				<SimpleLink 
-					key={ index }
-					{...item}
-					extra_classes={`header__link ${ item.extra_classes || "" }`}
-				/>
-			)
-		))
-	}
+        return subtitles[ SITE ];
+    },[]);
 
 
-	getHeaderSubtitle = () => {
-		if( !SITE ) return null;
-		
-		const subtitles = {
-			"TOURISM": "Portal Turystyczny",
-			"SPORT": "Sport",
-			"CULTURE": "Kultura",
-		}
+    if ( SITE !== "MAIN" ) headerClasses.push("has-menu");
 
-		return subtitles[ SITE ];
-	}
+    return (
+        <header id="header" className={ headerClasses.join(" ") }>
+            <Link to="/" className="header-logo">
+                <MainLogo />
+                { getHeaderSubtitle &&  <span> { getHeaderSubtitle } </span> }
+            </Link>
 
-	render() {
+            <div className="header-main">
+                <div className="header-main__top">
+                    <HeaderActions />
+                    { getHeaderExtraActions }
+                </div>
 
-		const { show_auth } = this.state;
-
-		const header_extra_actions = this.getHeaderExtraActions();
-		const header_subtitle = this.getHeaderSubtitle();
-
-		const header_classes = ["header"];
-		if ( SITE !== "MAIN" ) header_classes.push("has-menu");
-
-		return (
-			<header id="header" className={ header_classes.join(" ") }>
-				<Link to="/" className="header-logo">
-					<MainLogo />
-					{ header_subtitle &&  <span> { header_subtitle } </span> }
-				</Link>
-
-				<div className="header-main">
-					<div className="header-main__top">
-						<HeaderActions />
-						{ header_extra_actions }
-					</div>
-
-					<HeaderMenu />
-				</div>
-
-				{ !this.context.id && show_auth && <AuthPanel /> }
-			</header>
-		)
-	}
+                <HeaderMenu />
+            </div>
+            { !userContext.id && show && (
+                <AuthPanel
+                    onClickLogin={() => {
+                        setShow(false)
+                        history.push(TourismRoutes.Login)
+                    }}
+                    onClickRegistration={() => {
+                        setShow(false)
+                        history.push(TourismRoutes.Registration)
+                    }}
+                />
+            )}
+        </header>
+    )
 }
 
 export default withRouter(Header);
