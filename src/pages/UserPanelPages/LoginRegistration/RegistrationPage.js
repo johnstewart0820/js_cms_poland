@@ -4,119 +4,31 @@ import PasswordStrengthMeter from "../../../components/form/PasswordStrengthMete
 import * as axios from "axios";
 import InputComponent from "../../../components/form/InputComponent";
 import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
+import {useHistory} from 'react-router-dom';
 
-export default class RegistrationPage extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            password: '',
-            emailIsValid: null,
-            email: '',
-            login: '',
-            name: '',
-            windowLocation: '',
-            privacyPolicy: false,
-            userDataPolicy: false,
-            isLoading: false,
-        }
-    }
+const RegistrationPage = () => {
+    const history = useHistory();
+    const [password, setPassword] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [login, setLogin] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [privacyPolicy, setPrivacyPolicy] = React.useState(false);
+    const [userDataPolicy, setUserDataPolicy] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [notice, setNotice] = React.useState(null);
 
-    render() {
-        const {history} = this.props;
-        const {password, email, login, name, privacyPolicy, userDataPolicy, isLoading} = this.state;
-        return(
-            <div className="registration-container" style={{padding: 0}}>
-                <div className="container__photo">
-                    <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
-                </div>
-                <div className="container__form">
-                    <p>
-                        Zarejestruj się
-                    </p>
-                    <InputComponent
-                        fieldName={'NAZWA UŻYTKOWNIKA'}
-                        onChange={this.handleInputChange}
-                        value={login}
-                        name={'login'}
-                    />
-                    <InputComponent
-                        containerStyles={{margin: '5px 5px 40px 5px'}}
-                        fieldName={'IMIĘ NAZWISKO'}
-                        onChange={this.handleInputChange}
-                        value={name}
-                        name={'name'}
-                    />
-                    <InputComponent
-                        fieldName={'EMAIL'}
-                        onChange={this.handleInputChange}
-                        value={email}
-                        name={'email'}
-                    />
-                    <InputComponent
-                        fieldName={'HASŁO'}
-                        visibilitySwitch={true}
-                        password={true}
-                        onChange={e => this.setState({password: e.target.value})}
-                        imageSrcForSwitch={require('../../../svg/icons/passwordVisible.svg')}
-                    />
-
-                    <PasswordStrengthMeter password={password}/>
-
-                    <ButtonWithLoader
-                        buttonText={'WYŚLIJ'}
-                        onClick={this.submitFormData}
-                        isLoading={isLoading}
-                    />
-
-                    <div className="bottom-container">
-                        <div className='row'>
-                            <input
-                                type="checkbox"
-                                value={privacyPolicy}
-                                name={'privacyPolicy'}
-                                onChange={this.handleInputChange}
-                            />
-                            <h6>
-                                Oświadczam, że zapoznałem/am się z Regulaminem  i akceptuję wszystkie<br/>
-                                zawarte w nim warunki.
-                            </h6>
-                        </div>
-                        <div className='row'>
-                            <input
-                                type="checkbox"
-                                value={userDataPolicy}
-                                name={'userDataPolicy'}
-                                onChange={this.handleInputChange}
-                            />
-                            <h6>
-                                Wyrażam zgodę na przetwarzanie moich danych osobowych przez Biuro<br/>
-                                oraz przedstawicieli zgodnie z Ustawą o Ochronie Danych Osobowych (Dz. U.<br/>
-                                1997 nr 133 poz. 883)
-                            </h6>
-                        </div>
-                        <div className="login-container">
-                            <h5>Masz konto ?</h5><button onClick={() => history.push('/login')}>  Zaloguj się</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
-    routeToConfirm = () => {
-        const {history} = this.props;
+    const routeToConfirm = () => {
         if (history)
             history.push('/confirm');
     }
 
-    submitFormData = () => {
-        let {password, email, name, privacyPolicy, userDataPolicy} = this.state;
+    const submitFormData = () => {
         if (!password && !email && !name) {
-            alert('Proszę wypełnić wszystkie pola !');
+            setNotice('Proszę wypełnić wszystkie pola !');
         } else {
             if (privacyPolicy !== false && userDataPolicy !== null) {
-                this.setState({isLoading: true});
+                setIsLoading(true);
                 axios.post(`https://api.ustron.s3.netcore.pl/users/register`, {
                     password: password,
                     login: email,
@@ -124,37 +36,99 @@ export default class RegistrationPage extends Component {
                 })
                     .then((response) => {
                         if (response.status === 200) {
-                            this.routeToConfirm();
+                            routeToConfirm();
                         }
                     }, (error) => {
-                        alert(error.response.data.errors.join('\n'));
+                        setNotice(error.response.data.errors.join('\n'));
                     });
             } else {
-                alert('Zaakceptuj naszą politykę prywatności !');
+                setNotice('Zaakceptuj naszą politykę prywatności !');
             }
         }
     }
 
-    handleInputChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        if (name === 'email') {
-            this.emailIsValid(value);
-        } else {
-            this.setState({
-                emailIsValid: false
-            })
-        }
-        this.setState({
-            [name]: value
-        })
-    }
+    return(
+        <div className="registration-container" style={{padding: 0}}>
+            <div className="container__photo">
+                <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
+            </div>
+            <div className="container__form">
+                {!!notice && (
+                    <div className='container__form-notice'>
+                        {notice}
+                    </div>
+                )}
+                <p>
+                    Zarejestruj się
+                </p>
+                <InputComponent
+                    fieldName={'NAZWA UŻYTKOWNIKA'}
+                    onChange={e => setLogin(e.target.value)}
+                    value={login}
+                    name={'login'}
+                />
+                <InputComponent
+                    containerStyles={{margin: '5px 5px 40px 5px'}}
+                    fieldName={'IMIĘ NAZWISKO'}
+                    onChange={e => setName(e.target.value)}
+                    value={name}
+                    name={'name'}
+                />
+                <InputComponent
+                    fieldName={'EMAIL'}
+                    onChange={e => setEmail(e.target.value)}
+                    value={email}
+                    name={'email'}
+                />
+                <InputComponent
+                    fieldName={'HASŁO'}
+                    visibilitySwitch={true}
+                    password={true}
+                    onChange={e => setPassword(e.target.value)}
+                    imageSrcForSwitch={require('../../../svg/icons/passwordVisible.svg')}
+                />
 
-    emailIsValid  = (email) => {
-        this.setState({
-            emailIsValid: true
-        })
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    }
+                <PasswordStrengthMeter password={password}/>
+
+                <ButtonWithLoader
+                    buttonText={'WYŚLIJ'}
+                    onClick={submitFormData}
+                    isLoading={isLoading}
+                />
+
+                <div className="bottom-container">
+                    <div className='row'>
+                        <input
+                            type="checkbox"
+                            value={privacyPolicy}
+                            name={'privacyPolicy'}
+                            onChange={e => setPrivacyPolicy(e.target.checked)}
+                        />
+                        <h6>
+                            Oświadczam, że zapoznałem/am się z Regulaminem  i akceptuję wszystkie<br/>
+                            zawarte w nim warunki.
+                        </h6>
+                    </div>
+                    <div className='row'>
+                        <input
+                            type="checkbox"
+                            value={userDataPolicy}
+                            name={'userDataPolicy'}
+                            onChange={e => setUserDataPolicy(e.target.checked)}
+                        />
+                        <h6>
+                            Wyrażam zgodę na przetwarzanie moich danych osobowych przez Biuro<br/>
+                            oraz przedstawicieli zgodnie z Ustawą o Ochronie Danych Osobowych (Dz. U.<br/>
+                            1997 nr 133 poz. 883)
+                        </h6>
+                    </div>
+                    <div className="login-container">
+                        <h5>Masz konto ?</h5><button onClick={() => history.push('/login')}>  Zaloguj się</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
+
+export default RegistrationPage;
