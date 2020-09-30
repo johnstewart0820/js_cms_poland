@@ -1,14 +1,39 @@
 import React from 'react';
 import axios from "axios";
 import Planer from "../extra/Planer";
+import {useLocation} from 'react-router-dom';
+import TourismRoutes from "./TourismRoutes";
+
+
+/* Add pages which dont need the planer button */
+const noVisiblePages = [
+    {
+        pathname: TourismRoutes.PlanerListPage,
+    },
+    {
+        pathname: TourismRoutes.Login,
+    }
+];
+
 
 const PlanerContext = React.createContext([]);
 
 export const PlanerContextProvider = props => {
+    const location = useLocation();
     const [ids, setIds] = React.useState(null);
     const [data, setData] = React.useState([]);
     const [visible, setVisible] = React.useState(true);
 
+    // Check if page dont need the planer button, default is true
+    React.useEffect(() => {
+        noVisiblePages.forEach(element => {
+            if (location.pathname === element.pathname) {
+                setVisible(false)
+            } else {
+                setVisible(true)
+            }
+        })
+    },[location.pathname]);
 
     React.useEffect(() => {
         if (!ids) {
