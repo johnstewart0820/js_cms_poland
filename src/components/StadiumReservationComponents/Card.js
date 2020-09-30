@@ -9,7 +9,7 @@ import {useLocation} from 'react-router-dom';
 import PlanerContext from "../../constants/PlanerContext";
 
 
-const Card = ({id, name, title, address, thumbnail, postCode ,city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage}) => {
+const Card = ({id, name, title, address, thumbnail, postCode ,city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton}) => {
     const location = useLocation();
     let pathname = location.pathname;
     const planerContext = React.useContext(PlanerContext);
@@ -45,7 +45,7 @@ const Card = ({id, name, title, address, thumbnail, postCode ,city, onClickGreen
                         <ButtonLink extra_classes="green" onClick={onClickGreenButton}> {greenButtonText ? greenButtonText.toUpperCase() : "REZERWACJA"} </ButtonLink>
 
                         {pathname !== '/game' && <a href="#"> <PlusIcon onClick={() => planerContext.add(id)}/> </a>}
-                        {pathname !== '/game' ? <ShareButton link_for_sharing={`${window.location.origin}/reservation/${id}`}/> : <button className="send__button"><PlaneIcon/></button> }
+                        {pathname !== '/game' ? <ShareButton link_for_sharing={`${window.location.origin}/reservation/${id}`}/> : <button className="send__button" onClick={onClickPlaneButton}><PlaneIcon/></button> }
                     </div>
                 </div>
             </div>
