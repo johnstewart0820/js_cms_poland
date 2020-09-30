@@ -13,6 +13,7 @@ import TourismPhotoReports from "../layouts/TourismPhotoReports";
 import GastronomySingle from "../layouts/GastronomySingle";
 import ApartamentSingle from "../layouts/ApartamentSingle";
 import DefaultSingle from "../layouts/DefaultSingle";
+import CourtSingle from "../layouts/CourtSingle";
 
 export default {
     main_homepage: MainHomepage,
@@ -29,5 +30,6 @@ export default {
     attractions_single:AttractionSingle,
     tourism_hotels: TourismHotels,
     apartament_single: ApartamentSingle,
-    default_single: DefaultSingle
+    default_single: DefaultSingle,
+    courts_single: CourtSingle
 };
