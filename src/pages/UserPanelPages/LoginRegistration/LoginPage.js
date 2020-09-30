@@ -76,7 +76,7 @@ const LoginPage = () => {
             </div>
             <div className="container__form">
                 {!!errors.length && (
-                    <div>
+                    <div className='container__form-notice'>
                         {errors.map((error, index) => (
                             <React.Fragment key={index}>
                                 {error}<br/>
