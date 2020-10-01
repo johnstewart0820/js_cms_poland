@@ -8,6 +8,7 @@ import Loader from "../../../components/general/Loader";
 import '../../../styles/helpers/classes.scss';
 import humanizedDuration from "../../../extra/humanizedDuration";
 import ButtonX from "../../../components/buttons/ButtonX";
+import {API_URL} from "../../../extra/API";
 
 const RegisterToEventListPage = () => {
     const [notification, setNotification] = React.useState('');
@@ -19,7 +20,7 @@ const RegisterToEventListPage = () => {
     }, [])
 
     const getData = () => {
-        axios.get('https://api.ustron.s3.netcore.pl/subscriptions')
+        axios.get(`${API_URL}subscriptions`)
         .then((response) => {
             setData(response.data.subscriptions);
             setLoading(false);

@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import * as axios from "axios";
 import {useHistory} from 'react-router-dom';
+import {API_URL} from "../../../extra/API";
 
 const ActivateAccountPage = () => {
     const [error, setError] = React.useState('');
@@ -12,7 +13,7 @@ const ActivateAccountPage = () => {
         const hash = params.get('hash');
 
         if (hash) {
-            axios.post('https://api.ustron.s3.netcore.pl/users/activate', {
+            axios.post(`${API_URL}users/activate`, {
                 hash: hash
             }).then(() => {
                 history.push('/login');

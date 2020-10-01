@@ -3,6 +3,7 @@ import axios from "axios";
 import Planer from "../extra/Planer";
 import {useLocation} from 'react-router-dom';
 import TourismRoutes from "./TourismRoutes";
+import {API_URL} from "../extra/API";
 
 
 /* Add pages which dont need the planer button */
@@ -43,7 +44,7 @@ export const PlanerContextProvider = props => {
         let promises = [];
 
         ids.forEach(id => {
-            const promise = axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${id}`)
+            const promise = axios.get(`${API_URL}contents/posts/${id}`)
                 .then(response => response.data.content);
 
             promises.push(promise);

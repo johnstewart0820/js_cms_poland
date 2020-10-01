@@ -7,6 +7,7 @@ import {Container} from "../../../components/UserPanel/Container";
 import TourismRoutes from "../../../constants/TourismRoutes";
 import '../../../styles/helpers/classes.scss';
 import axios from "../../../extra/axios";
+import {API_URL} from "../../../extra/API";
 
 const RegisterToEventConfirmationPage = () => {
     const history = useHistory();
@@ -18,7 +19,7 @@ const RegisterToEventConfirmationPage = () => {
     const [subscriptionData, setSubscriptionData] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get(`https://api.ustron.s3.netcore.pl/subscriptions/${id}`)
+        axios.get(`${API_URL}subscriptions/${id}`)
             .then((res) => {
                 setSubscriptionData(res.data.subscription);
                 setLoading(false);

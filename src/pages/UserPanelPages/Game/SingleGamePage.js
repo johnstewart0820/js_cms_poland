@@ -10,6 +10,7 @@ import {useHistory} from 'react-router-dom';
 import TourismRoutes from "../../../constants/TourismRoutes";
 import Modal from "../../../components/modal/Modal";
 import QrReader from 'react-qr-reader'
+import {API_URL} from "../../../extra/API";
 
 
 const SingleGamePage = props => {
@@ -23,7 +24,7 @@ const SingleGamePage = props => {
 
 
     React.useEffect(() => {
-        axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
+        axios.get(`${API_URL}contents/posts/${pageId}`)
             .then((res) => {
                 setData(res.data.content)
                 setLoading(false);

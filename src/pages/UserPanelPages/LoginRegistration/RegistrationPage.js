@@ -5,6 +5,7 @@ import * as axios from "axios";
 import InputComponent from "../../../components/form/InputComponent";
 import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 import {useHistory} from 'react-router-dom';
+import {API_URL} from "../../../extra/API";
 
 
 const RegistrationPage = () => {
@@ -29,7 +30,7 @@ const RegistrationPage = () => {
         } else {
             if (privacyPolicy !== false && userDataPolicy !== null) {
                 setIsLoading(true);
-                axios.post(`https://api.ustron.s3.netcore.pl/users/register`, {
+                axios.post(`${API_URL}users/register`, {
                     password: password,
                     login: email,
                     name: name

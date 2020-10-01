@@ -12,6 +12,7 @@ import '../../../styles/helpers/classes.scss';
 import {useHistory} from 'react-router-dom';
 import TourismRoutes from "../../../constants/TourismRoutes";
 import {Countries} from "../../../constants/Countries";
+import {API_URL} from "../../../extra/API";
 
 
 const RegisterToEvent = () => {
@@ -39,7 +40,7 @@ const RegisterToEvent = () => {
     }, []);
 
     const getData = () => {
-        axios.get('https://api.ustron.s3.netcore.pl/subscription-events')
+        axios.get(`${API_URL}subscription-events`)
             .then((res) => {
                 setGroups(res.data.events[0].custom_data.event.groups);
                 setEvents(res.data.events);
@@ -109,7 +110,7 @@ const RegisterToEvent = () => {
             if (!state.postalCode.charAt(2) == '-' || state.postalCode.length ==! 6) {
                 setNotification('Proszę wpisać poprawny kod pocztowy, np. 11-111 ');
             } else {
-                axios.post(`https://api.ustron.s3.netcore.pl/subscription-events/${event}/makeSubscription`, data)
+                axios.post(`${API_URL}subscription-events/${event}/makeSubscription`, data)
                     .then(response => history.push(TourismRoutes.RegisterToEventConfirmationPage + '?id=' + response.data.id))
                     .catch((error) => setNotification(error.response.data.errors.join('\n')))
             }

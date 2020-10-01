@@ -12,6 +12,7 @@ import Loader from "../../../components/general/Loader";
 import '../../../styles/helpers/classes.scss';
 import Row from "../../../components/helpers/Row";
 import Col from "../../../components/helpers/Col";
+import {API, API_URL} from "../../../extra/API";
 
 
 const UserProfilePage = () => {
@@ -44,7 +45,7 @@ const UserProfilePage = () => {
     const updateUserData = () => {
         if (name !== '') {
             const data = {full_name: name, notifications_area};
-            axios.post('https://api.ustron.s3.netcore.pl/users/setInfo', data)
+            axios.post(`${API_URL}users/setInfo`, data)
                 .then(() => {
                     let userData = User.getData();
                     userData.name = name;

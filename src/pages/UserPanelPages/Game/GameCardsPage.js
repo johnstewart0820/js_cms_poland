@@ -18,6 +18,7 @@ import {
     RedEyeIcon,
     TwoMarkersIcon,
 } from "../../../svg/icons";
+import {API_URL} from "../../../extra/API";
 
 
 const items = [
@@ -81,7 +82,7 @@ const GameCardsPage = () => {
     ];
 
     React.useEffect(() => {
-        axios.get('https://api.ustron.s3.netcore.pl/games')
+        axios.get(`${API_URL}games`)
             .then((res) => {
                 setData(res.data.games);
                 setGames(res.data.games);

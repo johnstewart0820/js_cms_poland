@@ -137,7 +137,6 @@ const PlanerListPage = () => {
                )}
 
                <div>
-                   {console.log(coords)}
                    <GoogleMap markers={coords}/>
                </div>
 

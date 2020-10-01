@@ -11,6 +11,7 @@ import {useHistory} from 'react-router-dom';
 import {
     QuizPrizeIcon,
 } from "../../../svg/icons";
+import {API_URL} from "../../../extra/API";
 
 
 const levels = [
@@ -52,7 +53,7 @@ const QuizPage = props => {
 
 
     React.useEffect(() => {
-        axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
+        axios.get(`${API_URL}contents/posts/${pageId}`)
             .then((res) => {
                 setData(res.data.content)
                 setLoading(false);
@@ -77,7 +78,7 @@ const QuizPage = props => {
             });
 
             axios.post(
-                `https://api.ustron.s3.netcore.pl/games/${pageId}/${completedBy}`,
+                `${API_URL}games/${pageId}/${completedBy}`,
                 {
                     lat: coords[0].lat,
                     lng: coords[0].lng,

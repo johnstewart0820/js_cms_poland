@@ -7,6 +7,7 @@ import User from "../../../extra/User";
 import UserContext from "../../../constants/UserContext";
 import PlanerContext from "../../../constants/PlanerContext";
 import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
+import {API_URL} from "../../../extra/API";
 
 const LoginPage = () => {
     const history = useHistory();
@@ -35,7 +36,7 @@ const LoginPage = () => {
     const loginUser = () => {
         let userData = state;
         axios.post(
-            `https://api.ustron.s3.netcore.pl/users/login`, userData
+            `${API_URL}users/login`, userData
         ).then((response) => {
             token = response.data.token;
             setLoading(true);
@@ -49,7 +50,7 @@ const LoginPage = () => {
     }
 
     const getUserData = () => {
-        axios.get('https://api.ustron.s3.netcore.pl/users/getInfo', {
+        axios.get(`${API_URL}users/getInfo`, {
             headers: {Authorization: 'Bearer ' + token},
         }).then((response) => {
             const userData = {
