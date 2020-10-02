@@ -13,7 +13,7 @@ export default function ErrorPage({error}) {
             <PageHeaderSection noDefaultImage>
                 <div className="background-error">
                     <div className="page-title">
-                        505<br/>
+                        500<br/>
                         <p>
                             {error || 'Wystąpił nieoczekiwany problem ze stroną. Spróbuj ponownie za chwilę'}
                         </p>
