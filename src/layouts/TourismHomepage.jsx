@@ -82,7 +82,7 @@ export default function MainPage(props) {
                 picture={acf.field_spa_photo}
                 text={acf.field_spa_description}
                 link_label={acf.field_spa_button_title}
-                link={'#'}
+                link={acf.field_spa_button_link || '#'}
             />
 
             <TwoCarouselsOneRow
