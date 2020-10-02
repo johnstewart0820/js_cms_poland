@@ -12,7 +12,6 @@ const GrayCard = ({type, title, items, onClickGreenButton, greenButtonText}) => 
                 </div>
 
                 {items.length > 0 && items.map((item, index) => {
-                    console.log(items)
                     return (
                         <GrayCardItem
                             key={index}
