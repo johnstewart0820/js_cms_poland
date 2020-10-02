@@ -104,7 +104,7 @@ export default function MainPage(props) {
 
             <LinksTiles
                 heading="Jak dojechać?"
-                links={acf.field_how_to_get.map(item => ({href: '#'/*item.field_how_to_get_link*/, label: item.field_how_to_get_text}))}
+                links={acf.field_how_to_get.map(item => ({href: item.field_how_to_get_link, label: item.field_how_to_get_text}))}
             />
         </>
     );

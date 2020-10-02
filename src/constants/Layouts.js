@@ -16,6 +16,7 @@ import DefaultSingle from "../layouts/DefaultSingle";
 import CourtSingle from "../layouts/CourtSingle";
 import TourismPaths from "../layouts/TourismPaths";
 import TourismDiscounts from "../layouts/TourismDiscounts";
+import CommunicationPage from "../layouts/CommunicationPage";
 
 export default {
     main_homepage: MainHomepage,
@@ -35,5 +36,6 @@ export default {
     tourism_hotels: TourismHotels,
     apartament_single: ApartamentSingle,
     default_single: DefaultSingle,
-    courts_single: CourtSingle
+    courts_single: CourtSingle,
+    communication_page: CommunicationPage,
 };
