@@ -1,6 +1,12 @@
 
+
+.page-header-section.not-found-page{
+	.page-header-section__main {
+		padding: 0;
+	}	
+}
+
 .page-header-section__main {
-    padding: 0;
     .background-error {
         display: flex;
         justify-content: flex-start;
@@ -15,7 +21,7 @@
             line-height: 0;
             p {
                 line-height: normal;
-                width: 650px;
+                max-width: 650px;
                 white-space: normal;
             }
             button, a {
@@ -26,4 +32,18 @@
             }
         }
     }
+}
+
+
+@media(max-width: 1199px){
+	.page-header-section__main .background-error{
+		padding: 40px;
+	}
+}
+
+@media(max-width: 600px){
+	.page-header-section__main .background-error{
+		padding: 20px 15px;
+		min-height: 100vh;
+	}
 }

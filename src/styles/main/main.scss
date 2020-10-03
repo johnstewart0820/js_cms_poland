@@ -155,10 +155,18 @@ img, svg{
 	.heading{
 		font-size: 1.14em;
 	}
+	.page-title{
+		font-size: 2.8em;
+	}
 }
 
 @media( max-width: 1199px){
 	.heading{
 		font-size: 1em;
+	}
+
+	
+	.page-title{
+		font-size: 2.14em;
 	}
 }
