@@ -73,10 +73,12 @@
 @media (max-width: 1700px){
 	.loop-search-posts-container{
 		.row{
+			.loop-photo-report-post,
 			.loop-accommodation-post,
 			.loop-gastronomy-post,
 			.loop-news-post{
 				width: calc((100% - 14px*3 ) / 3);
+				margin-right: 14px;
 			}
 		}
 	}
@@ -85,6 +87,7 @@
 @media (max-width: 1199px){
 	.loop-search-posts-container{
 		.row{
+			.loop-photo-report-post,
 			.loop-accommodation-post,
 			.loop-gastronomy-post,
 			.loop-news-post{
@@ -98,6 +101,7 @@
 @media (max-width: 650px){
 	.loop-search-posts-container{
 		.row{
+			.loop-photo-report-post,
 			.loop-accommodation-post,
 			.loop-gastronomy-post,
 			.loop-news-post{

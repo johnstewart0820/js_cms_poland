@@ -136,9 +136,11 @@ const PlanerListPage = () => {
                    />
                )}
 
-               <div>
-                   <GoogleMap markers={coords}/>
-               </div>
+					{ coords && !!coords.length && 
+						<div style={{ position: "relative", height: "500px"}}>
+							<GoogleMap markers={coords}/>
+						</div>
+					}
 
            </div>
        </>

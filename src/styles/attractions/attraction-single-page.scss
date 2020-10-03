@@ -19,8 +19,8 @@
         margin-bottom:40px;
     }
     .single-attraction-main-info{
-        padding-top:50px;
-        padding-right:130px;
+		  padding-top:50px;
+		  padding-right: 15px;
         .trail-main-info{
             margin-top:10px;
             font-size: 14px;
@@ -140,7 +140,12 @@
     align-items: flex-start;
     padding-left: 20px;
     padding: 50px 0;
-    margin-left: calc( (100vw - 1640px) / 2);
+	 margin-left: 15px;
+	 
+	 @media (min-width: 1670px){
+		margin-left: calc( (100vw - 1640px) / 2)
+	 }
+
    .language-container{
        margin-bottom:6px;
        .language-info{
@@ -169,7 +174,7 @@
         }
      }
     .description-main{
-        width:1000px;
+        max-width:1000px;
         margin-top:0;
     }
     h2{
@@ -178,4 +183,29 @@
         letter-spacing: .5px;
         font-weight:normal;
     }
+}
+
+.single-attraction-map{
+	height: 500px;
+	position: relative;
+}
+
+
+@media(max-width: 1199px){
+	.single-attraction-head{
+		padding-left: 15px;
+
+		.single-attraction-container{
+			max-width: 100%;
+		}
+	}
+
+	.section-info{
+		display: block;
+
+		.section-title{
+			margin-bottom: 15px;
+			margin-right: 0;
+		}
+	}
 }

@@ -76,3 +76,13 @@
 		}
 	}
 }
+
+@media(max-width: 1199px){
+	.page-header-section__thumbnail{
+		display: none;
+	}
+
+	.page-header-section.single-news{
+		padding-right: 15px;
+	}
+}

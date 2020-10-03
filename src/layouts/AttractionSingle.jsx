@@ -98,11 +98,8 @@ export default function AttractionSingle(props) {
 
     let coords = [];
     if (field_map_gps) {
-        var gps = field_map_gps.split(';');
-        coords.push({
-            lat: gps[0],
-            lng: gps[1],
-        });
+        const [ lat, lng ] = field_map_gps.split(';');
+        coords.push({ lat, lng });
     }
 
     if (field_service_languages) {
@@ -166,10 +163,9 @@ export default function AttractionSingle(props) {
                 items: news || [],
             }}/>
 
-            {coords && <GoogleMap className={'map'} markers={coords}/>}
-            {trails && <GoogleMap className={'map'} trails={[trails]}/>}
+            { !!coords?.length && <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div> }
+            { !!trails?.length && <div className="single-attraction-map"><GoogleMap className={'map'} trails={[trails]}/></div>}
 
-            <Footer/>
         </>
     );
 };

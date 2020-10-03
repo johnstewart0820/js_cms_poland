@@ -134,9 +134,8 @@ export default function AttractionSingle(props) {
                 items: news || [],
             }}/>
 
-            {coords && <GoogleMap className={'map'} markers={coords}/>}
+            { !!coords?.length && <div className="single-attraction-page"> <GoogleMap className={'map'} markers={coords}/> </div> }
 
-            <Footer/>
         </>
     );
 };
