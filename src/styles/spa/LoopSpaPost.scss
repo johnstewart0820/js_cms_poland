@@ -7,3 +7,11 @@
 
     }
 }
+
+
+@media(max-width: 480px){
+	.single-spa__container{
+		width: calc(100vw - 30px);
+		padding: 10px 15px 20px;
+	}
+}

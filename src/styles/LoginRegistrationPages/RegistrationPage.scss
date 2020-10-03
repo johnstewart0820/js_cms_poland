@@ -65,7 +65,8 @@
         }
 
         h6 {
-          font-size: 10px;
+			 font-size: 10px;
+			 flex:1 1;
           font-weight: normal;
         }
       }
@@ -107,4 +108,38 @@
 
 .column {
   flex-direction: column;
+}
+
+
+@media(max-width: 1199px) {
+	.registration-container {
+		.container__photo{
+			display: none;
+		}
+
+		.container__form{
+			width: 100%;
+			padding: 30px;
+		}
+	}
+}
+
+@media(max-width: 500px) {
+	.registration-container {
+		.container__form{
+			padding: 30px 15px;
+
+			.input-container{
+				margin-left: 0;
+				margin-right: 0;
+				min-width: auto;
+				width: 100%;
+			}
+
+			.full-width{
+				width: 100%;
+				min-width: auto;
+			}
+		}
+	}
 }
