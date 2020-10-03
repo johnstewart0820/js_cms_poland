@@ -79,3 +79,23 @@
 		font-size: 3.7em;
 	}
 }
+
+@media (max-width: 440px){
+	.weather{
+		padding: 15px 10px !important;
+	}
+
+	.weather__info{
+		font-size: 0.86em;
+	}
+
+	.weather__info {
+		svg, img{
+			width: 40px;
+		}
+	}
+
+	.weather__info_degrees{
+		font-size: 2.4em;
+	}
+}
