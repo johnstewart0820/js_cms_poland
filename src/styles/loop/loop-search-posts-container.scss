@@ -68,3 +68,59 @@
 		margin-bottom: 65px;
 	}
 }
+
+
+@media (max-width: 1700px){
+	.loop-search-posts-container{
+		.row{
+			.loop-accommodation-post,
+			.loop-gastronomy-post,
+			.loop-news-post{
+				width: calc((100% - 14px*3 ) / 3);
+			}
+		}
+	}
+}
+
+@media (max-width: 1199px){
+	.loop-search-posts-container{
+		.row{
+			.loop-accommodation-post,
+			.loop-gastronomy-post,
+			.loop-news-post{
+				width: calc((100% - 14px*2 ) / 2);
+			}
+		}
+	}
+}
+
+
+@media (max-width: 650px){
+	.loop-search-posts-container{
+		.row{
+			.loop-accommodation-post,
+			.loop-gastronomy-post,
+			.loop-news-post{
+				width: calc((100% - 14px ));
+				margin-left: 14px;
+			}
+		}
+	}
+}
+
+
+@media (max-width: 1199px){
+	.loop-search-posts-container__top {
+	
+		flex-wrap: wrap;
+
+		.form-select{
+			height: auto;
+			// display: block;
+			// margin: 10px 0;
+			width: 100%;
+			margin-left: 0;
+			margin-top: 15px;
+		}	
+	}
+}

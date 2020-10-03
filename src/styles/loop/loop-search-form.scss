@@ -17,3 +17,24 @@
 		}
 	}
 }
+
+@media (max-width: 1199px){
+	.loop-search-form{
+		.row{
+			.form-select, button{
+				width: calc((100% - 8px * 4) / 2);
+			}
+		}
+	}
+}
+
+@media (max-width: 750px){
+	.loop-search-form{
+		.row{
+			.form-select, button{
+				width: 100%;
+				margin: 0 0 15px 0;
+			}
+		}
+	}
+}
