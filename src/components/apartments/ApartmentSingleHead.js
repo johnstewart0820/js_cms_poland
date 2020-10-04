@@ -35,7 +35,7 @@ function ApartmentSingleHead({title, categories_labels, image, acf}) {
                 </div>
             </div>
             {openHours &&
-            <div className={"hours-open-gastronomy"}>
+            <div className={"hours-open-apartaments"}>
                 <p>GODZINY OTWARCIA:</p>
                 <div className={'container-hours'}>
                     <img alt="" src={require('../../svg/icons/clock.svg')}/>

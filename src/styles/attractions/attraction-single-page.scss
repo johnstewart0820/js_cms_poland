@@ -12,7 +12,6 @@
         right: 0;
         top: 0;
         height: 633px;
-        width:962px;
     }
     .category{
         opacity: 0.6;
@@ -47,9 +46,9 @@
     .single-attraction-container {
         display: flex;
         justify-content: space-between;
-        font-size: 20px;
+        font-size: 17px;
         align-items: center;
-        width:115%;
+        width:100%;
         .icons-container {
             width: auto;
         img {
@@ -75,7 +74,7 @@
     }
     .hours-open{
         margin-top:30px;
-        width:200px;
+        width:220px;
         opacity:0.8;
         p{
             height:20px;
@@ -191,7 +190,7 @@
 }
 
 
-@media(max-width: 1199px){
+@media(max-width: 1000px){
 	.single-attraction-head{
 		padding-left: 15px;
 
@@ -209,3 +208,22 @@
 		}
 	}
 }
+
+@media (min-width:1200px){
+    .single-attraction-container {
+        display: inline-block;
+
+    }
+}
+@media (min-width:1700px){
+    .single-attraction-container {
+        display: flex;
+
+    }
+}
+
+
+
+
+
+

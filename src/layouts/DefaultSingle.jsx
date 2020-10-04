@@ -64,6 +64,17 @@ export default function DefaultSingle(props) {
                         <div className="category">{categories_labels}</div>
                         <div className="page-title">{title}</div>
                     </div>
+                    {props.page.acf.field_map_distance_from_center &&
+                    (<div className={'text'}> ODLEGŁOŚĆ OD CENTRUM
+                        &nbsp;&nbsp;&nbsp;{props.page.acf.field_map_distance_from_center} KM
+                    </div>)}
+                    {(props.page.acf.field_map_address && props.page.acf.field_map_city) &&
+                    <div className={'address'}>
+                        <p>ADRES</p>
+                        <div className={'info'}>{props.page.acf.field_map_postcode} {props.page.acf.field_map_city}</div>
+                        <div className={'info'}>{props.page.acf.field_map_address} </div>
+                    </div>
+                    }
                 </PageHeaderSection>
             </MainHeaderSection>
 

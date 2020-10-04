@@ -47,4 +47,23 @@ table {
     }
 }
 
+.hours-open-apartaments{
+    margin-top:30px;
+    width:250px;
+    opacity:0.8;
+    p{
+        height:20px;
+    }
+    .container-hours{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+    }
+}
+@media screen and (max-width: 1240px) and (min-width: 974px){
+    .single-attraction-head {
+        padding:0 0 0 30px;
+    }
+}
+
 

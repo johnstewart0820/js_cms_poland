@@ -11,11 +11,10 @@ import Loader from "../components/general/Loader";
 import ApartmentSingleHead from "../components/apartments/ApartmentSingleHead";
 import '../styles/gastronomy/gastronomy-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
-import Footer from "../components/footer/Footer";
+
 
 export default function ApartamentSingle(props) {
     const pageId = props.page.id;
-    let keyId = 0;
 
     const {categories, body} = props.page;
     const {
@@ -30,16 +29,15 @@ export default function ApartamentSingle(props) {
     const [worthSeeing, setWorthSeeing] = React.useState(props.page.acf.field_worth_seeing);
 
     const facilities = React.useMemo(() => {
-        let temp = [...field_facilities_apartments];
         let facilities = [];
-
-        while (temp.length > 0) {
-            facilities.push(temp.splice(0, 5));
+        if (field_facilities_apartments) {
+            let temp = [...field_facilities_apartments];
+            while (temp.length > 0) {
+                facilities.push(temp.splice(0, 5));
+            }
+            return facilities;
         }
-
-        console.log(facilities)
-
-        return facilities;
+        return null;
     }, []);
 
     React.useEffect(() => {
@@ -98,14 +96,15 @@ export default function ApartamentSingle(props) {
         });
     }
 
+    let nameOfLanguage;
     if (field_service_languages) {
-        var nameOfLanguage = field_service_languages.map(el => {
+        nameOfLanguage = field_service_languages.map((el,index) => {
                 if (el === 'polish') el = 'polski';
                 if (el === 'english') el = 'angielski';
                 if (el === 'dutch') el = 'niemiecki';
                 if (el === 'czech') el = 'czeski';
                 return (
-                    <div key={keyId++} className={'language-container'}>
+                    <div key={index} className={'language-container'}>
                         <img alt={''} src={require('../svg/icons/ok.svg')}/>
                         <div className={'language-info'}> {el} </div>
                     </div>
@@ -150,7 +149,7 @@ export default function ApartamentSingle(props) {
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                    <div className={'name-info'}>OBSŁUGA W JĘZYKU</div>
+                    <div className={'name-info'}>OBSŁUuGA W JĘZYKU</div>
                 </div>
                 <h2>{nameOfLanguage}</h2>
             </div>
@@ -164,14 +163,12 @@ export default function ApartamentSingle(props) {
                 <h2 className={' description-main'}>{Parser(body)}</h2>
             </div>
             }
-
-            {field_rooms &&
+            {field_rooms[0].field_room_name &&
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>POKOJE</div>
                 </div>
-
                 <table>
                     <tr className={'first-row'}>
                         <td className={'first-column'}>nazwa pokoju:</td>
@@ -224,12 +221,13 @@ export default function ApartamentSingle(props) {
 
             <OneCarouseInRow className={'news-loop'} carousel={{
                 loading: news === null,
-                heading: 'Ostatnie aktualności',
+                heading: 'Inne noclegi',
                 ItemComponent: LoopNewsPost,
                 items: news || [],
             }}/>
 
-            { !!coords?.length && <div className="single-attraction-map"> <GoogleMap className={'map'} markers={coords}/> </div> }
+            {!!coords?.length &&
+            <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div>}
 
         </>
     );
