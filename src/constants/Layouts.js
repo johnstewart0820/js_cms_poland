@@ -18,10 +18,12 @@ import TourismPaths from "../layouts/TourismPaths";
 import TourismDiscounts from "../layouts/TourismDiscounts";
 import CommunicationPage from "../layouts/CommunicationPage";
 import TourismSpa from "../layouts/TourismSpa";
+import SportHomepage from "../layouts/SportHomepage";
 
 export default {
     main_homepage: MainHomepage,
     tourism_homepage: TourismHomepage,
+    sport_homepage: SportHomepage,
     tourism_news: TourismNews,
     tourism_events: EventsPage,
     news_single: NewsSingle,
