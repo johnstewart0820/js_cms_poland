@@ -9,6 +9,7 @@ import TextLinkPic from "../components/general/TextLinkPic";
 import Parser from "html-react-parser";
 import {API} from "../extra/API";
 import LoopAccommodationPost from "../components/accommodation/LoopAccommodationPost";
+import YellowDiscountBlock from "../components/discounts/YellowDiscountBlock";
 
 export default function TourismSpa(props) {
     const [items, setItems] = React.useState(false);
@@ -52,60 +53,12 @@ export default function TourismSpa(props) {
                 path_to_all: getArticleLink(props.page.acf.field_informations_module_sanatoriums[0].field_section_watch_all_entity)
             }}/>
 
-            {/*<TwoCarouselsOneRow
-                first_carousel={{
-                    loading: items1 === false,
-                    path_to_all: getArticleLink(acf.field_information_modules_city[0].field_section_watch_all_entity),
-                    heading: acf.field_information_modules_city[0].field_section_title_visit,
-                    component: LoopEventsPost,
-                    items: items1 || [],
-                }}
-                second_carousel={{
-                    loading: items2 === false,
-                    path_to_all: getArticleLink(acf.field_information_modules_city[1].field_section_watch_all_entity),
-                    heading: acf.field_information_modules_city[1].field_section_title_visit,
-                    component: LoopNewsPost,
-                    items: items2 || [],
-                }}
-            />
-
-            <TextLinkExpandableInfo
-                heading={acf.field_welcome_title}
-                text={acf.field_welcome_description}
-                link={acf.field_welcome_button_link || '#'}
-                link_label={acf.field_welcome_button_title}
-                expandable_label={acf.field_welcome_phones_title}
-                expandable_info={phones}
-            />
-
             <OneCarouseInRow carousel={{
-                heading: acf.field_photorelations_title,
-                extra_classes: "arrows-on-right",
-                items: photos || [],
-                ItemComponent: LoopPhotoReportPost,
+                extra_classes: 'arrows-on-right',
+                heading: props.page.acf.field_promotions_title,
+                items: props.page.acf.field_promotions_list,
+                ItemComponent: YellowDiscountBlock,
             }}/>
-
-            <AmountsWithIcon
-                heading={acf.field_numbers_title}
-                items={numbers}
-            />
-
-            <PicTextInfo
-                heading={acf.field_turists_information_title}
-                picture_url={acf.field_turists_information_image}
-                text={acf.field_turists_information_description}
-                href={acf.field_turists_information_button_link || '#'}
-                link_label={acf.field_turists_information_button_title}
-            />
-
-            <MapWithPinsFiltering map_id={acf.field_visit_ustron_map} />
-
-            <OneCarouseInRow carousel={{
-                heading: acf.field_safe_ustron_title,
-                extra_classes: "arrows-on-right",
-                items: items4 || [],
-                ItemComponent: LoopNewsPost,
-            }}/>*/}
         </>
     );
 };
