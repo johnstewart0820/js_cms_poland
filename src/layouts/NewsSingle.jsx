@@ -34,7 +34,8 @@ export default function NewsSinglePage(props) {
             {props.page.body && (
                 <SingleContainer extra_classes="single-news-container">
                     <div>{Parser(props.page.body)}</div>
-                    <SingleContentBottom onAddToPlaner={() => planerContext.add(props.page.id)}/>
+                    {props.page.acf.field_map_gps &&
+                    <SingleContentBottom onAddToPlaner={() => planerContext.add(props.page.id)}/>}
                 </SingleContainer>
             )}
 
@@ -46,7 +47,7 @@ export default function NewsSinglePage(props) {
                     heading: 'Ostatnie aktualności',
                     ItemComponent: LoopNewsPost,
                     items: news || [],
-                }} />
+                }}/>
             )}
         </>
     );

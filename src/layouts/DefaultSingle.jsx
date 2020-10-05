@@ -7,6 +7,7 @@ import {API} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import '../styles/attractions/attraction-single-page.scss'
+import '../styles/default/default-single-page.scss'
 
 import PageHeaderSection from "../components/header/PageHeaderSection";
 
@@ -59,8 +60,8 @@ export default function DefaultSingle(props) {
         <>
             <MainHeaderSection extra_classes="single">
                 <Breadcrumbs breadcrumbs={[]}/>
-                <PageHeaderSection extra_classes="single-attraction-head" thumbnail={image}>
-                    <div className='single-attraction-main-info'>
+                <PageHeaderSection extra_classes="single-attraction-head-default" thumbnail={image}>
+                    <div className='single-attraction-main-info-default'>
                         <div className="category">{categories_labels}</div>
                         <div className="page-title">{title}</div>
                     </div>

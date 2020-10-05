@@ -149,19 +149,21 @@ export default function ApartamentSingle(props) {
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                    <div className={'name-info'}>OBSŁUuGA W JĘZYKU</div>
+                    <div className={'name-info'}>OBSŁUGA W JĘZYKU</div>
                 </div>
                 <h2>{nameOfLanguage}</h2>
             </div>
             }
             {body &&
-            <div className="section-info">
-                <div className={'section-title'}>
-                    <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                    <div className={'name-info'}>OPIS</div>
+
+                <div className="section-info">
+                    <div className={'section-title'}>
+                        <img alt="" src={require('../svg/icons/logo-black.svg')}/>
+                        <div className={'name-info'}>OPIS</div>
+                    </div>
+                    <h2 className={' description-main'}>{Parser(body)}</h2>
                 </div>
-                <h2 className={' description-main'}>{Parser(body)}</h2>
-            </div>
+
             }
             {field_rooms[0].field_room_name &&
             <div className="section-info">

@@ -1,0 +1,21 @@
+.single-attraction-head-default {
+    padding: 0 0 0 150px;
+    min-height: 357px;
+    position: relative;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    height: 25vw;
+    margin-bottom: 100px;
+
+    .thumbnail {
+        margin-bottom: 30px;
+        position: revert;
+        right: 0;
+        top: 0;
+        height: calc(100% + 30px);
+    }
+}
+.single-attraction-main-info-default{
+    padding-top:80px;
+    padding-right: 15px;
+}

@@ -134,11 +134,13 @@ function AttractionSingleHead({title, categories, categories_labels, image, acf}
                 }
             </div>
             <div className={'buttons-container'}>
-                <button className="button-planer button-link green ">
-                    dodaj do planera
-                    <img alt='' src={require('../../svg/icons/plus.svg')}/>
-                </button>
-                <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>
+                {acf.field_map_gps && <>
+                    <button className="button-planer button-link green ">
+                        dodaj do planera
+                        <img alt='' src={require('../../svg/icons/plus.svg')}/>
+                    </button>
+                    <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>
+                </>}
             </div>
 
             {!ifTrail && <button className="button-download button-link  full-width">
