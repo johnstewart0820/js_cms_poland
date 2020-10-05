@@ -5,38 +5,17 @@ import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import {getArticleLink} from "../extra/functions";
 import LoopSpaPost from "../components/spa/LoopSpaPost";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
+import TextLinkPic from "../components/general/TextLinkPic";
+import Parser from "html-react-parser";
+import {API} from "../extra/API";
+import LoopAccommodationPost from "../components/accommodation/LoopAccommodationPost";
 
 export default function TourismSpa(props) {
-    const acf = props.page.acf;
-
-    /*const [items1, setItems1] = React.useState(false);
-    const [items2, setItems2] = React.useState(false);
-    const [photos, setPhotos] = React.useState(false);
-    const [items4, setItems4] = React.useState(false);
-
-    const phones = React.useMemo(() => {
-        return acf.field_welcome_phones_description.split('<br />').map(row => {
-            row = row.split(' ')
-            return {
-                big: row.shift(),
-                small: row.join(' '),
-            };
-        });
-    }, []);
-    const numbers = React.useMemo(() => {
-        return acf.field_numbers.map(item => ({
-            label: item.field_numbers_before_icon_text,
-            image: item.field_numbers_icon,
-            which: item.field_numbers_after_icon_text,
-        }));
-    }, []);
+    const [items, setItems] = React.useState(false);
 
     React.useEffect(() => {
-        API.getByConfig(acf.field_information_modules_city[0]).then(res => setItems1(res.data.contents));
-        API.getByConfig(acf.field_information_modules_city[1]).then(res => setItems2(res.data.contents));
-        API.getEntities({categories: acf.field_photorelations_category}).then(res => setPhotos(res.data.contents));
-        API.getEntities({categories: acf.field_safe_ustron_category}).then(res => setItems4(res.data.contents));
-    }, []);*/
+        API.getByConfig(props.page.acf.field_informations_module_sanatoriums).then(res => setItems(res.data.contents));
+    }, []);
 
     return (
         <>
@@ -48,11 +27,29 @@ export default function TourismSpa(props) {
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
+            <TextLinkPic
+                heading={props.page.acf.field_patients_title}
+                text={Parser(props.page.acf.field_patients_description)}
+            />
+
             <OneCarouseInRow carousel={{
                 extra_classes: 'arrows-on-right',
-                heading: props.page.acf.field_patients_title,
                 items: props.page.acf.field_offer_for_patients,
                 ItemComponent: LoopSpaPost,
+            }}/>
+
+            <TextLinkPic
+                heading={props.page.acf.field_spa_town_history_title}
+                text={Parser(props.page.acf.field_spa_town_history_descriprion)}
+                picture={props.page.acf.field_spa_town_history_photo}
+            />
+
+            <OneCarouseInRow carousel={{
+                extra_classes: 'no-arrows',
+                heading: props.page.acf.field_informations_module_sanatoriums[0].field_section_title_visit,
+                items: items || [],
+                ItemComponent: LoopAccommodationPost,
+                path_to_all: getArticleLink(props.page.acf.field_informations_module_sanatoriums[0].field_section_watch_all_entity)
             }}/>
 
             {/*<TwoCarouselsOneRow

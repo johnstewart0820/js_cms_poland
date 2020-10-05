@@ -20,6 +20,12 @@
 			display: flex;
 		}
 	}
+
+    &.no-arrows {
+        .arrows {
+            display: none;
+        }
+    }
 }
 
 .carousel__head{
