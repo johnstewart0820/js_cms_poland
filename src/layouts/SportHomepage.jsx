@@ -31,6 +31,7 @@ const SportHomepage = props => {
             <TwoCarouselsOneRow
                 first_carousel={{
                     loading: items1 === false,
+                    path_to_all: getArticleLink(acf.field_information_modules_sport[0].field_section_watch_all_entity),
                     heading: acf.field_information_modules_sport[0].field_section_title_visit,
                     component: LoopEventsPost,
                     items: items1 || [],
