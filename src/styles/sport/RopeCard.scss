@@ -1,0 +1,25 @@
+.rope-road-card {
+    min-height: 500px;
+    .rope-road-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .rope-road-address {
+        .rope-address-container {
+            p {
+                font-weight: normal;
+                font-size: 18px;
+            }
+            h3 {
+                font-size: 16px;
+            }
+        }
+    }
+    .rope-road-description {
+
+    }
+    .rope-road-bottom {
+
+    }
+}

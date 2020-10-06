@@ -1,0 +1,15 @@
+@import "../general/colors.scss";
+
+.row-cards-container {
+    padding: 10px 10px 10px 110px;
+    .row-cards-title {
+        padding-left: 20px;
+    }
+    .row-cards {
+        display: flex;
+        flex-direction: row;
+        .big-cards {
+            min-width: 400px;
+        }
+    }
+}
