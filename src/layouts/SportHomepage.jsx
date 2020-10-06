@@ -31,15 +31,14 @@ const SportHomepage = props => {
             <TwoCarouselsOneRow
                 first_carousel={{
                     loading: items1 === false,
-                    heading: acf.field_information_modules_sport[0].field_section_title_sport,
-                    // TODO select entity renderer based on entity type
+                    heading: acf.field_information_modules_sport[0].field_section_title_visit,
                     component: LoopEventsPost,
                     items: items1 || [],
                 }}
                 second_carousel={{
                     loading: items2 === false,
-                    heading: acf.field_information_modules_sport[1].field_section_title_sport,
-                    // TODO select entity renderer based on entity type
+                    path_to_all: getArticleLink(acf.field_information_modules_sport[1].field_section_watch_all_entity),
+                    heading: acf.field_information_modules_sport[1].field_section_title_visit,
                     component: LoopNewsPost,
                     items: items2 || [],
                 }}
