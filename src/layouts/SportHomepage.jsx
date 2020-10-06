@@ -2,6 +2,7 @@ import React from "react";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import MainHeaderSection from "../components/header/MainHeaderSection";
+import {getArticleLink} from "../extra/functions";
 import LoopEventsPost from "../components/events/LoopEventsPost";
 import LoopNewsPost from "../components/news/LoopNewsPost";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
@@ -61,17 +62,15 @@ const SportHomepage = props => {
             <TwoCarouselsOneRow
                 first_carousel={{
                     loading: items1 === false,
+                    path_to_all: getArticleLink(acf.field_information_modules_sport[0].field_section_watch_all_entity),
                     heading: acf.field_information_modules_sport[0].field_section_title_visit,
-                    path_to_all: '#',
-                    // TODO select entity renderer based on entity type
                     component: LoopEventsPost,
                     items: items1 || [],
                 }}
                 second_carousel={{
                     loading: items2 === false,
+                    path_to_all: getArticleLink(acf.field_information_modules_sport[1].field_section_watch_all_entity),
                     heading: acf.field_information_modules_sport[1].field_section_title_visit,
-                    path_to_all: '#',
-                    // TODO select entity renderer based on entity type
                     component: LoopNewsPost,
                     items: items2 || [],
                 }}
