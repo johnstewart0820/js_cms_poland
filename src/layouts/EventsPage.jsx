@@ -117,6 +117,11 @@ const EventsPage = props => {
             />
 
             {data === null && <Loader/>}
+            {data !== null && !data?.contents.length && (
+                <h2 style={{textAlign: 'center', width: '100%'}}>
+                    Brak treści dla podanych kryteriów
+                </h2>
+            )}
             {!!data?.contents && (
                 <Carousel
                     heading={'NAJBLIŻSZE WYDARZENIA'}

@@ -4,7 +4,7 @@ import { TileMark } from "../../svg/icons";
 import "../../styles/general/section-heading.scss";
 import LinkToAll from "../buttons/LinkToAll";
 
-const SectionHeading = ({ heading, extra_classes, headingLink, headingLinkText }) => (
+const SectionHeading = ({ heading, extra_classes, headingLink, headingLinkText, headingText }) => (
 	heading 
 	? (
 		<div className={`section-heading ${ extra_classes || "" }`}>
@@ -14,6 +14,13 @@ const SectionHeading = ({ heading, extra_classes, headingLink, headingLinkText }
 			{headingLink && headingLinkText && (
 				<LinkToAll href={headingLink} label={headingLinkText} />
 			)}
+            {headingText && (
+                <div className='heading-description'>
+                    <p>
+                        {headingText}
+                    </p>
+                </div>
+            )}
 		</div>
 	)
 	: null
