@@ -2,12 +2,16 @@ import React from 'react';
 import PageHeaderSection from "../header/PageHeaderSection";
 import '../../styles/apartments/apartments-single-page.scss';
 import '../../svg/icons/tourist.svg';
+import SingleContentBottom from "../common-single/SingleContentBottom";
+import PlanerContext from "../../constants/PlanerContext";
 
 
-function ApartmentSingleHead({title, categories_labels, image, acf}) {
+function ApartmentSingleHead({id, title, categories_labels, image, acf}) {
     let keyId = 0;
     const openHours = acf.field_openinghours;
     const visibleEmail = acf.field_contact_email_is_visible;
+    const planerContext = React.useContext(PlanerContext);
+
 
 
     function isForDisabled() {
@@ -89,13 +93,7 @@ function ApartmentSingleHead({title, categories_labels, image, acf}) {
                 }
             </div>
             <div className={'buttons-container'}>
-                {acf.field_map_gps && <>
-                    <button className="button-planer button-link green ">
-                        dodaj do planera
-                        <img alt='' src={require('../../svg/icons/plus.svg')}/>
-                    </button>
-                    <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>
-                </>}
+                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>}
             </div>
 
         </PageHeaderSection>

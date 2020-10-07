@@ -27,7 +27,6 @@ export default function AttractionSingle(props) {
     const [worthSeeing, setWorthSeeing] = React.useState(props.page.acf.field_worth_seeing);
 
 
-
     React.useEffect(() => {
         API.getEntities({categories: categories})
             .then(res => setNews(res.data.contents))
@@ -134,8 +133,8 @@ export default function AttractionSingle(props) {
                 items: news || [],
             }}/>
 
-            { !!coords?.length && <div className="single-attraction-page"> <GoogleMap className={'map'} markers={coords}/> </div> }
-
+            {!!coords?.length &&
+            <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div>}
         </>
     );
 };

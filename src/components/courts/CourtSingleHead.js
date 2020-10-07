@@ -3,9 +3,11 @@ import PageHeaderSection from "../header/PageHeaderSection";
 import '../../styles/attractions/attraction-single-page.scss';
 import '../../styles/courts/courts-single-page.scss';
 import '../../svg/icons/tourist.svg';
+import SingleContentBottom from "../common-single/SingleContentBottom";
+import PlanerContext from "../../constants/PlanerContext";
 
-function CourtSingleHead({title, custom_data, image, acf}) {
-
+function CourtSingleHead({id, title, custom_data, image, acf}) {
+    const planerContext = React.useContext(PlanerContext);
     const visibleEmail = acf.field_contact_email_is_visible;
     const sourfaceTypeOfCourt = JSON.parse(custom_data.courts).sourface_type;
     const minutesPerReservation = JSON.parse(custom_data.courts).minutes_per_reservation;
@@ -112,15 +114,8 @@ function CourtSingleHead({title, custom_data, image, acf}) {
                 REZERWACJA
             </button>
             <div className={'buttons-container'}>
-                {acf.field_map_gps && <>
-                    <button className="button-planer button-link green ">
-                        dodaj do planera
-                        <img alt='' src={require('../../svg/icons/plus.svg')}/>
-                    </button>
-                    <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>
-                </>}
+                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>}
             </div>
-
         </PageHeaderSection>
     );
 }

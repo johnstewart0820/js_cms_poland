@@ -2,15 +2,17 @@ import React from 'react';
 import PageHeaderSection from "../header/PageHeaderSection";
 import '../../styles/attractions/attraction-single-page.scss';
 import '../../svg/icons/tourist.svg';
+import SingleContentBottom from "../common-single/SingleContentBottom";
+import PlanerContext from "../../constants/PlanerContext";
 
 
-function AttractionSingleHead({title, categories, categories_labels, image, acf}) {
-
+function AttractionSingleHead({id, title, categories, categories_labels, image, acf}) {
     let keyId = 0;
     const iconsBoard = acf.field_recomended_for;
     const openHours = acf.field_openinghours;
     const visibleEmail = acf.field_contact_email_is_visible;
     const [ifTrail, setIfTrail] = React.useState(false);
+    const planerContext = React.useContext(PlanerContext);
 
     React.useEffect(() => {
         categories.forEach(element => {
@@ -134,13 +136,7 @@ function AttractionSingleHead({title, categories, categories_labels, image, acf}
                 }
             </div>
             <div className={'buttons-container'}>
-                {acf.field_map_gps && <>
-                    <button className="button-planer button-link green ">
-                        dodaj do planera
-                        <img alt='' src={require('../../svg/icons/plus.svg')}/>
-                    </button>
-                    <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>
-                </>}
+                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>}
             </div>
 
             {!ifTrail && <button className="button-download button-link  full-width">

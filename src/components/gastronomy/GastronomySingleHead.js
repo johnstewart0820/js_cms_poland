@@ -2,13 +2,17 @@ import React from 'react';
 import PageHeaderSection from "../header/PageHeaderSection";
 import '../../styles/gastronomy/gastronomy-single-page.scss';
 import '../../svg/icons/tourist.svg';
+import SingleContentBottom from "../common-single/SingleContentBottom";
+import SingleContainer from "../common-single/SingleContainer";
+import PlanerContext from "../../constants/PlanerContext";
 
 
-function GastronomySingleHead({title, categories_labels, image, acf}) {
+function GastronomySingleHead({title, categories_labels, image, acf,id}) {
     let keyId = 0;
     const iconsBoard = acf.field_recomended_for;
     const openHours = acf.field_openinghours;
     const visibleEmail = acf.field_contact_email_is_visible;
+    const planerContext = React.useContext(PlanerContext);
 
 
     if (iconsBoard) {
@@ -101,11 +105,7 @@ function GastronomySingleHead({title, categories_labels, image, acf}) {
             </div>
             <div className={'buttons-container'}>
                 {acf.field_map_gps && <>
-                    <button className="button-planer button-link green ">
-                        dodaj do planera
-                        <img alt='' src={require('../../svg/icons/plus.svg')}/>
-                    </button>
-                    <img className={'network'} alt='' src={require('../../svg/icons/network.svg')}/>
+                    <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>
                 </>}
             </div>
 

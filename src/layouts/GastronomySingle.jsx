@@ -12,19 +12,23 @@ import GastronomySingleHead from "../components/gastronomy/GastronomySingleHead"
 import '../styles/gastronomy/gastronomy-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import Footer from "../components/footer/Footer";
+import Modal from "../components/modal/Modal.js";
 
 export default function GastronomySingle(props) {
     const pageId = props.page.id;
     let keyId = 0;
 
     const {categories, body} = props.page;
-    const {field_map_gps, field_service_languages, field_additional_description_history, field_prices_variant, field_is_free_entrance, field_facilities_restaurants} = props.page.acf;
+    const {field_map_gps, field_service_languages, field_additional_description_pricelist,
+        field_additional_description_history, field_prices_variant, field_is_free_entrance,
+        field_facilities_restaurants} = props.page.acf;
 
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [news, setNews] = React.useState(null);
     const [gallery, setGallery] = React.useState(props.page.gallery);
     const [worthSeeing, setWorthSeeing] = React.useState(props.page.acf.field_worth_seeing);
+    const [show, setShow] = React.useState(false);
 
 
     React.useEffect(() => {
@@ -113,19 +117,24 @@ export default function GastronomySingle(props) {
         );
     }
 
+
+    const handleClose =()=>{
+        setShow(false);
+    }
+
     return (
         <>
             <MainHeaderSection extra_classes="single">
                 <Breadcrumbs breadcrumbs={[]}/>
                 <GastronomySingleHead {...props.page}/>
             </MainHeaderSection>
-            {(!field_is_free_entrance && field_prices_variant) &&
+            {(!field_is_free_entrance && field_additional_description_pricelist) &&
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>CENNIK</div>
                 </div>
-                <button className="button-planer button-link green ">ZOBACZ MENU</button>
+                <button onClick={()=>setShow(true)} className="button-planer button-link green ">ZOBACZ MENU</button>
             </div>
             }
             {field_service_languages &&
@@ -164,7 +173,7 @@ export default function GastronomySingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>HISTORIA</div>
                 </div>
-                <h2 className={' description-main'}>{Parser(field_additional_description_history)}</h2>
+                <h2 className={'description-main'}>{Parser(field_additional_description_history)}</h2>
             </div>
             }
 
@@ -176,7 +185,7 @@ export default function GastronomySingle(props) {
             }}/>
 
             { !!coords?.length && <div className="single-attraction-map"> <GoogleMap className={'map'} markers={coords}/> </div> }
-
+            <Modal show={show}  handleClose={handleClose} children={Parser(field_additional_description_pricelist)}/>
         </>
     );
 };
