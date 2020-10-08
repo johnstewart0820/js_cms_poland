@@ -7,9 +7,10 @@ import Row from "../helpers/Row";
 import Col from "../helpers/Col";
 import {useLocation} from 'react-router-dom';
 import PlanerContext from "../../constants/PlanerContext";
+import DefaultImage from "../../constants/DefaultImage";
 
 
-const Card = ({id, name, title, address, thumbnail, postCode ,city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton}) => {
+const Card = ({id, name, title, address, image, postCode ,city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton}) => {
     const location = useLocation();
     let pathname = location.pathname;
     const planerContext = React.useContext(PlanerContext);
@@ -17,7 +18,7 @@ const Card = ({id, name, title, address, thumbnail, postCode ,city, onClickGreen
     return(
         <Col>
             <div className={`card ${extraClasses ? extraClasses : ''}`}>
-                <div className="card__thumbnail has-overlay" style={{backgroundImage: `url(${thumbnail})`}}>
+                <div className="card__thumbnail has-overlay" style={{backgroundImage: `url("${image || DefaultImage}")`}}>
                     <div className="card__name">
                         {name}
                     </div>

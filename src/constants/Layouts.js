@@ -20,12 +20,14 @@ import CommunicationPage from "../layouts/CommunicationPage";
 import TourismSpa from "../layouts/TourismSpa";
 import SportHomepage from "../layouts/SportHomepage";
 import SportRopeRoads from "../layouts/SportRopeRoads";
+import SportCourts from "../layouts/SportCourts";
 
 export default {
     main_homepage: MainHomepage,
     tourism_homepage: TourismHomepage,
     sport_homepage: SportHomepage,
     sport_paths: SportRopeRoads,
+    sport_courts: SportCourts,
     tourism_news: TourismNews,
     tourism_events: EventsPage,
     news_single: NewsSingle,
