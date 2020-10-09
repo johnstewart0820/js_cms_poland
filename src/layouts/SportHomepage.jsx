@@ -9,6 +9,8 @@ import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
 import {API} from "../extra/API";
 import RowWithCards from "../components/sport/RowWithCards";
 import RopeRoad from "../components/sport/RopeRoad";
+import PicTextInfo from "../components/general/PicTextInfo";
+import LinksTiles from "../components/general/LinksTiles";
 
 const items = [
     {
@@ -43,16 +45,17 @@ const items = [
 
 const SportHomepage = props => {
     const acf = props.page.acf;
-
     const [items1, setItems1] = React.useState(false);
     const [items2, setItems2] = React.useState(false);
     const [courts, setCourts] = React.useState([]);
+    const [cableWays, setCableWays] = React.useState([]);
+    const [activities, setActivities] = React.useState([]);
 
     React.useEffect(() => {
         API.getByConfig(acf.field_information_modules_sport[0]).then(res => setItems1(res.data.contents));
         API.getByConfig(acf.field_information_modules_sport[1]).then(res => setItems2(res.data.contents));
-        API.getPosts(acf.field_sports_ground_categories[0]).then(res => setCourts(res.data.contents));
-        console.log(acf.field_sports_ground_categories)
+        API.getEntities({categories: acf.field_sports_ground_categories[0]}).then(res => setCourts(res.data.contents));
+        API.getEntities({categories: acf.field_cableways_categories[0]}).then(res => setCableWays(res.data.contents));
     },[]);
 
     return (
@@ -80,17 +83,35 @@ const SportHomepage = props => {
             />
 
             <RowWithCards
-                items={items}
-                containerTitle={'BOISKA'}
+                items={courts}
+                containerTitle={acf.field_sports_ground_title}
                 linkToAll={'/'}
                 headingLinkText={'ZOBACZ WSZYSTKIE'}
             />
 
-            {console.log(courts)}
-            <RopeRoad
-                heading={'koleje linowe'}
-                headingText={'lol'}
-                items={items}
+            {cableWays.length > 0 && (
+                <RopeRoad
+                    heading={acf.field_cableways_title}
+                    headingText={acf.field_cableways_description}
+                    items={cableWays}
+                />
+            )}
+
+            <PicTextInfo
+                href={acf.field_icerink_button_link || '#'}
+                link_label={acf.field_icerink_button_title}
+                heading={acf.field_icerink_title}
+                text={`ADRES: ${acf.field_icerink_description}`}
+                picture_url={acf.field_icerink_photo}
+            />
+
+            <RowWithCards
+
+            />
+
+            <LinksTiles
+                heading={acf.field_practical_information_title}
+                links={acf.field_practical_information.map(item => ({href: item.field_information_link || '', label: item.field_information_description}))}
             />
         </>
     )

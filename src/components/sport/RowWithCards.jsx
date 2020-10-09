@@ -14,7 +14,7 @@ const RowWithCards = ({containerTitle, items, linkToAll, headingLinkText, ...res
                 />
             </div>
             <div className='row-cards'>
-                {items.length > 0 && items.map((item, index) => {
+                {items?.length > 0 && items.map((item, index) => {
                     if (index + 1 > 4)
                         return;
 

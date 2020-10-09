@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonLink from "../buttons/ButtonLink";
 import ShareButton from "../buttons/ShareButton";
-import {EyeIcon, PlaneIcon, PlusIcon} from "../../svg/icons";
+import {EmailIcon, EyeIcon, PhoneIcon, PlaneIcon, PlusIcon, WWWIcon} from "../../svg/icons";
 import '../../styles/StadiumReservationPages/Card.scss';
 import Row from "../helpers/Row";
 import Col from "../helpers/Col";
@@ -10,7 +10,7 @@ import PlanerContext from "../../constants/PlanerContext";
 import DefaultImage from "../../constants/DefaultImage";
 
 
-const Card = ({id, field_playground_category, title, field_map_address, original_image, field_map_postcode ,field_map_city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton}) => {
+const Card = ({id, field_playground_category, title, field_map_address, original_image, field_map_postcode ,field_map_city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton, phoneNumber, email, site}) => {
     const location = useLocation();
     let pathname = location.pathname;
     const planerContext = React.useContext(PlanerContext);
@@ -41,6 +41,25 @@ const Card = ({id, field_playground_category, title, field_map_address, original
                             </Row>
                         </div>
                     }
+
+                    {phoneNumber && site && email && (
+                        <div className='fields-with-icons'>
+                            <div className='icons'>
+                                <PhoneIcon/>
+                                <EmailIcon/>
+                                <WWWIcon/>
+                            </div>
+
+                            <div className='text'>
+                                <a href={`tel: +${phoneNumber}`}>{phoneNumber}</a>
+                                <a onClick={() => window.open(`mailto:${email}`)}>{email}</a>
+                                <a
+                                    target='_blank'
+                                    onClick={() => window.open(`https://${site}`)}
+                                    className='site-name'>{site}</a>
+                            </div>
+                        </div>
+                    )}
 
                     <div className="card__bottom">
                         <ButtonLink extra_classes="green" onClick={onClickGreenButton}> {greenButtonText ? greenButtonText.toUpperCase() : "REZERWACJA"} </ButtonLink>

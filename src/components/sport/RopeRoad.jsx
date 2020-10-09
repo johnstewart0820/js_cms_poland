@@ -14,12 +14,16 @@ const RopeRoad = ({heading, headingText, items, ...rest}) => {
             </div>
             <div className='rope-road-body'>
                 {items.length > 0 && items.map((item, index) => {
+                    const newItem = item.acf;
+
                     if (index + 1 > 3)
                         return;
 
                     return(
                         <RopeRoadCard
                             key={index}
+                            {...item}
+                            {...newItem}
                         />
                     )
                 })}

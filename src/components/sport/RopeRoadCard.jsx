@@ -8,7 +8,7 @@ import {
     TwoWayArrowsVerticalIcon,
 } from '../../svg/icons';
 
-const RopeRoadCard = ({title, roadName, address, imageSource, onClickGreenButton, roadWidth, roadHeight, peoplePerHour, duration, rules}) => {
+const RopeRoadCard = ({title, roadName, field_map_address, original_image, onClickGreenButton, field_lift_length, field_lift_elevation, field_lift_capacity, field_lift_time, rules}) => {
     return (
         <div className='rope-road-card'>
             <div className='rope-road-header'>
@@ -18,31 +18,31 @@ const RopeRoadCard = ({title, roadName, address, imageSource, onClickGreenButton
             <div className='rope-road-address'>
                 <div className='rope-address-container'>
                     <p>ADRES</p>
-                    <h3>{address && address.toUpperCase()}</h3>
+                    <h3>{field_map_address && field_map_address.toUpperCase()}</h3>
                 </div>
             </div>
             <div className='rope-road-description'>
                 <div className='rope-road-images'>
-                    <TwoWayArrowsHorizontalIcon/>
-                    <TwoWayArrowsVerticalIcon/>
-                    <ManWalkingIcon/>
-                    <SmallClockIcon/>
-                    <DocumentIcon/>
+                    {field_lift_length && <TwoWayArrowsHorizontalIcon/>}
+                    {field_lift_elevation && <TwoWayArrowsVerticalIcon/>}
+                    {field_lift_capacity && <ManWalkingIcon/>}
+                    {field_lift_time && <SmallClockIcon/>}
+                    {rules && <DocumentIcon/>}
                 </div>
                 <div className='rope-road-text'>
-                    <p>{roadWidth && roadWidth}</p>
-                    <p>{roadHeight && roadHeight}</p>
-                    <p>{peoplePerHour && peoplePerHour}</p>
-                    <p>{duration && duration}</p>
-                    <p>{rules && rules}</p>
+                    {field_lift_length && <p>{field_lift_length}</p>}
+                    {field_lift_elevation && <p>{field_lift_elevation}</p>}
+                    {field_lift_capacity && <p>{field_lift_capacity}</p>}
+                    {field_lift_time && <p>{field_lift_time}</p>}
+                    {rules &&<p>{rules}</p>}
                 </div>
             </div>
             <div className='rope-road-bottom'>
                 <div className='rope-road-image'>
-                    <img alt='' src={imageSource}/>
+                    {original_image && <img alt='' src={original_image}/>}
                     <div className='rope-road-image-name'>
                         <p>
-                            {roadName && 'Kamera' + roadName}
+                            {title && 'Kamera ' + title}
                         </p>
                     </div>
                 </div>
