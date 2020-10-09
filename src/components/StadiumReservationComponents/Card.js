@@ -10,7 +10,7 @@ import PlanerContext from "../../constants/PlanerContext";
 import DefaultImage from "../../constants/DefaultImage";
 
 
-const Card = ({id, name, title, address, image, postCode ,city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton}) => {
+const Card = ({id, field_playground_category, title, field_map_address, original_image, field_map_postcode ,field_map_city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton}) => {
     const location = useLocation();
     let pathname = location.pathname;
     const planerContext = React.useContext(PlanerContext);
@@ -18,9 +18,9 @@ const Card = ({id, name, title, address, image, postCode ,city, onClickGreenButt
     return(
         <Col>
             <div className={`card ${extraClasses ? extraClasses : ''}`}>
-                <div className="card__thumbnail has-overlay" style={{backgroundImage: `url("${image || DefaultImage}")`}}>
+                <div className="card__thumbnail has-overlay" style={{backgroundImage: `url("${original_image || DefaultImage}")`}}>
                     <div className="card__name">
-                        {name}
+                        {field_playground_category}
                     </div>
                     {pathname === '/game' && <button className="button__eye">{eyeButtonImage}</button>}
                 </div>
@@ -30,14 +30,14 @@ const Card = ({id, name, title, address, image, postCode ,city, onClickGreenButt
                         {title}
                     </div>
 
-                    {address && postCode && city &&
+                    {field_map_address && field_map_postcode && field_map_city &&
                         <div className="card__address">
                             <span> ADRES </span>
                             <Row>
-                                <h3>{postCode} {city}</h3>
+                                <h3>{field_map_postcode} {field_map_city}</h3>
                             </Row>
                             <Row>
-                                <h3>{address}</h3>
+                                <h3>{field_map_address}</h3>
                             </Row>
                         </div>
                     }
