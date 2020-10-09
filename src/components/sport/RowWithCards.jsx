@@ -14,7 +14,14 @@ const RowWithCards = ({containerTitle, items, linkToAll, headingLinkText, ...res
                 />
             </div>
             <div className='row-cards'>
-                {items.length > 0 && items.map((item, index) => <Card key={index} extraClasses={'big-cards'}{...item}/>)}
+                {items.length > 0 && items.map((item, index) => {
+                    if (index + 1 > 4)
+                        return;
+
+                    return (
+                        <Card key={index} extraClasses={'big-cards'} {...item}/>
+                    )
+                })}
             </div>
         </div>
     );

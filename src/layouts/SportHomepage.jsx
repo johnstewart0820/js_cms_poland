@@ -46,10 +46,13 @@ const SportHomepage = props => {
 
     const [items1, setItems1] = React.useState(false);
     const [items2, setItems2] = React.useState(false);
+    const [courts, setCourts] = React.useState([]);
 
     React.useEffect(() => {
         API.getByConfig(acf.field_information_modules_sport[0]).then(res => setItems1(res.data.contents));
         API.getByConfig(acf.field_information_modules_sport[1]).then(res => setItems2(res.data.contents));
+        API.getPosts(acf.field_sports_ground_categories[0]).then(res => setCourts(res.data.contents));
+        console.log(acf.field_sports_ground_categories)
     },[]);
 
     return (
@@ -83,6 +86,7 @@ const SportHomepage = props => {
                 headingLinkText={'ZOBACZ WSZYSTKIE'}
             />
 
+            {console.log(courts)}
             <RopeRoad
                 heading={'koleje linowe'}
                 headingText={'lol'}

@@ -67,6 +67,12 @@ import { ReactComponent as RedEyeIcon} from "./icons/red-eye.svg";
 import { ReactComponent as GreenEyeIcon} from "./icons/green-eye.svg";
 import { ReactComponent as QuizPrizeIcon} from "./icons/quiz-prize.svg";
 
+import { ReactComponent as TwoWayArrowsHorizontalIcon} from "./icons/two-way-arrows-horizontal.svg";
+import { ReactComponent as TwoWayArrowsVerticalIcon} from "./icons/two-way-arrows-vertical.svg";
+import { ReactComponent as SmallClockIcon} from "./icons/small-clock.svg";
+import { ReactComponent as DocumentIcon} from "./icons/document.svg";
+import { ReactComponent as ManWalkingIcon } from "./icons/man-walking.svg";
+
 import herb_src from "../img/herb.png";
 const HerbIcon = () => ( <em className="ci ci-herb" style={{ backgroundImage: `url(${ herb_src })` }} /> )
 
@@ -89,6 +95,12 @@ export {
 	SquareIcon,
 	MapIcon,
 	CloseIcon,
+
+    TwoWayArrowsHorizontalIcon,
+    TwoWayArrowsVerticalIcon,
+    SmallClockIcon,
+    DocumentIcon,
+    ManWalkingIcon,
 
 	PhoneIcon,
 	EmailIcon,

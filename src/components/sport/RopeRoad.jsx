@@ -14,6 +14,9 @@ const RopeRoad = ({heading, headingText, items, ...rest}) => {
             </div>
             <div className='rope-road-body'>
                 {items.length > 0 && items.map((item, index) => {
+                    if (index + 1 > 3)
+                        return;
+
                     return(
                         <RopeRoadCard
                             key={index}
