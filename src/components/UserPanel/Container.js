@@ -17,7 +17,7 @@ export const Container = props => {
     return (
         <>
             <Breadcrumbs breadcrumbs={[{label: "Panel użytkownika", to: "/"}]}/>
-            <div className={`custom-container ${props.extraClasses} || ''`}>
+            <div className={`custom-container ${ props.extraClasses || "" }`}>
                 <UserPanel/>
                 <div className="container-fluid">
                     {props.setNotification && <Notification message={props.notificationMessage}/>}

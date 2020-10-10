@@ -2,6 +2,43 @@
 .panel-container {
   width: 320px;
   background-color: #F1F1F1;
+  transition: left .5s;
+
+  
+  .panel-container__mobile_toggle{
+		display: none;
+	}
+
+  @media( max-width: 1199px){
+	  position: absolute;
+	  z-index: 999;
+	  left: -320px;
+
+	  .panel-container__mobile_toggle{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			border: 2px solid black;
+
+			position: absolute;
+			right: -50px;
+			top: 10px;
+		}
+	}
+
+
+  &.visible{
+	  left: 0;
+
+	  .panel-container__mobile_toggle{
+		  right: 10px;
+	  }
+  }
 
   .panel-container__header {
     display: flex;
