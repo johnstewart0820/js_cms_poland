@@ -6,6 +6,7 @@
 
 	&__items {
 		@include flex-a-center;
+		flex-wrap: wrap;
 	}
 
 	div, a{ 

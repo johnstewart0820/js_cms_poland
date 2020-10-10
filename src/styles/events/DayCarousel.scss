@@ -18,3 +18,36 @@
     }
   }
 }
+
+@media( max-width: 1760px ) {
+	.day-button-container{
+		padding: 0 15px;
+
+		.day-button-wrap{
+			.carousel__body{
+				flex-wrap: wrap;
+			}
+		}	
+	}
+}
+
+@media( max-width: 1560px ) {
+	.day-button-container {
+		.day-button-carousel{
+			max-width: 100vw;
+			overflow: auto;
+		}
+
+		.carousel__wrap{
+			width: auto;
+		}
+	}
+}
+
+@media( max-width: 600px ) {
+	.day-button-container{
+		.carousel .arrows{
+			display: flex;
+		}
+	}
+}

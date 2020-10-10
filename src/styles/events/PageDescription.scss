@@ -3,11 +3,14 @@
 
 .gray-description {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   min-height: 200px;
   background-image: linear-gradient($gray, $dark_gray);
   width: 100%;
+  padding: 15px;
+
   .col {
     h4 {
       position: relative;
@@ -24,4 +27,18 @@
       white-space: pre-line;
     }
   }
+}
+
+
+@media (max-width: 800px) {
+	.gray-description{
+
+		justify-content: center;
+		align-items: center;
+
+		.col{
+			margin: 10px 0;
+			width: 100%;
+		}
+	}
 }
