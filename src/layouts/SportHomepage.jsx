@@ -13,6 +13,7 @@ import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Card from "../components/StadiumReservationComponents/Card";
 import useEntities from "../hooks/useEntities";
 import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
+import BikeRoutesCard from "../components/Cards/BikeRoutesCard";
 
 const SportHomepage = props => {
     const acf = props.page.acf;
@@ -22,12 +23,13 @@ const SportHomepage = props => {
     const [activities, activitiesLoading] = useEntities(props.page.acf.field_active_categories);
     const [courts, courtsLoading] = useEntities(props.page.acf.field_sports_ground_categories);
     const [bikeTrails, bikeTrailsLoading] = useEntities(props.page.acf.field_bike_trails_categories);
+    const [tennisCourts, tennisCourtsLoading] = useEntities(props.page.acf.field_tennis_courts_categories);
 
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl "}]} />
-                <PageHeaderOrSlider page={props.page} />
+                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl "}]}/>
+                <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
             <TwoCarouselsOneRow
@@ -87,12 +89,24 @@ const SportHomepage = props => {
                 items: bikeTrails?.contents || [],
                 heading: props.page.acf.field_bike_trails_title,
                 path_to_all: getArticleLink(props.page.acf.field_bike_trails_page),
-                ItemComponent: Card,
+                ItemComponent: BikeRoutesCard,
+            }}/>
+
+            <OneCarouseInRow carousel={{
+                loading: tennisCourtsLoading,
+                extra_classes: 'no-arrows',
+                items: tennisCourts?.contents || [],
+                heading: props.page.acf.field_tennis_courts_title,
+                path_to_all: getArticleLink(props.page.acf.field_tennis_courts_page),
+                ItemComponent: BikeRoutesCard,
             }}/>
 
             <LinksTiles
                 heading={acf.field_practical_information_title}
-                links={acf.field_practical_information.map(item => ({href: item.field_information_link || '', label: item.field_information_description}))}
+                links={acf.field_practical_information.map(item => ({
+                    href: item.field_information_link || '',
+                    label: item.field_information_description,
+                }))}
             />
         </>
     )
