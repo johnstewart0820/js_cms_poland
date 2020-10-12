@@ -13,6 +13,7 @@ import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Card from "../components/StadiumReservationComponents/Card";
 import useEntities from "../hooks/useEntities";
 import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
+import BikeRoutesCard from "../components/Cards/BikeRoutesCard";
 
 const SportHomepage = props => {
     const acf = props.page.acf;
@@ -87,7 +88,7 @@ const SportHomepage = props => {
                 items: bikeTrails?.contents || [],
                 heading: props.page.acf.field_bike_trails_title,
                 path_to_all: getArticleLink(props.page.acf.field_bike_trails_page),
-                ItemComponent: Card,
+                ItemComponent: BikeRoutesCard,
             }}/>
 
             <LinksTiles
