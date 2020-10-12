@@ -6,6 +6,7 @@ import TourismRoutes from "../constants/TourismRoutes";
 const MainPage = asyncComponent( () => import( "../pages/tourism/MainPage" ));
 const CityPage = asyncComponent( () => import( "../pages/tourism/CityPage" ));
 const NewsPage = asyncComponent( () => import( "../pages/common/NewsPage" ));
+const SearchPage = asyncComponent( () => import( "../pages/common/SearchPage" ));
 const PhotoReportsPage = asyncComponent( () => import( "../pages/common/PhotoReportsPage") );
 const AccommodationsPage = asyncComponent( () => import( "../pages/common/AccommodationsPage" ));
 const GastronomyPage = asyncComponent( () => import( "../pages/common/GastronomyPage") );
@@ -39,6 +40,7 @@ const TourismRouters = () => (
 		<Route exact path={TourismRoutes.Main} component={ MainPage } />
 		<Route exact path={TourismRoutes.City} component={ CityPage } />
 		<Route exact path={TourismRoutes.News} component={ NewsPage } />
+        <Route exact path={TourismRoutes.SearchPage} component={ SearchPage } />
 		<Route exact path={TourismRoutes.PhotoReports} component={ PhotoReportsPage } />
 		<Route exact path={TourismRoutes.Accommodations} component={ AccommodationsPage } />
 		<Route exact path={TourismRoutes.Gastronomy} component={ GastronomyPage } />

@@ -20,7 +20,6 @@ export default class LoopSearchPostsContainer extends Component{
 
 
 	componentDidMount(){
-
 		const { onRef } = this.props;
 		if ( isFunction( onRef ) ) onRef( this.section ); 
 	}

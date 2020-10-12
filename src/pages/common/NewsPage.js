@@ -16,7 +16,7 @@ import { sample_slides as slides } from "../../mock/slides_example";
 
 const sort_options = [
 	{ value: 1, label: "Najbliższe aktualności" },
-	{ value: 2, label: "Najstarszy aktualności" },
+	{ value: 2, label: "Najstarsze aktualności" },
 ];
 
 export default class NewsPage extends Component{
@@ -56,7 +56,6 @@ export default class NewsPage extends Component{
 			const posts_row = data.slice(0,4);
 
 			const posts = [...posts_row, ...posts_row, ...posts_row, ...posts_row];
-		
 			this.setState({ posts, loading: false });
 
 		})
@@ -73,7 +72,7 @@ export default class NewsPage extends Component{
 	}
 
 
-	submitCallback = () => { }
+
 
 
 	pageChangeCallback = ( page ) => {

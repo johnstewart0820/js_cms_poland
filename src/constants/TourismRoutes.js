@@ -28,6 +28,7 @@ export default {
     DiscountCardsPage: '/discount-cards',
     TrailsPage: '/trails',
     PlanerListPage: '/planer-basket',
+    SearchPage: '/search',
     SingleGamePage: (id = ':id') => `/single-game-page/${id}`,
     QuizPageByQr: (id = ':id', hash = ':hash') => `/quiz-page/${id}/completeByQRCode/${hash}`,
     QuizPageByGps: (id = ':id') => `/quiz-page/${id}/completeByGPS`,

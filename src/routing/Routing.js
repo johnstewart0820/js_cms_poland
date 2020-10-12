@@ -7,6 +7,7 @@ import PageRenderer from "../extra/PageRenderer";
 import NotFoundPage from "../pages/NotFoundPage";
 import TourismRoutes from "../constants/TourismRoutes";
 import PlanerListPage from "../pages/common/PlanerListPage";
+import SearchPage from "../pages/common/SearchPage";
 import LoginPage from "../pages/UserPanelPages/LoginRegistration/LoginPage";
 import RegistrationPage from "../pages/UserPanelPages/LoginRegistration/RegistrationPage";
 import RegistrationConfirmationPage from "../pages/UserPanelPages/LoginRegistration/RegistrationConfirmationPage";
@@ -39,6 +40,9 @@ const Routing = () => {
         <Switch>
             {/* Planer list */}
             <Route exact path={TourismRoutes.PlanerListPage} component={PlanerListPage}/>
+
+            {/*Search List*/}
+            <Route exact path={TourismRoutes.SearchPage} component={SearchPage}/>
 
             {/* Authorization pages */}
             <Route exact path={TourismRoutes.Login} component={LoginPage} />
