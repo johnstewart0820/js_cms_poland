@@ -80,6 +80,39 @@
       text-transform: capitalize;
         font-weight: bold;
     }
+      .fields-with-icons {
+          display: flex;
+          flex-direction: row;
+          align-items: baseline;
+          margin-bottom: 20px;
+
+          .icons {
+              display: flex;
+              flex-direction: column;
+              flex-basis: 12%;
+              svg {
+                  width: 20px;
+                  margin-top: 20px;
+              }
+          }
+
+          .text {
+              display: flex;
+              flex-direction: column;
+
+              a {
+                  height: 33px;
+                  font-size: 17px;
+                  text-decoration: none;
+                  color: $gray;
+                  cursor: pointer;
+              }
+
+              .site-name {
+                  font-weight: bold;
+              }
+          }
+      }
 
     .card__address {
       font-weight: 700;

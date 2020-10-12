@@ -12,7 +12,7 @@ const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path,
 				{ picture_url && <div className="pic-text-info__picture thumbnail" style={{ backgroundImage: `url("${picture_url}")` }} /> }
 
 				<div className="pic-text-info__info">
-					{ heading && 
+					{ heading &&
 						<div className="pic-text-info__info_head">
 							{ heading_svg }
 							<div className="heading"> { heading } </div>
@@ -23,7 +23,7 @@ const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path,
 						{ Parser(text) }
 
 						{ (href || path) && link_label &&
-							<ButtonLink path={path} href={href} extra_classes="white" > { link_label } </ButtonLink>
+							<ButtonLink path={path} href={href} extra_classes="white" > { link_label.toUpperCase() } </ButtonLink>
 						}
 					</div>
 				</div>

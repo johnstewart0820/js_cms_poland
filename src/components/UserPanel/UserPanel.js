@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import '../../styles/UserPanel/UserPanel.scss';
 import {PanelLink} from "./PanelLink";
 import {useHistory} from "react-router-dom";
@@ -7,11 +7,17 @@ import TourismRoutes from "../../constants/TourismRoutes";
 import UserContext from "../../constants/UserContext";
 import PanelButton from "./PanelButton";
 
+import Angle from "../../svg/components/Angle";
+
+
 export const UserPanel = () => {
     const history = useHistory();
-    const userContext = React.useContext(UserContext);
-    const [name, setName] = React.useState('');
-    const [role, setRole] = React.useState('');
+    const userContext = useContext(UserContext);
+    const [name, setName] = useState('');
+	 const [role, setRole] = useState('');
+	 
+	 const [ mobile_visible, setMobileVisible ] = useState( false );
+
 
     React.useEffect(() => {
         setName(userContext.name);
@@ -31,7 +37,12 @@ export const UserPanel = () => {
     }
 
     return (
-        <div className="panel-container">
+        <div className={`panel-container ${ mobile_visible ? "visible" : "" }`}>
+
+				<div className="panel-container__mobile_toggle" onClick={ () => setMobileVisible( !mobile_visible ) }> 
+					<Angle direction={ mobile_visible ? "left" : "right" } />
+				</div>
+
             <div className="panel-container__header">
                 <img alt='' src={require('../../svg/icons/user-photo.svg')}/>
                 <div className="column">

@@ -4,7 +4,6 @@ import '../../styles/sport/RowWithCards.scss';
 import SectionHeading from "../general/SectionHeading";
 
 const RowWithCards = ({containerTitle, items, linkToAll, headingLinkText, ...rest}) => {
-    console.log(items)
     return (
         <div className='row-cards-container'>
             <div className='row-cards-title'>
@@ -15,19 +14,17 @@ const RowWithCards = ({containerTitle, items, linkToAll, headingLinkText, ...res
                 />
             </div>
             <div className='row-cards'>
-                {items.length > 0 && items.map((item, index) => {
+                {items?.length > 0 && items.map((item, index) => {
+                    if (index + 1 > 4)
+                        return;
+
                     return (
-                        <Card
-                            key={index}
-                            address={item.address}
-                            title={item.title}
-                            extraClasses={'big-cards'}
-                        />
+                        <Card key={index} extraClasses={'big-cards'} {...item}/>
                     )
                 })}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default RowWithCards;

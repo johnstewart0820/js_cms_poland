@@ -5,6 +5,11 @@
   display: flex;
   background-color: $gray_super_light_2;
   width: calc(100% - 88px);
+  
+  @media(max-width: 1440px){
+	  width: 100%;
+  }
+
   .container-fluid {
     width: 100%;
     .row {

@@ -42,19 +42,18 @@ const CourtsWithCardsPage = () => {
             notificationMessage={notification}
         >
             <Row>
-                {data.map((item, index) => (
-                    <Card
-                        key={index}
-                        id={item.id}
-                        name={item.title}
-                        title={item.title}
-                        address={item.acf.field_map_address}
-                        postCode={item.acf.field_map_postcode}
-                        city={item.acf.field_map_city}
-                        thumbnail={'../../img/loop/1.jpg'}
-                        onClickGreenButton={() => history.push(TourismRoutes.Reservation(item.id))}
-                    />
-                ))}
+                {data.map((item, index) => {
+                    console.log(item)
+                    let newItem = item.acf;
+                    return (
+                        <Card
+                            key={index}
+                            onClickGreenButton={() => history.push(TourismRoutes.Reservation(item.id))}
+                            {...item}
+                            {...newItem}
+                        />
+                    )
+                })}
             </Row>
         </Container>
     )

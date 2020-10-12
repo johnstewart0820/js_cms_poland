@@ -170,7 +170,7 @@ const GameCardsPage = () => {
                                 name={game.categories[0].name}
                                 extraClasses={'game-card'}
                                 title={game.title}
-                                thumbnail={game.original_image}
+                                original_image={game.original_image}
                                 greenButtonText={'dowiedz się wiecej'}
                                 eyeButtonImage={completedGames.includes(game.id) ? <GreenEyeIcon/> : <RedEyeIcon/>}
                                 onClickGreenButton={() => history.push(TourismRoutes.SingleGamePage(game.id))}
