@@ -61,7 +61,7 @@ const SportHomepage = props => {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl "}]} />
+                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl "}]} />
                 <PageHeaderOrSlider page={props.page} />
             </MainHeaderSection>
 
@@ -85,7 +85,7 @@ const SportHomepage = props => {
             <RowWithCards
                 items={courts}
                 containerTitle={acf.field_sports_ground_title}
-                linkToAll={'/'}
+                linkToAll={getArticleLink(props.page.acf.field_sports_ground_page)}
                 headingLinkText={'ZOBACZ WSZYSTKIE'}
             />
 
