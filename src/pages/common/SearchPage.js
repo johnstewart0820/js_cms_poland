@@ -23,14 +23,16 @@ const SearchPage = (props) => {
     const [sort, setSort] = React.useState('asc');
 
     React.useEffect(() => {
-        if (!query) return;
 
-        setPosts([]);
+        setTimeout(() => {
+            window.scrollTo({top: 700});
+        }, 1);
+        if (!query) return;
 
         API.getPosts({
             query,
             order: sort,
-            orderBy: 'date',
+            orderby: 'date',
         }).then(res => {
             setPosts(res.data.contents);
             setLoading(false);
@@ -55,21 +57,26 @@ const SearchPage = (props) => {
                 <PageHeaderOrSlider page={siteInfo.site_info.default_content}/>
             </MainHeaderSection>
 
-            <LoopSearchPostsContainer
-                onRef={el => container.current = el}
-                extra_classes={props.containerClasses}
-                heading={props.containerHeader}
-                sort_options={sort_options}
-                sortOnChange={() => changeSort()}
-            >
+            {posts.length === 0 ?
+                <div className={'empty-search-comunicate'}>
+                    <p>Nie znaleziono nic pod podane kryteria wyszukiwania</p>
+                </div> :
+                <LoopSearchPostsContainer
+                    onRef={el => container.current = el}
+                    extra_classes={props.containerClasses}
+                    heading={props.containerHeader}
+                    sort_options={sort_options}
+                    sortOnChange={() => changeSort()}
+                >
 
-                {!loading && posts && !!posts.length &&
-                posts.map((item, index) => (
-                    <LoopNewsPost key={index} {...item}/>
-                ))
-                }
-                {loading && <Loader style={{width: "100%"}}/>}
-            </LoopSearchPostsContainer>
+                    {!loading && posts && !!posts.length &&
+                    posts.map((item, index) => (
+                        <LoopNewsPost key={index} {...item}/>
+                    ))
+                    }
+                    {loading && <Loader style={{width: "100%"}}/>}
+                </LoopSearchPostsContainer>
+            }
         </>
     )
 }
