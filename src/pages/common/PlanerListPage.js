@@ -6,7 +6,7 @@ import PlanerItem from "../../components/PlanerList/PlanerItem";
 import PlanerHistory from "../../components/PlanerList/PlanerHistory";
 import PlanerContext from "../../constants/PlanerContext";
 import moment from "moment";
-import Loader from "../../components/general/Loader";
+import EmptyList from "../../components/general/EmptyList";
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
 
@@ -16,7 +16,7 @@ const PlanerListPage = () => {
     const height = document.documentElement.scrollHeight;
     const planerContext = React.useContext(PlanerContext);
     let coords = [];
-
+    const [isEmpty, setIsEmpty] = React.useState(false);
 
     const createPdf = () => {
         if (ref.current !== undefined) {
@@ -28,7 +28,7 @@ const PlanerListPage = () => {
                         pdf = new jsPDF({
                             orientation: "portrait",
                             unit: "in",
-                            format: [height, 20]
+                            format: [height, 20],
                         });
                     pdf.addImage(imgData, 'JPEG', 0, 0);
                     pdf.save('planer.pdf');
@@ -60,15 +60,17 @@ const PlanerListPage = () => {
 
             planerContext.data.forEach(event => {
                 if (typeof event.acf?.field_map_minutes === 'string')
-                    duration.add(event.acf?.field_map_minutes.replace(/ .*/,''), 'minutes')
+                    duration.add(event.acf?.field_map_minutes.replace(/ .*/, ''), 'minutes')
             });
             return duration;
+        } else {
+            setIsEmpty(true);
         }
     }, [planerContext.data.length]);
 
     React.useEffect(() => {
         planerContext.setVisible(false);
-    },[]);
+    }, []);
 
     const totalRoute = React.useMemo(() => {
         let route = [];
@@ -81,20 +83,24 @@ const PlanerListPage = () => {
 
     const scrollToMap = () => window.scrollTo(0, document.body.scrollHeight);
 
-
-    if (planerContext.data.length <= 0)
-        return <Loader/>
-
-    return(
+    return (
         <>
             <button ref={buttonRef} onClick={() => createPdf()}>
                 create pdf
             </button>
-           <div id='planer' ref={ref} style={{width: '100%', height: '100%'}}>
-               <Breadcrumbs breadcrumbs={[{ label: "Visit.ustron.pl", to: "/" }, { label: " Jak dojechać", to: "/" }, {label: 'Wynik'}]} />
+            <div id='planer' ref={ref} style={{width: '100%', height: '100%'}}>
+                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {
+                    label: " Jak dojechać",
+                    to: "/",
+                }, {label: 'Wynik'}]}/>
 
-               <PlanerListContainer title={'PLANER PODROZY'}>
-                   {planerContext?.data?.map((item, index) => {
+                <PlanerListContainer title={'PLANER PODROZY'}>
+                    {isEmpty?
+                        <EmptyList
+                            className={'empty-list-comunicate'}
+                            children={"Planer podróży jest pusty. Dodaj coś do planera, korzystając z wyszukiwarki na gorze stron"}/>
+                        :<div>
+                    {planerContext?.data?.map((item, index) => {
                         let categoryName = '';
                         let minutes = '';
                         let gps = '';
@@ -103,47 +109,47 @@ const PlanerListPage = () => {
                             gps = item.acf.field_map_gps.split(';');
                             coords.push({
                                 lat: gps[0],
-                                lng: gps[1]
+                                lng: gps[1],
                             });
                         }
 
-                       if (item.categories !== undefined)
-                           categoryName = item.categories[0].name;
+                        if (item.categories !== undefined)
+                            categoryName = item.categories[0].name;
 
-                       if (typeof item.acf?.field_map_minutes === 'string')
-                           minutes = item.acf?.field_map_minutes.replace(/ .*/,'');
+                        if (typeof item.acf?.field_map_minutes === 'string')
+                            minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
 
-                       return (
-                           <PlanerItem
-                               key={index}
-                               duration={minutes || false}
-                               description={item.title}
-                               step={index + 1}
-                               imageSrc={item.original_image || require('../../img/errorImage.png')}
-                               category={categoryName || 'N/A'}
-                               deleteOnClick={() => planerContext.delete(index)}
-                               onMapCheck={scrollToMap}
-                           />
-                       )
-                   })}
-               </PlanerListContainer>
+                        return (
+                            <PlanerItem
+                                key={index}
+                                duration={minutes || false}
+                                description={item.title}
+                                step={index + 1}
+                                imageSrc={item.original_image || require('../../img/errorImage.png')}
+                                category={categoryName || 'N/A'}
+                                deleteOnClick={() => planerContext.delete(index)}
+                                onMapCheck={scrollToMap}
+                            />
+                        )
+                    })}</div>}
+                </PlanerListContainer>
 
-               {!!totalRoute && !!totalDuration && (
-                   <PlanerHistory
-                       route={totalRoute}
-                       totalDuration={totalDuration}
-                       generatePdfOnClick={generatePdf}
-                   />
-               )}
+                {!!totalRoute && !!totalDuration && (
+                    <PlanerHistory
+                        route={totalRoute}
+                        totalDuration={totalDuration}
+                        generatePdfOnClick={generatePdf}
+                    />
+                )}
 
-					{ coords && !!coords.length && 
-						<div style={{ position: "relative", height: "500px"}}>
-							<GoogleMap markers={coords}/>
-						</div>
-					}
+                {coords && !!coords.length &&
+                <div style={{position: "relative", height: "500px"}}>
+                    <GoogleMap markers={coords}/>
+                </div>
+                }
 
-           </div>
-       </>
+            </div>
+        </>
     )
 }
 

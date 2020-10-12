@@ -4,6 +4,7 @@ import MainHeaderSection from "../../components/header/MainHeaderSection";
 import LoopNewsPost from "../../components/news/LoopNewsPost";
 import Breadcrumbs from '../../components/general/Breadcrumbs';
 import Loader from "../../components/general/Loader";
+import EmptyList from "../../components/general/EmptyList";
 import LoopSearchPostsContainer from "../../components/loop/LoopSearchPostsContainer";
 import SiteInfoContext from "../../constants/SiteInfoContext";
 import PageHeaderOrSlider from "../../extra/PageHeaderOrSlider";
@@ -58,9 +59,10 @@ const SearchPage = (props) => {
             </MainHeaderSection>
 
             {posts.length === 0 ?
-                <div className={'empty-search-comunicate'}>
-                    <p>Nie znaleziono nic pod podane kryteria wyszukiwania</p>
-                </div> :
+                <EmptyList
+                    className={'empty-list-comunicate'}
+                    children={'Nie znaleziono nic pod podane kryteria wyszukiwania'}/>
+                :
                 <LoopSearchPostsContainer
                     onRef={el => container.current = el}
                     extra_classes={props.containerClasses}
@@ -68,7 +70,6 @@ const SearchPage = (props) => {
                     sort_options={sort_options}
                     sortOnChange={() => changeSort()}
                 >
-
                     {!loading && posts && !!posts.length &&
                     posts.map((item, index) => (
                         <LoopNewsPost key={index} {...item}/>
