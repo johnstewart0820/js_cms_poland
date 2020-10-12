@@ -89,10 +89,10 @@
           .icons {
               display: flex;
               flex-direction: column;
-              flex-basis: 12%;
+              flex-basis: 10%;
               svg {
-                  width: 20px;
-                  margin-top: 20px;
+                  width: 17px;
+                  margin-top: 11px;
               }
           }
 
@@ -101,8 +101,8 @@
               flex-direction: column;
 
               a {
-                  height: 33px;
-                  font-size: 17px;
+                  height: 22px;
+                  font-size: 15px;
                   text-decoration: none;
                   color: $gray;
                   cursor: pointer;

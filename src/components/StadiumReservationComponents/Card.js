@@ -5,14 +5,11 @@ import {EmailIcon, EyeIcon, PhoneIcon, PlaneIcon, PlusIcon, WWWIcon} from "../..
 import '../../styles/StadiumReservationPages/Card.scss';
 import Row from "../helpers/Row";
 import Col from "../helpers/Col";
-import {useLocation} from 'react-router-dom';
 import PlanerContext from "../../constants/PlanerContext";
 import DefaultImage from "../../constants/DefaultImage";
 
 
-const Card = ({id, field_playground_category, title, field_map_address, original_image, field_map_postcode ,field_map_city, onClickGreenButton, greenButtonText, extraClasses, eyeButtonImage, onClickPlaneButton, phoneNumber, email, site}) => {
-    const location = useLocation();
-    let pathname = location.pathname;
+const Card = ({id, field_playground_category, title, field_map_address, original_image, field_map_postcode ,field_map_city, onClickGreenButton, greenButtonText, extraClasses, field_contact_phone, field_contact_email, field_contact_www}) => {
     const planerContext = React.useContext(PlanerContext);
 
     return(
@@ -22,7 +19,6 @@ const Card = ({id, field_playground_category, title, field_map_address, original
                     <div className="card__name">
                         {field_playground_category}
                     </div>
-                    {pathname === '/game' && <button className="button__eye">{eyeButtonImage}</button>}
                 </div>
 
                 <div className="card__content">
@@ -42,7 +38,7 @@ const Card = ({id, field_playground_category, title, field_map_address, original
                         </div>
                     }
 
-                    {phoneNumber && site && email && (
+                    {field_contact_phone && field_contact_www && field_contact_email && (
                         <div className='fields-with-icons'>
                             <div className='icons'>
                                 <PhoneIcon/>
@@ -51,12 +47,12 @@ const Card = ({id, field_playground_category, title, field_map_address, original
                             </div>
 
                             <div className='text'>
-                                <a href={`tel: +${phoneNumber}`}>{phoneNumber}</a>
-                                <a onClick={() => window.open(`mailto:${email}`)}>{email}</a>
+                                <a href={`tel: +${field_contact_phone}`}>{field_contact_phone}</a>
+                                <a href={`mailto:${field_contact_email}`}>{field_contact_email}</a>
                                 <a
                                     target='_blank'
-                                    onClick={() => window.open(`https://${site}`)}
-                                    className='site-name'>{site}</a>
+                                    href={`https://${field_contact_www}`}
+                                    className='site-name'>{field_contact_www}</a>
                             </div>
                         </div>
                     )}
@@ -64,8 +60,8 @@ const Card = ({id, field_playground_category, title, field_map_address, original
                     <div className="card__bottom">
                         <ButtonLink extra_classes="green" onClick={onClickGreenButton}> {greenButtonText ? greenButtonText.toUpperCase() : "REZERWACJA"} </ButtonLink>
 
-                        {pathname !== '/game' && <a href="#"> <PlusIcon onClick={() => planerContext.add(id)}/> </a>}
-                        {pathname !== '/game' ? <ShareButton link_for_sharing={`${window.location.origin}/reservation/${id}`}/> : <button className="send__button" onClick={onClickPlaneButton}><PlaneIcon/></button> }
+                        <a href="#"> <PlusIcon onClick={() => planerContext.add(id)}/> </a>
+                        <ShareButton link_for_sharing={`${window.location.origin}/reservation/${id}`}/>
                     </div>
                 </div>
             </div>
