@@ -4,10 +4,10 @@ import Col from "../helpers/Col";
 import DefaultImage from "../../constants/DefaultImage";
 import ShareButton from "../buttons/ShareButton";
 import PlusButton from "../buttons/PlusButton";
-import BicycleIcon from "../icons/BicycleIcon";
+import {BicycleIcon, BicycleIconRed, BicycleIconYellow} from "../../svg/icons";
+import moment from "moment";
 import FamilyIcon from "../icons/FamilyIcon";
 import HikingIcon from "../icons/HikingIcon";
-import moment from "moment";
 
 
 const BikeRoutesCard = ({...article}) => {
@@ -27,8 +27,14 @@ const BikeRoutesCard = ({...article}) => {
 
                 <div className='card-header'>
                     <div className='card-header-part-one'>
-                        <BicycleIcon/>
-                        <FamilyIcon/>
+                        {article.acf.field_trails_info_difficulty === "łatwy"
+                            ? <BicycleIcon/>
+                            : article.acf.field_trails_info_difficulty === 'średni'
+                                ? <BicycleIconYellow/>
+                                : article.acf.field_trails_info_difficulty === 'trudny'
+                                    ? <BicycleIconRed/>
+                                    : <BicycleIcon/>}
+                        {article.acf.field_recomended_for === 'families' && <FamilyIcon/>}
                     </div>
                     <div className='card-header-part-two'>
                         <HikingIcon/> <p>{duration.hours() + 'H' || ''}</p>
