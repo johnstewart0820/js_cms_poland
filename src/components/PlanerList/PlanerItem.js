@@ -3,7 +3,7 @@ import '../../styles/PlanerList/PlanerItem.scss';
 import ButtonX from "../buttons/ButtonX";
 
 
-const PlanerItem = ({duration, description, category, imageSrc, step, deleteOnClick, onMapCheck}) => {
+const PlanerItem = ({acf, duration, description, category, imageSrc, step, deleteOnClick, onMapCheck}) => {
     return (
         <>
             <div className='item-container'>
@@ -22,9 +22,9 @@ const PlanerItem = ({duration, description, category, imageSrc, step, deleteOnCl
                         <button className='button-link green full-width' onClick={onMapCheck}>ZOBACZ NA MAPIE</button>
                     </div>
                     <div className='item-description'>
-                        <h4>
-                            {description}
-                        </h4>
+                        <h4>{description}</h4>
+                        <div>{acf.field_map_address}</div>
+                        <div>{acf.field_map_city} {acf.field_map_postcode}</div>
                     </div>
                     <div className='item-category'>
                         <div className='item-category-content'>
