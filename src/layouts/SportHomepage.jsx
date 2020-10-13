@@ -14,6 +14,10 @@ import Card from "../components/StadiumReservationComponents/Card";
 import useEntities from "../hooks/useEntities";
 import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
 import BikeRoutesCard from "../components/Cards/BikeRoutesCard";
+import {
+    IceSkatesIcon,
+
+} from '../svg/icons';
 
 const SportHomepage = props => {
     const acf = props.page.acf;
@@ -70,8 +74,10 @@ const SportHomepage = props => {
                 href={acf.field_icerink_button_link || '#'}
                 link_label={acf.field_icerink_button_title}
                 heading={acf.field_icerink_title}
-                text={`ADRES: ${acf.field_icerink_description}`}
+                heading_svg={<IceSkatesIcon/>}
+                text={acf.field_icerink_description}
                 picture_url={acf.field_icerink_photo}
+                extra_description={acf.field_icerink_extra_description}
             />
 
             <OneCarouseInRow carousel={{

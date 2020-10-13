@@ -72,6 +72,7 @@ import { ReactComponent as TwoWayArrowsVerticalIcon} from "./icons/two-way-arrow
 import { ReactComponent as SmallClockIcon} from "./icons/small-clock.svg";
 import { ReactComponent as DocumentIcon} from "./icons/document.svg";
 import { ReactComponent as ManWalkingIcon } from "./icons/man-walking.svg";
+import { ReactComponent as IceSkatesIcon } from "./icons/ice-skates.svg";
 
 import herb_src from "../img/herb.png";
 const HerbIcon = () => ( <em className="ci ci-herb" style={{ backgroundImage: `url(${ herb_src })` }} /> )
@@ -95,6 +96,7 @@ export {
 	SquareIcon,
 	MapIcon,
 	CloseIcon,
+    IceSkatesIcon,
 
     TwoWayArrowsHorizontalIcon,
     TwoWayArrowsVerticalIcon,

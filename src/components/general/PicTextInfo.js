@@ -4,7 +4,7 @@ import Parser from "html-react-parser";
 import ButtonLink from "../buttons/ButtonLink";
 import "../../styles/general/pic-text-info.scss";
 
-const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path, link_label }) => (
+const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path, link_label, extra_description}) => (
 	<section className="pic-text-info">
 		<div className="container">
 			<div className="row">
@@ -21,6 +21,12 @@ const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path,
 
 					<div className="pic-text-info__text"> 
 						{ Parser(text) }
+
+                        {extra_description && (
+                            <div className='pic-text-info__extra-text'>
+                                { Parser(extra_description) }
+                            </div>
+                        )}
 
 						{ (href || path) && link_label &&
 							<ButtonLink path={path} href={href} extra_classes="white" > { link_label.toUpperCase() } </ButtonLink>
