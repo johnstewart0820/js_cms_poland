@@ -20,7 +20,7 @@ export const getMobileDeviceOS = () => {
 				: undefined;
 };
 
-export const isFunction = func => ( toString.call(func) === "[object Function]" )
+export const isFunction = func => ( toString.call(func) === "[object Function]" );
 
 export const getArticleLink = article => {
     if (!article?.slug && !article?.id)

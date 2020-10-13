@@ -24,7 +24,7 @@ const RopeRoad = ({heading, headingText, items, ...rest}) => {
                             key={index}
                             {...item}
                             {...newItem}
-                            onClickGreenButton={() => {}}
+                            article={item}
                         />
                     )
                 })}

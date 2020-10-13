@@ -64,7 +64,9 @@ export default function Card({extraClasses, ...article}) {
                     )}
 
                     <div className="card__bottom">
-                        <ButtonLink extra_classes="green" path={getArticleLink(article)}>
+                        <ButtonLink
+                            extra_classes="green"
+                            path={getArticleLink(article)}>
                             DOWIEDZ SIĘ WIĘCEJ
                         </ButtonLink>
                         <a href="#"><PlusIcon onClick={() => planerContext.add(article.id)}/></a>
