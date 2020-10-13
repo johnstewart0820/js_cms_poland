@@ -26,11 +26,6 @@ const PlanerHistory = ({totalDuration, route, generatePdfOnClick}) => {
                         {route}
                     </h3>
                 </div>
-                <div className="planer-history-button">
-                    <button
-                        className='button-link green full-width'
-                        onClick={generatePdfOnClick}>ZAPISZ TRASĘ DO PDF</button>
-                </div>
             </div>
         </div>
     )

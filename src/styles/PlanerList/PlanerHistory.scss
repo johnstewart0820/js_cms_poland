@@ -1,45 +1,50 @@
 @import "../general/colors.scss";
 
 .container {
-  .planer-history-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 50px;
-    border: 2px solid $green;
-    min-height: 200px;
-    align-items: center;
-    margin-bottom: 50px;
+    .planer-history-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 50px;
+        border: 2px solid $green;
+        min-height: 200px;
+        align-items: center;
+        margin-bottom: 50px;
 
-    .planer-history-total-counter {
-      flex-direction: column;
-      text-align: center;
-      color: $green;
-      h2 {
-        font-weight: normal;
-      }
-      h1 {
-        font-size: 50px;
-        line-height: 0;
-      }
-      hr {
-        border: 1px solid $green;
-      }
-      h3 {
-        font-weight: bold;
-      }
+        .planer-history-total-counter {
+            flex-direction: column;
+            text-align: center;
+            color: $green;
+
+            h2 {
+                font-weight: normal;
+            }
+
+            h1 {
+                font-size: 50px;
+                line-height: 0;
+            }
+
+            hr {
+                border: 1px solid $green;
+            }
+
+            h3 {
+                font-weight: bold;
+            }
+        }
     }
-  }
 
-  .planer-history {
-      max-width: 600px;
-  }
-
-  .planer-history-button {
-    button {
-      min-width: 398px;
-      max-width: 398px;
-      width: 100%;
+    .planer-history {
+        max-width: 600px;
     }
-  }
 }
+
+.planer-history-button {
+    min-width: 398px;
+    max-width: 398px;
+    width: 100%;
+    margin: auto;
+
+}
+
