@@ -104,7 +104,7 @@ const SportHomepage = props => {
                 items: tennisCourts?.contents || [],
                 heading: props.page.acf.field_tennis_courts_title,
                 path_to_all: getArticleLink(props.page.acf.field_tennis_courts_page),
-                ItemComponent: BikeRoutesCard,
+                ItemComponent: Card,
             }}/>
 
             <LinksTiles

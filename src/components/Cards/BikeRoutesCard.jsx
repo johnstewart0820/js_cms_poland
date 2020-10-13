@@ -5,44 +5,48 @@ import DefaultImage from "../../constants/DefaultImage";
 import ShareButton from "../buttons/ShareButton";
 import PlusButton from "../buttons/PlusButton";
 import BicycleIcon from "../icons/BicycleIcon";
-import DisabilityIcon from "../icons/DisabilityIcon";
 import FamilyIcon from "../icons/FamilyIcon";
 import HikingIcon from "../icons/HikingIcon";
+import moment from "moment";
 
 
-const BikeRoutesCard = ({original_image, field_playground_category, title, duration, routeDystans, routePoints}) => {
+const BikeRoutesCard = ({...article}) => {
+    let duration = moment.duration();
+    if (article.acf?.field_map_minutes) {
+        duration.add(article.acf.field_map_minutes.replace(/ .*/, ''), 'minutes');
+    }
+
     return (
         <Col>
             <div className={'card-bike'}>
-                <div className="card__thumbnail has-overlay" style={{backgroundImage: `url("${original_image || DefaultImage}")`}}>
+                <div className="card__thumbnail has-overlay" style={{backgroundImage: `url("${article.original_image || DefaultImage}")`}}>
                     <div className="card__name">
-                        {field_playground_category}
+                        {article.acf.field_playground_category}
                     </div>
                 </div>
 
                 <div className='card-header'>
                     <div className='card-header-part-one'>
                         <BicycleIcon/>
-                        <DisabilityIcon/>
                         <FamilyIcon/>
                     </div>
                     <div className='card-header-part-two'>
-                        <HikingIcon/> <p>{duration}</p>
+                        <HikingIcon/> <p>{duration.hours() + 'H' || ''}</p>
                     </div>
                 </div>
                 <div className='card__content'>
                     <div className='card__title'>
-                        {title}
+                        {article.title}
                     </div>
 
-                    <div className='columns'>
-                        <div className='routes-name'>
-                            <p>{routePoints || ''}</p>
-                        </div>
-                        <div className='route-dystans'>
-                            <p>{routeDystans || ''}</p>
-                        </div>
-                    </div>
+                    {/*<div className='columns'>*/}
+                    {/*    <div className='routes-name'>*/}
+                    {/*        <p>{routePoints || ''}</p>*/}
+                    {/*    </div>*/}
+                    {/*    <div className='route-dystans'>*/}
+                    {/*        <p>{routeDystans || ''}</p>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div className='bottom-buttons'>
                         <PlusButton/>
                         <ShareButton/>

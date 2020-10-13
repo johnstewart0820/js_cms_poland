@@ -71,14 +71,41 @@
     }
   }
 
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+        .card-header-part-one {
+            display: flex;
+            flex-basis: 85%;
+            svg {
+                margin-left: 15px;
+            }
+        }
+
+        .card-header-part-two {
+            display: flex;
+            flex-direction: row;
+            svg {
+                margin-right: 10px;
+            }
+            p {
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+    }
+
   .card__content {
-    padding: 20px;
+  padding-top: 15px;
+    padding-left: 20px;
     color: $gray;
     .card__title {
       letter-spacing: 0;
       margin-bottom: 18px;
       text-transform: capitalize;
         font-weight: bold;
+        font-size: 18px;
     }
       .fields-with-icons {
           display: flex;
