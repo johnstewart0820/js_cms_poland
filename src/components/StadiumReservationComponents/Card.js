@@ -8,6 +8,7 @@ import Col from "../helpers/Col";
 import PlanerContext from "../../constants/PlanerContext";
 import DefaultImage from "../../constants/DefaultImage";
 import {getArticleLink} from "../../extra/functions";
+import PlusButton from "../buttons/PlusButton";
 
 export default function Card({extraClasses, ...article}) {
     const planerContext = React.useContext(PlanerContext);
@@ -69,7 +70,10 @@ export default function Card({extraClasses, ...article}) {
                             path={getArticleLink(article)}>
                             DOWIEDZ SIĘ WIĘCEJ
                         </ButtonLink>
-                        <a href="#"><PlusIcon onClick={() => planerContext.add(article.id)}/></a>
+                        <PlusButton
+                            extraClasses={'plus-button-card'}
+                            onClick={() => planerContext.add(article.id)}
+                        />
                         <ShareButton link_for_sharing={window.location.origin + getArticleLink(article)}/>
                     </div>
                 </div>

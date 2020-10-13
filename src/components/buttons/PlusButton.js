@@ -4,7 +4,7 @@ import {PlusIcon} from '../../svg/icons';
 import '../../styles/buttons/plus-button.scss';
 
 const PlusButton = props => (
-    <div className="plus-button">
+    <div className={`plus-button ${props.extraClasses}`}>
         <button onClick={props.onClick}>
             <PlusIcon/>
             <span className="d-none">add</span>

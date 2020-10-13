@@ -161,6 +161,10 @@
   .card__bottom {
     @include flex-a-center;
 
+    .plus-button-card {
+        margin-left: 10px;
+    }
+
     .button-link{
       max-width: 239px;
     }

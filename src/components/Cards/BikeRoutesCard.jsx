@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../../styles/Cards/BikeRoutesCard.scss';
 import Col from "../helpers/Col";
 import DefaultImage from "../../constants/DefaultImage";
@@ -8,9 +8,11 @@ import {BicycleIcon, BicycleIconRed, BicycleIconYellow} from "../../svg/icons";
 import moment from "moment";
 import FamilyIcon from "../icons/FamilyIcon";
 import HikingIcon from "../icons/HikingIcon";
+import PlanerContext from "../../constants/PlanerContext";
 
 
 const BikeRoutesCard = ({...article}) => {
+    const planerContext = useContext(PlanerContext);
     let duration = moment.duration();
     if (article.acf?.field_map_minutes) {
         duration.add(article.acf.field_map_minutes.replace(/ .*/, ''), 'minutes');
@@ -54,7 +56,7 @@ const BikeRoutesCard = ({...article}) => {
                     {/*    </div>*/}
                     {/*</div>*/}
                     <div className='bottom-buttons'>
-                        <PlusButton/>
+                        <PlusButton onClick={() => planerContext.add(article.id)}/>
                         <ShareButton/>
                     </div>
                 </div>
