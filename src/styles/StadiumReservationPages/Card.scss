@@ -3,8 +3,8 @@
 
 .card {
   min-height: 300px;
-  min-width: 340px;
-  max-width: 340px;
+  min-width: 400px;
+  max-width: 400px;
   margin: 15px;
 
   &:hover{
@@ -71,14 +71,41 @@
     }
   }
 
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+        .card-header-part-one {
+            display: flex;
+            flex-basis: 85%;
+            svg {
+                margin-left: 15px;
+            }
+        }
+
+        .card-header-part-two {
+            display: flex;
+            flex-direction: row;
+            svg {
+                margin-right: 10px;
+            }
+            p {
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+    }
+
   .card__content {
-    padding: 20px;
+  padding-top: 15px;
+    padding-left: 20px;
     color: $gray;
     .card__title {
       letter-spacing: 0;
       margin-bottom: 18px;
       text-transform: capitalize;
         font-weight: bold;
+        font-size: 18px;
     }
       .fields-with-icons {
           display: flex;
@@ -89,10 +116,10 @@
           .icons {
               display: flex;
               flex-direction: column;
-              flex-basis: 12%;
+              flex-basis: 10%;
               svg {
-                  width: 20px;
-                  margin-top: 20px;
+                  width: 17px;
+                  margin-top: 11px;
               }
           }
 
@@ -101,8 +128,8 @@
               flex-direction: column;
 
               a {
-                  height: 33px;
-                  font-size: 17px;
+                  height: 22px;
+                  font-size: 15px;
                   text-decoration: none;
                   color: $gray;
                   cursor: pointer;
@@ -134,20 +161,6 @@
   .card__bottom {
     @include flex-a-center;
 
-    .send__button {
-      height: 57px;
-      width: 65px;
-      margin-left: 20px;
-      border: none;
-      background: white;
-      cursor: pointer;
-      transition: 1s;
-        border-radius: 5px;
-        &:hover {
-            background: #d6d6d6;
-        }
-    }
-
     .button-link{
       max-width: 239px;
     }
@@ -168,7 +181,7 @@
     }
 
     .button-link + a{
-      margin-left: 10px;
+      margin-left: 35px;
     }
   }
 }

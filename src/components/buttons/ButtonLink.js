@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
-import { isFunction } from "../../extra/functions";
+import {isFunction} from "../../extra/functions";
 
 import "../../styles/buttons/button-link.scss";
+import SelectiveLink from "../../extra/SelectiveLink";
 
 const ButtonLink = ({ children, path, href = "#", target, extra_classes, onClick }) => (
 	children 
 	? path
 		? (
-			<Link to={ path } className={ `button-link ${ extra_classes || "" }` }> 
-				{ children }
-			</Link>
-		)
+            <SelectiveLink to={path} className={`button-link ${extra_classes || ""}`}>
+                {children}
+            </SelectiveLink>
+        )
 		: (
 			<a 
 				href={ href }

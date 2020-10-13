@@ -42,7 +42,6 @@ const PlanerListPage = () => {
         }
     }, [planerContext.data.length]);
 
-
     React.useEffect(() => {
         planerContext.setVisible(false);
     }, []);
@@ -54,12 +53,9 @@ const PlanerListPage = () => {
             route = route.filter((name, pos) => route.indexOf(name) == pos)
         })
         return route.join(' / ');
-
     }, [planerContext.data.length]);
 
-
     const scrollToMap = () => window.scrollTo(0, document.body.scrollHeight);
-
 
     return (
         <>
@@ -83,11 +79,11 @@ const PlanerListPage = () => {
                                 });
                             }
 
-                            if (item.categories !== undefined)
-                                categoryName = item.categories[0].name;
+                        if (item.categories !== undefined)
+                            categoryName = item.categories[0].name;
 
-                            if (typeof item.acf?.field_map_minutes === 'string')
-                                minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
+                        if (typeof item.acf?.field_map_minutes === 'string')
+                            minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
 
                             return (
                                 <PlanerItem
@@ -109,10 +105,11 @@ const PlanerListPage = () => {
                     <PlanerHistory
                         route={totalRoute}
                         totalDuration={totalDuration}
+                        generatePdfOnClick={generatePdf}
                     />
                 )}
             </div>
-            {loading&& !isEmpty&&
+            { !isEmpty&&
             <div className="planer-history-button">
                 <button
                     className='button-link green full-width'

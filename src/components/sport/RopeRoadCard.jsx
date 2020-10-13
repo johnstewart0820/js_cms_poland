@@ -7,8 +7,10 @@ import {
     TwoWayArrowsHorizontalIcon,
     TwoWayArrowsVerticalIcon,
 } from '../../svg/icons';
+import ButtonLink from "../buttons/ButtonLink";
+import {getArticleLink} from "../../extra/functions";
 
-const RopeRoadCard = ({title, roadName, field_map_address, original_image, onClickGreenButton, field_lift_length, field_lift_elevation, field_lift_capacity, field_lift_time, rules}) => {
+const RopeRoadCard = ({title, roadName, field_map_address, original_image, article, field_lift_length, field_lift_elevation, field_lift_capacity, field_lift_time, rules}) => {
     return (
         <div className='rope-road-card'>
             <div className='rope-road-header'>
@@ -46,12 +48,12 @@ const RopeRoadCard = ({title, roadName, field_map_address, original_image, onCli
                         </p>
                     </div>
                 </div>
-                <button
-                    className='button-link green full-width'
-                    onClick={onClickGreenButton}
+                <ButtonLink
+                    extra_classes="green rope-road-button"
+                    path={getArticleLink(article)}
                 >
-                    DOWIEDZ SIE WIĘCEJ
-                </button>
+                    DOWIEDZ SIĘ WIĘCEJ
+                </ButtonLink>
             </div>
         </div>
     )

@@ -1,0 +1,118 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.card-bike {
+    min-height: 300px;
+    min-width: 400px;
+    max-width: 340px;
+    margin: 15px;
+
+    &:hover{
+        .card__thumbnail::before{
+            opacity: .78;
+        }
+    }
+
+    .share-button-list{
+        display: block;
+
+        button{
+            margin: 4px 0;
+            transition: 0.5s;
+
+            &:hover {
+                background-color: #b7b7b7;
+            }
+        }
+    }
+
+    .card__thumbnail {
+        height: 221px;
+        display: flex;
+
+        .card__name {
+            position: relative;
+            color: #fff;
+            letter-spacing: 2.3px;
+            padding: 10px 30px;
+            margin-top: auto;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px #000;
+        }
+
+        &::before{
+            opacity: 0;
+            transition: opacity .5s;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
+        }
+    }
+
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+        .card-header-part-one {
+            display: flex;
+            flex-basis: 85%;
+            svg {
+                margin-left: 15px;
+            }
+        }
+
+        .card-header-part-two {
+            display: flex;
+            flex-direction: row;
+            svg {
+                margin-right: 10px;
+            }
+            p {
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .card__content {
+        padding-left: 20px;
+        color: $gray;
+        .card__title {
+            letter-spacing: 0;
+            margin-bottom: 18px;
+            text-transform: capitalize;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    }
+
+    .columns {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        margin-bottom: 30px;
+        .routes-name {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 85%;
+            p {
+                height: 3px;
+            }
+        }
+
+        .route-dystans {
+            display: flex;
+            flex-direction: column;
+            p {
+                font-size: 18px;
+                font-weight: bold;
+                height: 3px;
+            }
+        }
+    }
+
+    .bottom-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}

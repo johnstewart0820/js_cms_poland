@@ -9,9 +9,10 @@
     .rope-road-address {
         .rope-address-container {
             p {
-                opacity: 0.5;
                 font-weight: normal;
-                font-size: 18px;
+                display: block;
+                color: rgba( 61, 85, 104, .24);
+                margin: 40px 0px 10px 0px;
             }
             h3 {
                 font-size: 16px;
@@ -56,11 +57,12 @@
                     font-weight: bold;
                     color: white;
                     font-size: 18px;
+                    text-shadow: 1px 1px 3px rgb(69, 69, 69);
                 }
             }
         }
 
-        button {
+        .rope-road-button {
             cursor: pointer;
             width: 100%;
         }

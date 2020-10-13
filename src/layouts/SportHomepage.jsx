@@ -6,94 +6,67 @@ import {getArticleLink} from "../extra/functions";
 import LoopEventsPost from "../components/events/LoopEventsPost";
 import LoopNewsPost from "../components/news/LoopNewsPost";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
-import {API} from "../extra/API";
-import RowWithCards from "../components/sport/RowWithCards";
 import RopeRoad from "../components/sport/RopeRoad";
 import PicTextInfo from "../components/general/PicTextInfo";
 import LinksTiles from "../components/general/LinksTiles";
+import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
+import Card from "../components/StadiumReservationComponents/Card";
+import useEntities from "../hooks/useEntities";
+import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
+import BikeRoutesCard from "../components/Cards/BikeRoutesCard";
+import {
+    IceSkatesIcon,
 
-const items = [
-    {
-        title: 'Lol',
-        address: '43-540 Test lol',
-        number: '743823',
-        email: 'georgetest@gmail.com',
-        site: 'www.test.com'
-    },
-    {
-        title: 'Test',
-        address: '43-540 Test lol',
-        number: '743823',
-        email: 'georgetest@gmail.com',
-        site: 'www.test.com'
-    },
-    {
-        title: 'Kek',
-        address: '43-540 Test lol',
-        number: '743823',
-        email: 'georgetest@gmail.com',
-        site: 'www.test.com'
-    },
-    {
-        title: 'Nice',
-        address: '43-540 Test lol',
-        number: '743823',
-        email: 'georgetest@gmail.com',
-        site: 'www.test.com'
-    },
-];
+} from '../svg/icons';
 
 const SportHomepage = props => {
     const acf = props.page.acf;
-    const [items1, setItems1] = React.useState(false);
-    const [items2, setItems2] = React.useState(false);
-    const [courts, setCourts] = React.useState([]);
-    const [cableWays, setCableWays] = React.useState([]);
-    const [activities, setActivities] = React.useState([]);
-
-    React.useEffect(() => {
-        API.getByConfig(acf.field_information_modules_sport[0]).then(res => setItems1(res.data.contents));
-        API.getByConfig(acf.field_information_modules_sport[1]).then(res => setItems2(res.data.contents));
-        API.getEntities({categories: acf.field_sports_ground_categories[0]}).then(res => setCourts(res.data.contents));
-        API.getEntities({categories: acf.field_cableways_categories[0]}).then(res => setCableWays(res.data.contents));
-    },[]);
+    const [items1, items1Loading] = useEntitiesByConfig(props.page.acf.field_information_modules_sport[0]);
+    const [items2, items2Loading] = useEntitiesByConfig(props.page.acf.field_information_modules_sport[1]);
+    const [cableWays, cableWaysLoading] = useEntities(props.page.acf.field_cableways_categories);
+    const [activities, activitiesLoading] = useEntities(props.page.acf.field_active_categories);
+    const [courts, courtsLoading] = useEntities(props.page.acf.field_sports_ground_categories);
+    const [bikeTrails, bikeTrailsLoading] = useEntities(props.page.acf.field_bike_trails_categories);
+    const [tennisCourts, tennisCourtsLoading] = useEntities(props.page.acf.field_tennis_courts_categories);
 
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl "}]} />
-                <PageHeaderOrSlider page={props.page} />
+                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl "}]}/>
+                <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
             <TwoCarouselsOneRow
                 first_carousel={{
-                    loading: items1 === false,
+                    loading: items1Loading,
                     path_to_all: getArticleLink(acf.field_information_modules_sport[0].field_section_watch_all_entity),
                     heading: acf.field_information_modules_sport[0].field_section_title_visit,
                     component: LoopEventsPost,
-                    items: items1 || [],
+                    items: items1?.contents || [],
                 }}
                 second_carousel={{
-                    loading: items2 === false,
+                    loading: items2Loading,
                     path_to_all: getArticleLink(acf.field_information_modules_sport[1].field_section_watch_all_entity),
                     heading: acf.field_information_modules_sport[1].field_section_title_visit,
                     component: LoopNewsPost,
-                    items: items2 || [],
+                    items: items2?.contents || [],
                 }}
             />
 
-            <RowWithCards
-                items={courts}
-                containerTitle={acf.field_sports_ground_title}
-                linkToAll={getArticleLink(props.page.acf.field_sports_ground_page)}
-                headingLinkText={'ZOBACZ WSZYSTKIE'}
-            />
+            <OneCarouseInRow carousel={{
+                loading: courtsLoading,
+                extra_classes: 'no-arrows',
+                items: courts?.contents || [],
+                heading: props.page.acf.field_sports_ground_title,
+                path_to_all: getArticleLink(props.page.acf.field_sports_ground_page),
+                ItemComponent: Card,
+            }}/>
 
-            {cableWays.length > 0 && (
+            {!cableWaysLoading && cableWays?.contents?.length && (
                 <RopeRoad
                     heading={acf.field_cableways_title}
                     headingText={acf.field_cableways_description}
-                    items={cableWays}
+                    items={cableWays.contents}
                 />
             )}
 
@@ -101,17 +74,45 @@ const SportHomepage = props => {
                 href={acf.field_icerink_button_link || '#'}
                 link_label={acf.field_icerink_button_title}
                 heading={acf.field_icerink_title}
-                text={`ADRES: ${acf.field_icerink_description}`}
+                heading_svg={<IceSkatesIcon/>}
+                text={acf.field_icerink_description}
                 picture_url={acf.field_icerink_photo}
+                extra_description={acf.field_icerink_extra_description}
             />
 
-            <RowWithCards
+            <OneCarouseInRow carousel={{
+                loading: activitiesLoading,
+                extra_classes: 'no-arrows',
+                items: activities?.contents || [],
+                heading: props.page.acf.field_active_title,
+                path_to_all: getArticleLink(props.page.acf.field_active_page),
+                ItemComponent: Card,
+            }}/>
 
-            />
+            <OneCarouseInRow carousel={{
+                loading: bikeTrailsLoading,
+                extra_classes: 'no-arrows',
+                items: bikeTrails?.contents || [],
+                heading: props.page.acf.field_bike_trails_title,
+                path_to_all: getArticleLink(props.page.acf.field_bike_trails_page),
+                ItemComponent: BikeRoutesCard,
+            }}/>
+
+            <OneCarouseInRow carousel={{
+                loading: tennisCourtsLoading,
+                extra_classes: 'no-arrows',
+                items: tennisCourts?.contents || [],
+                heading: props.page.acf.field_tennis_courts_title,
+                path_to_all: getArticleLink(props.page.acf.field_tennis_courts_page),
+                ItemComponent: Card,
+            }}/>
 
             <LinksTiles
                 heading={acf.field_practical_information_title}
-                links={acf.field_practical_information.map(item => ({href: item.field_information_link || '', label: item.field_information_description}))}
+                links={acf.field_practical_information.map(item => ({
+                    href: item.field_information_link || '',
+                    label: item.field_information_description,
+                }))}
             />
         </>
     )

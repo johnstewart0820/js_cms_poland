@@ -19,6 +19,7 @@ import {
     TwoMarkersIcon,
 } from "../../../svg/icons";
 import {API_URL} from "../../../extra/API";
+import GameCard from "../../../components/Cards/GameCard";
 
 
 const items = [
@@ -165,7 +166,7 @@ const GameCardsPage = () => {
                 <Row>
                     {games?.map((game, index) => {
                         return (
-                            <Card
+                            <GameCard
                                 key={index}
                                 name={game.categories[0].name}
                                 extraClasses={'game-card'}

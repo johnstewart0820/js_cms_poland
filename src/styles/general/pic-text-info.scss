@@ -24,16 +24,24 @@
 	@include flex-a-center;
 	margin-bottom: 28px;
 
-	.heading{
-		margin-bottom: 0;
-		max-width: 260px;
-	}
+    svg {
+        margin-right: 10px;
+    }
+
+    .heading{
+        margin-bottom: 0;
+        max-width: 260px;
+    }
 }
 
 
 .pic-text-info__text{
 	@include flex-wrap;
-	margin: 0 -15px;
+
+    .pic-text-info__extra-text {
+        display: flex;
+        justify-content: flex-end;
+    }
 
 	> div {
 		flex: auto;
