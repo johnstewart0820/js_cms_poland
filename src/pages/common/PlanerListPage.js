@@ -62,44 +62,50 @@ const PlanerListPage = () => {
             <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {label: " Planer",}]}/>
             <div id='planer' ref={ref}>
                 {loading && <Loader/>}
-                {isEmpty ? <EmptyList
-                        className={'empty-list-comunicate'}
-                        children={"Planer podróży jest pusty. Dodaj coś do planera, korzystając z wyszukiwarki na górze strony"}/> :
-                    <PlanerListContainer title={'PLANER PODROZY'}>
+                {isEmpty
+                    ? (
+                        <EmptyList
+                            className={'empty-list-comunicate'}
+                            children={"Planer podróży jest pusty. Dodaj coś do planera, korzystając z wyszukiwarki na górze strony"}
+                        />
+                    ) : (
+                        <PlanerListContainer title={'PLANER PODROZY'}>
 
-                        {planerContext?.data?.map((item, index) => {
-                            let categoryName = '';
-                            let minutes = '';
-                            let gps = [];
-                            if (!!gps) {
-                                gps = item.acf.field_map_gps.split(';');
-                                coords.push({
-                                    lat: gps[0],
-                                    lng: gps[1],
-                                });
-                            }
+                            {planerContext?.data?.map((item, index) => {
+                                let categoryName = '';
+                                let minutes = '';
+                                let gps = [];
 
-                        if (item.categories !== undefined)
-                            categoryName = item.categories[0].name;
+                                if (item.acf.field_map_gps != undefined) {
+                                    gps = item.acf.field_map_gps.split(';');
+                                    coords.push({
+                                        lat: gps[0],
+                                        lng: gps[1],
+                                    });
+                                }
 
-                        if (typeof item.acf?.field_map_minutes === 'string')
-                            minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
+                                if (item.categories !== undefined)
+                                    categoryName = item.categories[0].name;
 
-                            return (
-                                <PlanerItem
-                                    key={index}
-                                    acf={item.acf}
-                                    duration={minutes || false}
-                                    description={item.title}
-                                    step={index + 1}
-                                    imageSrc={item.original_image || require('../../img/errorImage.png')}
-                                    category={categoryName || 'N/A'}
-                                    deleteOnClick={() => planerContext.delete(index)}
-                                    onMapCheck={() => scrollToMap()}
-                                />
-                            )
-                        })}
-                    </PlanerListContainer>}
+                                if (typeof item.acf?.field_map_minutes === 'string')
+                                    minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
+
+                                return (
+                                    <PlanerItem
+                                        key={index}
+                                        acf={item.acf}
+                                        duration={minutes || false}
+                                        description={item.title}
+                                        step={index + 1}
+                                        imageSrc={item.original_image || require('../../img/errorImage.png')}
+                                        category={categoryName || 'N/A'}
+                                        deleteOnClick={() => planerContext.delete(index)}
+                                        onMapCheck={() => scrollToMap()}
+                                    />
+                                )
+                            })}
+                        </PlanerListContainer>
+                    )}
 
                 {!!totalRoute && !!totalDuration && !isEmpty && (
                     <PlanerHistory
@@ -109,19 +115,22 @@ const PlanerListPage = () => {
                     />
                 )}
             </div>
-            { !isEmpty&&
-            <div className="planer-history-button">
-                <button
-                    className='button-link green full-width'
-                    onClick={generatePdf}>ZAPISZ TRASĘ DO PDF
-                </button>
-            </div>
+
+            {!isEmpty &&
+                <div className="planer-history-button">
+                    <button
+                        className='button-link green full-width'
+                        onClick={generatePdf}
+                    >
+                        ZAPISZ TRASĘ DO PDF
+                    </button>
+                </div>
             }
 
             {coords && !!coords.length &&
-            <div style={{position: "relative", height: "500px"}}>
-                <GoogleMap markers={coords}/>
-            </div>
+                <div style={{position: "relative", height: "500px"}}>
+                    <GoogleMap markers={coords}/>
+                </div>
             }
         </>
     )
