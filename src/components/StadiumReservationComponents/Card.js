@@ -14,7 +14,7 @@ export default function Card({extraClasses, ...article}) {
 
     return (
         <Col>
-            <div className={`card ${extraClasses ? extraClasses : ''}`}>
+            <div className={`card ${extraClasses || ''}`}>
                 <div
                     className="card__thumbnail has-overlay"
                     style={{backgroundImage: `url("${article.image || DefaultImage}")`}}

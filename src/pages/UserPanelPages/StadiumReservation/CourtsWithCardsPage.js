@@ -43,7 +43,6 @@ const CourtsWithCardsPage = () => {
         >
             <Row>
                 {data.map((item, index) => {
-                    console.log(item)
                     let newItem = item.acf;
                     return (
                         <Card
