@@ -89,49 +89,57 @@ const PlanerListPage = () => {
                 create pdf
             </button>
             <div id='planer' ref={ref} style={{width: '100%', height: '100%'}}>
-                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {
-                    label: " Jak dojechać",
-                    to: "/",
-                }, {label: 'Wynik'}]}/>
+                <Breadcrumbs
+                    breadcrumbs={[
+                        {label: "Visit.ustron.pl", to: "/"},
+                        {label: " Jak dojechać", to: "/",},
+                        {label: 'Wynik'}
+                ]}/>
 
                 <PlanerListContainer title={'PLANER PODROZY'}>
-                    {isEmpty?
-                        <EmptyList
-                            className={'empty-list-comunicate'}
-                            children={"Planer podróży jest pusty. Dodaj coś do planera, korzystając z wyszukiwarki na gorze stron"}/>
-                        :<div>
-                    {planerContext?.data?.map((item, index) => {
-                        let categoryName = '';
-                        let minutes = '';
-                        let gps = '';
-
-                        if (!!gps) {
-                            gps = item.acf.field_map_gps.split(';');
-                            coords.push({
-                                lat: gps[0],
-                                lng: gps[1],
-                            });
-                        }
-
-                        if (item.categories !== undefined)
-                            categoryName = item.categories[0].name;
-
-                        if (typeof item.acf?.field_map_minutes === 'string')
-                            minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
-
-                        return (
-                            <PlanerItem
-                                key={index}
-                                duration={minutes || false}
-                                description={item.title}
-                                step={index + 1}
-                                imageSrc={item.original_image || require('../../img/errorImage.png')}
-                                category={categoryName || 'N/A'}
-                                deleteOnClick={() => planerContext.delete(index)}
-                                onMapCheck={scrollToMap}
+                    {isEmpty
+                        ? (
+                            <EmptyList
+                                className={'empty-list-comunicate'}
+                                children={"Planer podróży jest pusty. Dodaj coś do planera, korzystając z wyszukiwarki na gorze stron"}
                             />
+                        ) : (
+                            <>
+                                {planerContext?.data?.map((item, index) => {
+                                    let categoryName = '';
+                                    let minutes = '';
+                                    let gps = '';
+
+                                    if (!!gps) {
+                                        gps = item.acf.field_map_gps.split(';');
+                                        coords.push({
+                                            lat: gps[0],
+                                            lng: gps[1],
+                                        });
+                                    }
+
+                                    if (item.categories !== undefined)
+                                        categoryName = item.categories[0].name;
+
+                                    if (typeof item.acf?.field_map_minutes === 'string')
+                                        minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
+
+                                    return (
+                                        <PlanerItem
+                                            key={index}
+                                            duration={minutes || false}
+                                            description={item.title}
+                                            step={index + 1}
+                                            imageSrc={item.original_image || require('../../img/errorImage.png')}
+                                            category={categoryName || 'N/A'}
+                                            deleteOnClick={() => planerContext.delete(index)}
+                                            onMapCheck={scrollToMap}
+                                        />
+                                    )
+                                })}
+                            </>
                         )
-                    })}</div>}
+                    }
                 </PlanerListContainer>
 
                 {!!totalRoute && !!totalDuration && (
@@ -143,9 +151,9 @@ const PlanerListPage = () => {
                 )}
 
                 {coords && !!coords.length &&
-                <div style={{position: "relative", height: "500px"}}>
-                    <GoogleMap markers={coords}/>
-                </div>
+                    <div style={{position: "relative", height: "500px"}}>
+                        <GoogleMap markers={coords}/>
+                    </div>
                 }
 
             </div>
