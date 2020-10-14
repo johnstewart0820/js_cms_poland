@@ -18,6 +18,7 @@ import {
     IceSkatesIcon,
 
 } from '../svg/icons';
+import LoopCard from "../components/loop/LoopCard";
 
 const SportHomepage = props => {
     const acf = props.page.acf;
@@ -41,14 +42,14 @@ const SportHomepage = props => {
                     loading: items1Loading,
                     path_to_all: getArticleLink(acf.field_information_modules_sport[0].field_section_watch_all_entity),
                     heading: acf.field_information_modules_sport[0].field_section_title_visit,
-                    component: LoopEventsPost,
+                    component: LoopCard,
                     items: items1?.contents || [],
                 }}
                 second_carousel={{
                     loading: items2Loading,
                     path_to_all: getArticleLink(acf.field_information_modules_sport[1].field_section_watch_all_entity),
-                    heading: acf.field_information_modules_sport[1]. field_section_title_visit,
-                    component: LoopNewsPost,
+                    heading: acf.field_information_modules_sport[1].field_section_title_visit,
+                    component: LoopCard,
                     items: items2?.contents || [],
                 }}
             />
