@@ -23,6 +23,7 @@ import SportRopeRoads from "../layouts/SportRopeRoads";
 import SportCourts from "../layouts/SportCourts";
 import SportActivities from "../layouts/SportActivities";
 import SportTenisCourts from "../layouts/SportTenisCourts";
+import SportBikesPage from "../layouts/SportBikesPage";
 
 export default {
     main_homepage: MainHomepage,
@@ -51,4 +52,5 @@ export default {
     sport_courts: SportCourts,
     sport_activities: SportActivities,
     sport_tenis_courts: SportTenisCourts,
+    sport_bikes: SportBikesPage,
 };
