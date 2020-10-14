@@ -22,7 +22,6 @@ export default function MainPage(props) {
     const [items4, setItems4] = React.useState(false);
 
     React.useEffect(() => {
-        console.log(acf.field_information_modules_visit)
         API.getByConfig(acf.field_information_modules_visit[0]).then(res => setItems1(res.data.contents));
         API.getByConfig(acf.field_information_modules_visit[1]).then(res => setItems2(res.data.contents));
         API.getByConfig(acf.field_visit_homepage_second_information_modules[0]).then(res => setItems3(res.data.contents));
