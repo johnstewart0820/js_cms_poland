@@ -10,13 +10,12 @@ import {
 import ButtonLink from "../buttons/ButtonLink";
 import {getArticleLink} from "../../extra/functions";
 
-const RopeRoadCard = ({...article}) => {
-    console.log(article, 'ropeRoad')
+const RopeRoadCard = ({roadType, ...article}) => {
     return (
         <div className='rope-road-card'>
             <div className='rope-road-header'>
                 <h3>{article.title && article.title.toUpperCase()}</h3>
-                <p></p>
+                <p>{roadType}</p>
             </div>
             <div className='rope-road-address'>
                 <div className='rope-address-container'>
