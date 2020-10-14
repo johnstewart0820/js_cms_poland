@@ -47,7 +47,7 @@ const SportHomepage = props => {
                 second_carousel={{
                     loading: items2Loading,
                     path_to_all: getArticleLink(acf.field_information_modules_sport[1].field_section_watch_all_entity),
-                    heading: acf.field_information_modules_sport[1].field_section_title_visit,
+                    heading: acf.field_information_modules_sport[1]. field_section_title_visit,
                     component: LoopNewsPost,
                     items: items2?.contents || [],
                 }}
