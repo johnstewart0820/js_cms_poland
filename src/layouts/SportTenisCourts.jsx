@@ -31,7 +31,7 @@ const SportTenisCourts = (props) => {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl "}]}/>
+                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl ", to: '/'}, {label: "Korty tenisowe "}]}/>
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
