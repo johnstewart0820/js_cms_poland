@@ -138,7 +138,7 @@ export default class Carousel extends Component{
 		const { heading, extra_classes, ItemComponent, path_to_all, link_to_all, bodyStyles , containerStyles} = this.props;
 		const { items, wrap_left, transition } = this.state;
 
-		if( !items || !items.length || !ItemComponent ) return null;
+		if( !items || !ItemComponent ) return null;
 
 		const wrap_styles = {
 			transition: transition ? "left .6s" : "",
@@ -150,7 +150,7 @@ export default class Carousel extends Component{
 
 					<div className="carousel__head">
 						<SectionHeading heading={ heading } />
-						<LinkToAll path={ path_to_all } href={ link_to_all }  />
+						<LinkToAll path={ path_to_all } href={ link_to_all } />
 					</div>
 
 					<div className="carousel__body" style={ bodyStyles }>
@@ -158,7 +158,7 @@ export default class Carousel extends Component{
 							<Arrows onClick={ this.moveItems } /> 
 						}
 
-						{ items && items.length < this.min_slides &&	<div className="carousel__arrows-placeholder"/> }
+						{ items && items.length < this.min_slides && <div className="carousel__arrows-placeholder"/> }
 
 						<div 
 							className="carousel__overflow" 
@@ -166,14 +166,19 @@ export default class Carousel extends Component{
 							onTouchEnd={ this.slideOnTouchEnd } 
 						> 
 							<div ref={ el => this.carousel_wrap = el } className="carousel__wrap" style={ wrap_styles }>
-								{ items && !!items.length &&
-									items.map(( item, index ) => (
-										<ItemComponent key={ index } {...item } />
-									))
+								{ items && items.length >= 1
+                                    ? (
+                                        items.map(( item, index ) => (
+                                            <ItemComponent key={ index } {...item } />
+                                        ))
+                                    ) : (
+                                        <h2 style={{display: 'flex', textAlign: 'center'}}>
+                                            Brak treści dla podanych kryteriów
+                                        </h2>
+                                    )
 								}
 							</div>
 						</div>
-
 					</div>
 			  </div>
 		)

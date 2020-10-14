@@ -6,19 +6,17 @@ import Loader from "../general/Loader";
 
 import "../../styles/carousel/two-carousels-one-row.scss";
 
-const loader_style = { minHeight: "600px" };
-
 const CarouselItem = ({ loading, items, heading, path_to_all, component }) => (
 	<div>
-		{ loading && <Loader style={ loader_style } /> }
+        {loading && <Loader style={{minHeight: "600px"}}/>}
 
-		{ !loading && items && !!items.length &&  
-			<Carousel
-				heading={ heading }
-				path_to_all={ path_to_all }
-				items={ items }
-				ItemComponent={ component }
-			/>
+		{!loading && items && items.length >= 0 &&
+            <Carousel
+                heading={ heading }
+                path_to_all={ path_to_all }
+                items={ items }
+                ItemComponent={ component }
+            />
 		}
 	</div>
 )
@@ -27,10 +25,8 @@ const TwoCarouselsOneRow = ({ first_carousel, second_carousel }) => (
 	( first_carousel && second_carousel )
 	? (
 		<section className="two-carousels-one-row">
-			
 			<CarouselItem { ...first_carousel } />
 			<CarouselItem { ...second_carousel } />
-
 		</section>
 	) : null
 )
