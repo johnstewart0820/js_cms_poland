@@ -21,13 +21,12 @@ import TourismSpa from "../layouts/TourismSpa";
 import SportHomepage from "../layouts/SportHomepage";
 import SportRopeRoads from "../layouts/SportRopeRoads";
 import SportCourts from "../layouts/SportCourts";
+import SportActivities from "../layouts/SportActivities";
+import SportTenisCourts from "../layouts/SportTenisCourts";
 
 export default {
     main_homepage: MainHomepage,
     tourism_homepage: TourismHomepage,
-    sport_homepage: SportHomepage,
-    sport_paths: SportRopeRoads,
-    sport_courts: SportCourts,
     tourism_news: TourismNews,
     tourism_events: EventsPage,
     news_single: NewsSingle,
@@ -46,4 +45,10 @@ export default {
     default_single: DefaultSingle,
     courts_single: CourtSingle,
     communication_page: CommunicationPage,
+    // Sport pages
+    sport_homepage: SportHomepage,
+    sport_paths: SportRopeRoads,
+    sport_courts: SportCourts,
+    sport_activities: SportActivities,
+    sport_tenis_courts: SportTenisCourts,
 };
