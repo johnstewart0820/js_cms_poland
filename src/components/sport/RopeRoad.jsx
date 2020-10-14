@@ -3,7 +3,7 @@ import SectionHeading from "../general/SectionHeading";
 import RopeRoadCard from "./RopeRoadCard";
 import '../../styles/sport/RopeRoad.scss';
 
-const RopeRoad = ({heading, headingText, items, ...rest}) => {
+const RopeRoad = ({heading, headingText, items}) => {
     return (
         <div className='rope-road-row'>
             <div className='rope-road-head'>

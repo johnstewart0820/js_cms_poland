@@ -10,41 +10,42 @@ import {
 import ButtonLink from "../buttons/ButtonLink";
 import {getArticleLink} from "../../extra/functions";
 
-const RopeRoadCard = ({title, roadName, field_map_address, original_image, article, field_lift_length, field_lift_elevation, field_lift_capacity, field_lift_time, rules}) => {
+const RopeRoadCard = ({...article}) => {
+    console.log(article, 'ropeRoad')
     return (
         <div className='rope-road-card'>
             <div className='rope-road-header'>
-                <h3>{title && title.toUpperCase()}</h3>
-                <p>{roadName}</p>
+                <h3>{article.title && article.title.toUpperCase()}</h3>
+                <p></p>
             </div>
             <div className='rope-road-address'>
                 <div className='rope-address-container'>
                     <p>ADRES</p>
-                    <h3>{field_map_address && field_map_address.toUpperCase()}</h3>
+                    <h3>{article.acf.field_map_address && article.acf.field_map_address.toUpperCase()}</h3>
                 </div>
             </div>
             <div className='rope-road-description'>
                 <div className='rope-road-images'>
-                    {field_lift_length && <TwoWayArrowsHorizontalIcon/>}
-                    {field_lift_elevation && <TwoWayArrowsVerticalIcon/>}
-                    {field_lift_capacity && <ManWalkingIcon/>}
-                    {field_lift_time && <SmallClockIcon/>}
-                    {rules && <DocumentIcon/>}
+                    {article.acf.field_lift_length && <TwoWayArrowsHorizontalIcon/>}
+                    {article.acf.field_lift_elevation && <TwoWayArrowsVerticalIcon/>}
+                    {article.acf.field_lift_capacity && <ManWalkingIcon/>}
+                    {article.acf.field_lift_time && <SmallClockIcon/>}
+                    {article.acf.rules && <DocumentIcon/>}
                 </div>
                 <div className='rope-road-text'>
-                    {field_lift_length && <p>{field_lift_length}</p>}
-                    {field_lift_elevation && <p>{field_lift_elevation}</p>}
-                    {field_lift_capacity && <p>{field_lift_capacity}</p>}
-                    {field_lift_time && <p>{field_lift_time}</p>}
-                    {rules &&<p>{rules}</p>}
+                    {article.acf.field_lift_length && <p>{article.acf.field_lift_length}</p>}
+                    {article.acf.field_lift_elevation && <p>{article.acf.field_lift_elevation}</p>}
+                    {article.acf.field_lift_capacity && <p>{article.acf.field_lift_capacity}</p>}
+                    {article.acf.field_lift_time && <p>{article.acf.field_lift_time}</p>}
+                    {article.acf.rules && <p>{article.acf.rules}</p>}
                 </div>
             </div>
             <div className='rope-road-bottom'>
                 <div className='rope-road-image'>
-                    {original_image && <img alt='' src={original_image}/>}
+                    {article.original_image && <img alt='' src={article.original_image}/>}
                     <div className='rope-road-image-name'>
                         <p>
-                            {title && 'Kamera ' + title}
+                            {article.title && 'Kamera ' + article.title}
                         </p>
                     </div>
                 </div>
