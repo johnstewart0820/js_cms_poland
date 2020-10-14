@@ -8,7 +8,7 @@ import TextLinkPic from "../components/general/TextLinkPic";
 import Parser from "html-react-parser";
 import {API} from "../extra/API";
 import Loader from "../components/general/Loader";
-import RopeRoad from "../components/sport/RopeRoad";
+import RopeRoadCard from "../components/sport/RopeRoadCard";
 
 export default function SportRopeRoads(props) {
     const [items, setItems] = React.useState(false);
@@ -42,7 +42,7 @@ export default function SportRopeRoads(props) {
                 <OneCarouseInRow carousel={{
                     extra_classes: 'arrows-on-right',
                     items: items || [],
-                    ItemComponent: RopeRoad,
+                    ItemComponent: RopeRoadCard,
                 }}/>
             )}
         </>

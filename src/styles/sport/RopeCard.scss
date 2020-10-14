@@ -44,6 +44,9 @@
             height: 200px;
             margin-bottom: 15px;
             transition: 1s;
+            img {
+                max-height: 200px;
+            }
             .rope-road-image-name {
                 position: absolute;
                 max-width: 275px;
