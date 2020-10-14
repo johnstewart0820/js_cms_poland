@@ -16,6 +16,13 @@ const SportTenisCourts = (props) => {
         page: 0,
     });
 
+    const OrderOptions = [
+        {value: 'desc', label: 'NajNOWSZE'},
+        {value: 'asc', label: 'Najstarsze'},
+    ];
+
+    const changeSort = e => setFilters({...filters, order: e.target.value});
+
     const onPageChange = page => {
         setFilters({...filters, page});
         window.scrollTo({top: container.current.getBoundingClientRect().top + window.scrollY});
@@ -30,6 +37,8 @@ const SportTenisCourts = (props) => {
 
             <LoopSearchPostsContainer
                 heading={props.page.acf.field_tennis_courts_title}
+                sort_options={OrderOptions}
+                sortOnChange={changeSort}
             >
                 {tennisCourts === null && <Loader/>}
                 {!!tennisCourts?.contents && (
