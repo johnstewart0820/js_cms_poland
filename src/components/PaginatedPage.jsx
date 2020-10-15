@@ -16,8 +16,8 @@ import LoopCard from "./loop/LoopCard";
 
 const OrderOptions = {
     date: [
-        {value: 'desc', label: 'Najbliższe aktualności'},
-        {value: 'asc', label: 'Najstarszy aktualności'},
+        {value: 'desc', label: 'Najbliższe'},
+        {value: 'asc', label: 'Najstarszy'},
     ],
     title: [
         {value: 'desc', label: 'Z-A'},
