@@ -10,7 +10,7 @@ import DefaultImage from "../../constants/DefaultImage";
 import {getArticleLink} from "../../extra/functions";
 import PlusButton from "../buttons/PlusButton";
 
-export default function Card({extraClasses, ...article}) {
+export default function Card({extraClasses, link, greenButtonText, ...article}) {
     const planerContext = React.useContext(PlanerContext);
 
     return (
@@ -67,8 +67,9 @@ export default function Card({extraClasses, ...article}) {
                     <div className="card__bottom">
                         <ButtonLink
                             extra_classes="green"
-                            path={getArticleLink(article)}>
-                            DOWIEDZ SIĘ WIĘCEJ
+                            path={link ? link : getArticleLink(article)}
+                        >
+                            {greenButtonText ? greenButtonText : 'DOWIEDZ SIĘ WIĘCEJ'}
                         </ButtonLink>
                         <PlusButton
                             extraClasses={'plus-button-card'}
