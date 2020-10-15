@@ -1,6 +1,5 @@
 import React from "react";
 import PaginatedPage from "../components/PaginatedPage";
-import LoopCard from "../components/loop/LoopCard";
 import {withDefaultOption} from "../extra/functions";
 import Select from "../components/form/Select";
 
@@ -36,7 +35,6 @@ export default function UniversalPaginatedLayout(props) {
             }}
             containerHeader={props.page.acf.field_universal_information_module_title || ''}
             description={props.page.acf.field_universal_information_module_description || ''}
-            itemComponent={LoopCard}
             inputs={inputs}
             mapId={props.page.acf.field_universal_information_module_map_id || null}
         />

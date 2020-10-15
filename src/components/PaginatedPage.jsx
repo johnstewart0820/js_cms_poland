@@ -12,6 +12,7 @@ import Pagination from "./loop/Pagination";
 import MapWithPinsFiltering from "./map/MapWithPinsFiltering";
 import Parser from "html-react-parser";
 import TitleText from "./general/TitleText";
+import LoopCard from "./loop/LoopCard";
 
 const OrderOptions = [
     {value: 'desc', label: 'Najbliższe aktualności'},
@@ -22,6 +23,7 @@ const PaginatedPage = props => {
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
     const [filters, setFilters] = React.useState({page: 0});
+    const ItemComponent = props.itemComponent || LoopCard;
 
     React.useEffect(() => {
         setData(null);
@@ -95,7 +97,7 @@ const PaginatedPage = props => {
                                 Brak treści dla podanych kryteriów
                             </h2>
                         )}
-                        {data.contents.map(post => <props.itemComponent key={post.id} {...post} />)}
+                        {data.contents.map(post => <ItemComponent key={post.id} {...post} />)}
 
                         <Pagination
                             active_page={data.pages.currentPage}
@@ -120,7 +122,7 @@ PaginatedPage.propTypes = {
         PropTypes.array,
     ]).isRequired,
     inputs: PropTypes.array,
-    itemComponent: PropTypes.func.isRequired,
+    itemComponent: PropTypes.func,
     breadcrumbs: PropTypes.array,
     filtersHeader: PropTypes.string,
     containerHeader: PropTypes.string,
