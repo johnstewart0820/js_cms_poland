@@ -33,6 +33,7 @@ const SportBikesPage = props => {
                 page={props.page}
                 filtersHeader={props.page.acf.field_bike_trails_title || null}
                 config={props.page.acf.field_bike_trails_impormation_modules}
+                description={props.page.acf.field_bikes_description}
                 itemComponent={BikeRoutesCard}
                 mapId={props.page.acf.field_bikes_map}
                 inputs={inputs}
