@@ -9,6 +9,7 @@ import LoopEventsPost from "../components/events/LoopEventsPost";
 import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
 import PlanerContext from "../constants/PlanerContext";
+import Questionnaire from "../components/questionnaire/Questionnaire";
 
 export default function EventSingle(props) {
     const planerContext = React.useContext(PlanerContext);
@@ -31,12 +32,13 @@ export default function EventSingle(props) {
                 <Breadcrumbs breadcrumbs={[]}/>
                 <EventSingleHead {...props.page}/>
             </MainHeaderSection>
-            {props.page.body && (
+
                 <SingleContainer>
-                    <div>{Parser(props.page.body)}</div>
+                    {props.page.body && (<div>{Parser(props.page.body)}</div>)}
+                    <Questionnaire/>
                     <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>
                 </SingleContainer>
-            )}
+
             <OneCarouseInRow carousel={{
                 loading: items === null,
                 heading: 'Inne wydarzenia',
