@@ -43,7 +43,7 @@ const PaginatedPage = props => {
     const onFilterSubmit = args => {
         const config = Array.isArray(props.config) ? props.config[0] : props.config;
         setFilters({...handleFilteringCategories(args, config.field_section_categories_visit), page: filters.page});
-    }
+    };
 
     const onPageChange = page => {
         setFilters({...filters, page});
@@ -124,12 +124,15 @@ PaginatedPage.propTypes = {
     inputs: PropTypes.array,
     itemComponent: PropTypes.func,
     breadcrumbs: PropTypes.array,
+    description: PropTypes.any,
+    descriptionClasses: PropTypes.string,
     filtersHeader: PropTypes.string,
     containerHeader: PropTypes.string,
     containerClasses: PropTypes.string,
     headerClasses: PropTypes.string,
     hideHeader: PropTypes.any,
     mapId: PropTypes.any,
+    children: PropTypes.node,
 };
 
 export default PaginatedPage;
