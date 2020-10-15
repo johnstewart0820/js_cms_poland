@@ -1,28 +1,39 @@
 .planer-list {
-  .container {
-    .heading {
-      margin-top: 50px;
+    @media print and (orientation: landscape) {
+            .break-page-landscape {
+                margin-bottom: 60px;
+            }
     }
+    @media print and (orientation: portrait) {
+        .break-page-portrait {
+            margin-bottom: 200px;
+        }
+    }
+    .container {
+        .heading {
+            margin-top: 50px;
+        }
 
-    .list {
-      display: flex;
-      margin-top: 60px;
-      flex-direction: column;
-      .col {
-        display: flex;
-        flex-direction: column;
-      }
+        .list {
+            display: flex;
+            margin-top: 60px;
+            flex-direction: column;
+
+            .col {
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
-  }
 }
 
 .planer-dot {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  background: white;
-  border-radius: 60px;
-  border: 2px solid;
-  left: 123px;
-  bottom: 380px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background: white;
+    border-radius: 60px;
+    border: 2px solid;
+    left: 123px;
+    bottom: 380px;
 }

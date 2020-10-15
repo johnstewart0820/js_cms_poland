@@ -13,6 +13,12 @@ function ApartmentSingleHead({id, title, categories_labels, image, acf}) {
     const planerContext = React.useContext(PlanerContext);
 
 
+    function checkDuplicateItem() {
+        let isDuplicate = planerContext.ids.includes(id);
+
+        if (isDuplicate === true) return null;
+        else return planerContext.add(id);
+    }
 
     function isForDisabled() {
         return <img
@@ -93,7 +99,7 @@ function ApartmentSingleHead({id, title, categories_labels, image, acf}) {
                 }
             </div>
             <div className={'buttons-container'}>
-                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>}
+                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>}
             </div>
 
         </PageHeaderSection>

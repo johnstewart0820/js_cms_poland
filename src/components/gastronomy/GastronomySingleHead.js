@@ -3,7 +3,6 @@ import PageHeaderSection from "../header/PageHeaderSection";
 import '../../styles/gastronomy/gastronomy-single-page.scss';
 import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
-import SingleContainer from "../common-single/SingleContainer";
 import PlanerContext from "../../constants/PlanerContext";
 
 
@@ -14,6 +13,12 @@ function GastronomySingleHead({title, categories_labels, image, acf,id}) {
     const visibleEmail = acf.field_contact_email_is_visible;
     const planerContext = React.useContext(PlanerContext);
 
+    function checkDuplicateItem() {
+        let isDuplicate = planerContext.ids.includes(id);
+
+        if (isDuplicate === true) return null;
+        else return planerContext.add(id);
+    }
 
     if (iconsBoard) {
         var icons = iconsBoard.map(result => {
@@ -105,7 +110,7 @@ function GastronomySingleHead({title, categories_labels, image, acf,id}) {
             </div>
             <div className={'buttons-container'}>
                 {acf.field_map_gps && <>
-                    <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>
+                    <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>
                 </>}
             </div>
 

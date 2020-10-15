@@ -7,7 +7,7 @@ import PlanerHistory from "../../components/PlanerList/PlanerHistory";
 import PlanerContext from "../../constants/PlanerContext";
 import moment from "moment";
 import EmptyList from "../../components/general/EmptyList";
-import Loader from "../../components/general/Loader";
+import '../../styles/PlanerList/PlanerListContainer.scss';
 
 
 const PlanerListPage = () => {
@@ -28,7 +28,9 @@ const PlanerListPage = () => {
     }
 
     const totalDuration = React.useMemo(() => {
+
         if (planerContext.data.length > 0) {
+
             let duration = moment.duration();
 
             planerContext.data.forEach(event => {
@@ -36,14 +38,18 @@ const PlanerListPage = () => {
                     duration.add(event.acf?.field_map_minutes.replace(/ .*/, ''), 'minutes')
             });
             setIsEmpty(false);
+
             return duration;
         } else {
             setIsEmpty(true);
+            setTimeout(() => setLoading(true), 1000);
         }
+
     }, [planerContext.data.length]);
 
     React.useEffect(() => {
         planerContext.setVisible(false);
+
     }, []);
 
     const totalRoute = React.useMemo(() => {
@@ -59,10 +65,9 @@ const PlanerListPage = () => {
 
     return (
         <>
-            <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {label: " Planer",}]}/>
+            <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {label: " Planer"}]}/>
             <div id='planer' ref={ref}>
-                {loading && <Loader/>}
-                {isEmpty
+                {loading && isEmpty
                     ? (
                         <EmptyList
                             className={'empty-list-comunicate'}
@@ -76,7 +81,7 @@ const PlanerListPage = () => {
                                 let minutes = '';
                                 let gps = [];
 
-                                if (item.acf.field_map_gps != undefined) {
+                                if (item.acf.field_map_gps) {
                                     gps = item.acf.field_map_gps.split(';');
                                     coords.push({
                                         lat: gps[0],
@@ -91,17 +96,24 @@ const PlanerListPage = () => {
                                     minutes = item.acf?.field_map_minutes.replace(/ .*/, '');
 
                                 return (
-                                    <PlanerItem
-                                        key={index}
-                                        acf={item.acf}
-                                        duration={minutes || false}
-                                        description={item.title}
-                                        step={index + 1}
-                                        imageSrc={item.original_image || require('../../img/errorImage.png')}
-                                        category={categoryName || 'N/A'}
-                                        deleteOnClick={() => planerContext.delete(index)}
-                                        onMapCheck={() => scrollToMap()}
-                                    />
+                                    <>
+                                        <PlanerItem
+
+
+                                            className={'planerItem'}
+                                            key={index}
+                                            acf={item.acf}
+                                            duration={minutes || false}
+                                            description={item.title}
+                                            step={index + 1}
+                                            imageSrc={item.original_image || require('../../img/errorImage.png')}
+                                            category={categoryName || 'N/A'}
+                                            deleteOnClick={() => planerContext.delete(index)}
+                                            onMapCheck={() => scrollToMap()}
+                                        />
+                                        {index  % 4 === 3 && <div className={'break-page-portrait'}/>}
+                                        {index  % 3 === 2 && <div className={'break-page-landscape'}/>}
+                                    </>
                                 )
                             })}
                         </PlanerListContainer>
@@ -116,21 +128,11 @@ const PlanerListPage = () => {
                 )}
             </div>
 
-            {!isEmpty &&
-                <div className="planer-history-button">
-                    <button
-                        className='button-link green full-width'
-                        onClick={generatePdf}
-                    >
-                        ZAPISZ TRASĘ DO PDF
-                    </button>
-                </div>
-            }
 
             {coords && !!coords.length &&
-                <div style={{position: "relative", height: "500px"}}>
-                    <GoogleMap markers={coords}/>
-                </div>
+            <div style={{position: "relative", height: "500px"}}>
+                <GoogleMap markers={coords}/>
+            </div>
             }
         </>
     )

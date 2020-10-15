@@ -6,7 +6,7 @@ import ButtonX from "../buttons/ButtonX";
 const PlanerItem = ({acf, duration, description, category, imageSrc, step, deleteOnClick, onMapCheck}) => {
     return (
         <>
-            <div className='item-container'>
+            <div  className='item-container' id='item-container'>
                 <div className='item-counter'>
                     {step}
                 </div>
@@ -19,7 +19,9 @@ const PlanerItem = ({acf, duration, description, category, imageSrc, step, delet
                             </div>
                         )}
                         <img alt='' src={imageSrc || ''}/>
-                        <button className='button-link green full-width' onClick={onMapCheck}>ZOBACZ NA MAPIE</button>
+                        <button className='button-link green full-width' onClick={onMapCheck}>
+                            ZOBACZ NA MAPIE
+                        </button>
                     </div>
                     <div className='item-description'>
                         <h4>{description}</h4>
@@ -36,6 +38,7 @@ const PlanerItem = ({acf, duration, description, category, imageSrc, step, delet
                     </div>
                 </div>
             </div>
+
         </>
     )
 }
