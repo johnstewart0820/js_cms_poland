@@ -2,16 +2,13 @@ import React from 'react';
 import {API} from "../extra/API";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
-import LoopEventsPost from "../components/events/LoopEventsPost";
-import LoopNewsPost from "../components/news/LoopNewsPost";
 import Breadcrumbs from '../components/general/Breadcrumbs';
 import TextLinkPic from "../components/general/TextLinkPic";
 import PicsTextLink from "../components/general/PicsTextLink";
-import LoopAccommodationPost from '../components/accommodation/LoopAccommodationPost';
-import LoopGastronomyPost from "../components/gastronomy/LoopGastronomyPost";
 import LinksTiles from "../components/general/LinksTiles";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import {getArticleLink} from "../extra/functions";
+import LoopCard from "../components/loop/LoopCard";
 
 export default function MainPage(props) {
     const acf = props.page.acf;
@@ -31,8 +28,8 @@ export default function MainPage(props) {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl "}]} />
-                <PageHeaderOrSlider page={props.page} />
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
+                <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
             <TwoCarouselsOneRow
@@ -40,16 +37,14 @@ export default function MainPage(props) {
                     loading: items1 === false,
                     path_to_all: getArticleLink(acf.field_information_modules_visit[0].field_section_watch_all_entity),
                     heading: acf.field_information_modules_visit[0].field_section_title_visit,
-                    // TODO select entity renderer based on entity type
-                    component: LoopEventsPost,
+                    component: LoopCard,
                     items: items1 || [],
                 }}
                 second_carousel={{
                     loading: items2 === false,
                     path_to_all: getArticleLink(acf.field_information_modules_visit[1].field_section_watch_all_entity),
                     heading: acf.field_information_modules_visit[1].field_section_title_visit,
-                    // TODO select entity renderer based on entity type
-                    component: LoopNewsPost,
+                    component: LoopCard,
                     items: items2 || [],
                 }}
             />
@@ -90,14 +85,14 @@ export default function MainPage(props) {
                     loading: items3 === false,
                     path_to_all: getArticleLink(acf.field_visit_homepage_second_information_modules[0].field_section_watch_all_entity),
                     heading: acf.field_visit_homepage_second_information_modules[0].field_section_title_visit,
-                    component: LoopGastronomyPost,
+                    component: LoopCard,
                     items: items3 || [],
                 }}
                 second_carousel={{
                     loading: items4 === false,
                     path_to_all: getArticleLink(acf.field_visit_homepage_second_information_modules[1].field_section_watch_all_entity),
                     heading: acf.field_visit_homepage_second_information_modules[1].field_section_title_visit,
-                    component: LoopAccommodationPost,
+                    component: LoopCard,
                     items: items4 || [],
                 }}
             />

@@ -2,13 +2,12 @@ import React from 'react';
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import Breadcrumbs from '../components/general/Breadcrumbs';
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
-import {getArticleLink} from "../extra/functions";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import TextLinkPic from "../components/general/TextLinkPic";
 import Parser from "html-react-parser";
 import {API} from "../extra/API";
 import Loader from "../components/general/Loader";
-import RopeRoadCard from "../components/sport/RopeRoadCard";
+import LoopCard from "../components/loop/LoopCard";
 
 export default function SportRopeRoads(props) {
     const [items, setItems] = React.useState(false);
@@ -20,10 +19,7 @@ export default function SportRopeRoads(props) {
     return (
         <>
             <MainHeaderSection>
-                <Breadcrumbs breadcrumbs={[
-                    {label: "Visit.ustron.pl", to: "/"},
-                    {label: props.page.title, to: getArticleLink(props.page)},
-                ]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
@@ -42,7 +38,7 @@ export default function SportRopeRoads(props) {
                 <OneCarouseInRow carousel={{
                     extra_classes: 'arrows-on-right',
                     items: items || [],
-                    ItemComponent: RopeRoadCard,
+                    ItemComponent: LoopCard,
                 }}/>
             )}
         </>

@@ -1,6 +1,4 @@
 import React from 'react';
-import useEntities from "../hooks/useEntities";
-import BikeRoutesCard from "../components/Cards/BikeRoutesCard";
 import {withDefaultOption} from "../extra/functions";
 import Select from "../components/form/Select";
 import useCustomField from "../hooks/useCustomField";
@@ -33,7 +31,7 @@ const SportBikesPage = props => {
                 page={props.page}
                 filtersHeader={props.page.acf.field_bike_trails_title || null}
                 config={props.page.acf.field_bike_trails_impormation_modules}
-                itemComponent={BikeRoutesCard}
+                description={props.page.acf.field_bikes_description}
                 mapId={props.page.acf.field_bikes_map}
                 inputs={inputs}
             />

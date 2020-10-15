@@ -1,6 +1,5 @@
 import React from "react";
 import PaginatedPage from "../components/PaginatedPage";
-import LoopAccommodationPost from "../components/accommodation/LoopAccommodationPost";
 import {withDefaultOption} from "../extra/functions";
 import Select from "../components/form/Select";
 import useCustomField from "../hooks/useCustomField";
@@ -45,7 +44,6 @@ export default function TourismHotels(props) {
         <PaginatedPage
             page={props.page}
             config={acf.field_information_modules_attractions}
-            itemComponent={LoopAccommodationPost}
             filtersHeader={'NOCLEGI'}
             inputs={inputs}
             mapId={acf.field_attractions_map}

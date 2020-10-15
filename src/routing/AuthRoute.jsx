@@ -22,7 +22,12 @@ const AuthRoute = ({component: Component, ...rest}) => {
 
             return isAuthenticated
                 ? <Component {...matchProps}/>
-                : <Redirect to={TourismRoutes.Login}/>
+                : <Redirect
+                    to={{
+                        pathname: TourismRoutes.Login,
+                        state: rest.path
+                    }}
+                />
         }}/>
     );
 }

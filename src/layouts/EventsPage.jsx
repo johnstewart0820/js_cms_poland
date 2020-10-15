@@ -6,7 +6,6 @@ import LoopSearchForm from "../components/loop/LoopSearchForm";
 import Carousel from "../components/carousel/Carousel";
 import {PageDescription} from "../components/events/PageDescription";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
-import LoopEventsPost from "../components/events/LoopEventsPost";
 import '../styles/EventsPage/EventsPage.scss';
 import {API} from "../extra/API";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
@@ -17,6 +16,7 @@ import useOrganizers from "../hooks/useOrganizers";
 import Loader from "../components/general/Loader";
 import {getMailToLink, handleFilteringCategories, withDefaultOption} from "../extra/functions";
 import {DayCarousel} from "../components/events/DayCarousel";
+import LoopCard from "../components/loop/LoopCard";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)
@@ -65,7 +65,7 @@ const EventsPage = props => {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "Visit.ustron.pl", to: "/"}, {label: "Wydarzenia"}]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
@@ -128,7 +128,7 @@ const EventsPage = props => {
                     containerStyles={{marginLeft: '90px'}}
                     bodyStyles={{display: 'flex'}}
                     items={data.contents}
-                    ItemComponent={LoopEventsPost}
+                    ItemComponent={LoopCard}
                 />
             )}
 

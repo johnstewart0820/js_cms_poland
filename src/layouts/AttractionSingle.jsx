@@ -4,13 +4,13 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
 import Breadcrumbs from "../components/general/Breadcrumbs";
-import LoopNewsPost from "../components/news/LoopNewsPost";
 import {API} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import AttractionSingleHead from "../components/attractions/AttractionSingleHead";
 import '../styles/attractions/attraction-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
+import LoopCard from "../components/loop/LoopCard";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -119,7 +119,7 @@ export default function AttractionSingle(props) {
     return (
         <>
             <MainHeaderSection extra_classes="single">
-                <Breadcrumbs breadcrumbs={[]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <AttractionSingleHead {...props.page}/>
             </MainHeaderSection>
             {field_service_languages &&
@@ -157,7 +157,7 @@ export default function AttractionSingle(props) {
             <OneCarouseInRow className={'news-loop'} carousel={{
                 loading: news === null,
                 heading: 'Ostatnie aktualności',
-                ItemComponent: LoopNewsPost,
+                ItemComponent: LoopCard,
                 items: news || [],
             }}/>
 

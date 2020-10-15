@@ -5,11 +5,11 @@ import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import NewsSingleHead from "../components/news/NewsSingleHead";
-import LoopNewsPost from "../components/news/LoopNewsPost";
 import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
 import {API} from "../extra/API";
 import PlanerContext from "../constants/PlanerContext";
+import LoopCard from "../components/loop/LoopCard";
 
 export default function NewsSinglePage(props) {
     const planerContext = React.useContext(PlanerContext);
@@ -35,7 +35,7 @@ export default function NewsSinglePage(props) {
     return (
         <>
             <MainHeaderSection extra_classes="single">
-                <Breadcrumbs breadcrumbs={[]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <NewsSingleHead {...props.page}/>
             </MainHeaderSection>
 
@@ -53,7 +53,7 @@ export default function NewsSinglePage(props) {
                 <OneCarouseInRow carousel={{
                     loading: news === null,
                     heading: 'Ostatnie aktualności',
-                    ItemComponent: LoopNewsPost,
+                    ItemComponent: LoopCard,
                     items: news || [],
                 }}/>
             )}

@@ -14,15 +14,30 @@ import Parser from "html-react-parser";
 import TitleText from "./general/TitleText";
 import LoopCard from "./loop/LoopCard";
 
-const OrderOptions = [
-    {value: 'desc', label: 'Najbliższe aktualności'},
-    {value: 'asc', label: 'Najstarszy aktualności'},
-];
+const OrderOptions = {
+    date: [
+        {value: 'desc', label: 'Najbliższe'},
+        {value: 'asc', label: 'Najstarszy'},
+    ],
+    title: [
+        {value: 'desc', label: 'Z-A'},
+        {value: 'asc', label: 'A-Z'},
+    ],
+};
+
+const getOrderOptions = (orderby, order = 'desc') => {
+    let options = [...OrderOptions[orderby]];
+    return order === 'desc' ? options : options.reverse();
+};
 
 const PaginatedPage = props => {
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
-    const [filters, setFilters] = React.useState({page: 0});
+    const [filters, setFilters] = React.useState({
+        page: 0,
+        orderby: props.config.field_section_sorting_visit || 'date',
+        order: props.config.field_section_order_visit || 'desc',
+    });
     const ItemComponent = props.itemComponent || LoopCard;
 
     React.useEffect(() => {
@@ -30,6 +45,7 @@ const PaginatedPage = props => {
         API.getByConfig(props.config, {
             page: filters.page,
             order: filters.order,
+            orderby: filters.orderby,
             categories: filters.categories,
             filters: prepApiFilters(filters, ['categories', 'page', 'order', 'orderby']),
         }).then(res => {
@@ -82,7 +98,7 @@ const PaginatedPage = props => {
                 onRef={el => container.current = el}
                 extra_classes={props.containerClasses}
                 heading={props.containerHeader}
-                sort_options={OrderOptions}
+                sort_options={getOrderOptions(filters.orderby, filters.order)}
                 sortOnChange={changeSort}
             >
                 {data === null && <Loader/>}

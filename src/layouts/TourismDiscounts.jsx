@@ -1,5 +1,4 @@
 import React from 'react';
-import DiscountCardsHeader from "../components/discounts/DiscountCardsHeader";
 import Carousel from "../components/carousel/Carousel";
 import YellowDiscountBlock from "../components/discounts/YellowDiscountBlock";
 import Parser from "html-react-parser";
@@ -13,10 +12,7 @@ export default function TourismDiscounts(props) {
     return (
         <>
             <MainHeaderSection extra_classes="single">
-                <Breadcrumbs breadcrumbs={[
-                    {label: "Visit.ustron.p", to: "/"},
-                    {label: props.page.title},
-                ]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <NewsSingleHead {...props.page}/>
             </MainHeaderSection>
 

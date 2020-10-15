@@ -3,21 +3,14 @@ import Breadcrumbs from "../components/general/Breadcrumbs";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import {getArticleLink} from "../extra/functions";
-import LoopEventsPost from "../components/events/LoopEventsPost";
-import LoopNewsPost from "../components/news/LoopNewsPost";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
 import RopeRoad from "../components/sport/RopeRoad";
 import PicTextInfo from "../components/general/PicTextInfo";
 import LinksTiles from "../components/general/LinksTiles";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
-import Card from "../components/StadiumReservationComponents/Card";
 import useEntities from "../hooks/useEntities";
 import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
-import BikeRoutesCard from "../components/Cards/BikeRoutesCard";
-import {
-    IceSkatesIcon,
-
-} from '../svg/icons';
+import {IceSkatesIcon} from '../svg/icons';
 import LoopCard from "../components/loop/LoopCard";
 
 const SportHomepage = props => {
@@ -33,7 +26,7 @@ const SportHomepage = props => {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[{label: "sport.ustron.pl "}]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
@@ -60,7 +53,7 @@ const SportHomepage = props => {
                 items: courts?.contents || [],
                 heading: props.page.acf.field_sports_ground_title,
                 path_to_all: getArticleLink(props.page.acf.field_sports_ground_page),
-                ItemComponent: Card,
+                ItemComponent: LoopCard,
             }}/>
 
             {!cableWaysLoading && cableWays?.contents?.length && (
@@ -87,7 +80,7 @@ const SportHomepage = props => {
                 items: activities?.contents || [],
                 heading: props.page.acf.field_active_title,
                 path_to_all: getArticleLink(props.page.acf.field_active_page),
-                ItemComponent: Card,
+                ItemComponent: LoopCard,
             }}/>
 
             <OneCarouseInRow carousel={{
@@ -96,7 +89,7 @@ const SportHomepage = props => {
                 items: bikeTrails?.contents || [],
                 heading: props.page.acf.field_bike_trails_title,
                 path_to_all: getArticleLink(props.page.acf.field_bike_trails_page),
-                ItemComponent: BikeRoutesCard,
+                ItemComponent: LoopCard,
             }}/>
 
             <OneCarouseInRow carousel={{
@@ -105,7 +98,7 @@ const SportHomepage = props => {
                 items: tennisCourts?.contents || [],
                 heading: props.page.acf.field_tennis_courts_title,
                 path_to_all: getArticleLink(props.page.acf.field_tennis_courts_page),
-                ItemComponent: Card,
+                ItemComponent: LoopCard,
             }}/>
 
             <LinksTiles

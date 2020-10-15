@@ -3,13 +3,12 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import Breadcrumbs from '../components/general/Breadcrumbs';
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import {getArticleLink} from "../extra/functions";
-import LoopSpaPost from "../components/spa/LoopSpaPost";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import TextLinkPic from "../components/general/TextLinkPic";
 import Parser from "html-react-parser";
 import {API} from "../extra/API";
-import LoopAccommodationPost from "../components/accommodation/LoopAccommodationPost";
 import YellowDiscountBlock from "../components/discounts/YellowDiscountBlock";
+import LoopCard from "../components/loop/LoopCard";
 
 export default function TourismSpa(props) {
     const [items, setItems] = React.useState(false);
@@ -21,10 +20,7 @@ export default function TourismSpa(props) {
     return (
         <>
             <MainHeaderSection>
-                <Breadcrumbs breadcrumbs={[
-                    {label: "Visit.ustron.pl", to: "/"},
-                    {label: props.page.title, to: getArticleLink(props.page)},
-                ]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
@@ -36,7 +32,7 @@ export default function TourismSpa(props) {
             <OneCarouseInRow carousel={{
                 extra_classes: 'arrows-on-right',
                 items: props.page.acf.field_offer_for_patients,
-                ItemComponent: LoopSpaPost,
+                ItemComponent: LoopCard,
             }}/>
 
             <TextLinkPic
@@ -49,8 +45,8 @@ export default function TourismSpa(props) {
                 extra_classes: 'no-arrows',
                 heading: props.page.acf.field_informations_module_sanatoriums[0].field_section_title_visit,
                 items: items || [],
-                ItemComponent: LoopAccommodationPost,
-                path_to_all: getArticleLink(props.page.acf.field_informations_module_sanatoriums[0].field_section_watch_all_entity)
+                ItemComponent: LoopCard,
+                path_to_all: getArticleLink(props.page.acf.field_informations_module_sanatoriums[0].field_section_watch_all_entity),
             }}/>
 
             <OneCarouseInRow carousel={{
