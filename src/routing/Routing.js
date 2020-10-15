@@ -1,8 +1,5 @@
 import React from 'react';
-import {Switch, Route, Redirect} from "react-router-dom";
-import {SITE} from "../extra/site_settings.js";
-import MainRouters from "./MainRouters";
-import TourismRouters from "./TourismRouters";
+import {Redirect, Route, Switch} from "react-router-dom";
 import PageRenderer from "../extra/PageRenderer";
 import NotFoundPage from "../pages/NotFoundPage";
 import TourismRoutes from "../constants/TourismRoutes";
@@ -27,11 +24,6 @@ import RegisterToEventFormPage from "../pages/UserPanelPages/RegisterToEvent/Reg
 import SiteInfoContext from "../constants/SiteInfoContext";
 import QuizPage from "../pages/UserPanelPages/Game/QuizPage";
 import AuthRoute from "./AuthRoute";
-
-const ROUTERS = {
-    "MAIN": <MainRouters/>,
-    "TOURISM": <TourismRouters/>
-}
 
 const Routing = () => {
     const context = React.useContext(SiteInfoContext);
@@ -73,8 +65,6 @@ const Routing = () => {
 
             {/* 404 page */}
             <Route component={NotFoundPage}/>
-
-            {ROUTERS[SITE]}
         </Switch>
     );
 }
