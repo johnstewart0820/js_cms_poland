@@ -3,16 +3,14 @@ import {API} from "../extra/API";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
-import LoopEventsPost from "../components/events/LoopEventsPost";
-import LoopNewsPost from "../components/news/LoopNewsPost";
 import Breadcrumbs from '../components/general/Breadcrumbs';
-import LoopPhotoReportPost from "../components/photoreports/LoopPhotoReportPost";
 import AmountsWithIcon from "../components/general/AmountsWithIcon";
 import TextLinkExpandableInfo from "../components/general/TextLinkExpandableInfo";
 import PicTextInfo from "../components/general/PicTextInfo";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import {getArticleLink} from "../extra/functions";
+import LoopCard from "../components/loop/LoopCard";
 
 export default function CityPage(props) {
     const acf = props.page.acf;
@@ -61,14 +59,14 @@ export default function CityPage(props) {
                     loading: items1 === false,
                     path_to_all: getArticleLink(acf.field_information_modules_city[0].field_section_watch_all_entity),
                     heading: acf.field_information_modules_city[0].field_section_title_visit,
-                    component: LoopEventsPost,
+                    component: LoopCard,
                     items: items1 || [],
                 }}
                 second_carousel={{
                     loading: items2 === false,
                     path_to_all: getArticleLink(acf.field_information_modules_city[1].field_section_watch_all_entity),
                     heading: acf.field_information_modules_city[1].field_section_title_visit,
-                    component: LoopNewsPost,
+                    component: LoopCard,
                     items: items2 || [],
                 }}
             />
@@ -86,7 +84,7 @@ export default function CityPage(props) {
                 heading: acf.field_photorelations_title,
                 extra_classes: "arrows-on-right",
                 items: photos || [],
-                ItemComponent: LoopPhotoReportPost,
+                ItemComponent: LoopCard,
             }}/>
 
             <AmountsWithIcon
@@ -108,7 +106,7 @@ export default function CityPage(props) {
                 heading: acf.field_safe_ustron_title,
                 extra_classes: "arrows-on-right",
                 items: items4 || [],
-                ItemComponent: LoopNewsPost,
+                ItemComponent: LoopCard,
             }}/>
         </>
     );

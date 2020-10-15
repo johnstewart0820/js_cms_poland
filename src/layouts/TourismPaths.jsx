@@ -1,5 +1,4 @@
 import React from 'react';
-import LoopNewsPost from "../components/news/LoopNewsPost";
 import Select from "../components/form/Select";
 import {withDefaultOption} from "../extra/functions";
 import PaginatedPage from "../components/PaginatedPage";
@@ -42,7 +41,6 @@ export default function TourismPaths(props) {
         <PaginatedPage
             page={props.page}
             config={props.page.acf.field_information_module_news}
-            itemComponent={LoopNewsPost}
             containerClasses={'news'}
             containerHeader={props.page.acf.field_information_module_news?.[0]?.field_section_title_visit || null}
             inputs={inputs}

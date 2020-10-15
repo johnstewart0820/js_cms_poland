@@ -59,7 +59,7 @@ export default function DefaultSingle(props) {
     return (
         <>
             <MainHeaderSection extra_classes="single">
-                <Breadcrumbs breadcrumbs={[]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <PageHeaderSection extra_classes="single-attraction-head-default" thumbnail={image}>
                     <div className='single-attraction-main-info-default'>
                         <div className="category">{categories_labels}</div>

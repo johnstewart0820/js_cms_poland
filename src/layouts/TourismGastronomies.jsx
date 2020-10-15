@@ -1,17 +1,16 @@
 import React from 'react';
 import {API} from "../extra/API";
 import MainHeaderSection from "../components/header/MainHeaderSection";
-import LoopGastronomyPost from "../components/gastronomy/LoopGastronomyPost";
 import Breadcrumbs from '../components/general/Breadcrumbs';
 import Loader from "../components/general/Loader";
 import LoopSearchForm from "../components/loop/LoopSearchForm";
 import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContainer";
 import Pagination from "../components/loop/Pagination";
-import MapWithPinsFiltering from '../components/map/MapWithPinsFiltering';
-import {getArticleLink, prepApiFilters, withDefaultOption} from "../extra/functions";
+import {prepApiFilters, withDefaultOption} from "../extra/functions";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
 import useCustomField from "../hooks/useCustomField";
 import Select from "../components/form/Select";
+import LoopCard from "../components/loop/LoopCard";
 
 export default function GastronomyPage(props) {
 
@@ -48,10 +47,7 @@ export default function GastronomyPage(props) {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[
-                    {label: "Visit.ustron.pl", to: "/"},
-                    {label: props.page.title, to: getArticleLink(props.page)},
-                ]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
@@ -79,7 +75,7 @@ export default function GastronomyPage(props) {
 
                 {!!data?.contents && (
                     <>
-                        {data.contents.map(post => <LoopGastronomyPost key={post.id} {...post} />)}
+                        {data.contents.map(post => <LoopCard key={post.id} {...post} />)}
 
                         <Pagination
                             active_page={data.pages.currentPage}
@@ -89,8 +85,6 @@ export default function GastronomyPage(props) {
                     </>
                 )}
             </LoopSearchPostsContainer>
-
-				{/* { !!acf?.field_attractions_map && <MapWithPinsFiltering map_id={ acf?.field_attractions_map }/> } */}
         </>
     );
 };
