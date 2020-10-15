@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import LinkToAll from "../buttons/LinkToAll";
@@ -153,22 +153,21 @@ export default class Carousel extends Component{
 						<LinkToAll path={ path_to_all } href={ link_to_all } />
 					</div>
 
-					<div className="carousel__body" style={ bodyStyles }>
-						{ items && items.length >= this.min_slides && 
-							<Arrows onClick={ this.moveItems } /> 
-						}
+                    <div className="carousel__body" style={bodyStyles}>
+                        <Arrows
+                            disabled={items && items.length < this.min_slides}
+                            onClick={this.moveItems}
+                        />
 
-						{ items && items.length < this.min_slides && <div className="carousel__arrows-placeholder"/> }
-
-						<div 
-							className="carousel__overflow" 
-							onTouchStart={ this.slideOnTouchStart }
-							onTouchEnd={ this.slideOnTouchEnd } 
-						> 
-							<div ref={ el => this.carousel_wrap = el } className="carousel__wrap" style={ wrap_styles }>
-								{ items && items.length >= 1
+                        <div
+                            className="carousel__overflow"
+                            onTouchStart={this.slideOnTouchStart}
+                            onTouchEnd={this.slideOnTouchEnd}
+                        >
+                            <div ref={el => this.carousel_wrap = el} className="carousel__wrap" style={wrap_styles}>
+                                {items && items.length >= 1
                                     ? (
-                                        items.map(( item, index ) => (
+                                        items.map((item, index) => (
                                             <ItemComponent key={ index } {...item } />
                                         ))
                                     ) : (
