@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {API} from "../extra/API";
-import {getArticleLink, handleFilteringCategories, prepApiFilters} from "../extra/functions";
+import {handleFilteringCategories, prepApiFilters} from "../extra/functions";
 import MainHeaderSection from "./header/MainHeaderSection";
 import Breadcrumbs from "./general/Breadcrumbs";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
@@ -56,10 +56,7 @@ const PaginatedPage = props => {
         <>
             {!props.hideHeader && (
                 <MainHeaderSection extra_classes={props.headerClasses}>
-                    <Breadcrumbs breadcrumbs={props.breadcrumbs || [
-                        {label: "Visit.ustron.pl", to: "/"},
-                        {label: props.page.title, to: getArticleLink(props.page)},
-                    ]}/>
+                    <Breadcrumbs breadcrumbs={props.breadcrumbs || props.page.breadcrumb || []}/>
                     <PageHeaderOrSlider page={props.page}/>
                 </MainHeaderSection>
             )}
