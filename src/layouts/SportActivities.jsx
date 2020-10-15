@@ -26,8 +26,8 @@ const SportActivities = (props) => {
     return (
         <PaginatedPage
             page={props.page}
-            containerHeader={props.page.acf.field_tennis_courts_title || null}
-            config={props.page.acf.field_tenis_courts_information_modules}
+            filtersHeader={'filtr kategorii'}
+            config={props.page.acf.field_sport_activities_information_modules}
             inputs={[{
                 label: 'Kategoria',
                 name: 'category_id',
