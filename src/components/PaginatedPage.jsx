@@ -10,6 +10,8 @@ import LoopSearchForm from "./loop/LoopSearchForm";
 import LoopSearchPostsContainer from "./loop/LoopSearchPostsContainer";
 import Pagination from "./loop/Pagination";
 import MapWithPinsFiltering from "./map/MapWithPinsFiltering";
+import Parser from "html-react-parser";
+import TitleText from "./general/TitleText";
 
 const OrderOptions = [
     {value: 'desc', label: 'Najbliższe aktualności'},
@@ -60,6 +62,14 @@ const PaginatedPage = props => {
                 </MainHeaderSection>
             )}
 
+            {!!props.description && (
+                <TitleText
+                    heading={'Opis'}
+                    text={Parser(props.description)}
+                    extra_classes={props.descriptionClasses}
+                />
+            )}
+
             {(props.inputs !== undefined && !props.inputs) && <Loader/>}
             {!!props.inputs && (
                 <LoopSearchForm
@@ -96,6 +106,7 @@ const PaginatedPage = props => {
                 )}
             </LoopSearchPostsContainer>
 
+            {props.children}
 
             {!!props.mapId && <MapWithPinsFiltering map_id={props.mapId}/>}
         </>
@@ -116,10 +127,7 @@ PaginatedPage.propTypes = {
     containerClasses: PropTypes.string,
     headerClasses: PropTypes.string,
     hideHeader: PropTypes.any,
-    mapId: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ]),
+    mapId: PropTypes.any,
 };
 
 export default PaginatedPage;
