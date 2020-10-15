@@ -15,6 +15,13 @@ function CourtSingleHead({id, title, custom_data, image, acf}) {
     const openHours = JSON.parse(custom_data.courts).hours;
 
 
+    function checkDuplicateItem() {
+        let isDuplicate = planerContext.ids.includes(id);
+
+        if (isDuplicate === true) return null;
+        else return planerContext.add(id);
+    }
+
     return (
         <PageHeaderSection extra_classes="single-attraction-head" thumbnail={image}>
             <div className='single-attraction-main-info'>
@@ -114,7 +121,7 @@ function CourtSingleHead({id, title, custom_data, image, acf}) {
                 REZERWACJA
             </button>
             <div className={'buttons-container'}>
-                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>}
+                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>}
             </div>
         </PageHeaderSection>
     );

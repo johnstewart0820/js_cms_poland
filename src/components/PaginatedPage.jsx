@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {API} from "../extra/API";
-import {getArticleLink, handleFilteringCategories, prepApiFilters} from "../extra/functions";
+import {handleFilteringCategories, prepApiFilters} from "../extra/functions";
 import MainHeaderSection from "./header/MainHeaderSection";
 import Breadcrumbs from "./general/Breadcrumbs";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
@@ -14,15 +14,30 @@ import Parser from "html-react-parser";
 import TitleText from "./general/TitleText";
 import LoopCard from "./loop/LoopCard";
 
-const OrderOptions = [
-    {value: 'desc', label: 'Najbliższe aktualności'},
-    {value: 'asc', label: 'Najstarszy aktualności'},
-];
+const OrderOptions = {
+    date: [
+        {value: 'desc', label: 'Najbliższe aktualności'},
+        {value: 'asc', label: 'Najstarszy aktualności'},
+    ],
+    title: [
+        {value: 'desc', label: 'Z-A'},
+        {value: 'asc', label: 'A-Z'},
+    ],
+};
+
+const getOrderOptions = (orderby, order = 'desc') => {
+    let options = [...OrderOptions[orderby]];
+    return order === 'desc' ? options : options.reverse();
+};
 
 const PaginatedPage = props => {
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
-    const [filters, setFilters] = React.useState({page: 0});
+    const [filters, setFilters] = React.useState({
+        page: 0,
+        orderby: props.config.field_section_sorting_visit || 'date',
+        order: props.config.field_section_order_visit || 'desc',
+    });
     const ItemComponent = props.itemComponent || LoopCard;
 
     React.useEffect(() => {
@@ -30,6 +45,7 @@ const PaginatedPage = props => {
         API.getByConfig(props.config, {
             page: filters.page,
             order: filters.order,
+            orderby: filters.orderby,
             categories: filters.categories,
             filters: prepApiFilters(filters, ['categories', 'page', 'order', 'orderby']),
         }).then(res => {
@@ -43,7 +59,7 @@ const PaginatedPage = props => {
     const onFilterSubmit = args => {
         const config = Array.isArray(props.config) ? props.config[0] : props.config;
         setFilters({...handleFilteringCategories(args, config.field_section_categories_visit), page: filters.page});
-    }
+    };
 
     const onPageChange = page => {
         setFilters({...filters, page});
@@ -56,10 +72,7 @@ const PaginatedPage = props => {
         <>
             {!props.hideHeader && (
                 <MainHeaderSection extra_classes={props.headerClasses}>
-                    <Breadcrumbs breadcrumbs={props.breadcrumbs || [
-                        {label: "Visit.ustron.pl", to: "/"},
-                        {label: props.page.title, to: getArticleLink(props.page)},
-                    ]}/>
+                    <Breadcrumbs breadcrumbs={props.breadcrumbs || props.page.breadcrumb || []}/>
                     <PageHeaderOrSlider page={props.page}/>
                 </MainHeaderSection>
             )}
@@ -85,7 +98,7 @@ const PaginatedPage = props => {
                 onRef={el => container.current = el}
                 extra_classes={props.containerClasses}
                 heading={props.containerHeader}
-                sort_options={OrderOptions}
+                sort_options={getOrderOptions(filters.orderby, filters.order)}
                 sortOnChange={changeSort}
             >
                 {data === null && <Loader/>}
@@ -124,12 +137,15 @@ PaginatedPage.propTypes = {
     inputs: PropTypes.array,
     itemComponent: PropTypes.func,
     breadcrumbs: PropTypes.array,
+    description: PropTypes.any,
+    descriptionClasses: PropTypes.string,
     filtersHeader: PropTypes.string,
     containerHeader: PropTypes.string,
     containerClasses: PropTypes.string,
     headerClasses: PropTypes.string,
     hideHeader: PropTypes.any,
     mapId: PropTypes.any,
+    children: PropTypes.node,
 };
 
 export default PaginatedPage;

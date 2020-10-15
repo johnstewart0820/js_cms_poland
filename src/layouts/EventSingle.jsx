@@ -18,6 +18,13 @@ export default function EventSingle(props) {
         API.getEntities({categories: props.page.categories}).then(res => setItems(res.data.contents));
     }, []);
 
+    function checkDuplicateItem() {
+        let isDuplicate = planerContext.ids.includes(props.page.id);
+
+        if (isDuplicate === true) return null;
+        else return planerContext.add(props.page.id);
+    }
+
     return (
         <>
             <MainHeaderSection extra_classes="single">
@@ -27,7 +34,7 @@ export default function EventSingle(props) {
             {props.page.body && (
                 <SingleContainer>
                     <div>{Parser(props.page.body)}</div>
-                    <SingleContentBottom onAddToPlaner={() => planerContext.add(props.page.id)}/>
+                    <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>
                 </SingleContainer>
             )}
             <OneCarouseInRow carousel={{

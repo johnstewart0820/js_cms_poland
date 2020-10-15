@@ -24,6 +24,14 @@ export default function NewsSinglePage(props) {
             });
     }, []);
 
+
+    function checkDuplicateItem() {
+        let isDuplicate = planerContext.ids.includes(props.page.id);
+
+        if (isDuplicate === true) return null;
+        else return planerContext.add(props.page.id);
+    }
+
     return (
         <>
             <MainHeaderSection extra_classes="single">
@@ -35,7 +43,7 @@ export default function NewsSinglePage(props) {
                 <SingleContainer extra_classes="single-news-container">
                     <div>{Parser(props.page.body)}</div>
                     {props.page.acf.field_map_gps &&
-                    <SingleContentBottom onAddToPlaner={() => planerContext.add(props.page.id)}/>}
+                    <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>}
                 </SingleContainer>
             )}
 

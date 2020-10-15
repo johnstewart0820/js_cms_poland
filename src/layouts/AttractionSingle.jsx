@@ -11,7 +11,6 @@ import Loader from "../components/general/Loader";
 import AttractionSingleHead from "../components/attractions/AttractionSingleHead";
 import '../styles/attractions/attraction-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
-import Footer from "../components/footer/Footer";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -26,7 +25,6 @@ export default function AttractionSingle(props) {
     const [gallery, setGallery] = React.useState(props.page.gallery);
     const [worthSeeing, setWorthSeeing] = React.useState(props.page.acf.field_worth_seeing);
     const [ifTrail, setIfTrail] = React.useState(false);
-    // const trails = React.useMemo(() => [ JSON.parse(props.page.acf['field_map_gpstrack'])], []);
 
     React.useEffect(() => {
         API.getEntities({categories: categories})
@@ -142,7 +140,7 @@ export default function AttractionSingle(props) {
                 <h2 className={' description-main'}>{Parser(field_description)}</h2>
             </div>
             }
-            {(!field_is_free_entrance && field_prices_variant) &&
+            {(field_is_free_entrance && field_prices_variant) &&
             <div className="section-info">
                 <div className={'section-title'}>
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>

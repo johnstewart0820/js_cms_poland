@@ -15,6 +15,7 @@
             flex-direction: column;
             text-align: center;
             color: $green;
+            width: 40%;
 
             h2 {
                 font-weight: normal;
@@ -36,15 +37,16 @@
     }
 
     .planer-history {
-        max-width: 600px;
+        width: 30%;
     }
 }
 
 .planer-history-button {
-    min-width: 398px;
-    max-width: 398px;
-    width: 100%;
-    margin: auto;
 
 }
+
+
+
+
+
 

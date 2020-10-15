@@ -7,12 +7,18 @@ import PlanerContext from "../../constants/PlanerContext";
 
 
 function AttractionSingleHead({id, title, categories, categories_labels, image, acf}) {
-    let keyId = 0;
     const iconsBoard = acf.field_recomended_for;
     const openHours = acf.field_openinghours;
     const visibleEmail = acf.field_contact_email_is_visible;
     const [ifTrail, setIfTrail] = React.useState(false);
     const planerContext = React.useContext(PlanerContext);
+
+    function checkDuplicateItem() {
+        let isDuplicate = planerContext.ids.includes(id);
+
+        if (isDuplicate === true) return null;
+        else return planerContext.add(id);
+    }
 
     React.useEffect(() => {
         categories.forEach(element => {
@@ -21,18 +27,17 @@ function AttractionSingleHead({id, title, categories, categories_labels, image, 
     }, []);
 
     if (iconsBoard) {
-        var icons = iconsBoard.map(result => {
+        var icons = iconsBoard.map((result,key) => {
             if (result === 'bike')
                 return <img
-                    key={keyId++}
                     className={'icons'}
-                    key={result}
+                    key={key}
                     alt=''
                     src={require('../../svg/icons/' + result + '_green.svg')}
                 />
             return <img
                 className={'icons'}
-                key={keyId++}
+                key={key}
                 alt=''
                 src={require('../../svg/icons/' + result + '.svg')}
             />
@@ -41,15 +46,13 @@ function AttractionSingleHead({id, title, categories, categories_labels, image, 
 
     function howManyHours(minutes) {
         let rest = minutes % 60;
-        if (acf.field_trails_info_time)
-            return (
-                <div className={'time-during'}>
-                    <div>Czas trwania</div>
-                    &nbsp;&nbsp;&nbsp;
-                    <div className={'trip-time'}>{Math.round(minutes / 60)} h {rest} min</div>
-                </div>
-            );
-        return Math.round(minutes / 60);
+        return (
+            <div className={'time-during'}>
+                <div>Czas trwania</div>
+                &nbsp;&nbsp;&nbsp;
+                <div className={'trip-time'}>{Math.round(minutes / 60)} h {rest} min</div>
+            </div>
+        );
     }
 
     return (
@@ -57,29 +60,47 @@ function AttractionSingleHead({id, title, categories, categories_labels, image, 
             <div className='single-attraction-main-info'>
                 <div className="category">{categories_labels}</div>
                 <div className="page-title">{title}</div>
-                {acf.field_trails_info_time && <div className={'time-during-container'}><img alt=''
-                                                                                             src={require('../../svg/icons/walking.svg')}/>&nbsp;&nbsp;&nbsp;{howManyHours(acf.field_trails_info_time)}
-                </div>}
+                {acf.field_trails_info_time &&
+                <div className={'time-during-container'}>
+                    <img alt='' src={require('../../svg/icons/walking.svg')}/>
+                    &nbsp;&nbsp;&nbsp;
+                    {howManyHours(acf.field_trails_info_time)}
+                </div>
+                }
                 {acf.field_trails_info_distance &&
-                <div className={'trail-main-info'}>Dystans: {acf.field_trails_info_distance}km </div>}
+                <div className={'trail-main-info'}>
+                    Dystans: {acf.field_trails_info_distance}km
+                </div>
+                }
                 {acf.field_trails_info_elevation &&
-                <div className={'trail-main-info'}>Przewyższenie: {acf.field_trails_info_elevation}m </div>}
-                {acf.field_trails_info_difficulty && <div className={'trail-main-info uppercase'}>STOPIEŃ
-                    TRUDNOŚCI: {acf.field_trails_info_difficulty} </div>}
+                <div className={'trail-main-info'}>
+                    Przewyższenie: {acf.field_trails_info_elevation}m
+                </div>
+                }
+                {acf.field_trails_info_difficulty &&
+                <div className={'trail-main-info uppercase'}>
+                    STOPIEŃ TRUDNOŚCI: {acf.field_trails_info_difficulty}
+                </div>
+                }
                 <div className="single-attraction-container">
-                    {icons && <div className={'icons-container'}>
-                        {icons}</div>}
-                    <div className={'time-attraction-container'}>{acf.field_map_minutes &&
-                    <>
-                        <img alt='' src={require('../../svg/icons/tourist.svg')}/>
-                        <div className={'hours'}>&nbsp;{`${howManyHours(acf.field_map_minutes)}H`}</div>
-                    </>}
+                    {icons &&
+                    <div className={'icons-container'}>
+                        {icons}
+                    </div>}
+                    <div className={'time-attraction-container'}>
+                        {acf.field_map_minutes &&
+                        <>
+                            <img alt='' src={require('../../svg/icons/tourist.svg')}/>
+                            <div className={'hours'}>&nbsp;{`${(Math.round(acf.field_map_minutes / 60))}H`}</div>
+                        </>}
                     </div>
                     {acf.field_map_distance_from_center &&
-                    (<div className={'text'}> ODLEGŁOŚĆ OD CENTRUM
-                        &nbsp;&nbsp;&nbsp;{acf.field_map_distance_from_center} KM
-                    </div>)
-                    }
+                    (
+                        <div className={'text'}>
+                            ODLEGŁOŚĆ OD CENTRUM&nbsp;&nbsp;&nbsp;
+                            {acf.field_map_distance_from_center} KM
+                        </div>
+                    )}
                 </div>
             </div>
             {openHours &&
@@ -136,10 +157,13 @@ function AttractionSingleHead({id, title, categories, categories_labels, image, 
                 }
             </div>
             <div className={'buttons-container'}>
-                {acf.field_map_gps && <SingleContentBottom onAddToPlaner={() => planerContext.add(id)}/>}
+                {acf.field_map_gps &&
+                <SingleContentBottom onAddToPlaner={checkDuplicateItem}
+                />}
             </div>
 
-            {!ifTrail && <button className="button-download button-link  full-width">
+            {ifTrail &&
+            <button className="button-download button-link full-width">
                 POBIERZ PRZEWODNIK
                 <img alt='' src={require('../../svg/icons/download.svg')}/>
             </button>
