@@ -8,7 +8,7 @@ const SectionHeading = ({ heading, extra_classes, headingLink, headingLinkText, 
 	heading 
 	? (
 		<div className={`section-heading ${ extra_classes || "" }`}>
-			{/*<TileMark />*/}
+			<TileMark />
 			<div className="heading"> { heading } </div>
 
 			{headingLink && headingLinkText && (
