@@ -8,6 +8,7 @@ import UserContext from "../../../constants/UserContext";
 import PlanerContext from "../../../constants/PlanerContext";
 import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 import {API_URL} from "../../../extra/API";
+import TourismRoutes from "../../../constants/TourismRoutes";
 
 const LoginPage = () => {
     const history = useHistory();
@@ -62,10 +63,9 @@ const LoginPage = () => {
                 lastPasswordChange: response.data.info.last_password_change,
                 token,
             };
-
             User.saveData(JSON.stringify(userData));
             user.login(userData);
-            history.push('/profile');
+            history.push(history.location.state || TourismRoutes.UserProfile);
         });
     }
 
