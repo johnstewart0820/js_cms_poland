@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {API} from "../extra/API";
-import {getArticleLink, handleFilteringCategories, prepApiFilters} from "../extra/functions";
+import {handleFilteringCategories, prepApiFilters} from "../extra/functions";
 import MainHeaderSection from "./header/MainHeaderSection";
 import Breadcrumbs from "./general/Breadcrumbs";
 import PageHeaderOrSlider from "../extra/PageHeaderOrSlider";
@@ -10,6 +10,9 @@ import LoopSearchForm from "./loop/LoopSearchForm";
 import LoopSearchPostsContainer from "./loop/LoopSearchPostsContainer";
 import Pagination from "./loop/Pagination";
 import MapWithPinsFiltering from "./map/MapWithPinsFiltering";
+import Parser from "html-react-parser";
+import TitleText from "./general/TitleText";
+import LoopCard from "./loop/LoopCard";
 
 const OrderOptions = [
     {value: 'desc', label: 'Najbliższe aktualności'},
@@ -20,6 +23,7 @@ const PaginatedPage = props => {
     const container = React.useRef(null);
     const [data, setData] = React.useState(null);
     const [filters, setFilters] = React.useState({page: 0});
+    const ItemComponent = props.itemComponent || LoopCard;
 
     React.useEffect(() => {
         setData(null);
@@ -39,7 +43,7 @@ const PaginatedPage = props => {
     const onFilterSubmit = args => {
         const config = Array.isArray(props.config) ? props.config[0] : props.config;
         setFilters({...handleFilteringCategories(args, config.field_section_categories_visit), page: filters.page});
-    }
+    };
 
     const onPageChange = page => {
         setFilters({...filters, page});
@@ -52,12 +56,17 @@ const PaginatedPage = props => {
         <>
             {!props.hideHeader && (
                 <MainHeaderSection extra_classes={props.headerClasses}>
-                    <Breadcrumbs breadcrumbs={props.breadcrumbs || [
-                        {label: "Visit.ustron.pl", to: "/"},
-                        {label: props.page.title, to: getArticleLink(props.page)},
-                    ]}/>
+                    <Breadcrumbs breadcrumbs={props.breadcrumbs || props.page.breadcrumb || []}/>
                     <PageHeaderOrSlider page={props.page}/>
                 </MainHeaderSection>
+            )}
+
+            {!!props.description && (
+                <TitleText
+                    heading={'Opis'}
+                    text={Parser(props.description)}
+                    extra_classes={props.descriptionClasses}
+                />
             )}
 
             {(props.inputs !== undefined && !props.inputs) && <Loader/>}
@@ -85,7 +94,7 @@ const PaginatedPage = props => {
                                 Brak treści dla podanych kryteriów
                             </h2>
                         )}
-                        {data.contents.map(post => <props.itemComponent key={post.id} {...post} />)}
+                        {data.contents.map(post => <ItemComponent key={post.id} {...post} />)}
 
                         <Pagination
                             active_page={data.pages.currentPage}
@@ -96,6 +105,7 @@ const PaginatedPage = props => {
                 )}
             </LoopSearchPostsContainer>
 
+            {props.children}
 
             {!!props.mapId && <MapWithPinsFiltering map_id={props.mapId}/>}
         </>
@@ -109,17 +119,17 @@ PaginatedPage.propTypes = {
         PropTypes.array,
     ]).isRequired,
     inputs: PropTypes.array,
-    itemComponent: PropTypes.func.isRequired,
+    itemComponent: PropTypes.func,
     breadcrumbs: PropTypes.array,
+    description: PropTypes.any,
+    descriptionClasses: PropTypes.string,
     filtersHeader: PropTypes.string,
     containerHeader: PropTypes.string,
     containerClasses: PropTypes.string,
     headerClasses: PropTypes.string,
     hideHeader: PropTypes.any,
-    mapId: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ]),
+    mapId: PropTypes.any,
+    children: PropTypes.node,
 };
 
 export default PaginatedPage;

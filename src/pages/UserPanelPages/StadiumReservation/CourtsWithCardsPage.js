@@ -47,7 +47,8 @@ const CourtsWithCardsPage = () => {
                     return (
                         <Card
                             key={index}
-                            onClickGreenButton={() => history.push(TourismRoutes.Reservation(item.id))}
+                            greenButtonText={'REZERWACJA'}
+                            link={TourismRoutes.Reservation(item.id)}
                             {...item}
                             {...newItem}
                         />

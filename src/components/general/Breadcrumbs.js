@@ -1,34 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
-
 import "../../styles/general/breadcrumbs.scss";
+import {main_url} from "../../extra/main_menu";
+import SelectiveLink from "../../extra/SelectiveLink";
 
-import { main_url } from "../../extra/main_menu";
+const start_link = {label: "Start", href: main_url};
 
-const start_link = { label: "Start", href: main_url };
+const Breadcrumbs = ({breadcrumbs, extra_classes, withStart}) => {
+    const crumbs = (withStart ? [start_link, ...breadcrumbs] : breadcrumbs).map(crumb => ({
+        label: crumb.label || crumb.title || crumb.name,
+        link: crumb.href || crumb.to || crumb.url,
+    }));
 
-const Breadcrumbs = ({ breadcrumbs, extra_classes }) => (
-	<div className={`breadcrumbs ${ extra_classes || "" }`}>
-		
-		<div className="container">
-			<div className="breadcrumbs__items">
-				{ breadcrumbs && !!breadcrumbs.length && 
-					[ start_link, ...breadcrumbs ].map(({ label, href, to }, index) => (
-						href 
-						? <a key={ index } href={ href } > { label } </a>
-						: to 
-							? <Link key={ index } to={ to } > { label } </Link>
-							:	<div key={ index } > { label } </div>	
-				))}
-			</div>
-		</div>
-	</div>
-)
+    return (
+        <div className={`breadcrumbs ${extra_classes}`}>
+            <div className="container">
+                <div className="breadcrumbs__items">
+                    {crumbs && !!crumbs.length && crumbs.map(({label, link}, index) => (
+                        link
+                            ? <SelectiveLink key={index} to={link}>{label}</SelectiveLink>
+                            : <div key={index}>{label}</div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
 
-Breadcrumbs.propTypes = { 
-	breadcrumbs: PropTypes.array.isRequired,
-	extra_classes: PropTypes.string
-}
+Breadcrumbs.propTypes = {
+    breadcrumbs: PropTypes.array.isRequired,
+    extra_classes: PropTypes.string,
+    withStart: PropTypes.any,
+};
 
 export default Breadcrumbs;

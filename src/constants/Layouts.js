@@ -24,8 +24,10 @@ import SportCourts from "../layouts/SportCourts";
 import SportActivities from "../layouts/SportActivities";
 import SportTenisCourts from "../layouts/SportTenisCourts";
 import SportBikesPage from "../layouts/SportBikesPage";
+import UniversalPaginatedLayout from "../layouts/UniversalPaginatedLayout";
 
 export default {
+    universal: UniversalPaginatedLayout,
     main_homepage: MainHomepage,
     tourism_homepage: TourismHomepage,
     tourism_news: TourismNews,
