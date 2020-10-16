@@ -10,6 +10,7 @@ const API = axios.create({
 API.interceptors.request.use(config => {
     config.params = config.params || {}
     config.params.lang = config.params?.lang || localStorage.getItem(LocalStorage.Locale) || 'pl';
+    config.params.domain = config.params?.domain || window.location.hostname;
     return config;
 });
 
