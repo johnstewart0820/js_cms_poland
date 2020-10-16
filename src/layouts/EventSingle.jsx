@@ -15,6 +15,7 @@ import LoopCard from "../components/loop/LoopCard";
 export default function EventSingle(props) {
     const planerContext = React.useContext(PlanerContext);
     const [items, setItems] = React.useState(null);
+    const [isPollHere, setIsPollHere] = React.useState(null);
 
     React.useEffect(() => {
         API.getEntities({categories: props.page.categories}).then(res => setItems(res.data.contents));
@@ -27,6 +28,13 @@ export default function EventSingle(props) {
         else return planerContext.add(props.page.id);
     }
 
+    const getPollId = () => {
+        const isPollHere = props.page.body.includes('[[Poll/');
+       return isPollHere;
+    }
+    const a = getPollId();
+    console.log(a)
+
     return (
         <>
             <MainHeaderSection extra_classes="single">
@@ -36,7 +44,7 @@ export default function EventSingle(props) {
 
             <SingleContainer>
                 {props.page.body && (<div>{Parser(props.page.body)}</div>)}
-                <Questionnaire/>
+                <Questionnaire getPollId={getPollId}/>
                 <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>
             </SingleContainer>
 
