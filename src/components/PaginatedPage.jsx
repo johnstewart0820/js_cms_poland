@@ -58,7 +58,7 @@ const PaginatedPage = props => {
 
     const onFilterSubmit = args => {
         const config = Array.isArray(props.config) ? props.config[0] : props.config;
-        setFilters({...handleFilteringCategories(args, config.field_section_categories_visit), page: filters.page});
+        setFilters({...filters, ...handleFilteringCategories(args, config.field_section_categories_visit)});
     };
 
     const onPageChange = page => {
