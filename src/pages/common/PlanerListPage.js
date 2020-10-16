@@ -111,8 +111,8 @@ const PlanerListPage = () => {
                                             deleteOnClick={() => planerContext.delete(index)}
                                             onMapCheck={() => scrollToMap()}
                                         />
-                                        {index  % 4 === 3 && <div className={'break-page-portrait'}/>}
-                                        {index  % 3 === 2 && <div className={'break-page-landscape'}/>}
+                                        {index  % 3 === 2 && <div className={'break-page-portrait'}/>}
+                                        {index  % 2 === 1 && <div className={'break-page-landscape'}/>}
                                     </>
                                 )
                             })}

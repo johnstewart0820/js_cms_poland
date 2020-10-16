@@ -1,12 +1,12 @@
 .planer-list {
     @media print and (orientation: landscape) {
             .break-page-landscape {
-                margin-bottom: 60px;
+                margin-bottom: 170px;
             }
     }
     @media print and (orientation: portrait) {
         .break-page-portrait {
-            margin-bottom: 200px;
+            margin-bottom: 350px;
         }
     }
     .container {

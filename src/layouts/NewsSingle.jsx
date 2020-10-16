@@ -14,6 +14,18 @@ import LoopCard from "../components/loop/LoopCard";
 export default function NewsSinglePage(props) {
     const planerContext = React.useContext(PlanerContext);
     const [news, setNews] = React.useState(null);
+    const [gallery, setGallery] = React.useState(props.page.gallery);
+
+    React.useEffect(() => {
+        gallery.forEach(element => {
+            gallery.push({
+                description: element.description,
+                name: "",
+                title: element.title,
+                url: element.name,
+            });
+        });
+    }, [gallery]);
 
     React.useEffect(() => {
         API.getEntities({categories: props.page.categories})
@@ -47,7 +59,7 @@ export default function NewsSinglePage(props) {
                 </SingleContainer>
             )}
 
-            {!!props.page.gallery?.length && <Gallery items={props.page.gallery}/>}
+            {props.page.gallery && <Gallery items={gallery}/>}
 
             {news !== false && (
                 <OneCarouseInRow carousel={{
