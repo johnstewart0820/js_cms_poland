@@ -13,7 +13,7 @@ export const PageDescription = ({logoText, descriptionText, buttonText, href, on
                 <Row>
                     <LogoWhite/>
                     <h4>
-                        {logoText.toUpperCase()}
+                        {logoText}
                     </h4>
                 </Row>
             </Col>
@@ -26,7 +26,7 @@ export const PageDescription = ({logoText, descriptionText, buttonText, href, on
 
             <Col>
                 <ButtonContainer className="button-link green full-width" href={href} onClick={onClick}>
-                    {buttonText.toUpperCase()}
+                    {buttonText}
                 </ButtonContainer>
             </Col>
         </div>
