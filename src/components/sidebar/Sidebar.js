@@ -1,103 +1,89 @@
-import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
-
+import React, {Component} from 'react';
+import {withRouter} from "react-router-dom";
 import SimpleLink from "../general/SimpleLink";
 import MainMenu from "./MainMenu";
-
 import social_links from "../../extra/social-links";
-import { ListIcon, FacebookIcon, YouTubeIcon, InstagramIcon } from "../../svg/icons";
-
+import {FacebookIcon, InstagramIcon, ListIcon, YouTubeIcon} from "../../svg/icons";
 import "../../styles/sidebar/sidebar.scss";
-import { SITE } from '../../extra/site_settings';
-
+import {MAIN_DOMAINS} from '../../extra/site_settings';
 
 const socials = [
-	{ svg: <FacebookIcon />, hidden_text: "facebook", href: social_links.facebook, target: "_blank" },
-	{ svg: <YouTubeIcon />, hidden_text: "youtube", href: social_links.youtube, target: "_blank" },
-	{ svg: <InstagramIcon />, hidden_text: "instagram", href: social_links.instagram, target: "_blank" }
+    {svg: <FacebookIcon/>, hidden_text: "facebook", href: social_links.facebook, target: "_blank"},
+    {svg: <YouTubeIcon/>, hidden_text: "youtube", href: social_links.youtube, target: "_blank"},
+    {svg: <InstagramIcon/>, hidden_text: "instagram", href: social_links.instagram, target: "_blank"},
 ];
 
 class Sidebar extends Component {
+    static propTypes = {}
 
-	static propTypes = { }
+    location_path = this.props?.history?.location?.pathname;
 
-	location_path = this.props?.history?.location?.pathname;
+    state = {
+        menu_open: false,
+        height: MAIN_DOMAINS.includes(window.location.hostname) ? "100vh" : "100%",
+    }
 
-	state = {
-		menu_open: false,
-		height: SITE === "MAIN" ? "100vh" : "100%"
-	}
-	
+    componentDidMount() {
+        this.startInterval();
+        window.addEventListener("resize", this.calculateHeight);
+    }
 
-	componentDidMount() {
-		this.startInterval();
-		window.addEventListener( "resize", this.calculateHeight );
-	}
+    componentDidUpdate() {
+        if (this.location_path !== this.props.history.location.pathname) {
+            this.location_path = this.props.history.location.pathname;
+            this.startInterval()
+        }
+    }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+        window.removeEventListener("resize", this.calculateHeight);
+    }
 
-	componentDidUpdate () {
-		if ( this.location_path !== this.props.history.location.pathname ) {
-			this.location_path = this.props.history.location.pathname;
-			this.startInterval()
-		}
-	}
+    startInterval = () => {
+        this.interval = setInterval(() => {
+            if (document.getElementById("main-header-section")) {
+                clearInterval(this.interval);
+                this.calculateHeight();
+            }
+        }, 40);
+    }
 
+    calculateHeight = () => {
+        clearInterval(this.interval);
 
-	componentWillUnmount(){
-		clearInterval( this.interval );
-		window.removeEventListener( "resize", this.calculateHeight );
-	}
+        const main_header_section = document.getElementById("main-header-section");
+        const header = document.getElementById("header");
 
+        if (!main_header_section) return;
 
-	startInterval = () => {
-		this.interval = setInterval( () => {
-			if ( document.getElementById("main-header-section") ) {
-				clearInterval( this.interval );
-				this.calculateHeight();
-			}
-		}, 40);
-	}
+        this.setState({height: header.offsetHeight + main_header_section.offsetHeight});
+    }
 
+    toggleMainMenu = (e) => {
+        e.preventDefault();
+        this.setState({menu_open: !this.state.menu_open})
+    }
 
-	calculateHeight = () => {
-		clearInterval( this.interval );
-		
-		const main_header_section = document.getElementById("main-header-section");
-		const header = document.getElementById("header");
+    render() {
+        return (
+            <div className="sidebar" style={{height: this.state.height}}>
+                <button type="button" className={`sidebar__trigger ${this.state.menu_open ? "active" : ""}`}
+                        onClick={this.toggleMainMenu}>
+                    <span className="d-none"> trigger </span>
+                    <ListIcon/>
+                </button>
 
-		if( !main_header_section ) return;
+                <div className="sidebar__socials">
+                    {socials.map((item, index) => (
+                        <SimpleLink key={index} {...item} />
+                    ))}
+                </div>
 
-		this.setState({ height: header.offsetHeight + main_header_section.offsetHeight });
-	}
-
-
-	toggleMainMenu = (e) => {
-		e.preventDefault();
-		this.setState({ menu_open: !this.state.menu_open })
-	}
-
-
-	render(){
-
-		return (
-			<div className="sidebar" style={{ height: this.state.height }}>
-				<button type="button" className={`sidebar__trigger ${ this.state.menu_open ? "active" : "" }`} onClick={ this.toggleMainMenu }>
-					<span className="d-none"> trigger </span>
-					<ListIcon />
-				</button>
-
-				<div className="sidebar__socials">
-					{ socials.map(( item, index ) => (
-						<SimpleLink key={ index } { ...item } />
-					))}
-				</div>
-
-				{ this.state.menu_open && 
-					<MainMenu />
-				}
-			</div>
-		)
-	}
+                {this.state.menu_open && <MainMenu/>}
+            </div>
+        );
+    }
 }
 
 export default withRouter(Sidebar);
