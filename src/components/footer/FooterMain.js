@@ -39,7 +39,6 @@ const FooterMain = () => (
 			</div>
 		) }
 	</SiteInfoContextConsumer>
-	
 )
 
 FooterMain.propTypes = { }
