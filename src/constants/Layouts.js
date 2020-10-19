@@ -20,6 +20,7 @@ import SportHomepage from "../layouts/SportHomepage";
 import SportRopeRoads from "../layouts/SportRopeRoads";
 import SportBikesPage from "../layouts/SportBikesPage";
 import UniversalPaginatedLayout from "../layouts/UniversalPaginatedLayout";
+import CultureHomepage from "../layouts/CultureHomepage";
 
 export default {
     universal: UniversalPaginatedLayout,
@@ -45,4 +46,6 @@ export default {
     sport_homepage: SportHomepage,
     sport_paths: SportRopeRoads,
     sport_bikes: SportBikesPage,
+    // Culture pages
+    culture_homepage: CultureHomepage,
 };
