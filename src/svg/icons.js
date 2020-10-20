@@ -9,6 +9,7 @@ import {ReactComponent as EnvelopeIcon} from "./icons/envelope.svg";
 import {ReactComponent as SunIcon} from "./icons/sun.svg";
 import {ReactComponent as CameraIcon} from "./icons/camera.svg";
 import {ReactComponent as TileMark} from "./icons/tile-mark.svg";
+import {ReactComponent as WhiteTileMark} from "./icons/white-tile-mark.svg";
 import {ReactComponent as ListIcon} from "./icons/list.svg";
 import {ReactComponent as StarIcon} from "./icons/star.svg";
 import {ReactComponent as TennisIcon} from "./icons/tennis.svg";
@@ -106,6 +107,7 @@ export {
     BicycleIconRed,
     BicycleIconBlue,
     BicycleIconYellow,
+    WhiteTileMark,
 
 
     TwoWayArrowsHorizontalIcon,

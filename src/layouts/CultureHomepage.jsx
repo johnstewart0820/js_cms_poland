@@ -7,7 +7,7 @@ import {getArticleLink} from "../extra/functions";
 import LoopCard from "../components/loop/LoopCard";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
 import PicTextInfo from "../components/general/PicTextInfo";
-import {IceSkatesIcon} from "../svg/icons";
+import {WhiteTileMark} from "../svg/icons";
 
 const CultureHomepage = props => {
     const acf = props.page.acf;
@@ -36,6 +36,16 @@ const CultureHomepage = props => {
                     component: LoopCard,
                     items: items2?.contents || [],
                 }}
+            />
+
+            <PicTextInfo
+                href={acf.field_library_button_link || '#'}
+                link_label={acf.field_library_button_title}
+                heading={acf.field_library_title}
+                heading_svg={<WhiteTileMark/>}
+                text={acf.field_library_description}
+                picture_url={acf.field_library_photo}
+                extra_description={acf.field_library_extra_description}
             />
 
         </>
