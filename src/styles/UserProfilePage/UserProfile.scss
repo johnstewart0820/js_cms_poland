@@ -55,6 +55,7 @@
 	.my-profile__change-password,
 	.my-profile__edit{
 		flex: 1 1;
+		margin-right: 20px;
 	}
 
 	.my-profile__change-password{
@@ -83,20 +84,15 @@
 		}
 	}
 }
-@media(max-width:1199px){
+
+@media( max-width:1199px ) {
   .custom-container{
     .container-fluid{
       >.row:nth-child(2){
         margin-bottom: 20px;
       }
       .row{
-        .col{
-          .container-inner{
-            margin: 5px;
-            padding: 20px;
-            height: 100%;
-          }
-        }
+        
         .col:nth-child(1){
           .container-inner{
             img{

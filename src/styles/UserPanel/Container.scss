@@ -12,9 +12,7 @@
 
   .container-fluid {
     width: 100%;
-    .row:nth-child(2){
-      justify-content: center;
-    }
+    
     .row {
       display: flex;
       flex-wrap: wrap;
