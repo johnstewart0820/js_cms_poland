@@ -77,7 +77,7 @@ const UserProfilePage = () => {
             notificationMessage={notification}
             containerTitle={'MOJ PROFIL'}>
             <Row>
-                <Col>
+                <Col extraClasses="my-profile__notifications">
                     <div className="container-inner">
                         <div className="user-category-header">
                             <div className="user-category__image">
@@ -140,7 +140,7 @@ const UserProfilePage = () => {
                         </div>
                     </div>
                 </Col>
-                <Col>
+                <Col extraClasses="my-profile__edit">
                     <div className="container-inner">
                         <InputComponent
                             fieldName={'NAZWA UŻYTKOWNIKA'}

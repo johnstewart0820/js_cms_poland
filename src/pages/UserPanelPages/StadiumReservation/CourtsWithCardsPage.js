@@ -42,11 +42,13 @@ const CourtsWithCardsPage = () => {
             notificationMessage={notification}
         >
             <Row>
-                {data.map((item, index) => {
+					 { data && !!data.length && 
+					 	data.map((item, index) => {
                     let newItem = item.acf;
                     return (
                         <Card
-                            key={index}
+									 key={index}
+									 extraClasses="court"
                             greenButtonText={'REZERWACJA'}
                             link={TourismRoutes.Reservation(item.id)}
                             {...item}
