@@ -6,7 +6,7 @@ const SimpleGamePageButtonsContainer = ({qrButtonOnClick, visitButtonOnClick}) =
     const qrButton = "skanuj Qr kod";
 
     return(
-        <div className={'buttons-category'}>
+        <div className={'single-game-buttons-category'}>
             <button className="button-link green full-width" onClick={qrButtonOnClick}>{qrButton.toUpperCase()}</button>
             <ButtonLink extra_classes="green-transparent" onClick={visitButtonOnClick}>{visitButton.toUpperCase()}</ButtonLink>
         </div>

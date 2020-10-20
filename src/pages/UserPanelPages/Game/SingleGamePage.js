@@ -55,7 +55,7 @@ const SingleGamePage = props => {
                     category={data.categories[0].name}
                     imageSrc={data.image}
                 />
-                <div className={'description'}>
+                <div className={'single-game-description'}>
                     <div className={'court-description'}>{Parser(data.body)}</div>
                 </div>
                 <ButtonsContainer
