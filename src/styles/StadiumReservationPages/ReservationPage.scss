@@ -28,3 +28,35 @@
     margin-left: 15px;
   }
 }
+
+
+@media (max-width: 1199px) {
+	.reservation-body{
+		padding-left: 15px;
+	}
+}
+
+
+@media (max-width: 900px) {
+	.reservation-body{
+		flex-wrap: wrap;
+	}
+
+	.reservation-header{
+		padding: 20px 15px;
+
+		h1{
+			font-size: 2.23em;
+		}
+	}
+}
+
+
+@media (max-width: 600px) {
+	.reservation-body{
+		.calendar-container .calendar{
+			width: 100%;
+			padding: 10px;
+		}
+	}
+}
