@@ -49,9 +49,12 @@
 		padding: 0 15px;
 	}
 
-	.button-link{
+	.button-link {
 		position: absolute;
-		right: 70px;
 		bottom: 40px;
 	}
+
+    .button-link-right {
+        right: 70px;
+    }
 }

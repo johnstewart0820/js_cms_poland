@@ -48,6 +48,17 @@ const CultureHomepage = props => {
                 extra_description={acf.field_library_extra_description}
             />
 
+            <PicTextInfo
+                href={acf.field_museum_button_link || '#'}
+                link_label={acf.field_museum_button_title}
+                heading={acf.field_museum_title}
+                heading_svg={<WhiteTileMark/>}
+                text={acf.field_museum_description}
+                picture_url={acf.field_museum_photo}
+                isLeft={true}
+            />
+
+
         </>
     )
 }
