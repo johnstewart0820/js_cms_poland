@@ -87,6 +87,7 @@
               width: 100%;
               margin-top: 10px !important;
               min-height: 30px;
+              max-width: 275px;
               .input-default{
                 min-height: 30px;
               }
@@ -103,6 +104,25 @@
             }
            
          }
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:576px){
+  .custom-container{
+    .container-fluid{
+      >.row:nth-child(2){
+        margin-bottom: 20px;
+      }
+      .row{
+        .col{
+          .container-inner{
+            margin: 5px;
+            padding: 10px 5px;
+            height: 100%;
+          }
         }
       }
     }
