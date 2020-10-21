@@ -9,7 +9,7 @@ const GameCard = ({field_playground_category, title, original_image, onClickGree
     return (
         <Col>
             <div className={`card ${extraClasses ? extraClasses : ''}`}>
-                <div className="card__thumbnail has-overlay" style={{backgroundImage: `url("${original_image || DefaultImage}")`}}>
+                <div className="card__thumbnail thumbnail has-overlay" style={{backgroundImage: `url("${original_image || DefaultImage}")`}}>
                     <div className="card__name">
                         {field_playground_category}
                     </div>

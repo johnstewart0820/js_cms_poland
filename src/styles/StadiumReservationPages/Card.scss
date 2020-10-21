@@ -31,9 +31,10 @@
     display: flex;
 
     .button__eye {
-      position: absolute;
-      top: 190px;
-      left: 260px;
+		position: absolute;
+		right: 0;
+		bottom: -30px;
+
       width: 60px;
       height: 60px;
       border-radius: 50px;

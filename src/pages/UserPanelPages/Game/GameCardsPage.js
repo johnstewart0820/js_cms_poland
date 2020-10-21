@@ -1,7 +1,6 @@
 import React from "react";
 import {Container} from "../../../components/UserPanel/Container";
 import Row from "../../../components/helpers/Row";
-import '../../../styles/Game/GameCardsPage.scss';
 import ProgressBar from "../../../components/Object/ProgressBar";
 import ButtonUnderline from "../../../components/Object/ButtonUnderline";
 import Card from "../../../components/StadiumReservationComponents/Card";
@@ -21,6 +20,7 @@ import {
 import {API_URL} from "../../../extra/API";
 import GameCard from "../../../components/Cards/GameCard";
 
+import '../../../styles/Game/GameCardsPage.scss';
 
 const items = [
     {
@@ -137,7 +137,7 @@ const GameCardsPage = () => {
             setNotification={!!notification && true}
             notificationMessage={notification}
         >
-            <div className="container-inner">
+            <div className="container-inner game-container">
                 <Row>
                     <div className="page-logo">
                         <img alt='' src={require('../../../svg/icons/game-header-image.svg')}/>
