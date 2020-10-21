@@ -55,7 +55,7 @@ const MainMenu = props => {
 
 				return (
 					<div key={ index } className={ column_classes.join(" ") } >
-						<a href={ main_href } target="_blank" className="main-menu__title" rel={'noopener noreferrer'}> 
+						<a href={ main_href } className="main-menu__title" rel={'noopener noreferrer'}> 
 							
 							{ items && !!items.length && <strong onClick={ e => toggleMobileMenu( e, index ) }> &#62; </strong> }
 							<span> { title } </span>
@@ -64,7 +64,7 @@ const MainMenu = props => {
 						{ items && !!items.length &&
 							<div className="main-menu__items">
 								{ items.map(({ title, href }, index) => (
-									<a key={ index } href={ href } target="_blank" rel={'noopener noreferrer'}> { title } </a>
+									<a key={ index } href={ href } rel={'noopener noreferrer'}> { title } </a>
 								)) }
 							</div>
 						}
