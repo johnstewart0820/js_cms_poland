@@ -101,8 +101,7 @@ export const UserPanel = () => {
 					{ panel_links.map(( item, index ) => (
 						<PanelLink 
 							key={ index } 
-							{...item } 
-							extraClasses={ item.to === history.location.pathname ? "active" : "" }	
+							{...item } 	
 						/>
 					)) }
             </div>

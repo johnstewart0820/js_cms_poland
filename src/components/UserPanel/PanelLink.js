@@ -6,7 +6,6 @@ export const PanelLink = props => (
     <>
         <NavLink
             to={ props.to ? props.to : ''}
-            activeClassName={ props.activeClassName || 'focus'}
             onClick={ props.onClick }
             className={`panel-container__button ${ props.extraClasses || "" }`}>
             <img alt='btn img' src={ props.buttonImage } />
