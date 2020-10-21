@@ -80,7 +80,7 @@ class Sidebar extends Component {
                     ))}
                 </div>
 
-                {this.state.menu_open && <MainMenu/>}
+                <MainMenu extra_classes={ this.state.menu_open ? "visible" : "" } />
             </div>
         );
     }

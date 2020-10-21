@@ -11,6 +11,10 @@ import AttractionSingleHead from "../components/attractions/AttractionSingleHead
 import '../styles/attractions/attraction-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
+import SingleContainer from "../components/common-single/SingleContainer";
+import Video from "../components/general/Video";
+import Attachment from "../components/general/Attachment";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -96,8 +100,8 @@ export default function AttractionSingle(props) {
 
     let coords = [];
     if (field_map_gps) {
-        const [ lat, lng ] = field_map_gps.split(';');
-        coords.push({ lat, lng });
+        const [lat, lng] = field_map_gps.split(';');
+        coords.push({lat, lng});
     }
 
     if (field_service_languages) {
@@ -137,7 +141,7 @@ export default function AttractionSingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>OPIS</div>
                 </div>
-                <h2 className={' description-main'}>{Parser(field_description)}</h2>
+                <h2 className={' description-main'}>{parserShortcodes(field_description)}</h2>
             </div>
             }
             {(field_is_free_entrance && field_prices_variant) &&
@@ -150,6 +154,10 @@ export default function AttractionSingle(props) {
             </div>
             }
 
+            {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
+            {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
+
+
             {ifTrail && (gallery || worthSeeing) ?
                 <Gallery heading='warto zobaczyć na trasie' items={worthSeeing}/> :
                 <Gallery items={gallery}/>}
@@ -161,8 +169,10 @@ export default function AttractionSingle(props) {
                 items: news || [],
             }}/>
 
-            { !!coords?.length && <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div> }
-            { !!trails?.length && <div className="single-attraction-map"><GoogleMap className={'map'} trails={[trails]}/></div>}
+            {!!coords?.length &&
+            <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div>}
+            {!!trails?.length &&
+            <div className="single-attraction-map"><GoogleMap className={'map'} trails={[trails]}/></div>}
 
         </>
     );

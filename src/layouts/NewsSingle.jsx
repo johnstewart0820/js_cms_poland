@@ -10,6 +10,9 @@ import SingleContentBottom from "../components/common-single/SingleContentBottom
 import {API} from "../extra/API";
 import PlanerContext from "../constants/PlanerContext";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
+import Video from "../components/general/Video";
+import Attachment from "../components/general/Attachment";
 
 export default function NewsSinglePage(props) {
     const planerContext = React.useContext(PlanerContext);
@@ -53,11 +56,15 @@ export default function NewsSinglePage(props) {
 
             {props.page.body && (
                 <SingleContainer extra_classes="single-news-container">
-                    <div>{Parser(props.page.body)}</div>
+                    <div>{parserShortcodes(props.page.body)}</div>
                     {props.page.acf.field_map_gps &&
                     <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>}
                 </SingleContainer>
             )}
+
+            {props.page.video.length !== 0 &&
+            <Video video={props.page.video.embed}/>}
+            {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
 
             {props.page.gallery && <Gallery items={gallery}/>}
 

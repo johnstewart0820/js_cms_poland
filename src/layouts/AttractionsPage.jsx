@@ -14,7 +14,7 @@ const AttractionPage = props => {
             choices: {},
         };
 
-        props.page.acf.field_news_filtering_categories.forEach(category => {
+        props.page.acf.field_information_modules_attractions[0].field_section_categories_visit.forEach(category => {
             obj.choices[category.id] = category.name;
         });
 
@@ -41,7 +41,8 @@ const AttractionPage = props => {
     return (
         <PaginatedPage
             page={props.page}
-            config={props.page.acf.field_information_module_news}
+            containerClasses={'wider'}
+            config={props.page.acf.field_information_modules_attractions}
             inputs={inputs}
         />
     )

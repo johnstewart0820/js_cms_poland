@@ -66,77 +66,79 @@ const ReservationHistoryPage = () => {
             <div className="list-container">
                 <div className="list-view__container">
                     <div className="list-view__list">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td style={{textAlign: "left"}}>
-                                        Nazwa boiska
-                                    </td>
-                                    <td>
-                                        Czas trwania
-                                    </td>
-                                    <td>
-                                        Godzina rezerwacji
-                                    </td>
-                                    <td>
-                                        Data
-                                    </td>
-                                    <td>
-                                        Status
-                                    </td>
-                                    <td>
+							  {/* <div style={{ overflow: "auto", maxWidth: "100%" }}> */}
+									<table>
+										<thead>
+											<tr>
+													<td style={{textAlign: "left"}}>
+														Nazwa boiska
+													</td>
+													<td>
+														Czas trwania
+													</td>
+													<td>
+														Godzina rezerwacji
+													</td>
+													<td>
+														Data
+													</td>
+													<td>
+														Status
+													</td>
+													<td>
 
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {data.map((item, index) => {
-                                let timeToCancel = humanizedDuration(item.seconds_to_cancel);
-                                let result = 'Pozostało ' + timeToCancel + ' na dokonanie wpłaty';
+													</td>
+											</tr>
+										</thead>
+										<tbody>
+										{data.map((item, index) => {
+											let timeToCancel = humanizedDuration(item.seconds_to_cancel);
+											let result = 'Pozostało ' + timeToCancel + ' na dokonanie wpłaty';
 
-                                const StatusItem = () => {
-                                    if (item.seconds_to_cancel <= 0) {
-                                        return <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>
-                                    } else {
-                                        if (item.is_canceled === '0' && item.confirmed === '0') {
-                                            return <p style={{color: 'red'}}>{result}</p>
-                                        } else if (item.confirmed === '1' && item.is_canceled === '0') {
-                                            return <h5>Opłacone</h5>
-                                        } else {
-                                            return <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>
-                                        }
-                                    }
-                                }
-                                return(
-                                    <tr key={index}>
-                                        <td>
-                                            <Checkbox
-                                                labelRight={true}
-                                                label={item.court.title}
-                                            />
-                                        </td>
-                                        <td>
-                                            {item.minutes + ' min'}
-                                        </td>
-                                        <td>
-                                            {item.time_frame }
-                                        </td>
-                                        <td>
-                                            {item.day}
-                                        </td>
-                                        <td>
-                                            <StatusItem/>
-                                        </td>
-                                        <td style={{padding: "20px 0 0 0"}}>
-                                            {item.is_canceled === '0' && item.seconds_to_cancel >= 1 && (
-                                                <ButtonX onClick={() => cancelReservation(item.id)}/>
-                                            )}
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                            </tbody>
-                        </table>
+											const StatusItem = () => {
+													if (item.seconds_to_cancel <= 0) {
+														return <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>
+													} else {
+														if (item.is_canceled === '0' && item.confirmed === '0') {
+															return <p style={{color: 'red'}}>{result}</p>
+														} else if (item.confirmed === '1' && item.is_canceled === '0') {
+															return <h5>Opłacone</h5>
+														} else {
+															return <p style={{opacity: '0.7'}}>Wygasłe/anulowane</p>
+														}
+													}
+											}
+											return(
+													<tr key={index}>
+														<td>
+															<Checkbox
+																	labelRight={true}
+																	label={item.court.title}
+															/>
+														</td>
+														<td>
+															{item.minutes + ' min'}
+														</td>
+														<td>
+															{item.time_frame }
+														</td>
+														<td>
+															{item.day}
+														</td>
+														<td>
+															<StatusItem/>
+														</td>
+														<td style={{padding: "20px 0 0 0"}}>
+															{item.is_canceled === '0' && item.seconds_to_cancel >= 1 && (
+																	<ButtonX onClick={() => cancelReservation(item.id)}/>
+															)}
+														</td>
+													</tr>
+											)
+										})}
+										</tbody>
+									</table>
+								{/* </div> */}
                     </div>
                 </div>
             </div>

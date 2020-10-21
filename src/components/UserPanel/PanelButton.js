@@ -3,14 +3,13 @@ import '../../styles/UserPanel/PanelButton.scss';
 
 const PanelButton = props => (
     <>
-        {props.lines && <hr/>}
         <button
-            onClick={props.onClick}
-            className={`panel-container__button ${props.extraClasses}`}>
-            <img alt='' src={props.buttonImage} />
-            {props.buttonText}
+            onClick={ props.onClick }
+            className={`panel-container__button ${ props.extraClasses || ''}`}>
+         
+			   <img alt='' src={ props.buttonImage } />
+				<span> { props.buttonText } </span>
         </button>
-        {props.lastChild && props.lines && <hr/>}
     </>
 )
 

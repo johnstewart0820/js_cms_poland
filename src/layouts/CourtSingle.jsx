@@ -11,6 +11,10 @@ import GoogleMap from "../components/map/GoogleMap";
 import CourtSingleHead from "../components/courts/CourtSingleHead";
 import Loader from "../components/general/Loader";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
+import Video from "../components/general/Video";
+import SingleContainer from "../components/common-single/SingleContainer";
+import Attachment from "../components/general/Attachment";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -119,9 +123,14 @@ export default function AttractionSingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>OPIS</div>
                 </div>
-                <h2 className={'description-main'}>{Parser(props.page.body)}</h2>
+                <h2 className={'description-main'}>{parserShortcodes(props.page.body)}</h2>
             </div>
             }
+
+
+                {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
+                {props.page.attachments.length!==0 &&<Attachment attachments={props.page.attachments}/>}
+
 
             <Gallery items={props.page.gallery}/>
 

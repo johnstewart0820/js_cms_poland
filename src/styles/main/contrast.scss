@@ -55,7 +55,29 @@ body.contrast{
 	
 
 	// ONLY COLOR
+	.section-title-facilities .name-info-facilities,
 	.link-to-all,
+	.card .card__content,
+	.card .card__content .card__address > span,
+	.input-container input,
+	.registration-container .container__form .bottom-container .login-container button,
+	.custom-container .container-fluid .row .page-title h3,
+	.gray .input-container .input-label-container .input-label,
+	.form-select select,
+	.yellow-discount__title,
+	.page-header-section .date,
+	.loop-card__content-container,
+	.pagination > button, .pagination > span,
+	.gray-description .col h4,
+	.gray-card-component .gray-card-element .gray-card-item .gray-card-element-description p,
+	.gray-card-component .gray-card-element .gray-card-item .fields-with-icons .text a,
+	.gray-card-component .gray-card-element .gray-card-item .gray-card-element-bottom .phone,
+	.pagination > button,
+	.section-info h2,
+	.section-info .section-title .name-info,
+	.header-actions .link,
+	.map-popup-info__extra a,
+	.map-popup-info__top a,
 	.main-menu a,
 	.carousel__head > a,
 	.footer-main__address_heading,
@@ -82,6 +104,22 @@ body.contrast{
 
 
 	// BACKGROUND BLACK AND COLOR CONTRAST
+	.map-with-pins-filtering-info,
+	.white-body .white-body-container,
+	.container-inner .row .game-card,
+	.input-container .input-label-container,
+	.list-container .list-view__container,
+	.container-inner,
+	.button-with-underline,
+	.custom-container,
+	.gray,
+	.textarea-container,
+	.textarea-container .textarea,
+	.form-select__label,
+	.full-page-loader,
+	.page-header-section,
+	.page-title,
+	.map-popup-info,
 	.pictures-slider__circles button,
 	.text-link-expandable-info,
 	.two-carousels-one-row > div:nth-child(2),
@@ -94,6 +132,21 @@ body.contrast{
 
 	// BG BLACK + FONT CONTRAST + BORDER CONTRAST
 	.breadcrumbs,
+	.calendar-container .calendar .react-calendar__tile,
+	.calendar-container .calendar .react-calendar__navigation .react-calendar__navigation__label,
+	.calendar-container .calendar .react-calendar__navigation .react-calendar__navigation__arrow,
+	.custom-container .container-fluid .row .col .container-inner,
+	.panel-container,
+	.panel-container__button,
+	.day,
+	.day:hover,
+	.gray .input-container .input-label-container,
+	.gray-description,
+	.gray-card-component .gray-card-element,
+	.arrows > button:disabled,
+	.pic-text-info__info,
+	.share-button,
+	.share-button-wrapper > .share-button-list > button, .share-button-wrapper > .share-button-list > a,
 	.text-link-pic,
 	.footer-main,
 	.main-menu,
@@ -116,24 +169,37 @@ body.contrast{
 
 
 	// BG CONTRAST AND COLOR BLACK
+	.single-game-header .single-game-header-gray,
+	.panel-container__button.active,
 	.arrows > button:hover,
+	.reservation-header,
+	.day.active,
+	.pagination > button.active,
 	.text-link-expandable-info__expandable_head{
 		background: $contrast;
-		color: #000;
+		color: #000 !important;
+	}
+
+	// COLOR BLACK
+	.reservation-header p,
+	.single-game-header .single-game-header-gray .single-game-category,
+	.single-game-header .single-game-header-gray .single-game-header-gray-title p,
+	.reservation-header h1{
+		color: #000 !important;
 	}
 
 
 	// BORDER 1px solid
 	.loop-gastronomy-post__bottom > a:not(.button-link),
 	.loop-accommodation-post__bottom > a:not(.button-link),
-	.arrows > button,
-	.sidebar{
+	.arrows > button{
 		border: 1px solid $contrast;
 	}
 
 
 	// BORDER COLOR CONTRAST 
 	.links-tiles .row > a,
+	.button-with-underline:hover hr,
 	.loop-event-post__dates,
 	.loop-event-post__date{
 		border-color: $contrast;
@@ -148,6 +214,7 @@ body.contrast{
 
 	// GRAYSCALE
 	.thumbnail,
+	.container-inner .row .page-logo,
 	.main-header-tiles-section__tile{
 		filter: grayscale(100%);	
 	}

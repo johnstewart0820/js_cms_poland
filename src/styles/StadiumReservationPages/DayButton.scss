@@ -6,6 +6,7 @@
   min-height: 190px;
   width: 170px;
   border: 2px solid gray;
+  color: $gray; 
   margin: 40px 20px 10px 0;
   transition: 0.5s;
   display: flex;
@@ -22,23 +23,33 @@
   h3 {
     font-weight: normal;
     transition: 0.5s;
-    color: $gray;
   }
   h1 {
     transition: 0.5s;
     line-height: 0;
     font-size: 45px;
-    color: $gray;
   }
   h4 {
     transition: 0.5s;
     font-size: 18px;
-    color: $gray;
   }
   &:hover {
-    background: #f9f9f9;
-    border: 2px solid $green;
+    	background: #f9f9f9;
+	 	border: 2px solid $green;
+	 
+		hr {
+			border-color: $green;
+ 		}
   }
+
+  &:focus {
+	color: $green;
+ 
+	hr{
+		border-color: $green;
+	}
+ }
+
   hr {
     transition: 0.5s;
     border: 1px solid gray;
@@ -47,18 +58,3 @@
   }
 }
 
-.day:hover {
-  border: 2px solid $green;
-}
-
-.day:hover hr {
-  border: 1px solid $green;
-}
-
-.day:focus * {
-  color: $green;
-}
-
-.day:focus hr {
-  border: 1px solid $green;
-}
