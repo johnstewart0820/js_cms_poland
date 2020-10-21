@@ -4,15 +4,14 @@ import {NavLink} from "react-router-dom";
 
 export const PanelLink = props => (
     <>
-        {props.lines && <hr/>}
         <NavLink
-            to={props.to ? props.to : ''}
-            activeClassName={props.activeClassName || 'focus'}
-            onClick={props.onClick}
-            className={`panel-container__button ${props.extraClasses}`}>
-            <img alt='' src={props.buttonImage} />
-            {props.buttonText}
+            to={ props.to ? props.to : ''}
+            activeClassName={ props.activeClassName || 'focus'}
+            onClick={ props.onClick }
+            className={`panel-container__button ${ props.extraClasses || "" }`}>
+            <img alt='btn img' src={ props.buttonImage } />
+            
+				<span> { props.buttonText } </span>
         </NavLink>
-        {props.lastChild && props.lines && <hr/>}
     </>
 )

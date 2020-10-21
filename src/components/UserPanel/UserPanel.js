@@ -24,9 +24,7 @@ export const UserPanel = () => {
     }, [userContext]);
 
     const logout = () => {
-        axios.get(
-            `https://api.ustron.s3.netcore.pl/users/logout`,
-        )
+        axios.get(`https://api.ustron.s3.netcore.pl/users/logout`)
         .then(() => {
             window.localStorage.clear();
             history.push('/login');
@@ -34,7 +32,55 @@ export const UserPanel = () => {
         }, (error) => {
             alert(error);
         });
-    }
+	 }
+	 
+
+	 const panel_links = [
+		 { 
+			 to: TourismRoutes.UserProfile,
+			 buttonImage: require('../../svg/icons/id-card.svg'),
+			 buttonText: 'Moj profil'
+		 },
+		 {
+			 to: TourismRoutes.ReservationHistoryPage,
+			 buttonImage: require('../../svg/icons/stadium-black.svg'),
+			 buttonText: 'Rezerwacja boisk',
+		 },
+		 {
+			to: TourismRoutes.RegisterToEventList, 
+			buttonImage: require('../../svg/icons/pencil-black.svg'),
+			buttonText: 'Rejestracja na zawody'
+		},
+		{
+			to: TourismRoutes.ObjectListPage,
+			buttonImage: require('../../svg/icons/marker.svg'),
+			buttonText: 'Moje obiekty'
+		},
+		// {
+		// 	to: "/",
+		// 	buttonImage: require('../../svg/icons/circle.svg'),
+		// 	buttonText: 'E-CZK',
+		// },
+		{
+			to: TourismRoutes.GameCardsPage,
+			buttonImage: require('../../svg/icons/joystick.svg'),
+			buttonText: 'Gra'
+		},
+	 ]
+
+
+	 const panel_buttons = [
+		 {
+			 onClick: logout,
+			 buttonText: 'Wyloguj się',
+			 buttonImage: require('../../svg/icons/lock.svg')
+		 },
+		 {
+			buttonText: '',
+			buttonImage: require('../../svg/icons/gear.svg')
+		}
+	 ]
+
 
     return (
         <div className={`panel-container ${ mobile_visible ? "visible" : "" }`}>
@@ -44,60 +90,30 @@ export const UserPanel = () => {
 				</div>
 
             <div className="panel-container__header">
-                <img alt='' src={require('../../svg/icons/user-photo.svg')}/>
+                <img alt='user photo' src={ require('../../svg/icons/user-photo.svg') }/>
                 <div className="column">
-                    <h3>{name}</h3>
-                    {/*<p>{role}</p>*/}
+                    <h3> { name } </h3>
+                    {/* <p>{role}</p> */}
                 </div>
             </div>
-            <div className="panel-container__body">
-                <PanelLink
-                    to={TourismRoutes.UserProfile}
-                    lines={true}
-                    buttonImage={require('../../svg/icons/id-card.svg')}
-                    buttonText={'Moj profil'}
-                />
-                <PanelLink
-                    to={TourismRoutes.ReservationHistoryPage}
-                    lines={true}
-                    buttonImage={require('../../svg/icons/stadium-black.svg')}
-                    buttonText={'Rezerwacja boisk'}
-                />
-                <PanelLink
-                    to={TourismRoutes.RegisterToEventList}
-                    lines={true}
-                    buttonImage={require('../../svg/icons/pencil-black.svg')}
-                    buttonText={'Rejestracja na zawody'}
-                />
-                <PanelLink
-                    to={TourismRoutes.ObjectListPage}
-                    lines={true}
-                    buttonImage={require('../../svg/icons/marker.svg')}
-                    buttonText={'Moje obiekty'}
-                />
-                {/*<PanelLink*/}
-                {/*    to={'/'}*/}
-                {/*    lines={true}*/}
-                {/*    buttonImage={require('../../svg/icons/circle.svg')}*/}
-                {/*    buttonText={'E-CZK'}*/}
-                {/*/>*/}
-                <PanelLink
-                    buttonText={'Gra'}
-                    buttonImage={require('../../svg/icons/joystick.svg')}
-                    lines={true}
-                    lastChild={true}
-                    to={TourismRoutes.GameCardsPage}
-                />
+
+            <div className="panel-container__body">	
+					{ panel_links.map(( item, index ) => (
+						<PanelLink 
+							key={ index } 
+							{...item } 
+							extraClasses={ item.to === history.location.pathname ? "active" : "" }	
+						/>
+					)) }
             </div>
+
             <div className="panel-container__footer">
-                <PanelButton
-                    onClick={logout}
-                    buttonText={'Wyloguj się'}
-                    buttonImage={require('../../svg/icons/lock.svg')}
-                />
-                <PanelButton
-                    buttonImage={require('../../svg/icons/gear.svg')}
-                />
+					{ panel_buttons.map(( item, index ) => (
+						<PanelButton
+							key={ index }
+							{...item}
+                	/>
+					)) }
             </div>
         </div>
     )
