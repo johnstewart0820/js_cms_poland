@@ -46,19 +46,20 @@ class SiteInfoContextProvider extends Component {
 
         API.get(`sites/getInfo?domain=${domain}`)
             .then(res => {
-                const {info} = res.data;
-                // console.log( info );
 
-                const languages =
-                    info.languages && info.languages !== active_language
-                        ? info.languages.split(",")
-                        : [];
+               const {info} = res.data;
+
+               const languages =
+                  info.languages && info.languages !== active_language
+							? info.languages.split(",")
+							: [];
 
                 const widgets = info?.template?.layout?.["home-page"]?.widgets;
-                // console.log( widgets );
+               //  console.log( widgets );
 
                 const header_menu_structure = widgets?.["top-menu"]?.elements?.[0]?.menu?.structure || [];
                 const footer_address = widgets?.["footer-contact"]?.elements?.[0]?.content;
+					 const toggle_menu = widgets?.["toggle-menu"]?.elements?.[0]?.menu;
 
                 const footer_subpage_link1 = widgets?.["bottom-col-1"]?.elements?.[0]?.content;
                 const footer_subpage_link2 = widgets?.["bottom-col-2"]?.elements?.[0]?.content;
@@ -76,7 +77,8 @@ class SiteInfoContextProvider extends Component {
                     site_info: info,
                     site_info_loading: false,
                     languages,
-                    header_menu,
+						  header_menu,
+						  toggle_menu,
                     footer_address,
                     footer_subpage_links,
                     footer_links,
