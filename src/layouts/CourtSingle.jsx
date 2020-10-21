@@ -12,6 +12,8 @@ import CourtSingleHead from "../components/courts/CourtSingleHead";
 import Loader from "../components/general/Loader";
 import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
+import Video from "../components/general/Video";
+import SingleContainer from "../components/common-single/SingleContainer";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -123,6 +125,11 @@ export default function AttractionSingle(props) {
                 <h2 className={'description-main'}>{parserShortcodes(props.page.body)}</h2>
             </div>
             }
+
+            <SingleContainer>
+                {props.page.video.length !== 0 &&
+                <Video video={props.page.video.embed}/>}
+            </SingleContainer>
 
             <Gallery items={props.page.gallery}/>
 

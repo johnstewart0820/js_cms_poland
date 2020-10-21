@@ -13,15 +13,19 @@ import GoogleMap from "../components/map/GoogleMap";
 import Modal from "../components/modal/Modal.js";
 import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
+import Video from "../components/general/Video";
+import SingleContainer from "../components/common-single/SingleContainer";
 
 export default function GastronomySingle(props) {
     const pageId = props.page.id;
     let keyId = 0;
 
-    const {categories, body} = props.page;
-    const {field_map_gps, field_service_languages, field_additional_description_pricelist,
+    const {categories, body, video} = props.page;
+    const {
+        field_map_gps, field_service_languages, field_additional_description_pricelist,
         field_additional_description_history, field_prices_variant, field_is_free_entrance,
-        field_facilities_restaurants} = props.page.acf;
+        field_facilities_restaurants,
+    } = props.page.acf;
 
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
@@ -118,7 +122,7 @@ export default function GastronomySingle(props) {
     }
 
 
-    const handleClose =()=>{
+    const handleClose = () => {
         setShow(false);
     }
 
@@ -134,7 +138,7 @@ export default function GastronomySingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>CENNIK</div>
                 </div>
-                <button onClick={()=>setShow(true)} className="button-planer button-link green ">ZOBACZ MENU</button>
+                <button onClick={() => setShow(true)} className="button-planer button-link green ">ZOBACZ MENU</button>
             </div>
             }
             {field_service_languages &&
@@ -165,6 +169,11 @@ export default function GastronomySingle(props) {
             </div>
             }
 
+            <SingleContainer>
+                {video.length !== 0 &&
+                <Video video={video.embed}/>}
+            </SingleContainer>
+
             {gallery && <Gallery items={gallery}/>}
 
             {field_additional_description_history &&
@@ -184,8 +193,9 @@ export default function GastronomySingle(props) {
                 items: news || [],
             }}/>
 
-            { !!coords?.length && <div className="single-attraction-map"> <GoogleMap className={'map'} markers={coords}/> </div> }
-            <Modal show={show}  handleClose={handleClose} children={Parser(field_additional_description_pricelist)}/>
+            {!!coords?.length &&
+            <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div>}
+            <Modal show={show} handleClose={handleClose} children={Parser(field_additional_description_pricelist)}/>
         </>
     );
 };

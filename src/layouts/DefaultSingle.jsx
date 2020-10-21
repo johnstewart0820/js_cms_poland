@@ -11,6 +11,8 @@ import '../styles/default/default-single-page.scss'
 
 import PageHeaderSection from "../components/header/PageHeaderSection";
 import {parserShortcodes} from "../extra/functions";
+import Video from "../components/general/Video";
+import SingleContainer from "../components/common-single/SingleContainer";
 
 export default function DefaultSingle(props) {
     const pageId = props.page.id;
@@ -89,6 +91,10 @@ export default function DefaultSingle(props) {
                 <h2 className={' description-main'}>{parserShortcodes(body)}</h2>
             </div>
             }
+            <SingleContainer>
+                {props.page.video.length !== 0 &&
+                <Video video={props.page.video.embed}/>}
+            </SingleContainer>
 
             {gallery && <Gallery items={gallery}/>}
 

@@ -12,6 +12,8 @@ import '../styles/attractions/attraction-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
+import SingleContainer from "../components/common-single/SingleContainer";
+import Video from "../components/general/Video";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -150,6 +152,10 @@ export default function AttractionSingle(props) {
                 <h2 className={'description-main'}> {transplatePrice(field_prices_variant)} </h2>
             </div>
             }
+            <SingleContainer>
+                {props.page.video.length !== 0 &&
+                <Video video={props.page.video.embed}/>}
+            </SingleContainer>
 
             {ifTrail && (gallery || worthSeeing) ?
                 <Gallery heading='warto zobaczyć na trasie' items={worthSeeing}/> :

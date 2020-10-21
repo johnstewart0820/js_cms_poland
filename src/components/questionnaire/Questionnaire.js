@@ -40,7 +40,6 @@ const Questionnaire = (props) => {
     }
 
     React.useEffect(() => {
-
         axios.get(`${API_URL}polls/${props.indexOfPoll}`)
             .then((res) => {
                 setData(res.data)
@@ -49,14 +48,16 @@ const Questionnaire = (props) => {
     }, []);
 
     React.useEffect(() => {
-
         if (data) {
             const typeOfPoll = data.poll.type;
             let firstId = data.poll.answers[0].id;
             setAnswers(data.poll.answers.map((ans, key) => {
 
                 return (
-                    <div className={'answer'} key={key} onChange={typeOfPoll === 'single' ? onChangeRadioInput : false}>
+                    <div
+                        className={'answer'}
+                        key={key}
+                        onChange={typeOfPoll === 'single' ? onChangeRadioInput : false}>
                         <label>
                             <input
                                 onChange={(e) => handleChange(e)}
@@ -107,10 +108,11 @@ const Questionnaire = (props) => {
                 tabVotes = [];
                 tabVotes.push(idRadioInput)
             }
-            axios.post(`${API_URL}polls/${props.indexOfPoll}/vote`, {votes: tabVotes}).then();
+            axios.post(`${API_URL}polls/${props.indexOfPoll}/vote`,
+                {votes: tabVotes})
+                .then();
             axios.get(`${API_URL}polls/${props.indexOfPoll}`)
                 .then(res => {
-                    console.log(res.data)
                     setData(res.data)
                     dateSeries = []
                     res.data.poll.answers.map(r => dateSeries.push(r.votes))
@@ -136,7 +138,11 @@ const Questionnaire = (props) => {
                         </div>
                         <button className={'button-send'} type='submit'>wyślij</button>
                     </form>
-                ) : <Chart options={options} series={series} type="bar" height={200}/>}
+                ) : <Chart
+                    options={options}
+                    series={series}
+                    type="bar"
+                    height={200}/>}
             </div>
 
         </>

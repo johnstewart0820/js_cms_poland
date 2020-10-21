@@ -13,6 +13,7 @@ import GoogleMap from "../components/map/GoogleMap";
 import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
 import SingleContainer from "../components/common-single/SingleContainer";
+import Video from "../components/general/Video";
 
 export default function ApartamentSingle(props) {
     const pageId = props.page.id;
@@ -221,6 +222,8 @@ export default function ApartamentSingle(props) {
                 <h2 className={' description-main'}>{Parser(field_additional_description_history)}</h2>
             </div>
             }
+
+           <SingleContainer>{props.page.video.length !==0&& <Video video={props.page.video.embed}/>}</SingleContainer>
 
             <OneCarouseInRow className={'news-loop'} carousel={{
                 loading: news === null,
