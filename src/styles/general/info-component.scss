@@ -1,0 +1,108 @@
+@import "./colors.scss";
+@import "../helpers/mixins.scss";
+
+
+.info-component {
+    padding: 50px 0;
+}
+
+.info-component-image {
+    width: 536px;
+    min-height: 563px;
+    margin-right: 16px;
+}
+
+.info-component-info {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 0px 10px 10px 30px;
+    .info-component-address {
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2.3px;
+        margin-bottom: 20px;
+        max-width: 240px;
+        line-height: 20px;
+
+        > span{
+            font-weight: normal;
+            display: block;
+            color: rgba( 61, 85, 104, .24);
+            margin: 40px 0px 0px 0px;
+        }
+    }
+
+    .info-component-fields-with-icons {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+
+        .icons {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 10%;
+            svg {
+                width: 20px;
+                margin-top: 20px;
+            }
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+
+            a {
+                height: 33px;
+                font-size: 17px;
+                text-decoration: none;
+                color: $gray;
+                cursor: pointer;
+            }
+
+            .site-name {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .info-component-buttons {
+        display: flex;
+        position: relative;
+        top: 45px;
+        left: -5px;
+    }
+}
+
+.info-component-description {
+    flex: 1;
+    background: white;
+    color: $gray;
+    padding: 20px 30px;
+    position: relative;
+}
+
+
+.info-component-text {
+    @include flex-wrap;
+    font-weight: bold;
+    font-size: 17px;
+
+    > div {
+        flex: auto;
+        min-width: 240px;
+        padding: 0 15px;
+    }
+
+    .button-link {
+        position: absolute;
+        bottom: 40px;
+        background: transparent;
+        color: $green;
+        cursor: pointer;
+        &:hover {
+            background: $green;
+            color: white;
+        }
+    }
+}

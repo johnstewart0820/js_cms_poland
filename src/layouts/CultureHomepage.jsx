@@ -8,6 +8,7 @@ import LoopCard from "../components/loop/LoopCard";
 import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
 import PicTextInfo from "../components/general/PicTextInfo";
 import {WhiteTileMark} from "../svg/icons";
+import InfoComponent from "../components/general/InfoComponent";
 
 const CultureHomepage = props => {
     const acf = props.page.acf;
@@ -36,6 +37,18 @@ const CultureHomepage = props => {
                     component: LoopCard,
                     items: items2?.contents || [],
                 }}
+            />
+
+            <InfoComponent
+                containerTitle={acf.field_community_centre_title}
+                imageSource={acf.field_community_centre_photo}
+                description={acf.field_community_centre_description}
+                buttonText={acf.field_community_centre_button_title}
+                href={acf.field_community_centre_button_link}
+                city={acf.field_community_centre_address}
+                phone={acf.field_community_centre_phone}
+                email={acf.field_community_centre_email}
+                site={acf.field_community_centre_site}
             />
 
             <PicTextInfo
