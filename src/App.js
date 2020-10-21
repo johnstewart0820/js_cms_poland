@@ -28,6 +28,8 @@ const App = () => (
                         <Sidebar/>
                         <PlanerButton to={TourismRoutes.PlanerListPage}/>
                         <main>
+                            <script type="text/x-epodroznik-module" data-module-name="ConnectionsSearcher" id="epSearcher"/>
+                            <script type="text/x-epodroznik-module" data-module-name="SearchingResults" id="SearchingResults"/>
                             <ErrorHandler>
                                 <Routing/>
                             </ErrorHandler>

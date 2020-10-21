@@ -38,7 +38,9 @@ const GoogleMap = props => {
 
         const getBounds = () => {
 
-            if (!has_markers && !has_trails) return null;
+				if (!has_markers && !has_trails) return null;
+				
+				if ( has_markers && !has_trails && markers.length === 1 ) return null;
 
             const trails_points = [];
             if (has_trails)

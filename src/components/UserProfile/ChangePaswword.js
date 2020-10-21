@@ -25,7 +25,7 @@ export const ChangePassword = props => {
     }
 
     return (
-        <Col>
+        <Col extraClasses="my-profile__change-password">
             <div className="container-inner">
                 <div>
                     {passwordNotice}

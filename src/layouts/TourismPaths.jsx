@@ -13,7 +13,7 @@ export default function TourismPaths(props) {
             choices: {},
         };
 
-        props.page.acf.field_news_filtering_categories.forEach(category => {
+        props.page.acf.field_information_modules_attractions[0].field_section_categories_visit.forEach(category => {
             obj.choices[category.id] = category.name;
         });
 
@@ -40,9 +40,9 @@ export default function TourismPaths(props) {
     return (
         <PaginatedPage
             page={props.page}
-            config={props.page.acf.field_information_module_news}
+            config={props.page.acf.field_information_modules_attractions}
             containerClasses={'news'}
-            containerHeader={props.page.acf.field_information_module_news?.[0]?.field_section_title_visit || null}
+            containerHeader={props.page.acf.field_information_modules_attractions?.[0]?.field_section_title_visit || null}
             inputs={inputs}
             mapId={props.page.acf.field_attractions_map}
         />

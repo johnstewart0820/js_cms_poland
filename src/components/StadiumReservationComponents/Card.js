@@ -10,14 +10,15 @@ import DefaultImage from "../../constants/DefaultImage";
 import {getArticleLink} from "../../extra/functions";
 import PlusButton from "../buttons/PlusButton";
 
-export default function Card({extraClasses, link, greenButtonText, ...article}) {
+export default function Card({ extraClasses, link, greenButtonText, ...article }) {
+
     const planerContext = React.useContext(PlanerContext);
 
     return (
         <Col>
-            <div className={`card ${extraClasses || ''}`}>
+            <div className={`card ${ extraClasses || '' }`}>
                 <div
-                    className="card__thumbnail has-overlay"
+                    className="card__thumbnail thumbnail has-overlay"
                     style={{backgroundImage: `url("${article.image || DefaultImage}")`}}
                 >
                     <div className="card__name">

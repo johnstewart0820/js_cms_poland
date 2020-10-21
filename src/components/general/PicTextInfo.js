@@ -4,7 +4,7 @@ import Parser from "html-react-parser";
 import ButtonLink from "../buttons/ButtonLink";
 import "../../styles/general/pic-text-info.scss";
 
-const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path, link_label, extra_description}) => (
+const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path, link_label, extra_description, isLeft}) => (
 	<section className="pic-text-info">
 		<div className="container">
 			<div className="row">
@@ -29,7 +29,7 @@ const PicTextInfo = ({ picture_url, heading, heading_svg, text = "", href, path,
                         )}
 
 						{ (href || path) && link_label &&
-							<ButtonLink path={path} href={href} extra_classes="white" > { link_label.toUpperCase() } </ButtonLink>
+							<ButtonLink path={path} href={href} extra_classes={isLeft ? 'button-link white' : 'white button-link-right'}> { link_label.toUpperCase() } </ButtonLink>
 						}
 					</div>
 				</div>

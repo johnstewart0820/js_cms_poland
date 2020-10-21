@@ -143,6 +143,9 @@
 
 	.header-main__menu{
 		font-size: 1em;
+		> a {
+			margin-left: 15px;
+		}
 	}
 }
 
@@ -154,6 +157,10 @@
 
 	.header-logo span{
 		font-size: 10px;
+	}
+
+	.header-main__menu{
+		font-size: 0.9em;
 	}
 }
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import LocalStorage from "../constants/LocalStorage";
 import wrapInArray from "./wrapInArray";
+import {SITE, SITES_DOMAIN} from "./site_settings";
 
 const API_URL = "https://api.ustron.s3.netcore.pl/";
 const API = axios.create({
@@ -10,6 +11,11 @@ const API = axios.create({
 API.interceptors.request.use(config => {
     config.params = config.params || {}
     config.params.lang = config.params?.lang || localStorage.getItem(LocalStorage.Locale) || 'pl';
+    config.params.domain = config.params?.domain || (
+        (!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
+            ? SITES_DOMAIN[SITE]
+            : window.location.hostname
+        );
     return config;
 });
 

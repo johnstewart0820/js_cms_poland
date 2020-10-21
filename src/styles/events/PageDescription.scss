@@ -2,43 +2,47 @@
 @import "../helpers/mixins.scss";
 
 .gray-description {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 200px;
-  background-image: linear-gradient($gray, $dark_gray);
-  width: 100%;
-  padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 200px;
+    background-image: linear-gradient($gray, $dark_gray);
+    width: 100%;
+    padding: 15px;
 
-  .col {
-    h4 {
-      position: relative;
-      left: 30px;
-      bottom: 10px;
-      font-weight: bold;
-      font-size: 20px;
-      color: white;
-    }
+    .col {
+        h4 {
+            position: relative;
+            left: 30px;
+            bottom: 10px;
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            text-transform: uppercase;
+        }
 
-    p {
-      color: white;
-      font-weight: bold;
-      white-space: pre-line;
+        p {
+            color: white;
+            font-weight: bold;
+            white-space: pre-line;
+        }
+
+        a, button {
+            text-transform: uppercase;
+        }
     }
-  }
 }
 
 
 @media (max-width: 800px) {
-	.gray-description{
+    .gray-description {
+        justify-content: center;
+        align-items: center;
 
-		justify-content: center;
-		align-items: center;
-
-		.col{
-			margin: 10px 0;
-			width: 100%;
-		}
-	}
+        .col {
+            margin: 10px 0;
+            width: 100%;
+        }
+    }
 }

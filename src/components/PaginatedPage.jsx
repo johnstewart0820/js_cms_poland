@@ -17,7 +17,7 @@ import LoopCard from "./loop/LoopCard";
 const OrderOptions = {
     date: [
         {value: 'desc', label: 'Najbliższe'},
-        {value: 'asc', label: 'Najstarszy'},
+        {value: 'asc', label: 'Najstarsze'},
     ],
     title: [
         {value: 'desc', label: 'Z-A'},
@@ -58,7 +58,7 @@ const PaginatedPage = props => {
 
     const onFilterSubmit = args => {
         const config = Array.isArray(props.config) ? props.config[0] : props.config;
-        setFilters({...handleFilteringCategories(args, config.field_section_categories_visit), page: filters.page});
+        setFilters({...filters, ...handleFilteringCategories(args, config.field_section_categories_visit)});
     };
 
     const onPageChange = page => {
