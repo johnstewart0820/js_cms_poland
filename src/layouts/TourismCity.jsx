@@ -47,10 +47,7 @@ export default function CityPage(props) {
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
-                <Breadcrumbs breadcrumbs={[
-                    {label: "Visit.ustron.pl", to: "/"},
-                    {label: props.page.title, to: getArticleLink(props.page)},
-                ]}/>
+                <Breadcrumbs breadcrumbs={props.page.breadcrumb}/>
                 <PageHeaderOrSlider page={props.page}/>
             </MainHeaderSection>
 
