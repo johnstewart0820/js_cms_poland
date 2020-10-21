@@ -15,6 +15,7 @@ import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
 import Video from "../components/general/Video";
 import SingleContainer from "../components/common-single/SingleContainer";
+import Attachment from "../components/general/Attachment";
 
 export default function GastronomySingle(props) {
     const pageId = props.page.id;
@@ -169,12 +170,11 @@ export default function GastronomySingle(props) {
             </div>
             }
 
-            <SingleContainer>
-                {video.length !== 0 &&
-                <Video video={video.embed}/>}
-            </SingleContainer>
+            {video.length !== 0 && <Video video={video.embed}/>}
+            {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
 
             {gallery && <Gallery items={gallery}/>}
+
 
             {field_additional_description_history &&
             <div className="section-info">

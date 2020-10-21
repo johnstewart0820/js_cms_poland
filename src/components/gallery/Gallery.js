@@ -40,7 +40,7 @@ export default class Gallery extends Component {
         const carousel = {
             items,
             extra_classes: "arrows-on-right",
-            heading: this.props.heading || "Galeria",
+            heading: this.props.heading || "GALERIA",
             ItemComponent: GalleryItem,
         };
 

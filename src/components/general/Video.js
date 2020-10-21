@@ -1,8 +1,10 @@
 import React from 'react';
 import Parser from "html-react-parser";
+import OneCarouselInRow from "../carousel/OneCarouseInRow";
 
 const Video = ({video}) => {
     const parserVideo = Parser(video)
+
     return (
 
             <iframe height={parserVideo.props.height} width={parserVideo.props.width}
@@ -11,6 +13,4 @@ const Video = ({video}) => {
 
     )
 };
-
-
 export default Video;

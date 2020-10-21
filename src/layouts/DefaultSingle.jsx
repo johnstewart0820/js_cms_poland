@@ -13,6 +13,7 @@ import PageHeaderSection from "../components/header/PageHeaderSection";
 import {parserShortcodes} from "../extra/functions";
 import Video from "../components/general/Video";
 import SingleContainer from "../components/common-single/SingleContainer";
+import Attachment from "../components/general/Attachment";
 
 export default function DefaultSingle(props) {
     const pageId = props.page.id;
@@ -75,7 +76,8 @@ export default function DefaultSingle(props) {
                     {(props.page.acf.field_map_address && props.page.acf.field_map_city) &&
                     <div className={'address'}>
                         <p>ADRES</p>
-                        <div className={'info'}>{props.page.acf.field_map_postcode} {props.page.acf.field_map_city}</div>
+                        <div
+                            className={'info'}>{props.page.acf.field_map_postcode} {props.page.acf.field_map_city}</div>
                         <div className={'info'}>{props.page.acf.field_map_address} </div>
                     </div>
                     }
@@ -91,10 +93,10 @@ export default function DefaultSingle(props) {
                 <h2 className={' description-main'}>{parserShortcodes(body)}</h2>
             </div>
             }
-            <SingleContainer>
-                {props.page.video.length !== 0 &&
-                <Video video={props.page.video.embed}/>}
-            </SingleContainer>
+
+            {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
+            {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
+
 
             {gallery && <Gallery items={gallery}/>}
 

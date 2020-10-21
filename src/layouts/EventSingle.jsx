@@ -12,6 +12,7 @@ import {parserShortcodes} from "../extra/functions";
 import Gallery from "../components/gallery/Gallery";
 import Loader from "../components/general/Loader";
 import Video from "../components/general/Video";
+import Attachment from "../components/general/Attachment";
 
 export default function EventSingle(props) {
     const planerContext = React.useContext(PlanerContext);
@@ -54,12 +55,18 @@ export default function EventSingle(props) {
                 <EventSingleHead {...props.page}/>
             </MainHeaderSection>
 
-            <SingleContainer>
+            <div className="section-info">
                 {props.page.body && (<div>{parserShortcodes(props.page.body)}</div>)}
+            </div>
+            <div className="section-info">
                 {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
-                {props.page.gallery && <Gallery items={props.page.gallery}/>}
+            </div>
+
+            {props.page.gallery && <Gallery items={props.page.gallery}/>}
+            {props.page.attachments.length!==0 && <Attachment attachments={props.page.attachments}/>}
+            <div className="section-info">
                 <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>
-            </SingleContainer>
+            </div>
 
             <OneCarouseInRow carousel={{
                 loading: items === null,

@@ -1,0 +1,17 @@
+.name-info-attachment {
+    font-size: 1.28em;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: normal;
+    margin-bottom: 30px;
+}
+
+.attachment-main {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        margin-bottom: 20px;
+    }
+}
+

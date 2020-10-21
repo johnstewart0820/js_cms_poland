@@ -14,6 +14,7 @@ import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
 import SingleContainer from "../components/common-single/SingleContainer";
 import Video from "../components/general/Video";
+import Attachment from "../components/general/Attachment";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -99,8 +100,8 @@ export default function AttractionSingle(props) {
 
     let coords = [];
     if (field_map_gps) {
-        const [ lat, lng ] = field_map_gps.split(';');
-        coords.push({ lat, lng });
+        const [lat, lng] = field_map_gps.split(';');
+        coords.push({lat, lng});
     }
 
     if (field_service_languages) {
@@ -152,10 +153,10 @@ export default function AttractionSingle(props) {
                 <h2 className={'description-main'}> {transplatePrice(field_prices_variant)} </h2>
             </div>
             }
-            <SingleContainer>
-                {props.page.video.length !== 0 &&
-                <Video video={props.page.video.embed}/>}
-            </SingleContainer>
+
+            {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
+            {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
+
 
             {ifTrail && (gallery || worthSeeing) ?
                 <Gallery heading='warto zobaczyć na trasie' items={worthSeeing}/> :
@@ -168,8 +169,10 @@ export default function AttractionSingle(props) {
                 items: news || [],
             }}/>
 
-            { !!coords?.length && <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div> }
-            { !!trails?.length && <div className="single-attraction-map"><GoogleMap className={'map'} trails={[trails]}/></div>}
+            {!!coords?.length &&
+            <div className="single-attraction-map"><GoogleMap className={'map'} markers={coords}/></div>}
+            {!!trails?.length &&
+            <div className="single-attraction-map"><GoogleMap className={'map'} trails={[trails]}/></div>}
 
         </>
     );

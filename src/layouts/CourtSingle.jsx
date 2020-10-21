@@ -14,6 +14,7 @@ import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
 import Video from "../components/general/Video";
 import SingleContainer from "../components/common-single/SingleContainer";
+import Attachment from "../components/general/Attachment";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -126,10 +127,10 @@ export default function AttractionSingle(props) {
             </div>
             }
 
-            <SingleContainer>
-                {props.page.video.length !== 0 &&
-                <Video video={props.page.video.embed}/>}
-            </SingleContainer>
+
+                {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
+                {props.page.attachments.length!==0 &&<Attachment attachments={props.page.attachments}/>}
+
 
             <Gallery items={props.page.gallery}/>
 
