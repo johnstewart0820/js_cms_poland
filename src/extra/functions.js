@@ -1,26 +1,45 @@
 import wrapInArray from "./wrapInArray";
 import LocalStorage from "../constants/LocalStorage";
+import Questionnaire from "../components/questionnaire/Questionnaire";
+import React from "react";
+import Parser from "html-react-parser";
 
-export const addZeroIfNeeded = num => ( num < 10 ? `0${+num}` :  num );
+
+export const parserShortcodes = (body) => {
+    if (body.includes('[[Poll/')) {
+        const index = body.indexOf('[[Poll/');
+        const indexPoll = index + 7;
+        const description = body.replace(`[[Poll/${body[indexPoll]}]]`, "")
+
+        return (<>
+            <div>{Parser(description)}</div>
+            <Questionnaire indexOfPoll={body[indexPoll]} body={body}/></>)
+    } else return <div>{Parser(body)}</div>
+
+
+}
+
+
+export const addZeroIfNeeded = num => (num < 10 ? `0${+num}` : num);
 
 export const removeHtmlTags = content => {
-	content = content.replace(/<[^<>]+>/g, ' ');
-	content = content.replace(/\s\s+/, ' ');
-	return content;
+    content = content.replace(/<[^<>]+>/g, ' ');
+    content = content.replace(/\s\s+/, ' ');
+    return content;
 };
 
-export const isMobile = () => ( window.navigator.userAgent.toLowerCase().includes("mobi") );
+export const isMobile = () => (window.navigator.userAgent.toLowerCase().includes("mobi"));
 
 export const getMobileDeviceOS = () => {
-	const user_agent =  window.navigator.userAgent.toLowerCase();
-	return user_agent.includes("mac os")
-		? "ios"
-		: user_agent.includes("android")
-			? "android"
-				: undefined;
+    const user_agent = window.navigator.userAgent.toLowerCase();
+    return user_agent.includes("mac os")
+        ? "ios"
+        : user_agent.includes("android")
+            ? "android"
+            : undefined;
 };
 
-export const isFunction = func => ( toString.call(func) === "[object Function]" );
+export const isFunction = func => (toString.call(func) === "[object Function]");
 
 export const getArticleLink = article => {
     if (!article?.slug && !article?.id)

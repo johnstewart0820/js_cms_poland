@@ -1,21 +1,18 @@
 import React from "react";
-import Parser from "html-react-parser";
 import {API} from "../extra/API";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import EventSingleHead from "../components/events/EventSingleHead";
-import LoopEventsPost from "../components/events/LoopEventsPost";
 import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
 import PlanerContext from "../constants/PlanerContext";
-import Questionnaire from "../components/questionnaire/Questionnaire";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
 
 export default function EventSingle(props) {
     const planerContext = React.useContext(PlanerContext);
     const [items, setItems] = React.useState(null);
-    const [isPollHere, setIsPollHere] = React.useState(null);
 
     React.useEffect(() => {
         API.getEntities({categories: props.page.categories}).then(res => setItems(res.data.contents));
@@ -28,13 +25,6 @@ export default function EventSingle(props) {
         else return planerContext.add(props.page.id);
     }
 
-    const getPollId = () => {
-        const isPollHere = props.page.body.includes('[[Poll/');
-       return isPollHere;
-    }
-    const a = getPollId();
-    console.log(a)
-
     return (
         <>
             <MainHeaderSection extra_classes="single">
@@ -43,8 +33,7 @@ export default function EventSingle(props) {
             </MainHeaderSection>
 
             <SingleContainer>
-                {props.page.body && (<div>{Parser(props.page.body)}</div>)}
-                <Questionnaire getPollId={getPollId}/>
+                {props.page.body && (<div>{parserShortcodes(props.page.body)}</div>)}
                 <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>
             </SingleContainer>
 

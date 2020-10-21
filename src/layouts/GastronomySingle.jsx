@@ -12,6 +12,7 @@ import '../styles/gastronomy/gastronomy-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import Modal from "../components/modal/Modal.js";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
 
 export default function GastronomySingle(props) {
     const pageId = props.page.id;
@@ -151,7 +152,7 @@ export default function GastronomySingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>OPIS</div>
                 </div>
-                <h2 className={' description-main'}>{Parser(body)}</h2>
+                <h2 className={' description-main'}>{parserShortcodes(body)}</h2>
             </div>
             }
             {field_facilities_restaurants &&

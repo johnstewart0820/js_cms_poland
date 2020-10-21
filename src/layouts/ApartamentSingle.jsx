@@ -11,6 +11,8 @@ import ApartmentSingleHead from "../components/apartments/ApartmentSingleHead";
 import '../styles/gastronomy/gastronomy-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
+import SingleContainer from "../components/common-single/SingleContainer";
 
 export default function ApartamentSingle(props) {
     const pageId = props.page.id;
@@ -160,7 +162,7 @@ export default function ApartamentSingle(props) {
                         <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                         <div className={'name-info'}>OPIS</div>
                     </div>
-                    <h2 className={' description-main'}>{Parser(body)}</h2>
+                    <h2>{parserShortcodes(body)}</h2>
                 </div>
 
             }

@@ -10,6 +10,7 @@ import SingleContentBottom from "../components/common-single/SingleContentBottom
 import {API} from "../extra/API";
 import PlanerContext from "../constants/PlanerContext";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
 
 export default function NewsSinglePage(props) {
     const planerContext = React.useContext(PlanerContext);
@@ -53,7 +54,7 @@ export default function NewsSinglePage(props) {
 
             {props.page.body && (
                 <SingleContainer extra_classes="single-news-container">
-                    <div>{Parser(props.page.body)}</div>
+                    <div>{parserShortcodes(props.page.body)}</div>
                     {props.page.acf.field_map_gps &&
                     <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>}
                 </SingleContainer>

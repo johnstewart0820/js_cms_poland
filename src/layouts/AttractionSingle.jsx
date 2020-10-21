@@ -11,6 +11,7 @@ import AttractionSingleHead from "../components/attractions/AttractionSingleHead
 import '../styles/attractions/attraction-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -137,7 +138,7 @@ export default function AttractionSingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>OPIS</div>
                 </div>
-                <h2 className={' description-main'}>{Parser(field_description)}</h2>
+                <h2 className={' description-main'}>{parserShortcodes(field_description)}</h2>
             </div>
             }
             {(field_is_free_entrance && field_prices_variant) &&

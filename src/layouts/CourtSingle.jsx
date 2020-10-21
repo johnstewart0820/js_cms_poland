@@ -11,6 +11,7 @@ import GoogleMap from "../components/map/GoogleMap";
 import CourtSingleHead from "../components/courts/CourtSingleHead";
 import Loader from "../components/general/Loader";
 import LoopCard from "../components/loop/LoopCard";
+import {parserShortcodes} from "../extra/functions";
 
 export default function AttractionSingle(props) {
     const pageId = props.page.id;
@@ -119,7 +120,7 @@ export default function AttractionSingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>OPIS</div>
                 </div>
-                <h2 className={'description-main'}>{Parser(props.page.body)}</h2>
+                <h2 className={'description-main'}>{parserShortcodes(props.page.body)}</h2>
             </div>
             }
 

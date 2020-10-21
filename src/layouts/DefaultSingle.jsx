@@ -10,6 +10,7 @@ import '../styles/attractions/attraction-single-page.scss'
 import '../styles/default/default-single-page.scss'
 
 import PageHeaderSection from "../components/header/PageHeaderSection";
+import {parserShortcodes} from "../extra/functions";
 
 export default function DefaultSingle(props) {
     const pageId = props.page.id;
@@ -85,7 +86,7 @@ export default function DefaultSingle(props) {
                     <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                     <div className={'name-info'}>OPIS</div>
                 </div>
-                <h2 className={' description-main'}>{Parser(body)}</h2>
+                <h2 className={' description-main'}>{parserShortcodes(body)}</h2>
             </div>
             }
 
