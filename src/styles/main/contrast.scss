@@ -56,6 +56,16 @@ body.contrast{
 
 	// ONLY COLOR
 	.link-to-all,
+	.gray .input-container .input-label-container .input-label,
+	.form-select select,
+	.yellow-discount__title,
+	.page-header-section .date,
+	.loop-card__content-container,
+	.pagination > button, .pagination > span,
+	.gray-description .col h4,
+	.gray-card-component .gray-card-element .gray-card-item .gray-card-element-description p,
+	.gray-card-component .gray-card-element .gray-card-item .fields-with-icons .text a,
+	.gray-card-component .gray-card-element .gray-card-item .gray-card-element-bottom .phone,
 	.pagination > button,
 	.section-info h2,
 	.section-info .section-title .name-info,
@@ -89,6 +99,7 @@ body.contrast{
 
 	// BACKGROUND BLACK AND COLOR CONTRAST
 	.map-with-pins-filtering-info,
+	.gray,
 	.form-select__label,
 	.full-page-loader,
 	.page-header-section,
@@ -106,6 +117,11 @@ body.contrast{
 
 	// BG BLACK + FONT CONTRAST + BORDER CONTRAST
 	.breadcrumbs,
+	.day,
+	.day:hover,
+	.gray .input-container .input-label-container,
+	.gray-description,
+	.gray-card-component .gray-card-element,
 	.arrows > button:disabled,
 	.pic-text-info__info,
 	.share-button,
@@ -133,6 +149,7 @@ body.contrast{
 
 	// BG CONTRAST AND COLOR BLACK
 	.arrows > button:hover,
+	.day.active,
 	.pagination > button.active,
 	.text-link-expandable-info__expandable_head{
 		background: $contrast;
