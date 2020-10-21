@@ -9,11 +9,19 @@ import TwoCarouselsOneRow from "../components/carousel/TwoCarouselsOneRow";
 import PicTextInfo from "../components/general/PicTextInfo";
 import {WhiteTileMark} from "../svg/icons";
 import InfoComponent from "../components/general/InfoComponent";
+import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
+import {API} from "../extra/API";
+import TextCard from "../components/Cards/TextCard";
 
 const CultureHomepage = props => {
     const acf = props.page.acf;
     const [items1, items1Loading] = useEntitiesByConfig(props.page.acf.field_information_modules_culture[0]);
     const [items2, items2Loading] = useEntitiesByConfig(props.page.acf.field_information_modules_culture[1]);
+    const [photos, setPhotos] = React.useState([]);
+
+    React.useEffect(() => {
+        API.getEntities({categories: acf.field_photorelations_culture_category}).then(res => setPhotos(res.data.contents));
+    },[]);
 
     return (
         <>
@@ -60,6 +68,20 @@ const CultureHomepage = props => {
                 picture_url={acf.field_library_photo}
                 extra_description={acf.field_library_extra_description}
             />
+
+            <OneCarouseInRow carousel={{
+                heading: acf.field_photorelations_culture_title,
+                extra_classes: "arrows-on-right",
+                items: photos,
+                ItemComponent: LoopCard,
+            }}/>
+
+            <OneCarouseInRow carousel={{
+                heading: acf.field_informations_culture_title,
+                extra_classes: 'no-arrows',
+                items: acf.field_informations_culture,
+                ItemComponent: TextCard,
+            }}/>
 
             <PicTextInfo
                 href={acf.field_museum_button_link || '#'}
