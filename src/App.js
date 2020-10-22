@@ -12,7 +12,7 @@ import Header from "./components/header/Header";
 import "./styles/main/main.scss";
 import "./styles/main/ci.scss";
 import "./styles/main/contrast.scss";
-import { SearchPanelContextProvider, search_panel_id } from "./constants/SearchPanelContext";
+import { search_panel_id } from "./extra/search-panel";
 import { PlanerContextProvider } from "./constants/PlanerContext";
 import TourismRoutes from "./constants/TourismRoutes";
 import PlanerButton from "./components/buttons/PlanerButton";
@@ -24,7 +24,6 @@ const App = () => (
         <SiteInfoContextProvider>
             <UserContextProvider>
                 <PlanerContextProvider>
-						<SearchPanelContextProvider>
                     <ScrollToTop>
                         <Header/>
                         <Sidebar/>
@@ -42,7 +41,6 @@ const App = () => (
                         </main>
                         <Footer/>
                     </ScrollToTop>
-						</SearchPanelContextProvider>
                 </PlanerContextProvider>
             </UserContextProvider>
         </SiteInfoContextProvider>
