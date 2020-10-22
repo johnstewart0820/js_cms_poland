@@ -1,15 +1,25 @@
 import React from 'react';
 import Parser from "html-react-parser";
 import OneCarouselInRow from "../carousel/OneCarouseInRow";
+import '../../styles/videos/video.scss'
 
 const Video = ({video}) => {
     const parserVideo = Parser(video)
 
     return (
 
-            <iframe height={parserVideo.props.height} width={parserVideo.props.width}
+        <>
+            <div className={'section-title'}>
+
+                <img alt="" src={require('../../svg/icons/logo-black.svg')}/>
+                <div className={'name-info-attachment'}>FILM</div>
+            </div>
+            <iframe className={'video'} height={'400px'} width={'810px'}
                     src={parserVideo.props.src}>
             </iframe>
+
+
+        </>
 
     )
 };
