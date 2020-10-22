@@ -1,12 +1,20 @@
-import React, {useRef} from "react";
+import React, { useMemo, useContext, useEffect } from "react";
 import '../styles/communicationPage/communicationPage.scss';
 import GrayCard from "../components/CommunicationPage/GrayCard";
 import Row from "../components/helpers/Row";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
+import SearchPanelContext from "../constants/SearchPanelContext";
 
 const CommunicationPage = props => {
+
+	 const search_panel_context = useContext( SearchPanelContext );
+	 useEffect(() => {
+		search_panel_context.toggleSearchPanel()
+		return () => search_panel_context.toggleSearchPanel();
+	 }, [])
+
     const containerTitle = props.page.acf?.field_carriers_title;
-    const newItems = React.useMemo(() => {
+    const newItems = useMemo(() => {
         return [
             {
                 type: 'rails',
@@ -53,21 +61,12 @@ const CommunicationPage = props => {
         ];
     },[]);
 
-    const scripts = React.useMemo(() => {
-        return (
-            <>
-                <script type="text/javascript" src="https://www.e-podroznik.pl/public/jslib.do"/>
-                <script type="text/x-epodroznik-module" data-module-name="SearchingResults" id="SearchingResults"/>
-                <script type="text/x-epodroznik-module" data-module-name="ConnectionsSearcher" id="epSearcher"/>
-            </>
-        )
-    } ,[]);
+	
 
 
     return (
         <>
-            {scripts}
-
+ 
             <div className='title-container'>
                 <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                 <div className='title'>

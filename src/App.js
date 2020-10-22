@@ -12,7 +12,8 @@ import Header from "./components/header/Header";
 import "./styles/main/main.scss";
 import "./styles/main/ci.scss";
 import "./styles/main/contrast.scss";
-import {PlanerContextProvider} from "./constants/PlanerContext";
+import { SearchPanelContextProvider, search_panel_id } from "./constants/SearchPanelContext";
+import { PlanerContextProvider } from "./constants/PlanerContext";
 import TourismRoutes from "./constants/TourismRoutes";
 import PlanerButton from "./components/buttons/PlanerButton";
 import ScrollToTop from "./extra/ScrollToTop";
@@ -23,9 +24,16 @@ const App = () => (
         <SiteInfoContextProvider>
             <UserContextProvider>
                 <PlanerContextProvider>
+						<SearchPanelContextProvider>
                     <ScrollToTop>
                         <Header/>
                         <Sidebar/>
+
+								<div id={ search_panel_id } style={{ display: "none" }}>
+									<script type="text/x-epodroznik-module" data-module-name="ConnectionsSearcher" id="epSearcher"></script>
+									<script type="text/x-epodroznik-module" data-module-name="SearchingResults" id="SearchingResults"></script>
+								</div>
+
                         <PlanerButton to={TourismRoutes.PlanerListPage}/>
                         <main>
                             <ErrorHandler>
@@ -34,6 +42,7 @@ const App = () => (
                         </main>
                         <Footer/>
                     </ScrollToTop>
+						</SearchPanelContextProvider>
                 </PlanerContextProvider>
             </UserContextProvider>
         </SiteInfoContextProvider>
