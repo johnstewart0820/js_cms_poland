@@ -10,18 +10,14 @@ import PicTextInfo from "../components/general/PicTextInfo";
 import {WhiteTileMark} from "../svg/icons";
 import InfoComponent from "../components/general/InfoComponent";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
-import {API} from "../extra/API";
 import TextCard from "../components/Cards/TextCard";
+import useEntities from "../hooks/useEntities";
 
 const CultureHomepage = props => {
     const acf = props.page.acf;
     const [items1, items1Loading] = useEntitiesByConfig(props.page.acf.field_information_modules_culture[0]);
     const [items2, items2Loading] = useEntitiesByConfig(props.page.acf.field_information_modules_culture[1]);
-    const [photos, setPhotos] = React.useState([]);
-
-    React.useEffect(() => {
-        API.getEntities({categories: acf.field_photorelations_culture_category}).then(res => setPhotos(res.data.contents));
-    },[]);
+    const [photos] = useEntities(acf.field_photorelations_culture_category);
 
     return (
         <>
