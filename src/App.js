@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {router_basename} from "./extra/API";
 import {BrowserRouter as Router} from "react-router-dom";
 import {UserContextProvider} from './constants/UserContext';
@@ -12,19 +12,23 @@ import Header from "./components/header/Header";
 import "./styles/main/main.scss";
 import "./styles/main/ci.scss";
 import "./styles/main/contrast.scss";
-import { SearchPanelContextProvider, search_panel_id } from "./constants/SearchPanelContext";
+import { search_panel_id } from "./extra/search-panel";
 import { PlanerContextProvider } from "./constants/PlanerContext";
 import TourismRoutes from "./constants/TourismRoutes";
 import PlanerButton from "./components/buttons/PlanerButton";
 import ScrollToTop from "./extra/ScrollToTop";
 import ErrorHandler from "./extra/ErrorHandler";
+import { loadScript } from './extra/functions';
 
-const App = () => (
+const App = () => {
+	
+	useEffect(() => loadScript("https://www.e-podroznik.pl/public/jslib.do"), [])
+
+	return (
     <Router basename={router_basename}>
         <SiteInfoContextProvider>
             <UserContextProvider>
                 <PlanerContextProvider>
-						<SearchPanelContextProvider>
                     <ScrollToTop>
                         <Header/>
                         <Sidebar/>
@@ -42,11 +46,11 @@ const App = () => (
                         </main>
                         <Footer/>
                     </ScrollToTop>
-						</SearchPanelContextProvider>
                 </PlanerContextProvider>
             </UserContextProvider>
         </SiteInfoContextProvider>
     </Router>
-);
+	)
+}
 
 export default App;
