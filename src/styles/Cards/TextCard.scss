@@ -1,0 +1,42 @@
+@import "../general/colors.scss";
+@import "../helpers/mixins.scss";
+
+.text-card {
+    min-height: 250px;
+    min-width: 400px;
+    max-width: 400px;
+    max-height: 350px;
+    cursor: pointer;
+    transition: 1s;
+    overflow-y: auto;
+    margin-right: 30px;
+    .text-card-inner {
+        padding: 20px;
+        a {
+            color: $gray;
+            padding: 40px;
+            .text-card-title {
+                width: 230px;
+                white-space: pre-wrap;
+                margin-bottom: 40px;
+            }
+
+            .text-card-description {
+                width: 100%;
+                p {
+                    white-space: pre-wrap;
+                }
+            }
+        }
+
+        &:hover {
+            background: rgba(79, 79, 79, 0.1);
+            color: $gray;
+        }
+    }
+}
+
+.text-card::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}

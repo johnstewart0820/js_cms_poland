@@ -4,8 +4,9 @@
 .planer-button-container {
   position: fixed;
   right: -25px;
-  top: 550px;
+  top: 62%;
   z-index: 1101;
+
   .wrapper-three {
     position: absolute;
     right: -20px;
@@ -84,7 +85,8 @@
             color: white;
           }
           .planer-button-inner {
-            left: 90px;
+				left: 90px;
+				opacity: 0;
           }
         }
       }
