@@ -21,7 +21,7 @@ export default function GastronomySingle(props) {
     const pageId = props.page.id;
     let keyId = 0;
 
-    const {categories, body, video} = props.page;
+    const {categories, body, video, gallery} = props.page;
     const {
         field_map_gps, field_service_languages, field_additional_description_pricelist,
         field_additional_description_history, field_prices_variant, field_is_free_entrance,
@@ -31,7 +31,7 @@ export default function GastronomySingle(props) {
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [news, setNews] = React.useState(null);
-    const [gallery, setGallery] = React.useState(props.page.gallery);
+    const [galleryBoard, setGalleryBoard] = React.useState([]);
     const [worthSeeing, setWorthSeeing] = React.useState(props.page.acf.field_worth_seeing);
     const [show, setShow] = React.useState(false);
 
@@ -55,14 +55,15 @@ export default function GastronomySingle(props) {
 
     React.useEffect(() => {
         gallery.forEach(element => {
-            gallery.push({
+            galleryBoard.push({
                 description: element.description,
                 name: "",
                 title: element.title,
                 url: element.name,
-            });
+            })
         });
         setLoading(false);
+        setGalleryBoard(galleryBoard)
     }, [gallery]);
 
     React.useEffect(() => {
@@ -173,7 +174,7 @@ export default function GastronomySingle(props) {
             {video.length !== 0 && <Video video={video.embed}/>}
             {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
 
-            {gallery && <Gallery items={gallery}/>}
+            {gallery && <Gallery items={galleryBoard}/>}
 
 
             {field_additional_description_history &&

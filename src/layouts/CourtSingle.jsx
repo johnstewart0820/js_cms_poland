@@ -26,7 +26,7 @@ export default function AttractionSingle(props) {
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [news, setNews] = React.useState(null);
-    const [gallery, setGallery] = React.useState(props.page.gallery);
+    const [galleryBoard, setGalleryBoard] = React.useState([]);
     const [worthSeeing, setWorthSeeing] = React.useState(props.page.acf.field_worth_seeing);
 
 
@@ -48,16 +48,17 @@ export default function AttractionSingle(props) {
 
 
     React.useEffect(() => {
-        gallery.forEach(element => {
-            gallery.push({
+        props.page.gallery.forEach(element => {
+            galleryBoard.push({
                 description: element.description,
                 name: "",
                 title: element.title,
                 url: element.name,
-            });
+            })
         });
         setLoading(false);
-    }, [gallery]);
+        setGalleryBoard(galleryBoard)
+    }, [props.page.gallery]);
 
     React.useEffect(() => {
         if (worthSeeing) {
@@ -132,7 +133,7 @@ export default function AttractionSingle(props) {
                 {props.page.attachments.length!==0 &&<Attachment attachments={props.page.attachments}/>}
 
 
-            <Gallery items={props.page.gallery}/>
+            {props.page.gallery && <Gallery items={galleryBoard}/>}
 
             <OneCarouseInRow className={'news-loop'} carousel={{
                 loading: news === null,

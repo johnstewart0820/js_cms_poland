@@ -23,7 +23,8 @@ export default function DefaultSingle(props) {
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [news, setNews] = React.useState(null);
-    const [gallery, setGallery] = React.useState(props.page.gallery);
+    const [galleryBoard, setGalleryBoard] = React.useState([]);
+
 
 
     React.useEffect(() => {
@@ -44,16 +45,17 @@ export default function DefaultSingle(props) {
 
 
     React.useEffect(() => {
-        gallery.forEach(element => {
-            gallery.push({
+        props.page.gallery.forEach(element => {
+            galleryBoard.push({
                 description: element.description,
                 name: "",
                 title: element.title,
                 url: element.name,
-            });
+            })
         });
         setLoading(false);
-    }, [gallery]);
+        setGalleryBoard(galleryBoard)
+    }, [props.page.gallery]);
 
 
     if (!!loading)
@@ -98,7 +100,7 @@ export default function DefaultSingle(props) {
             {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
 
 
-            {gallery && <Gallery items={gallery}/>}
+            {props.page.gallery && <Gallery items={galleryBoard}/>}
 
         </>
     );

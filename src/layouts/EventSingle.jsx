@@ -18,18 +18,20 @@ export default function EventSingle(props) {
     const planerContext = React.useContext(PlanerContext);
     const [items, setItems] = React.useState(null);
     const [loading, setLoading] = React.useState(null);
+    const [galleryBoard, setGalleryBoard] = React.useState([]);
 
 
     React.useEffect(() => {
         props.page.gallery.forEach(element => {
-            props.page.gallery.push({
+            galleryBoard.push({
                 description: element.description,
                 name: "",
                 title: element.title,
                 url: element.name,
-            });
+            })
         });
         setLoading(false);
+        setGalleryBoard(galleryBoard)
     }, [props.page.gallery]);
 
     React.useEffect(() => {
@@ -62,7 +64,7 @@ export default function EventSingle(props) {
                 {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
             </div>
 
-            {props.page.gallery && <Gallery items={props.page.gallery}/>}
+            {props.page.gallery && <Gallery items={galleryBoard}/>}
             {props.page.attachments.length!==0 && <Attachment attachments={props.page.attachments}/>}
             <div className="section-info">
                 <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>

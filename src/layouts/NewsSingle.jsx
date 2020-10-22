@@ -13,22 +13,26 @@ import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
 import Video from "../components/general/Video";
 import Attachment from "../components/general/Attachment";
+import Loader from "../components/general/Loader";
 
 export default function NewsSinglePage(props) {
     const planerContext = React.useContext(PlanerContext);
     const [news, setNews] = React.useState(null);
-    const [gallery, setGallery] = React.useState(props.page.gallery);
+    const [loading, setLoading] = React.useState(null);
+    const [galleryBoard, setGalleryBoard] = React.useState([]);
 
     React.useEffect(() => {
-        gallery.forEach(element => {
-            gallery.push({
+        props.page.gallery.forEach(element => {
+            galleryBoard.push({
                 description: element.description,
                 name: "",
                 title: element.title,
                 url: element.name,
-            });
+            })
         });
-    }, [gallery]);
+        setLoading(false);
+        setGalleryBoard(galleryBoard)
+    }, [props.page.gallery]);
 
     React.useEffect(() => {
         API.getEntities({categories: props.page.categories})
@@ -47,6 +51,9 @@ export default function NewsSinglePage(props) {
         else return planerContext.add(props.page.id);
     }
 
+    if (!!loading)
+        return <Loader/>
+
     return (
         <>
             <MainHeaderSection extra_classes="single">
@@ -64,9 +71,10 @@ export default function NewsSinglePage(props) {
 
             {props.page.video.length !== 0 &&
             <Video video={props.page.video.embed}/>}
+            {console.log(props.page.attachments.length)}
             {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
 
-            {props.page.gallery && <Gallery items={gallery}/>}
+            {props.page.gallery && <Gallery items={galleryBoard}/>}
 
             {news !== false && (
                 <OneCarouseInRow carousel={{
