@@ -5,13 +5,18 @@
     letter-spacing: normal;
     margin-bottom: 30px;
 }
-
 .attachment-main {
     display: flex;
     flex-direction: column;
-
-    a {
-        margin-bottom: 20px;
+    .items-container-attachment {
+        font-size: 1rem;
+        display: flex;
+        margin-top: 40px;
+        margin-left: -90px;
+        align-items: center;
+        .item-attachment {
+            margin-left: 10px;
+        }
     }
 }
 
