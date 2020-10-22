@@ -61,7 +61,10 @@ const PlanerListPage = () => {
         return route.join(' / ');
     }, [planerContext.data.length]);
 
-    const scrollToMap = () => window.scrollTo(0, document.body.scrollHeight);
+    const scrollToMap = () => { 
+		if ( !coords.length ) return;
+		window.scrollTo(0, document.querySelector("#planner-map").offsetTop );
+	 }
 
     return (
         <>
@@ -98,9 +101,7 @@ const PlanerListPage = () => {
                                 return (
                                     <>
                                         <PlanerItem
-
-
-                                            className={'planerItem'}
+													 	  className={'planerItem'}
                                             key={index}
                                             acf={item.acf}
                                             duration={minutes || false}
@@ -129,10 +130,10 @@ const PlanerListPage = () => {
             </div>
 
 
-            {coords && !!coords.length &&
-            <div style={{position: "relative", height: "500px"}}>
-                <GoogleMap markers={coords}/>
-            </div>
+            { coords && !!coords.length &&
+					<div id="planner-map" style={{position: "relative", height: "500px"}}>
+						<GoogleMap markers={coords}/>
+					</div>
             }
         </>
     )
