@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import '../styles/communicationPage/communicationPage.scss';
 import GrayCard from "../components/CommunicationPage/GrayCard";
 import Row from "../components/helpers/Row";
@@ -53,8 +53,21 @@ const CommunicationPage = props => {
         ];
     },[]);
 
+    const scripts = React.useMemo(() => {
+        return (
+            <>
+                <script type="text/javascript" src="https://www.e-podroznik.pl/public/jslib.do"/>
+                <script type="text/x-epodroznik-module" data-module-name="SearchingResults" id="SearchingResults"/>
+                <script type="text/x-epodroznik-module" data-module-name="ConnectionsSearcher" id="epSearcher"/>
+            </>
+        )
+    } ,[]);
+
+
     return (
         <>
+            {scripts}
+
             <div className='title-container'>
                 <img alt="" src={require('../svg/icons/logo-black.svg')}/>
                 <div className='title'>
