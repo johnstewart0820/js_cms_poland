@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {router_basename} from "./extra/API";
 import {BrowserRouter as Router} from "react-router-dom";
 import {UserContextProvider} from './constants/UserContext';
@@ -18,8 +18,13 @@ import TourismRoutes from "./constants/TourismRoutes";
 import PlanerButton from "./components/buttons/PlanerButton";
 import ScrollToTop from "./extra/ScrollToTop";
 import ErrorHandler from "./extra/ErrorHandler";
+import { loadScript } from './extra/functions';
 
-const App = () => (
+const App = () => {
+	
+	useEffect(() => loadScript("https://www.e-podroznik.pl/public/jslib.do"), [])
+
+	return (
     <Router basename={router_basename}>
         <SiteInfoContextProvider>
             <UserContextProvider>
@@ -45,6 +50,7 @@ const App = () => (
             </UserContextProvider>
         </SiteInfoContextProvider>
     </Router>
-);
+	)
+}
 
 export default App;
