@@ -5,6 +5,27 @@ body.contrast{
 	background: #000;
 	color: $contrast;
 
+	// PLANNER
+
+	.planer-button-container:hover {
+		.wrapper-three {
+		  background-color: rgba(255, 212, 1, 0.27);
+		  .wrapper-two {
+			 background-color: rgba(255, 212, 1, 0.47);
+			 .wrapper-one {
+				background-color: rgba(255, 212, 1, 0.87);
+				.planer-button {
+				  background: $contrast;
+				  p {
+					color: #000;
+				 }
+				}
+			 }
+		  }
+		}
+	}
+
+
 	/* SVG */
 	svg{
 		&.fill{
@@ -56,6 +77,7 @@ body.contrast{
 
 	// ONLY COLOR
 	.section-title-facilities .name-info-facilities,
+	.container .planer-history-container .planer-history-total-counter,
 	.link-to-all,
 	.card .card__content,
 	.card .card__content .card__address > span,
@@ -105,6 +127,7 @@ body.contrast{
 
 	// BACKGROUND BLACK AND COLOR CONTRAST
 	.map-with-pins-filtering-info,
+	.item-container .item-wrap,
 	.white-body .white-body-container,
 	.container-inner .row .game-card,
 	.input-container .input-label-container,
@@ -214,6 +237,7 @@ body.contrast{
 
 	// GRAYSCALE
 	.thumbnail,
+	.item-container .item-wrap .item-image img,
 	.container-inner .row .page-logo,
 	.main-header-tiles-section__tile{
 		filter: grayscale(100%);	
