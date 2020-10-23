@@ -36,7 +36,7 @@ class SiteInfoContextProvider extends Component {
 
 
     getSiteInfo = () => {
-        this.setState({site_info_loading: true});
+        this.setState({ site_info_loading: true });
 
         const {active_language} = this.state;
 

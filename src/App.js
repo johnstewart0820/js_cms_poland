@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {router_basename} from "./extra/API";
 import {BrowserRouter as Router} from "react-router-dom";
 import {UserContextProvider} from './constants/UserContext';
@@ -8,49 +8,41 @@ import Routing from "./routing/Routing";
 import Footer from './components/footer/Footer';
 import Sidebar from "./components/sidebar/Sidebar";
 import Header from "./components/header/Header";
-
+import SearchPanel from './components/general/SearchPanel';
+	
 import "./styles/main/main.scss";
 import "./styles/main/ci.scss";
 import "./styles/main/contrast.scss";
-import { search_panel_id } from "./extra/search-panel";
 import { PlanerContextProvider } from "./constants/PlanerContext";
 import TourismRoutes from "./constants/TourismRoutes";
 import PlanerButton from "./components/buttons/PlanerButton";
 import ScrollToTop from "./extra/ScrollToTop";
 import ErrorHandler from "./extra/ErrorHandler";
-import { loadScript } from './extra/functions';
 
-const App = () => {
-	
-	useEffect(() => loadScript("https://www.e-podroznik.pl/public/jslib.do"), [])
+const App = () => (
+	<Router basename={router_basename}>
+		<SiteInfoContextProvider>
+			<UserContextProvider>
+					<PlanerContextProvider>
+						<ScrollToTop>
+							<Header/>
+							<Sidebar/>
 
-	return (
-    <Router basename={router_basename}>
-        <SiteInfoContextProvider>
-            <UserContextProvider>
-                <PlanerContextProvider>
-                    <ScrollToTop>
-                        <Header/>
-                        <Sidebar/>
+							<SearchPanel />
 
-								<div id={ search_panel_id } style={{ display: "none" }}>
-									<script type="text/x-epodroznik-module" data-module-name="ConnectionsSearcher" id="epSearcher"></script>
-									<script type="text/x-epodroznik-module" data-module-name="SearchingResults" id="SearchingResults"></script>
-								</div>
+							<PlanerButton to={TourismRoutes.PlanerListPage}/>
+							<main>
+									<ErrorHandler>
+										<Routing/>
+									</ErrorHandler>
+							</main>
+							<Footer/>
+						</ScrollToTop>
+					</PlanerContextProvider>
+			</UserContextProvider>
+		</SiteInfoContextProvider>
+	</Router>
+)
 
-                        <PlanerButton to={TourismRoutes.PlanerListPage}/>
-                        <main>
-                            <ErrorHandler>
-                                <Routing/>
-                            </ErrorHandler>
-                        </main>
-                        <Footer/>
-                    </ScrollToTop>
-                </PlanerContextProvider>
-            </UserContextProvider>
-        </SiteInfoContextProvider>
-    </Router>
-	)
-}
 
 export default App;
