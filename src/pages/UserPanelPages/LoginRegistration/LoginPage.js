@@ -15,6 +15,8 @@ const LoginPage = () => {
     const planerContext = React.useContext(PlanerContext);
     const [errors, setErrors] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+    const [emptyLogin, setEmptyLogin] = React.useState(false);
+    const [emptyPassword, setEmptyPassword] = React.useState(false);
     const [state, setState] = React.useState({
         login: '',
         password: '',
@@ -24,7 +26,7 @@ const LoginPage = () => {
 
     React.useEffect(() => {
         planerContext.setVisible(false);
-    },[]);
+    }, []);
 
     const handleChange = e => {
         const value = e.target.value;
@@ -36,13 +38,19 @@ const LoginPage = () => {
 
     const loginUser = () => {
         let userData = state;
+
         axios.post(
-            `${API_URL}users/login`, userData
+            `${API_URL}users/login`, userData,
         ).then((response) => {
             token = response.data.token;
             setLoading(true);
+
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
+
+            setEmptyLogin(state.login === "" ? true : false);
+            setEmptyPassword(state.password === "" ? true : false);
+
             if (responseErrors)
                 setErrors(Array.isArray(responseErrors) ? responseErrors : [responseErrors]);
             else
@@ -76,10 +84,10 @@ const LoginPage = () => {
         }
     }
 
-    return(
+    return (
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
-                <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
+                <img alt='' src={require('../../../img/LoginRegistration/photo.png')}/>
             </div>
             <div className="container__form">
                 {!!errors.length && (
@@ -100,13 +108,14 @@ const LoginPage = () => {
                     value={state.login}
                     onChange={handleChange}
                     onKeyPress={e => onEnterPress(e)}
+                    containerStyles={{borderColor: emptyLogin ? 'red' : '#d2d2d2'}}
                 />
                 <InputComponent
                     fieldName={'HASŁO'}
                     name={'password'}
                     value={state.password}
                     imageSrcForSwitch={require('../../../svg/icons/passwordVisible.svg')}
-                    containerStyles={{margin: '5px 5px 50px 5px'}}
+                    containerStyles={{margin: '5px 5px 50px 5px', borderColor: emptyPassword ? 'red' : '#d2d2d2'}}
                     password={true}
                     onChange={handleChange}
                     onKeyPress={e => onEnterPress(e)}
@@ -120,7 +129,8 @@ const LoginPage = () => {
 
                 <div className="bottom-container" style={{margin: '5px 5px -10px 5px'}}>
                     <div className="login-container">
-                        <h5>Nie masz konta ? </h5><button onClick={() => history.push('/registration')}>  Zarejestruj się </button>
+                        <h5>Nie masz konta ? </h5>
+                        <button onClick={() => history.push('/registration')}> Zarejestruj się</button>
                     </div>
                 </div>
             </div>

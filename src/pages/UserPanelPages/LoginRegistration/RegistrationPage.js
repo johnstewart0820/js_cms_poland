@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../../../styles/LoginRegistrationPages/RegistrationPage.scss';
 import PasswordStrengthMeter from "../../../components/form/PasswordStrengthMeter";
 import * as axios from "axios";
@@ -6,6 +6,7 @@ import InputComponent from "../../../components/form/InputComponent";
 import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 import {useHistory} from 'react-router-dom';
 import {API_URL} from "../../../extra/API";
+import Loader from "../../../components/general/Loader";
 
 
 const RegistrationPage = () => {
@@ -18,32 +19,53 @@ const RegistrationPage = () => {
     const [userDataPolicy, setUserDataPolicy] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
     const [notice, setNotice] = React.useState(null);
+    const [passwordIsEmpty, setPasswordIsEmpty] = React.useState(false);
+    const [nameIsEmpty, setNameIsEmpty] = React.useState(false);
+    const [emailIsEmpty, setEmailIsEmpty] = React.useState(false);
+    const [privacyPolicyIsEmpty, setPrivacyPolicyIsEmpty] = React.useState(false);
+    const [userDataPolicyIsEmpty, setUserDataPolicyIsEmpty] = React.useState(false);
 
     const routeToConfirm = () => {
+        setIsLoading(true)
         if (history)
             history.push('/confirm');
     }
 
     const submitFormData = () => {
         if (!password && !email && !name) {
-            setNotice('Proszę wypełnić wszystkie pola !');
+            if (password.length === 0) setPasswordIsEmpty(true);
+            if (email.length === 0) setEmailIsEmpty(true);
+            if (name.length === 0) setNameIsEmpty(true);
         } else {
+            setPasswordIsEmpty(false);
+            setEmailIsEmpty(false);
+            setNameIsEmpty(false);
+
             if (privacyPolicy !== false && userDataPolicy !== null) {
-                setIsLoading(true);
+                setPrivacyPolicyIsEmpty(false);
+                setUserDataPolicyIsEmpty(false);
+
                 axios.post(`${API_URL}users/register`, {
                     password: password,
                     login: email,
-                    name: name
+                    name: name,
                 })
                     .then((response) => {
+                        setIsLoading(true);
                         if (response.status === 200) {
-                            routeToConfirm();
+
+                           setTimeout(()=>routeToConfirm(),1500)
+
                         }
                     }, (error) => {
                         setNotice(error.response.data.errors.join('\n'));
                     });
             } else {
-                setNotice('Zaakceptuj naszą politykę prywatności !');
+                // setNotice('Zaakceptuj naszą politykę prywatności !');
+                if (privacyPolicy === false) setPrivacyPolicyIsEmpty(true);
+                if (!userDataPolicy ) setUserDataPolicyIsEmpty(true);
+
+
             }
         }
     }
@@ -55,10 +77,10 @@ const RegistrationPage = () => {
         }
     }
 
-    return(
+    return (
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
-                <img alt='' src={require('../../../img/LoginRegistration/photo.png')} />
+                <img alt='' src={require('../../../img/LoginRegistration/photo.png')}/>
             </div>
             <div className="container__form">
                 {!!notice && (
@@ -72,12 +94,16 @@ const RegistrationPage = () => {
                 <InputComponent
                     fieldName={'NAZWA UŻYTKOWNIKA'}
                     onChange={e => setLogin(e.target.value)}
+
                     value={login}
                     name={'login'}
                     onKeyPress={e => onEnterPress(e)}
                 />
                 <InputComponent
-                    containerStyles={{margin: '5px 5px 40px 5px'}}
+                    containerStyles={{
+                        margin: '5px 5px 40px 5px',
+                        borderColor: nameIsEmpty ?'red': '#d2d2d2'
+                    }}
                     fieldName={'IMIĘ NAZWISKO'}
                     onChange={e => setName(e.target.value)}
                     value={name}
@@ -86,6 +112,7 @@ const RegistrationPage = () => {
                 />
                 <InputComponent
                     fieldName={'EMAIL'}
+                    containerStyles={{borderColor: emailIsEmpty ?'red': '#d2d2d2' }}
                     onChange={e => setEmail(e.target.value)}
                     value={email}
                     name={'email'}
@@ -93,6 +120,7 @@ const RegistrationPage = () => {
                 />
                 <InputComponent
                     fieldName={'HASŁO'}
+                    containerStyles={{borderColor: passwordIsEmpty ? 'red':'#d2d2d2'  }}
                     visibilitySwitch={true}
                     password={true}
                     onChange={e => setPassword(e.target.value)}
@@ -101,23 +129,22 @@ const RegistrationPage = () => {
                 />
 
                 <PasswordStrengthMeter password={password}/>
-
                 <ButtonWithLoader
-                    buttonText={'WYŚLIJ'}
+                    buttonText={'utwórz konto'}
                     onClick={submitFormData}
                     isLoading={isLoading}
                 />
 
                 <div className="bottom-container">
-                    <div className='row'>
+                    <div className='row' >
                         <input
                             type="checkbox"
                             value={privacyPolicy}
                             name={'privacyPolicy'}
                             onChange={e => setPrivacyPolicy(e.target.checked)}
                         />
-                        <h6>
-                            Oświadczam, że zapoznałem/am się z Regulaminem  i akceptuję wszystkie<br/>
+                        <h6 style={{color: privacyPolicyIsEmpty ? 'red':'#3D5567' }}>
+                            Oświadczam, że zapoznałem/am się z Regulaminem i akceptuję wszystkie<br/>
                             zawarte w nim warunki.
                         </h6>
                     </div>
@@ -128,14 +155,15 @@ const RegistrationPage = () => {
                             name={'userDataPolicy'}
                             onChange={e => setUserDataPolicy(e.target.checked)}
                         />
-                        <h6>
+                        <h6 style={{color: userDataPolicyIsEmpty ? 'red':'#3D5567' }}>
                             Wyrażam zgodę na przetwarzanie moich danych osobowych przez Biuro<br/>
                             oraz przedstawicieli zgodnie z Ustawą o Ochronie Danych Osobowych (Dz. U.<br/>
                             1997 nr 133 poz. 883)
                         </h6>
                     </div>
                     <div className="login-container">
-                        <h5>Masz konto ?</h5><button onClick={() => history.push('/login')}>  Zaloguj się</button>
+                        <h5>Masz konto ?</h5>
+                        <button onClick={() => history.push('/login')}> Zaloguj się</button>
                     </div>
                 </div>
             </div>

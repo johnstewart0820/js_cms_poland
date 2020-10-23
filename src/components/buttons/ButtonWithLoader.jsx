@@ -8,7 +8,7 @@ const ButtonWithLoader = ({onClick, buttonText, isLoading}) => {
             onClick={onClick}
         >
             {buttonText}
-            {!!isLoading && (
+            {isLoading && (
                 <div className="button-loader">
                     <div className="button-loader-inner"/>
                 </div>
