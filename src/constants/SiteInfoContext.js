@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {API} from "../extra/API";
 import {SITE, SITES_DOMAIN} from "../extra/site_settings";
 import {isContrastThemeOn, turnOnContrastTheme} from "../extra/theme";
@@ -15,30 +15,25 @@ const SiteInfoContextConsumer = SiteInfoContext.Consumer;
 
 const StoredLocale = localStorage.getItem(LocalStorage.Locale);
 
-class SiteInfoContextProvider extends Component {
-    state = {
-        site_info_loading: true,
-        active_language: StoredLocale || 'pl',
-    };
+function SiteInfoContextProvider(props) {
+    const [siteInfo, setSiteInfo] = React.useState(null);
+    const [activeLocale, setActiveLocale] = React.useState(StoredLocale || 'pl');
 
-    componentDidMount() {
+    React.useEffect(() => {
         if (!StoredLocale)
-            localStorage.setItem(LocalStorage.Locale, this.state.active_language);
-        moment.locale(this.state.active_language);
-        this.checkTheme();
-        this.getSiteInfo();
-    }
+            localStorage.setItem(LocalStorage.Locale, activeLocale);
+        moment.locale(activeLocale);
 
+        if (isContrastThemeOn())
+            turnOnContrastTheme();
+    }, []);
 
-    checkTheme = () => {
-        if (isContrastThemeOn()) turnOnContrastTheme();
-    }
+    React.useEffect(() => {
+        getSiteInfo();
+    }, [activeLocale]);
 
-
-    getSiteInfo = () => {
-        this.setState({ site_info_loading: true });
-
-        const {active_language} = this.state;
+    const getSiteInfo = () => {
+        setSiteInfo(null);
 
         const domain = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
             ? SITES_DOMAIN[SITE]
@@ -46,20 +41,19 @@ class SiteInfoContextProvider extends Component {
 
         API.get(`sites/getInfo?domain=${domain}`)
             .then(res => {
+                const {info} = res.data;
 
-               const {info} = res.data;
-
-               const languages =
-                  info.languages && info.languages !== active_language
-							? info.languages.split(",")
-							: [];
+                const languages =
+                    info.languages && info.languages !== activeLocale
+                        ? info.languages.split(",")
+                        : [];
 
                 const widgets = info?.template?.layout?.["home-page"]?.widgets;
-               //  console.log( widgets );
+                //  console.log( widgets );
 
                 const header_menu_structure = widgets?.["top-menu"]?.elements?.[0]?.menu?.structure || [];
                 const footer_address = widgets?.["footer-contact"]?.elements?.[0]?.content;
-					 const toggle_menu = widgets?.["toggle-menu"]?.elements?.[0]?.menu;
+                const toggle_menu = widgets?.["toggle-menu"]?.elements?.[0]?.menu;
 
                 const footer_subpage_link1 = widgets?.["bottom-col-1"]?.elements?.[0]?.content;
                 const footer_subpage_link2 = widgets?.["bottom-col-2"]?.elements?.[0]?.content;
@@ -73,41 +67,37 @@ class SiteInfoContextProvider extends Component {
                     {label: item.name, path: (item.article ? getArticleLink(item.article) : item.url) || "#"}
                 ));
 
-                this.setState({
+                setSiteInfo({
                     site_info: info,
-                    site_info_loading: false,
                     languages,
-						  header_menu,
-						  toggle_menu,
+                    header_menu,
+                    toggle_menu,
                     footer_address,
                     footer_subpage_links,
                     footer_links,
                 });
             })
-            .catch(err => {
-            });
-    }
-
-
-    changeLanguage = language => {
-        localStorage.setItem(LocalStorage.Locale, language);
-        moment.locale(language);
-        this.setState({active_language: language}, this.getSiteInfo);
+            .catch(() => {});
     };
 
+    const changeLanguage = language => {
+        localStorage.setItem(LocalStorage.Locale, language);
+        moment.locale(language);
+        setActiveLocale(language);
+    };
 
-    render() {
-        return (
-            <SiteInfoContext.Provider value={{
-                ...this.state,
-                changeLanguage: this.changeLanguage,
-            }}>
-                <FullPageLoader>
-                    {this.props.children}
-                </FullPageLoader>
-            </SiteInfoContext.Provider>
-        );
-    }
+    if (siteInfo === null)
+        return <FullPageLoader/>;
+
+    return (
+        <SiteInfoContext.Provider value={{
+            ...siteInfo,
+            active_language: activeLocale,
+            changeLanguage,
+        }}>
+            {props.children}
+        </SiteInfoContext.Provider>
+    );
 }
 
 export default SiteInfoContext;
