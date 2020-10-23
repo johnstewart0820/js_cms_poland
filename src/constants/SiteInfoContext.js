@@ -9,7 +9,7 @@ import 'moment/locale/pl';
 import 'moment/locale/cs';
 import 'moment/locale/de';
 import {getArticleLink} from "../extra/functions";
-import {useParams} from "react-router-dom";
+import {matchPath, useLocation} from "react-router-dom";
 
 const SiteInfoContext = React.createContext(null);
 const SiteInfoContextConsumer = SiteInfoContext.Consumer;
@@ -20,7 +20,7 @@ function SiteInfoContextProvider(props) {
     const [siteInfo, setSiteInfo] = React.useState(null);
     const [pageInfo, setPageInfo] = React.useState(null);
     const [activeLocale, setActiveLocale] = React.useState(StoredLocale || 'pl');
-    const {urlLocale, urlSlug} = useParams();
+    const location = useLocation();
 
     React.useEffect(() => {
         if (!StoredLocale)
@@ -32,10 +32,6 @@ function SiteInfoContextProvider(props) {
     }, []);
 
     React.useEffect(() => {
-        getSiteInfo();
-    }, [urlLocale, urlSlug, activeLocale]);
-
-    const getSiteInfo = () => {
         setSiteInfo(null);
 
         const domain = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
@@ -82,26 +78,38 @@ function SiteInfoContextProvider(props) {
             setSiteInfo(tempSiteInfo);
 
             return tempSiteInfo;
-        }).then(tempSiteInfo => {
-            if (urlLocale !== undefined && !tempSiteInfo.languages.split(',').includes(urlLocale)) {
-                /* show 404 if invalid locale */
-                setPageInfo(false);
-                return;
-            }
-
-            if (!urlSlug) {
-                // no page id/slug = home page
-                console.info('PAGE DATA', tempSiteInfo.site_info.default_content);
-                setPageInfo(tempSiteInfo.site_info.default_content);
-                return;
-            }
-
-            API.getPost(urlSlug).then(res => {
-                console.info('PAGE DATA', res.data.content);
-                setPageInfo(res.data.content);
-            });
         });
-    };
+    }, [activeLocale]);
+
+    React.useEffect(() => {
+        setPageInfo(null);
+
+        if (!siteInfo)
+            return;
+
+        const match = matchPath(location.pathname, {
+            path: '/:locale/:slug',
+            exact: true,
+        });
+
+        if (match === null) {
+            // no page id/slug = home page
+            console.info('PAGE DATA', siteInfo.site_info.default_content);
+            setPageInfo(siteInfo.site_info.default_content);
+            return;
+        }
+
+        if (!siteInfo.languages.includes(match.params.locale)) {
+            /* show 404 if invalid locale */
+            setPageInfo(false);
+            return;
+        }
+
+        API.getPost(match.params.slug).then(res => {
+            console.info('PAGE DATA', res.data.content);
+            setPageInfo(res.data.content);
+        });
+    }, [location.pathname, siteInfo]);
 
     const changeLanguage = language => {
         localStorage.setItem(LocalStorage.Locale, language);
