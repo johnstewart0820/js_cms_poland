@@ -5,14 +5,15 @@ import React from "react";
 import Parser from "html-react-parser";
 
 
-export const loadScript = src => {
+export const loadScript = ( src, parent_el ) => {
 			
 	const script = document.createElement('script');
 	script.type = "text/javascript";
 	script.async = true;
 	script.src = src;
 
-	document.body.appendChild( script );
+	const place = parent_el || document.body; 
+	place.appendChild( script );
 }
 
 export const parserShortcodes = (body) => {
