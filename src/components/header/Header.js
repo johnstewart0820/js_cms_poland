@@ -16,7 +16,7 @@ import SiteInfoContext from "../../constants/SiteInfoContext";
 const Header = () => {
     const history = useHistory();
     const userContext = React.useContext(UserContext);
-    const title = React.useContext(SiteInfoContext).site_info.title;
+    const title = React.useContext(SiteInfoContext)?.site_info?.title;
     const [show, setShow] = React.useState(false);
     const headerClasses = ["header"];
 
