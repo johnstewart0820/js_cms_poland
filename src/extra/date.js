@@ -141,10 +141,8 @@ function getAllFromDateObject( date_obj ) {
 		const year = date_obj.getFullYear();
 		const dd_mm_yyyy = `${day_num}.${month_num}.${year}`;
 
-
-		const hours = addZeroIfNeeded( date_obj.getHours());
-		const minutes = addZeroIfNeeded( date_obj.getMinutes());
-		const time = `${hours}:${minutes}`;
+		const time= getUTCTime(date_obj)
+		//const time = `${hours}:${minutes}`;
 
 		return {
 			day_num,
