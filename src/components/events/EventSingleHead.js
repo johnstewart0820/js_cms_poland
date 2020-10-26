@@ -1,23 +1,20 @@
 import React from 'react';
-
 import EventDates from './EventDates';
 import PageHeaderSection from "../header/PageHeaderSection";
-
 
 const EventSingleHead = ({title, categories_labels, thumbnail, custom_data}) => (
 
     <PageHeaderSection extra_classes="single-event" thumbnail={thumbnail}>
-
         <div className="category"> {categories_labels} </div>
         <div className="page-title"> {title} </div>
-        {custom_data.event.latest_date.end_date &&
-        <p>wydarzenie odbyło się</p>}
-
+        {!custom_data.event.nearest_date && <p>wydarzenie odbyło się</p>}
         <EventDates
-            end_date={new Date(custom_data.event.latest_date.end_date * 1000)}
-            start_date={new Date(custom_data.event.latest_date.start_date * 1000)}
+            end_date={new Date((custom_data.event.nearest_date ?
+                custom_data.event.nearest_date.end_date : custom_data.event.latest_date.end_date) * 1000)}
+            start_date={new Date((custom_data.event.nearest_date ?
+                custom_data.event.nearest_date.start_date : custom_data.event.latest_date.start_date) * 1000)}
         />
-        {custom_data.event.place &&
+        {custom_data.event.organizer_name &&
         <>
             <p>organizator:</p>
             <div>{custom_data.event.organizer_name}</div>
