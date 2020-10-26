@@ -8,14 +8,19 @@
 .attachment-main {
     display: flex;
     flex-direction: column;
+    margin-top: 22px
+;
     .items-container-attachment {
         font-size: 1rem;
         display: flex;
-        margin-top: 40px;
+        margin-top: 30px;
         margin-left: -90px;
         align-items: center;
-        .item-attachment {
+        margin-bottom:-15px;
+        a {
             margin-left: 10px;
+            color:#3d5567;
+
         }
     }
 }@media (max-width: 1000px) {
