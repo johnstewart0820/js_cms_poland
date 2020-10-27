@@ -25,6 +25,7 @@
     "react-scripts": "3.4.1",
     "react-to-pdf": "0.0.13",
     "react-toast-notifications": "^2.4.0",
+    "react-toastify": "^6.0.9",
     "zxcvbn": "^4.4.2"
   },
   "scripts": {

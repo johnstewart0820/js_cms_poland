@@ -10,6 +10,9 @@ import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 import {API_URL} from "../../../extra/API";
 import TourismRoutes from "../../../constants/TourismRoutes";
 
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const LoginPage = () => {
     const history = useHistory();
     const planerContext = React.useContext(PlanerContext);
@@ -32,7 +35,7 @@ const LoginPage = () => {
         const value = e.target.value;
         setState({
             ...state,
-            [e.target.name]: value
+            [e.target.name]: value,
         });
     }
 
@@ -51,9 +54,29 @@ const LoginPage = () => {
             setEmptyLogin(state.login === "" ? true : false);
             setEmptyPassword(state.password === "" ? true : false);
 
-            if (responseErrors)
-                setErrors(Array.isArray(responseErrors) ? responseErrors : [responseErrors]);
-            else
+            if (state.password === "" || state.login === "") {
+                toast.info("Oba pola muszą być wypełnione", {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+
+            if (responseErrors) {
+                toast.error(responseErrors, {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            } else
                 setErrors(['Error sending login request']);
         });
     }
@@ -77,6 +100,7 @@ const LoginPage = () => {
         });
     }
 
+
     const onEnterPress = e => {
         const enterButton = e.keyCode || e.which;
         if (enterButton === 13) {
@@ -85,6 +109,7 @@ const LoginPage = () => {
     }
 
     return (
+
         <div className="registration-container" style={{padding: 0}}>
             <div className="container__photo">
                 <img alt='' src={require('../../../img/LoginRegistration/photo.png')}/>
@@ -102,6 +127,7 @@ const LoginPage = () => {
                 <p>
                     Zaloguj Się
                 </p>
+
                 <InputComponent
                     fieldName={'EMAIL'}
                     name={'login'}
@@ -127,6 +153,9 @@ const LoginPage = () => {
                     isLoading={loading}
                 />
 
+                <ToastContainer/>
+
+
                 <div className="bottom-container" style={{margin: '5px 5px -10px 5px'}}>
                     <div className="login-container">
                         <h5>Nie masz konta ? </h5>
@@ -135,6 +164,7 @@ const LoginPage = () => {
                 </div>
             </div>
         </div>
+
     )
 }
 

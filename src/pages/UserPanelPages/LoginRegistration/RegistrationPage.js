@@ -7,6 +7,8 @@ import ButtonWithLoader from "../../../components/buttons/ButtonWithLoader";
 import {useHistory} from 'react-router-dom';
 import {API_URL} from "../../../extra/API";
 import Loader from "../../../components/general/Loader";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const RegistrationPage = () => {
@@ -33,13 +35,26 @@ const RegistrationPage = () => {
 
     const submitFormData = () => {
         if (!password && !email && !name) {
-            if (password.length === 0) setPasswordIsEmpty(true);
-            if (email.length === 0) setEmailIsEmpty(true);
-            if (name.length === 0) setNameIsEmpty(true);
+
+            toast.info("Trzy ostatnie pola nie moga być puste!", {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setPasswordIsEmpty(true)
+            setEmailIsEmpty(true)
+            setNameIsEmpty(true)
+
         } else {
-            setPasswordIsEmpty(false);
-            setEmailIsEmpty(false);
-            setNameIsEmpty(false);
+
+            setPasswordIsEmpty(password.length === 0 ? true : false);
+            setEmailIsEmpty(email.length === 0 ? true : false);
+            setNameIsEmpty(name.length === 0 ? true : false);
+
 
             if (privacyPolicy !== false && userDataPolicy !== null) {
                 setPrivacyPolicyIsEmpty(false);
@@ -58,12 +73,30 @@ const RegistrationPage = () => {
 
                         }
                     }, (error) => {
-                        setNotice(error.response.data.errors.join('\n'));
+                        console.log(error.response.data.errors.join('\n'))
+
+                        toast.error(error.response.data.errors.join('\n'), {
+                            position: "top-right",
+                            autoClose: 10000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
                     });
             } else {
-                // setNotice('Zaakceptuj naszą politykę prywatności !');
                 if (privacyPolicy === false) setPrivacyPolicyIsEmpty(true);
                 if (!userDataPolicy ) setUserDataPolicyIsEmpty(true);
+                toast.info("Zaakceptuj naszą politykę prywatności", {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
 
 
             }
@@ -134,6 +167,7 @@ const RegistrationPage = () => {
                     onClick={submitFormData}
                     isLoading={isLoading}
                 />
+                <ToastContainer/>
 
                 <div className="bottom-container">
                     <div className='row' >
