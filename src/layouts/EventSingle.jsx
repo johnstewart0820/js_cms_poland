@@ -4,7 +4,6 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import EventSingleHead from "../components/events/EventSingleHead";
-import SingleContainer from "../components/common-single/SingleContainer";
 import SingleContentBottom from "../components/common-single/SingleContentBottom";
 import PlanerContext from "../constants/PlanerContext";
 import LoopCard from "../components/loop/LoopCard";
@@ -60,10 +59,8 @@ export default function EventSingle(props) {
             <div className="section-info">
                 {props.page.body && (<div>{parserShortcodes(props.page.body)}</div>)}
             </div>
-            <div className="section-info">
-                {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
-            </div>
 
+            {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
             {props.page.gallery && <Gallery items={galleryBoard}/>}
             {props.page.attachments.length!==0 && <Attachment attachments={props.page.attachments}/>}
             <div className="section-info">

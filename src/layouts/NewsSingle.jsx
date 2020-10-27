@@ -69,9 +69,8 @@ export default function NewsSinglePage(props) {
                 </SingleContainer>
             )}
 
-            {props.page.video.length !== 0 &&
-            <Video video={props.page.video.embed}/>}
-            {console.log(props.page.attachments.length)}
+            {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
+
             {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
 
             {props.page.gallery && <Gallery items={galleryBoard}/>}

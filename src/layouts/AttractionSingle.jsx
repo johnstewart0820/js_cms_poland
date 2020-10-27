@@ -1,5 +1,4 @@
 import React from 'react';
-import Parser from "html-react-parser";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
@@ -12,7 +11,6 @@ import '../styles/attractions/attraction-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
-import SingleContainer from "../components/common-single/SingleContainer";
 import Video from "../components/general/Video";
 import Attachment from "../components/general/Attachment";
 
@@ -157,7 +155,6 @@ export default function AttractionSingle(props) {
 
             {props.page.video.length !== 0 && <Video video={props.page.video.embed}/>}
             {props.page.attachments.length !== 0 && <Attachment attachments={props.page.attachments}/>}
-
 
             {ifTrail && (props.page.gallery || worthSeeing) ?
                 <Gallery heading='warto zobaczyć na trasie' items={worthSeeing}/> :
