@@ -7,7 +7,7 @@ const Attachment = ({attachments}) => {
 
     React.useEffect(() => {
         setMappingAttachement(attachments.map((attachment, key) =>
-            <div className={'items-container-attachment'}>
+            <div key={key} className={'items-container-attachment'}>
                 <img alt="" src={require('../../svg/icons/download.svg')}/>
                 <a className={'item-attachment'} key={key} href={attachment.name.toString()}>{attachment.title}</a>
             </div>))

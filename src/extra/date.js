@@ -129,8 +129,8 @@ function getUTCTime( date_obj ){
 function getAllFromDateObject( date_obj ) {
 	if (toString.call(date_obj) === "[object Date]") {
 
-		const day_num = addZeroIfNeeded( date_obj.getDate() );
-		const month_num = addZeroIfNeeded( date_obj.getMonth() + 1 );
+		const month_num = addZeroIfNeeded( date_obj.getDate() );
+		const day_num = addZeroIfNeeded( date_obj.getMonth() + 1 );
 		const month_name = month_names[ +month_num - 1];
 		const month_name_short = month_names_short[ +month_num - 1 ];
 
@@ -141,8 +141,9 @@ function getAllFromDateObject( date_obj ) {
 		const year = date_obj.getFullYear();
 		const dd_mm_yyyy = `${day_num}.${month_num}.${year}`;
 
-		const time= getUTCTime(date_obj)
-		//const time = `${hours}:${minutes}`;
+        const hours = addZeroIfNeeded( date_obj.getHours());
+        const minutes = addZeroIfNeeded( date_obj.getMinutes());
+		const time = `${hours}:${minutes}`;
 
 		return {
 			day_num,

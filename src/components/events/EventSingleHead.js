@@ -9,12 +9,12 @@ const EventSingleHead = ({title, categories_labels, thumbnail, custom_data}) => 
         <div className="page-title"> {title} </div>
         {!custom_data.event.nearest_date && <p>wydarzenie odbyło się</p>}
         <EventDates
-            end_date={new Date((custom_data.event.nearest_date ?
-                custom_data.event.nearest_date.end_date : custom_data.event.latest_date.end_date) * 1000)}
-            start_date={new Date((custom_data.event.nearest_date ?
-                custom_data.event.nearest_date.start_date : custom_data.event.latest_date.start_date) * 1000)}
+            end_date={new Date(custom_data.event.nearest_date ?
+                custom_data.event.nearest_date.end_date : custom_data.event.latest_date.end_date)}
+            start_date={new Date(custom_data.event.nearest_date ?
+                custom_data.event.nearest_date.start_date : custom_data.event.latest_date.start_date)}
         />
-        {custom_data.event.organizer_name &&
+        {custom_data.event.organizer_name.charAt(0) !== "-" &&
         <>
             <p>organizator:</p>
             <div>{custom_data.event.organizer_name}</div>
