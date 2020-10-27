@@ -82,7 +82,7 @@ function SiteInfoContextProvider(props) {
     }, [activeLocale]);
 
     React.useEffect(() => {
-        setPageInfo(null);
+      //   setPageInfo(null);
 
         if (!siteInfo)
             return;
