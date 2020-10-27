@@ -129,8 +129,8 @@ function getUTCTime( date_obj ){
 function getAllFromDateObject( date_obj ) {
 	if (toString.call(date_obj) === "[object Date]") {
 
-		const month_num = addZeroIfNeeded( date_obj.getDate() );
-		const day_num = addZeroIfNeeded( date_obj.getMonth() + 1 );
+		const day_num= addZeroIfNeeded( date_obj.getDate() );
+		const month_num = addZeroIfNeeded( date_obj.getMonth() + 1 );
 		const month_name = month_names[ +month_num - 1];
 		const month_name_short = month_names_short[ +month_num - 1 ];
 
