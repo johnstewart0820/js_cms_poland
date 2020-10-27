@@ -27,6 +27,7 @@
 .amounts-with-icons__item{
 	@include flex-a-center;
 	margin-bottom: 32px;
+	padding: 0 10px;
 
 	> div {
 		width: calc(( 100% - 117px - 70px ) / 2);
@@ -65,5 +66,27 @@
 			right: 5px;
 			top: 5px;
 		}
+	}
+}
+
+@media (max-width: 1099px) {
+	.amounts-with-icons__item {
+		flex-wrap: wrap;
+		font-size: 1em;
+		
+		> div {
+			text-align: center;
+			width: 100%;
+		}
+
+		&_image{
+			margin: 20px auto;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.amounts-with-icons__item{
+		width: 100%;
 	}
 }

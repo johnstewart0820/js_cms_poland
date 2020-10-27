@@ -37,7 +37,10 @@
 
 	position: relative;
 
-	&_head{
+
+	
+
+	&_head {
 		@include flex-a-center;
 		background: $green;
 		color: $gray;
@@ -54,11 +57,8 @@
 	}
 
 
-	&_body{
-		position: absolute;
-		z-index: 5;
+	&_body {
 		width: 100%;
-		left: 0;
 
 		padding: 40px 50px;
 		background: rgba(203, 213, 220, .09);
@@ -73,4 +73,30 @@
 			}
 		}
 	}
+
+	@media( max-width: 600px ) {
+		max-width: 100%;
+		min-width: 100%;
+
+		&_body{
+			padding: 30px 20px;
+		}
+	}
 }
+
+
+@media (max-width: 1540px){
+	.text-link-expandable-info__expandable{
+		margin-left: 0;
+		margin-top: 20px;
+	}
+
+	.text-link-expandable-info__text{
+		max-width: none;
+
+		p{
+			font-size: 1em;
+		}
+	}
+}
+

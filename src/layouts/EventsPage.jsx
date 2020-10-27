@@ -62,6 +62,11 @@ const EventsPage = props => {
         setFilterArgs(args);
     };
 
+    const onReset = () => {
+        setFilterArgs({});
+        setSelectedDate(null);
+    };
+
     return (
         <>
             <MainHeaderSection extra_classes="subpage">
@@ -71,6 +76,8 @@ const EventsPage = props => {
 
             <LoopSearchForm
                 extraClasses={'gray'}
+                showResetButton={true}
+                onReset={onReset}
                 inputs={[
                     {
                         fieldName: 'NAZWA WYDARZENIA',

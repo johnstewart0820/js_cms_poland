@@ -58,3 +58,41 @@
         right: 70px;
     }
 }
+
+
+@media (max-width: 1600px) {
+
+	.pic-text-info__picture{
+		margin-right: 0;
+	}
+
+	
+
+	.pic-text-info__info{
+		flex: 1 1 100%;
+		padding: 40px 15px;
+		max-width: 100%;
+
+		.pic-text-info__extra-text{
+			flex: 0 0;
+			justify-content: flex-start;
+		}
+
+		tr{
+			display: flex;
+			flex-wrap: wrap;
+
+			td{
+				width: 100% !important;
+			}
+		}
+
+		.button-link{
+			position: static;
+			margin-top: 20px;
+			max-height: 58px;
+		}
+	}
+
+	
+}

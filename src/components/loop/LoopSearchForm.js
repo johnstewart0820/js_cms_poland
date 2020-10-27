@@ -7,6 +7,7 @@ import {isFunction} from "../../extra/functions";
 import "../../styles/buttons/button-link.scss";
 import "../../styles/loop/loop-search-form.scss";
 import wrapInArray from "../../extra/wrapInArray";
+import TextButton from "../buttons/TextButton";
 
 const initialValues = inputs => {
     let defaults = {};
@@ -50,10 +51,16 @@ const LoopSearchForm = props => {
 
                     <button
                         type="submit"
-                        className={`button-link green ${props.submitButtonExtraClasses}`}
+                        className={`button-link form-button green ${props.submitButtonExtraClasses}`}
                     >
                         {props.submit_label || "Filtruj"}
                     </button>
+
+                    {!!props.showResetButton && (
+                        <TextButton className={'red'} onClick={props.onReset}>
+                            Zresetuj filtry
+                        </TextButton>
+                    )}
                 </div>
             </div>
         </form>
@@ -68,6 +75,8 @@ LoopSearchForm.propTypes = {
     heading: PropTypes.string,
     submit_label: PropTypes.string,
     submitCallback: PropTypes.func,
+    showResetButton: PropTypes.any,
+    onReset: PropTypes.func,
     extraClasses: PropTypes.string,
     submitButtonExtraClasses: PropTypes.string,
 };
