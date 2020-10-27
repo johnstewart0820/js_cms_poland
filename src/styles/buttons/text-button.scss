@@ -1,0 +1,11 @@
+.text-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 1em;
+
+    &.red {
+        color: red;
+    }
+}
