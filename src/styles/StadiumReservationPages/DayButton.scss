@@ -3,58 +3,50 @@
 
 .day {
     cursor: pointer;
-  min-height: 190px;
-  width: 170px;
-  border: 2px solid gray;
-  color: $gray; 
-  margin: 40px 20px 10px 0;
-  transition: 0.5s;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #f9f9f9;
-  &:focus,
-  &.active {
-    outline: none;
-    background: #f9f9f9;
-    border: 2px solid $green;
-  }
-  h3 {
-    font-weight: normal;
-    transition: 0.5s;
-  }
-  h1 {
-    transition: 0.5s;
-    line-height: 0;
-    font-size: 45px;
-  }
-  h4 {
-    transition: 0.5s;
-    font-size: 18px;
-  }
-  &:hover {
-    	background: #f9f9f9;
-	 	border: 2px solid $green;
-	 
-		hr {
-			border-color: $green;
- 		}
-  }
-
-  &:focus {
-	color: $green;
- 
-	hr{
-		border-color: $green;
-	}
- }
-
-  hr {
-    transition: 0.5s;
-    border: 1px solid gray;
+    min-height: 190px;
+    min-width: 150px;
+    width: 150px;
+    border: 2px solid gray;
     color: $gray;
-    width: 95%;
-  }
+    margin-right:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f9;
+
+    &.active {
+        outline: none;
+        background: #f9f9f9;
+        border: 2px solid $green;
+    }
+
+    h3 {
+        font-weight: normal;
+    }
+
+    h1 {
+        line-height: 0;
+        font-size: 45px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    &:hover {
+        background: #f9f9f9;
+        border: 2px solid $green;
+
+        hr {
+            border-color: $green;
+        }
+    }
+
+    hr {
+        border: 1px solid gray;
+        color: $gray;
+        width: 95%;
+    }
 }
 

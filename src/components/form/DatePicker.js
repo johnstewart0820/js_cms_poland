@@ -15,7 +15,7 @@ export const DatePicker = ({name, value, label, onChange}) => {
     React.useEffect(() => {
         setDate(value || null);
         const day = moment(value);
-        setDateText(day.isValid() ? day.format('DD.MM.YYYY') : '');
+        setDateText(!value ? '' : (day.isValid() ? day.format('DD.MM.YYYY') : ''));
     }, [value]);
 
     React.useEffect(() => {

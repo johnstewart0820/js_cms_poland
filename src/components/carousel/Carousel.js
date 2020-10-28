@@ -168,7 +168,7 @@ export default class Carousel extends Component{
                                 {items && items.length >= 1
                                     ? (
                                         items.map((item, index) => (
-                                            <ItemComponent key={ index } {...item } />
+                                            <ItemComponent key={ index } {...item } shared={this.props.shared} />
                                         ))
                                     ) : (
                                         <h2 style={{display: 'flex', textAlign: 'center'}}>

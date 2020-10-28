@@ -20,6 +20,8 @@ import LoopCard from "../components/loop/LoopCard";
 import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
 import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContainer";
 import Pagination from "../components/loop/Pagination";
+import DayButton from "../components/StadiumReservationComponents/DayButton";
+import {number} from "prop-types";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)
@@ -44,11 +46,19 @@ const EventsPage = props => {
     }, []);
     const [data, setData] = React.useState(null);
     const [selectedDate, setSelectedDate] = React.useState(null);
+    const [carouselDates, setCarouselDates] = React.useState(null);
     const [filterArgs, setFilterArgs] = React.useState(DefaultFilters);
     const [nearestEvents, nearestLoading] = useEntitiesByConfig({
         ...acf.field_nearest_events_information_module[0],
         field_section_posts_count_visit: 3,
     });
+    const [allEvents] = useEntitiesByConfig(acf.field_nearest_events_information_module, React.useMemo(() => ({
+        limit: 99999,
+        orderby: 'date',
+        order: 'asc',
+        date: moment().format('DD.MM.YYYY'),
+        date_to: moment().add(180, 'days').format('DD.MM.YYYY'),
+    }), []));
 
     /* fetch new data */
     React.useEffect(() => {
@@ -64,6 +74,37 @@ const EventsPage = props => {
             setData(false);
         });
     }, [filterArgs, selectedDate]);
+
+    React.useEffect(() => {
+        if (!allEvents?.contents)
+            return;
+
+        const startDate = moment(moment().format('DD.MM.YYYY'), 'DD.MM.YYYY');
+        const endDate = startDate.clone().add(180, 'days');
+        const dates = [];
+
+        for (const cycleDate = startDate.clone(); cycleDate.isSameOrBefore(endDate); cycleDate.add(1, 'day')) {
+            const cycleClone = moment(cycleDate.format('DD.MM.YYYY'), 'DD.MM.YYYY');
+            for (const event of allEvents.contents) {
+                const eventStart = moment.utc(event.event_start_date);
+                const eventEnd = moment.utc(event.event_end_date);
+
+                if (eventStart.isAfter(endDate) || eventEnd.isBefore(startDate))
+                    continue;
+
+                dates.push({
+                    number: cycleDate.date(),
+                    onClick: () => setSelectedDate(cycleClone),
+                    date: cycleClone,
+                    dayName: cycleDate.format('dddd').toUpperCase(),
+                    monthName: cycleDate.format('MMMM').toUpperCase(),
+                });
+                break;
+            }
+        }
+
+        setCarouselDates(dates);
+    }, [allEvents]);
 
     const onFiltersSubmit = args => {
         setSelectedDate(null);
@@ -129,6 +170,17 @@ const EventsPage = props => {
                 submitButtonExtraClasses={'small-filter-button'}
                 submitCallback={onFiltersSubmit}
             />
+
+            {carouselDates === null && <Loader/>}
+            {carouselDates?.length && (
+                <Carousel
+                    extra_classes={'arrows-on-right'}
+                    containerStyles={{marginLeft: '90px'}}
+                    items={carouselDates}
+                    ItemComponent={DayButton}
+                    shared={{selectedDate}}
+                />
+            )}
 
             {/*<DayCarousel
                 startDate={moment().subtract(3, 'days')}
