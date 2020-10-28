@@ -1,7 +1,16 @@
+@import "../general/colors.scss";
+
+
 .rope-road-card {
-    min-height: 500px;
-    margin: 10px 150px 50px 10px;
-    .rope-road-header {
+	min-height: 500px;
+	flex: 1 1;
+	padding-right: 20px;
+
+	.button-link{
+		max-width: 239px;
+	}
+
+	.rope-road-header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -40,27 +49,30 @@
     .rope-road-bottom {
         width: 100%;
         .rope-road-image {
-            width: 100%;
-            height: 200px;
+            width: 239px;
+            height: 161px;
             margin-bottom: 15px;
-            transition: 1s;
-            img {
-                max-height: 200px;
-            }
+				transition: 1s;
+				background-color: $gray;
+
+				position: relative;
+				
             .rope-road-image-name {
-                position: absolute;
-                max-width: 275px;
+					 position: absolute;
+					 bottom: 6px;
+					 left: 0;
+
                 width: 100%;
                 background: transparent;
-                height: 50px;
-                margin-top: -85px;
-                padding: 10px;
+                padding: 0 10px;
                 cursor: pointer;
                 p {
                     font-weight: bold;
                     color: white;
                     font-size: 18px;
-                    text-shadow: 1px 1px 3px rgb(69, 69, 69);
+						  text-shadow: 1px 1px 3px rgb(69, 69, 69);
+						  margin: 0;
+						  line-height: 1.2;
                 }
             }
         }
@@ -71,7 +83,7 @@
         }
 
         .rope-road-image:hover {
-            background: #0f111a;
+            background-color: #0f111a;
         }
     }
 }

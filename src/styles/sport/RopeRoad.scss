@@ -1,18 +1,57 @@
-.rope-road-row {
-    margin-top: 50px;
-    .rope-road-head {
-        padding-left: 120px;
-        .heading-description {
-            width: 700px;
-            margin-left: 150px;
-            position: relative;
-            top: 55px;
-        }
-    }
-    .rope-road-body {
-        display: flex;
-        flex-direction: row;
-        padding-left: 520px;
-        margin-top: 100px;
-    }
+.rope-road {
+	margin-top: 50px;
+
+	.row{
+		align-items: flex-start;
+	}
+
+	.section-heading{
+		min-width: 356px;
+		max-width: 356px;
+	}
+}
+
+.rope-road__body {
+	width: 100%;
+	display: flex;
+	padding-left: 356px;
+	margin-top: 60px;
+ }
+
+.rope-road__text{
+	flex: 1 1;
+	max-width: 700px;
+	font-weight: bold;
+	font-size: 1.28em;
+}
+
+
+@media (max-width: 1600px) {
+	.rope-road__body {
+		padding: 0;
+	}
+}
+
+@media (max-width: 1199px) {
+
+	.rope-road__text{
+		max-width: 100%;
+		flex: 1 1 100%;
+		font-size: 1em;
+	}
+
+	.rope-road .section-heading{
+		width: 100%;
+		min-width: 100%;
+	}
+}
+
+@media (max-width: 877px) {
+	.rope-road__body{
+		flex-wrap: wrap;
+
+		.rope-road-card{
+			flex: 1 1 100%;
+		}
+	}
 }
