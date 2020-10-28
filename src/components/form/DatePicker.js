@@ -13,6 +13,12 @@ export const DatePicker = ({name, value, label, onChange}) => {
     const [dateText, setDateText] = React.useState('');
 
     React.useEffect(() => {
+        setDate(value || null);
+        const day = moment(value);
+        setDateText(day.isValid() ? day.format('DD.MM.YYYY') : '');
+    }, [value]);
+
+    React.useEffect(() => {
         const handler = e => {
             if (ref.current && !ref.current.contains(e.target))
                 setShow(false);
