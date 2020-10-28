@@ -69,8 +69,9 @@ const InfoComponent = ({
                     <div className="info-component-description">
                         <div className="info-component-text">
                             { Parser(description) }
-                            <ButtonLink href={href} extra_classes='button-link green'> { buttonText.toUpperCase() } </ButtonLink>
                         </div>
+
+								<ButtonLink href={href} extra_classes='button-link green-transparent'> { buttonText.toUpperCase() } </ButtonLink>
                     </div>
                 </div>
             </div>
