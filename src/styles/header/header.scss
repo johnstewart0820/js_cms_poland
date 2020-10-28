@@ -120,9 +120,18 @@
 
 	font-size: 1.04em;
 
+	&.many-items {
+		font-size: 0.9em;
+
+		> a {
+			margin-left: 20px;
+		}
+	}
+
 	> a {
 		color: $gray;
 		margin-left: 40px;
+		text-align: center;
 	}
 
 	> a:first-child{
@@ -166,10 +175,7 @@
 	.header-main__menu{
 		font-size: 0.9em;
 	}
-}
 
-
-@media (max-width: 1023px){
 	.header-main {
 
 		.header-main__menu,
@@ -186,6 +192,7 @@
 		top: 88px;
 	}
 }
+
 
 @media (max-width: 600px){
 	.header-logo{

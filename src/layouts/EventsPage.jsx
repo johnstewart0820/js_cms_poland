@@ -17,6 +17,11 @@ import Loader from "../components/general/Loader";
 import {getMailToLink, handleFilteringCategories, withDefaultOption} from "../extra/functions";
 import {DayCarousel} from "../components/events/DayCarousel";
 import LoopCard from "../components/loop/LoopCard";
+import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
+import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContainer";
+import Pagination from "../components/loop/Pagination";
+import DayButton from "../components/StadiumReservationComponents/DayButton";
+import {number} from "prop-types";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)
@@ -24,6 +29,8 @@ const dateOrDate = (firstDate, secondDate) => {
 
     return moment(firstDate || secondDate).format('DD.MM.YYYY');
 };
+
+const DefaultFilters = {page: 0};
 
 const EventsPage = props => {
     const acf = props.page.acf;
@@ -39,7 +46,19 @@ const EventsPage = props => {
     }, []);
     const [data, setData] = React.useState(null);
     const [selectedDate, setSelectedDate] = React.useState(null);
-    const [filterArgs, setFilterArgs] = React.useState({});
+    const [carouselDates, setCarouselDates] = React.useState(null);
+    const [filterArgs, setFilterArgs] = React.useState(DefaultFilters);
+    const [nearestEvents, nearestLoading] = useEntitiesByConfig({
+        ...acf.field_nearest_events_information_module[0],
+        field_section_posts_count_visit: 3,
+    });
+    const [allEvents] = useEntitiesByConfig(acf.field_nearest_events_information_module, React.useMemo(() => ({
+        limit: 99999,
+        orderby: 'date',
+        order: 'asc',
+        date: moment().format('DD.MM.YYYY'),
+        date_to: moment().add(180, 'days').format('DD.MM.YYYY'),
+    }), []));
 
     /* fetch new data */
     React.useEffect(() => {
@@ -56,16 +75,52 @@ const EventsPage = props => {
         });
     }, [filterArgs, selectedDate]);
 
+    React.useEffect(() => {
+        if (!allEvents?.contents)
+            return;
+
+        const startDate = moment(moment().format('DD.MM.YYYY'), 'DD.MM.YYYY');
+        const endDate = startDate.clone().add(180, 'days');
+        const dates = [];
+
+        for (const cycleDate = startDate.clone(); cycleDate.isSameOrBefore(endDate); cycleDate.add(1, 'day')) {
+            const cycleClone = moment(cycleDate.format('DD.MM.YYYY'), 'DD.MM.YYYY');
+            for (const event of allEvents.contents) {
+                const eventStart = moment.utc(event.event_start_date);
+                const eventEnd = moment.utc(event.event_end_date);
+
+                if (eventStart.isAfter(endDate) || eventEnd.isBefore(startDate))
+                    continue;
+
+                dates.push({
+                    number: cycleDate.date(),
+                    onClick: () => setSelectedDate(cycleClone),
+                    date: cycleClone,
+                    dayName: cycleDate.format('dddd').toUpperCase(),
+                    monthName: cycleDate.format('MMMM').toUpperCase(),
+                });
+                break;
+            }
+        }
+
+        setCarouselDates(dates);
+    }, [allEvents]);
+
     const onFiltersSubmit = args => {
         setSelectedDate(null);
         handleFilteringCategories(args, acf.field_nearest_events_information_module[0].field_section_categories_visit);
-        setFilterArgs(args);
+        setFilterArgs({
+            ...args,
+            page: 0,
+        });
     };
 
     const onReset = () => {
-        setFilterArgs({});
+        setFilterArgs(DefaultFilters);
         setSelectedDate(null);
     };
+
+    const onPageChange = page => setFilterArgs({...filterArgs, page});
 
     return (
         <>
@@ -116,25 +171,53 @@ const EventsPage = props => {
                 submitCallback={onFiltersSubmit}
             />
 
-            <DayCarousel
+            {carouselDates === null && <Loader/>}
+            {carouselDates?.length && (
+                <Carousel
+                    extra_classes={'arrows-on-right'}
+                    containerStyles={{marginLeft: '90px'}}
+                    items={carouselDates}
+                    ItemComponent={DayButton}
+                    shared={{selectedDate}}
+                />
+            )}
+
+            {/*<DayCarousel
                 startDate={moment().subtract(3, 'days')}
                 selectedDate={selectedDate}
                 onDayClick={date => setSelectedDate(date)}
                 amount={7}
-            />
+            />*/}
 
-            {data === null && <Loader/>}
-            {data !== null && !data?.contents.length && (
-                <h2 style={{textAlign: 'center', width: '100%'}}>
-                    Brak treści dla podanych kryteriów
-                </h2>
-            )}
-            {!!data?.contents && (
+            <LoopSearchPostsContainer extra_classes={'wider'}>
+                {data === null && <Loader/>}
+
+                {!!data?.contents && (
+                    <>
+                        {!data.contents.length && (
+                            <h2 style={{textAlign: 'center', width: '100%'}}>
+                                Brak treści dla podanych kryteriów
+                            </h2>
+                        )}
+                        {data.contents.map(post => <LoopCard key={post.id} {...post} />)}
+
+                        <Pagination
+                            active_page={data.pages.currentPage}
+                            total_amount={data.pages.pageCount}
+                            pageChangeCallback={onPageChange}
+                        />
+                    </>
+                )}
+            </LoopSearchPostsContainer>
+
+            {nearestLoading && <Loader/>}
+            {!nearestLoading && nearestEvents?.contents?.length && (
                 <Carousel
                     heading={'NAJBLIŻSZE WYDARZENIA'}
+                    extra_classes={'no-arrows'}
                     containerStyles={{marginLeft: '90px'}}
                     bodyStyles={{display: 'flex'}}
-                    items={data.contents}
+                    items={nearestEvents.contents}
                     ItemComponent={LoopCard}
                 />
             )}

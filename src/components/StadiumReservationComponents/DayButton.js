@@ -1,7 +1,8 @@
 import React from "react";
 import '../../styles/StadiumReservationPages/DayButton.scss';
 
-const DayButton = ({disabled, active, containerStyles, monthName, dayName, date, onClick}) => {
+const DayButton = ({disabled, containerStyles, date, monthName, dayName, number, onClick, shared}) => {
+    const active = !!shared?.selectedDate?.isSame(date);
     const classes = disabled ? ' disabled' : active ? ' active' : '';
     return (
         <button
@@ -10,7 +11,7 @@ const DayButton = ({disabled, active, containerStyles, monthName, dayName, date,
             style={containerStyles}
         >
             <h3>{monthName}</h3>
-            <h1>{date}</h1>
+            <h1>{number}</h1>
             <hr/>
             <h4>{dayName}</h4>
         </button>

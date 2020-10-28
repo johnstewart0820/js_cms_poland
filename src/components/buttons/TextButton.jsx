@@ -3,7 +3,7 @@ import "../../styles/buttons/text-button.scss";
 
 export default function TextButton({children, className, ...rest}) {
     return (
-        <button className={`text-button ${className}`} {...rest}>
+        <button type={'button'} className={`text-button ${className}`} {...rest}>
             {children}
         </button>
     );

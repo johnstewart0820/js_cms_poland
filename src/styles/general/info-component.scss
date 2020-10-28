@@ -3,7 +3,11 @@
 
 
 .info-component {
-    padding: 50px 0;
+	 padding: 50px 0;
+	 
+	 .row {
+		 flex-wrap: wrap;
+	 }
 }
 
 .info-component-image {
@@ -15,8 +19,9 @@
 .info-component-info {
     display: flex;
     flex-direction: column;
-    width: 25%;
-    padding: 0px 10px 10px 30px;
+	 min-width: 410px;
+	 padding: 0px 10px 10px 30px;
+	 
     .info-component-address {
         font-weight: 700;
         text-transform: uppercase;
@@ -67,10 +72,8 @@
     }
 
     .info-component-buttons {
-        display: flex;
-        position: relative;
-        top: 45px;
-        left: -5px;
+		  display: flex;
+		  margin-top: 35px;
     }
 }
 
@@ -79,30 +82,51 @@
     background: white;
     color: $gray;
     padding: 20px 30px;
-    position: relative;
+	 position: relative;
+	 
+	 display: flex;
+	 flex-direction: column;
+
+	 .button-link {
+		margin-top: auto;
+		cursor: pointer;
+
+		&:hover {
+			 background: $green;
+			 color: white;
+		}
+  }  
 }
 
 
 .info-component-text {
     @include flex-wrap;
     font-weight: bold;
-    font-size: 17px;
+	 font-size: 1.28em;
+	 margin-bottom: 25px;
 
     > div {
         flex: auto;
         min-width: 240px;
         padding: 0 15px;
-    }
+	}
+}
 
-    .button-link {
-        position: absolute;
-        bottom: 40px;
-        background: transparent;
-        color: $green;
-        cursor: pointer;
-        &:hover {
-            background: $green;
-            color: white;
-        }
-    }
+@media ( max-width: 1470px ) {
+	.info-component-description {
+		flex: 1 1 100%;
+		padding: 0;
+		margin-top: 25px;
+	}
+}
+
+
+@media ( max-width: 999px ) {
+
+	.info-component-info{
+		padding: 0;
+		margin-top: 25px;
+		width: 100%;
+		min-width: 100%;
+	}
 }

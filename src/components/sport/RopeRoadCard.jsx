@@ -40,9 +40,8 @@ const RopeRoadCard = ({roadType, ...article}) => {
                 </div>
             </div>
             <div className='rope-road-bottom'>
-                <div className='rope-road-image'>
-                    {article.original_image && <img alt='' src={article.original_image}/>}
-                    <div className='rope-road-image-name'>
+                <div className='rope-road-image thumbnail' style={{ backgroundImage: `url(${ article.original_image || "" })` }}>
+						<div className='rope-road-image-name'>
                         <p>
                             {article.title && 'Kamera ' + article.title}
                         </p>

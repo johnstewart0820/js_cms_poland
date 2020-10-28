@@ -19,7 +19,7 @@ const HeaderMenu = () => {
     return (
         <>
             {header_menu && !!header_menu.length && (
-                <div className="header-main__menu">
+                <div className={`header-main__menu ${ header_menu.length >= 9 ? "many-items" : "" }`}>
                     {header_menu.map(({path, label}, index) => (
                         <SelectiveLink
                             key={index}
