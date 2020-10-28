@@ -5,7 +5,7 @@ const Sites = {
     Culture: 'CULTURE',
 };
 
-const SITE = Sites.Culture; // MAIN TOURISM SPORT CULTURE
+const SITE = Sites.Main;
 
 const SITES_DOMAIN = {
     [Sites.Main]: "ustron.s3.netcore.pl",

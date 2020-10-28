@@ -24,7 +24,6 @@ const MainHomepage = props => {
 	React.useEffect(() => setMapId( acf?.field_homepage_block_map ), [] );
 
 	React.useEffect(() => {
-		// console.log(acf);
 		const 
 			  blue = acf.field_homepage_block_blue[0],
 			  red = acf.field_homepage_block_red[0],
@@ -61,14 +60,17 @@ const MainHomepage = props => {
             subitems[3].push({
                 title: red['field_red_block_title_' + i],
                 link: red['field_red_block_link_' + i],
-                svg:  red['field_red_block_icon_' + i],
+                svg: red['field_red_block_icon_' + i],
             });
         }
 
-		setTiles(blocks.map((item, index) => {
-			const title = item.field_homepage_block_title || main_titles[ index ],
-				main_href = item.field_homepage_block_link || '',
-				bg = item.field_homepage_block_image
+        setTiles(blocks.map((item, index) => {
+            const title = item.field_homepage_block_title || main_titles[index],
+                main_href = item.field_homepage_block_link
+                    || item.field_red_block_url
+                    || item.field_blue_block_url
+                    || item.field_green_fields_url,
+                bg = item.field_homepage_block_image
                     || item.field_green_fields_image
                     || item.field_blue_block_image
                     || item.field_red_block_image,

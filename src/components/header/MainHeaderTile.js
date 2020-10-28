@@ -53,9 +53,9 @@ export default class MainHeaderTile extends Component{
 				</div>
 				{ items && !!items.length &&
 					<div className="main-header-tiles-section__tile_links">
-					{ items.map(({ svg, title, href }, index) => (
+					{ items.map(({ svg, title, link }, index) => (
 
-						<a href={ href } target="_blank" rel={'noopener noreferrer'} key={ index } >
+						<a href={ link } target="_blank" rel={'noopener noreferrer'} key={ index } >
 							{ <img alt='' src={svg}/> }
 							<div> { title } </div>
 							<span/>
