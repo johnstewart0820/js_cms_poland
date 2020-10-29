@@ -15,13 +15,11 @@ import Select from "../components/form/Select";
 import useOrganizers from "../hooks/useOrganizers";
 import Loader from "../components/general/Loader";
 import {getMailToLink, handleFilteringCategories, withDefaultOption} from "../extra/functions";
-import {DayCarousel} from "../components/events/DayCarousel";
 import LoopCard from "../components/loop/LoopCard";
 import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
 import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContainer";
 import Pagination from "../components/loop/Pagination";
 import DayButton from "../components/StadiumReservationComponents/DayButton";
-import {number} from "prop-types";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)

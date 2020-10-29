@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
-
 import LOOP_SEARCH_INPUTS from '../../extra/loop_search_inputs';
 import {isFunction} from "../../extra/functions";
-
 import "../../styles/buttons/button-link.scss";
 import "../../styles/loop/loop-search-form.scss";
 import wrapInArray from "../../extra/wrapInArray";
@@ -35,6 +33,11 @@ const LoopSearchForm = props => {
         isFunction(props.submitCallback) && props.submitCallback(values);
     };
 
+    const reset = () => {
+        setValues(initialValues(inputs));
+        props.onReset && props.onReset();
+    };
+
     return (
         <form className={`loop-search-form ${props.extraClasses || ''}`} onSubmit={submitForm}>
             <div className="container">
@@ -44,6 +47,7 @@ const LoopSearchForm = props => {
                     {inputs && !!inputs.length && inputs.map(item => (
                         <item.Component
                             key={item.id || item.name}
+                            value={values[item.name]}
                             {...item}
                             onChange={e => setValues({...values, [e.target.name]: e.target.value})}
                         />
@@ -57,7 +61,7 @@ const LoopSearchForm = props => {
                     </button>
 
                     {!!props.showResetButton && (
-                        <TextButton className={'red'} onClick={props.onReset}>
+                        <TextButton className={'red'} onClick={reset}>
                             Zresetuj filtry
                         </TextButton>
                     )}
