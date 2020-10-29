@@ -229,7 +229,7 @@ const EventsPage = props => {
                 href={getMailToLink(acf.field_new_event_button_mail_address, {subject: acf.field_new_event_button_mail_heading})}
             />
 
-            <MapWithPinsFiltering map_id={acf.field_new_event_map}/>
+				{ acf?.field_new_event_map && <MapWithPinsFiltering map_id={acf.field_new_event_map}/> }
         </>
     );
 };

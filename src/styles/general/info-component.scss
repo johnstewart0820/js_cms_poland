@@ -113,6 +113,11 @@
 }
 
 @media ( max-width: 1470px ) {
+
+	.info-component-text {
+		font-size: 1em;
+	}
+
 	.info-component-description {
 		flex: 1 1 100%;
 		padding: 0;
