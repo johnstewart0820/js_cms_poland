@@ -76,6 +76,9 @@ body.contrast{
 	
 
 	// ONLY COLOR
+	.text-card,
+	.info-component-info .info-component-fields-with-icons .text a,
+	.text-card .text-card-inner a,
 	.section-title-facilities .name-info-facilities,
 	.container .planer-history-container .planer-history-total-counter,
 	.link-to-all,
@@ -126,7 +129,9 @@ body.contrast{
 
 
 	// BACKGROUND BLACK AND COLOR CONTRAST
+	.info-component-description,
 	.map-with-pins-filtering-info,
+	.main-menu .header-actions,
 	.item-container .item-wrap,
 	.white-body .white-body-container,
 	.container-inner .row .game-card,
