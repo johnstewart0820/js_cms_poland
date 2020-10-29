@@ -30,6 +30,11 @@
 	.rope-road__body {
 		padding: 0;
 	}
+
+	
+	.rope-road__text{
+		font-size: 1em;
+	}
 }
 
 @media (max-width: 1199px) {
@@ -37,7 +42,6 @@
 	.rope-road__text{
 		max-width: 100%;
 		flex: 1 1 100%;
-		font-size: 1em;
 	}
 
 	.rope-road .section-heading{
