@@ -61,7 +61,7 @@ const LoopSearchForm = props => {
                     </button>
 
                     {!!props.showResetButton && (
-                        <TextButton className={'red'} onClick={reset}>
+                        <TextButton className={'white'} onClick={reset}>
                             Zresetuj filtry
                         </TextButton>
                     )}

@@ -4,8 +4,10 @@
     cursor: pointer;
     letter-spacing: 2px;
     font-size: 1em;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
 
-    &.red {
-        color: red;
+    &.white {
+        color: white;
     }
 }
