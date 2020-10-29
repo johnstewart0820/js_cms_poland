@@ -12,36 +12,43 @@ const DayNumMonth = ({ day_num, month_name }) => (
 )
 
 
-export default function EventDates ({ start_date, end_date }) {
+export default function EventDates({start_date, end_date}) {
 
-	const start_date_obj = getAllFromDateObject( start_date );
-	const end_date_obj = getAllFromDateObject( end_date )
-		
-	return (
-		<div className="event-dates">
-			{ start_date_obj && end_date_obj && 
-				<div className="event-dates__several_dates"> 
-					<div className="event-dates__date"> <DayNumMonth {...start_date_obj } /> </div>
-					<div className="event-dates__date"> <DayNumMonth {...end_date_obj } />  </div>
-				</div>
-			} 
+    const start_date_obj = getAllFromDateObject(start_date);
+    const end_date_obj = getAllFromDateObject(end_date)
+
+    function isNotFieldEmpty(date) {
+        if (date.year.toString() === '1970') return false;
+        else return date;
+    }
+
+    return (
+        <div className="event-dates">
+            {start_date_obj && end_date_obj &&
+            <div className="event-dates__several_dates">
+                {isNotFieldEmpty(start_date_obj) &&
+                <div className="event-dates__date"><DayNumMonth {...start_date_obj} /></div>}
+                {isNotFieldEmpty(end_date_obj) &&
+                <div className="event-dates__date"><DayNumMonth {...end_date_obj} /></div>}
+            </div>
+            }
 
 			{ start_date_obj && !end_date_obj && 
 				<div className="event-dates__date"> <DayNumMonth {...start_date_obj } />  </div>
 			}
 
-			<div className="event-dates__time">
-				{ start_date_obj && end_date_obj &&
-					<>
-						<div> { start_date_obj.time } </div>
-						<div> { end_date_obj.time } </div>
-					</>
-				}  
-				
-				{ start_date_obj && !end_date_obj && <> { start_date_obj.time } </> }
-			</div>
-		</div>
-	)
+            <div className="event-dates__time">
+                {start_date_obj && end_date_obj &&
+                <>
+                    {isNotFieldEmpty(start_date_obj) && <div> {start_date_obj.time} </div>}
+                    {isNotFieldEmpty(end_date_obj) && <div> {end_date_obj.time} </div>}
+                </>
+                }
+
+                {start_date_obj && !end_date_obj && <> {start_date_obj.time} </>}
+            </div>
+        </div>
+    )
 }
 
 
