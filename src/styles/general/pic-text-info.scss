@@ -64,6 +64,10 @@
 
 	.pic-text-info__picture{
 		margin-right: 0;
+		width: 100%;
+		min-height: 320px;
+
+		display: none;
 	}
 
 	
@@ -95,6 +99,11 @@
 			max-height: 58px;
 		}
 	}
+}
 
-	
+@media (max-width: 800px) {
+
+	.pic-text-info__picture {
+		display: block;
+	}
 }
