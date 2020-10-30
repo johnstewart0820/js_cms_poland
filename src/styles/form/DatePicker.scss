@@ -7,7 +7,16 @@
         height: 60px;
         min-width: 0px;
         width: 100%;
-        max-width: 180px;
+		  max-width: 180px;
+		  
+		  position: relative;
+
+
+		  svg{
+			  margin: 0;
+			  right: 15px;
+			  top: 10px;
+		  }
 
         input {
             background: transparent;
@@ -109,4 +118,18 @@
             }
         }
     }
+}
+
+
+@media (max-width: 600px) {
+	.date-picker-container {
+		width: 100%;
+		margin: 0 8px 10px;
+
+		.date-picker {
+			max-width: 100%;
+			width: 100%;
+			margin: 0;
+		}
+	}
 }

@@ -2,7 +2,7 @@
 @import "../general/colors.scss";	
 
 .loop-search-posts-container{
-	padding: 30px 0 50px;
+	padding: 30px 15px 50px;
 }
 
 
@@ -45,17 +45,14 @@
 	margin-bottom: 35px;
 }
 
-.loop-search-posts-container.gastronomy,
-.loop-search-posts-container.wider,
-.loop-search-posts-container.accommodations,
-.loop-search-posts-container.news{
-	.row{
+.loop-search-posts-container {
+	.row {
 		margin: 0 -14px;
 	}
 
 	.loop-gastronomy-post,
 	.loop-accommodation-post,
-	.loop-news-post{
+	.loop-news-post {
 		margin-bottom: 90px;
 	}
 }
@@ -75,6 +72,7 @@
 	.loop-search-posts-container{
 		.row{
 			.loop-card,
+			.loop-event-post,
 			.loop-photo-report-post,
 			.loop-accommodation-post,
 			.loop-gastronomy-post,
@@ -90,6 +88,7 @@
 	.loop-search-posts-container{
 		.row{
 			.loop-card,
+			.loop-event-post,
 			.loop-photo-report-post,
 			.loop-accommodation-post,
 			.loop-gastronomy-post,
@@ -102,15 +101,17 @@
 
 
 @media (max-width: 650px){
-	.loop-search-posts-container{
-		.row{
+	.loop-search-posts-container {
+		.row {
 			.loop-card,
+			.loop-event-post,
 			.loop-photo-report-post,
 			.loop-accommodation-post,
 			.loop-gastronomy-post,
 			.loop-news-post{
-				width: calc((100% - 14px ));
-				margin-left: 14px;
+				width: 100%;
+				margin-left: 0;
+				margin-right: 0;
 			}
 		}
 	}
@@ -124,8 +125,6 @@
 
 		.form-select{
 			height: auto;
-			// display: block;
-			// margin: 10px 0;
 			width: 100%;
 			margin-left: 0;
 			margin-top: 15px;

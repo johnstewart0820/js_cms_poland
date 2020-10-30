@@ -20,6 +20,7 @@ import useEntitiesByConfig from "../hooks/useEntitiesByConfig";
 import LoopSearchPostsContainer from "../components/loop/LoopSearchPostsContainer";
 import Pagination from "../components/loop/Pagination";
 import DayButton from "../components/StadiumReservationComponents/DayButton";
+import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 
 const dateOrDate = (firstDate, secondDate) => {
     if (!firstDate && !secondDate)
@@ -170,22 +171,19 @@ const EventsPage = props => {
             />
 
             {carouselDates === null && <Loader/>}
+
+
             {carouselDates?.length && (
-                <Carousel
-                    extra_classes={'arrows-on-right'}
-                    containerStyles={{marginLeft: '90px'}}
-                    items={carouselDates}
-                    ItemComponent={DayButton}
-                    shared={{selectedDate}}
-                />
+					<OneCarouseInRow
+						carousel={{
+							extra_classes: 'arrows-on-right',
+							items: carouselDates,
+							ItemComponent: DayButton,
+							shared: selectedDate
+						}}
+					/>
             )}
 
-            {/*<DayCarousel
-                startDate={moment().subtract(3, 'days')}
-                selectedDate={selectedDate}
-                onDayClick={date => setSelectedDate(date)}
-                amount={7}
-            />*/}
 
             <LoopSearchPostsContainer extra_classes={'wider'}>
                 {data === null && <Loader/>}
@@ -210,13 +208,13 @@ const EventsPage = props => {
 
             {nearestLoading && <Loader/>}
             {!nearestLoading && nearestEvents?.contents?.length && (
-                <Carousel
-                    heading={'NAJBLIŻSZE WYDARZENIA'}
-                    extra_classes={'no-arrows'}
-                    containerStyles={{marginLeft: '90px'}}
-                    bodyStyles={{display: 'flex'}}
-                    items={nearestEvents.contents}
-                    ItemComponent={LoopCard}
+                <OneCarouseInRow
+							carousel={{
+								heading: 'NAJBLIŻSZE WYDARZENIA',
+								extra_classes: 'no-arrows',
+								items: nearestEvents.contents,
+								ItemComponent: LoopCard
+							}}
                 />
             )}
 
