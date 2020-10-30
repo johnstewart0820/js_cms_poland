@@ -6,6 +6,7 @@ import { EyeIcon, UnderlineIcon, BipIcon, SearchIcon } from "../../svg/icons";
 
 import { toggleContrastVersion, toggleUnderlineLinks } from "../../extra/theme";
 import "../../styles/header/header-actions.scss";
+import { isFunction } from '../../extra/functions';
 
 const changeFontSize = e => {
 	e.preventDefault();
@@ -72,11 +73,11 @@ const header_links = [
 
 
 
-export default function HeaderActions () {
+export default function HeaderActions ( props ) {
 
 	const [ show_search, setShowSearch ] = useState( false );
 
-	function toggleSearch (e) {
+	const toggleSearch = e => {
 		e.preventDefault();
 		setShowSearch( !show_search )
 	}
@@ -98,7 +99,15 @@ export default function HeaderActions () {
 					)} 
 				)}
 
-				{ show_search && <SearchFrom /> }
+				{ show_search && 
+					<SearchFrom 
+						submitCallback={ 
+							() => { 
+								setShowSearch( false )
+								if ( isFunction( props.searchSubmitCallback )) props.searchSubmitCallback();
+							}
+						}/> 
+					}
 			</div>
 	)
 }

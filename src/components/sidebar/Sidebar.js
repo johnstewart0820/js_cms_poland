@@ -60,7 +60,7 @@ class Sidebar extends Component {
         this.setState({height: header.offsetHeight + main_header_section.offsetHeight});
     }
 
-    toggleMainMenu = (e) => {
+    toggleMainMenu = e => {
         e.preventDefault();
         this.setState({menu_open: !this.state.menu_open})
     }
@@ -80,7 +80,10 @@ class Sidebar extends Component {
                     ))}
                 </div>
 
-                <MainMenu extra_classes={ this.state.menu_open ? "visible" : "" } />
+					 <MainMenu 
+						 extra_classes={ this.state.menu_open ? "visible" : "" }
+						 searchSubmitCallback={ () => this.setState({ menu_open: false })} 
+					/>
             </div>
         );
     }
