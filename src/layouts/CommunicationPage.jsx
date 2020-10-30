@@ -3,6 +3,7 @@ import '../styles/communicationPage/communicationPage.scss';
 import GrayCard from "../components/CommunicationPage/GrayCard";
 import Row from "../components/helpers/Row";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
+import SectionHeading from "../components/general/SectionHeading";
 import { toggleSearchPanel } from "../extra/search-panel";
 
 const CommunicationPage = props => {
@@ -12,7 +13,9 @@ const CommunicationPage = props => {
 		return () => toggleSearchPanel();
 	 }, [])
 
-    const containerTitle = props.page.acf?.field_carriers_title;
+	 const containerTitle = props.page.acf?.field_carriers_title;
+	 const map_id = props?.page?.acf?.field_new_transport_map;
+
     const newItems = useMemo(() => {
         return [
             {
@@ -65,32 +68,34 @@ const CommunicationPage = props => {
 
     return (
         <>
- 
-            <div className='title-container'>
-                <img alt="" src={require('../svg/icons/logo-black.svg')}/>
-                <div className='title'>
-                    <h2>
-                        {containerTitle}
-                    </h2>
-                </div>
-            </div>
+				<section style={{ marginTop: "30px" }}>
+					
+					<div className="container">
+						<SectionHeading heading={ containerTitle }/>
 
-            <Row extraClasses='cards-row'>
-                {newItems.map((item, index) => {
-                    return (
-                        <GrayCard
-                            key={index}
-                            title={item.title}
-                            items={item.routes}
-                            greenButtonText={item.buttonText}
-                            onClickGreenButton={() => window.open(item.link)}
-                            type={item.type}
-                        />
-                    )
-                })}
-            </Row>
+						<Row>
+							{ newItems && !!newItems.length &&
+								newItems.map(( item, index ) => {
+									return (
+											<GrayCard
+												key={index}
+												title={item.title}
+												items={item.routes}
+												greenButtonText={item.buttonText}
+												onClickGreenButton={() => window.open(item.link)}
+												type={item.type}
+											/>
+									)
+							}) }
+						</Row>
 
-            <MapWithPinsFiltering map_id={props.page.acf.field_new_transport_map}/>
+					</div>
+				</section>
+
+           
+				{ map_id && 
+						<MapWithPinsFiltering map_id={ map_id }/>		  
+				}
         </>
     )
 }

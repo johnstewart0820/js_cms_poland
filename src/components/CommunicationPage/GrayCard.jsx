@@ -5,13 +5,15 @@ const GrayCard = ({type, title, items, onClickGreenButton, greenButtonText}) => 
     return (
         <div className='gray-card-component'>
             <div className='gray-card-element'>
-                <div className='gray-card-element-title'>
-                    <h3>
-                        {title}
-                    </h3>
-                </div>
+                 { title && 
+							<div className='gray-card-element-title'>
+								<h3>
+									{ title }
+								</h3>
+							</div>
+						}
 
-                {items.length > 0 && items.map((item, index) => {
+                { items && !!items.length && items.map((item, index) => {
                     return (
                         <GrayCardItem
                             key={index}

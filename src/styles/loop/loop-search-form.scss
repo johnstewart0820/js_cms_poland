@@ -32,11 +32,18 @@
 }
 
 @media (max-width: 750px){
-	.loop-search-form{
-		.row{
+	.loop-search-form {
+		.row { 
 			.form-select, button.form-button {
 				width: 100%;
+				max-width: 100%;
 				margin: 0 0 15px 0;
+			}
+		}
+
+		&.gray {
+			.row .form-select, button.form-button {
+				margin: 0 8px 10px;
 			}
 		}
 	}

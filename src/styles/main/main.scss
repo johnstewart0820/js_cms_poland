@@ -22,8 +22,8 @@ body{
 	color: $gray;
 
 
-	&.links-underline{
-		a:not(.button-link){
+	&.links-underline {
+		a, .button-link {
 			text-decoration: underline;
 		}
 	}
