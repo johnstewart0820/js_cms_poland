@@ -122,17 +122,12 @@ API.getByConfig = (config, args = {}) => {
     return API.getEntities(config);
 };
 
-const MOCK_API = axios.create({
-    baseURL: "/mock/",
-});
-
 const router_basename = "/";
 const google_key = "AIzaSyAIzltie_bA7wStuHCcimXBlbJG5kKPYos";
 
 export {
     API_URL,
     API,
-    MOCK_API,
     router_basename,
     google_key,
 };
