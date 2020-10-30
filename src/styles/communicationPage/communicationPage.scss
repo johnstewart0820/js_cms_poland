@@ -24,18 +24,18 @@
 
 .gray-card-component {
     padding: 10px 10px 10px 10px;
-    display: flex;
+	 display: flex;
+	 flex: 1 1;
     flex-direction: column;
-    max-width: 420px;
-    width: 420px;
+	 min-width: 400px;
+	 max-width: 410px;
     margin-bottom: 50px;
 
     .gray-card-element {
         background: $gray_super_light_2;
         padding: 30px;
-        max-height: 800px;
+		  height: 720px;
         overflow-y: auto;
-
 
         .gray-card-item {
             margin-top: 50px;
@@ -137,4 +137,22 @@
 .gray-card-element::-webkit-scrollbar {
     width: 0px;
     background: transparent;
+}
+
+@media (max-width: 767px) {
+
+	.gray-card-component {
+		margin-left: auto;
+		margin-right: auto;
+		
+		.gray-card-element {
+			height: 450px;
+		}
+	}
+}
+
+@media (max-width: 450px) {
+	.gray-card-component {
+		min-width: 100%;
+	}
 }
