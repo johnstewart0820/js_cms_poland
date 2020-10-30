@@ -3,17 +3,25 @@
 
 .day {
     cursor: pointer;
-    min-height: 190px;
+
+	 height: 190px;
+	 max-height: 190px;
+
+	 width: 150px;
     min-width: 150px;
-    width: 150px;
+
+	 padding: 15px;
+
+	 font-size: 14px;
     border: 2px solid gray;
     color: $gray;
-    margin-right:20px;
+    background: #f9f9f9;
+
+	 margin-right:20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #f9f9f9;
 
     &.active {
         outline: none;
@@ -21,17 +29,22 @@
         border: 2px solid $green;
     }
 
-    h3 {
-        font-weight: normal;
+    .day__month {
+		  font-weight: normal;
+		  margin-bottom: 10px;
     }
 
-    h1 {
-        line-height: 0;
-        font-size: 45px;
+    .day__num {
+		  line-height: 1.1;
+		  margin: 0;
+		  font-size: 3.214em;
+		  font-weight: bold;
     }
 
-    h4 {
-        font-size: 18px;
+    .day__name {
+		  font-size: 1.24em;
+		  margin-top: 10px;
+		  font-weight: bold;
     }
 
     &:hover {
@@ -50,3 +63,26 @@
     }
 }
 
+@media ( max-width: 600px ) {
+	.day {
+		width: 90px;
+		min-width: 90px;
+		height: 108px;
+		max-height: 108px;
+
+		margin-right: 10px;
+
+		.day__month {
+			font-size: 0.7em;
+			margin: 0 0 8px;
+		}
+
+		.day__num  {
+			font-size: 1.42em;
+		}
+
+		.day__name {
+			font-size: 0.6em;
+		}
+	}
+}

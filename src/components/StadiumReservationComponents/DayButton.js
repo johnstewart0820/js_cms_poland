@@ -10,10 +10,12 @@ const DayButton = ({disabled, containerStyles, date, monthName, dayName, number,
             onClick={onClick}
             style={containerStyles}
         >
-            <h3>{monthName}</h3>
-            <h1>{number}</h1>
-            <hr/>
-            <h4>{dayName}</h4>
+            <div className="day__month"> { monthName } </div>
+            <div className="day__num"> { number } </div>
+            
+				<hr/>
+
+            <div className="day__name">{dayName}</div>
         </button>
     )
 }
