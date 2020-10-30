@@ -148,10 +148,12 @@ export default class Carousel extends Component{
 		return (
 				<div className={`carousel ${ extra_classes || "" }`} style={ containerStyles }>
 
-					<div className="carousel__head">
-						<SectionHeading heading={ heading } />
-						<LinkToAll path={ path_to_all } href={ link_to_all } />
-					</div>
+					{ ( heading || path_to_all ) &&
+						<div className="carousel__head">
+							<SectionHeading heading={ heading } />
+							<LinkToAll path={ path_to_all } href={ link_to_all } />
+						</div>
+					}
 
                     <div className="carousel__body" style={bodyStyles}>
                         <Arrows
