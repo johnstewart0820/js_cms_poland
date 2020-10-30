@@ -1,289 +1,327 @@
 @import "../helpers/mixins.scss";
 @import "../general/colors.scss";
 
-.main-header-tiles-section{
-	display: flex;
+.main-header-tiles-section {
+    display: flex;
 }
 
 .main-header-tiles-section__right,
-.main-header-tiles-section__left{
-	@include flex-wrap;
+.main-header-tiles-section__left {
+    @include flex-wrap;
 }
 
-.main-header-tiles-section__left{
-	flex: auto;
+.main-header-tiles-section__left {
+    flex: auto;
 }
 
-.main-header-tiles-section__right{
-	width: 47.5982533%;
+.main-header-tiles-section__right {
+    width: 47.5982533%;
 
-	.main-header-tiles-section__tile{
-		height: 50%;
-		width: 50%;
+    .main-header-tiles-section__tile {
+        height: 50%;
+        width: 50%;
 
-		&:first-child{
-			width: 100%;
-		}
-	
-	}	
+        &:first-child {
+            width: 100%;
+        }
+
+    }
 }
 
-$tiles: 
-	"main" $yellow "#fff",
-	"tourism" $green $green,
-	"culture" $turquoise $turquoise,
-	"sport" $red $red;
+$tiles: "main" $yellow "#fff",
+"tourism" $green $green,
+"culture" $turquoise $turquoise,
+"sport" $red $red;
 
-.main-header-tiles-section__tile{
-	cursor: pointer;
-	height: 100%;
-	width: 100%;
-	color: #fff;
-	position: relative;
-	z-index: 10;
-	display: flex;
+.main-header-tiles-section__tile {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    position: relative;
+    display: flex;
 
-	span{
-		display: block;
-		width: 30px;
-		height: 4px;
-		border-radius: 5px;
-		margin: 10px auto 0;
-	}
-	
-	
-	&::before{
-		content: '';
-		transition: all .5s;
-
-		display: block;
-		position: absolute;
-		width: 100%;
-		height: 60%;
-		left: 0;
-		bottom: 0;
-		z-index: 1;
-	}
+    span {
+        display: block;
+        width: 30px;
+        height: 4px;
+        border-radius: 5px;
+        margin: 10px auto 0;
+    }
 
 
-	@each $class, $bg_color, $svg_color in $tiles {
-		&.#{$class} {
+    &::before {
+        content: '';
+        transition: all .5s;
 
-			span{
-				background: #{$svg_color};
-			}
-
-			.main-header-tiles-section__tile_info {
-				> svg path{
-					fill: #{$svg_color};
-					stroke: #{$svg_color};
-				}	
-			}
-
-			.main-header-tiles-section__tile_links > a::before {
-				background: #{$bg_color};
-			}
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+    }
 
 
-			&::before{
-				background: linear-gradient(to bottom, rgba(0,0,0,0), #{$bg_color});
-			}
-		}
-	}	
-}
+    @each $class, $bg_color, $svg_color in $tiles {
+        &.#{$class} {
+
+            span {
+                background: #{$svg_color};
+            }
+
+            .main-header-tiles-section__tile_info {
+                > svg path {
+                    fill: #{$svg_color};
+                    stroke: #{$svg_color};
+                }
+            }
+
+            .main-header-tiles-section__tile_links > a::before {
+                background: #{$bg_color};
+            }
 
 
-.main-header-tiles-section__tile.main:hover{
-	&::before{
-		height: 100%;
-	}
+            &::before {
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #{$bg_color});
+            }
+        }
+    }
 }
 
 
-.main-header-tiles-section__tile:not(.main).show-links{
+.main-header-tiles-section__tile.main:hover {
+    &::before {
+        height: 100%;
+    }
 
-	.main-header-tiles-section__tile_links{
-		z-index: 12;
-		opacity: 1;
-		visibility: visible;
-	}
-
-	.main-header-tiles-section__tile_info{
-		opacity: 0;
-	}
 }
 
 
-.main-header-tiles-section__tile.tourism{
+.main-header-tiles-section__tile:not(.main).show-links {
+    .a {
+        height: 100%;
+        width: 100%;
 
-	em.ci-herb{
-		min-width: 18px;
-		width: 18px;
-		height: 21px;
-	}
+        @media (max-width: 570px) {
+            button {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        @media (min-width: 570px) {
+            button {
+                width: 88px;
+                height: 88px;
+            }
+        }
 
-	.main-header-tiles-section__tile_links {
-		> a{
-			&:nth-child(4),
-			&:nth-child(5),
-			&:nth-child(6),
-			&:nth-child(7){
-				max-width: 25%;
-				min-width: calc(25% - 2px );
-			}
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 140;
+            font-size: 20px;
+            position: absolute;
+            border-color: transparent;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #3D5567;
+            top: -20px;
+            left: 0;
+            border-radius: 50%;
+        }
+    }
 
-			&:nth-child(6){
-				margin-right: 2px;
-			}
-		}
-	}
-}
+    .main-header-tiles-section__tile_links {
+        z-index: 12;
+        opacity: 1;
+        visibility: visible;
 
-.main-header-tiles-section__tile.culture{
-	.main-header-tiles-section__tile_links {
-		> a{
-			&:nth-child(1),
-			&:nth-child(2){
-				max-width: 50%;
-				min-width: calc(50% - 2px);
-			}
+    }
 
-			&:nth-child(2){
-				margin-right: 0;
-			}
-
-			&:nth-child(3){
-				margin-right: 2px;
-			}
-		}
-	}
-}
-
-.main-header-tiles-section__tile_info{
-	position: relative;
-	z-index: 5;
-	text-align: center;
-	margin: auto;
-	transition: opacity .5s;
-
-	em,
-	svg{
-		margin-bottom: 15px;
-	}
+    .main-header-tiles-section__tile_info {
+        opacity: 0;
+    }
 }
 
 
-.main-header-tiles-section__tile_links{
-	@include flex-wrap;
-	transition: opacity .5s;
+.main-header-tiles-section__tile.tourism {
 
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	bottom: 0;
-	opacity: 0;
-	z-index: -1;
-	visibility: hidden;
+    em.ci-herb {
+        min-width: 18px;
+        width: 18px;
+        height: 21px;
+    }
 
+    .main-header-tiles-section__tile_links {
+        > a {
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6),
+            &:nth-child(7) {
+                max-width: 25%;
+                min-width: calc(25% - 2px);
+            }
 
-	> a {
-		position: relative;
-		flex: 1 1;
-		min-width: calc(33.333% - 2px);
-		padding: 15px;
-
-		color: #fff;
-		text-align: center;
-
-		@include flex-column-centered;
-
-		margin-right: 2px;
-		z-index: 15;
-
-
-		&:nth-child(3n){
-			margin-right: 0;
-		}
-
-		&:nth-child(1),
-		&:nth-child(2),
-		&:nth-child(3){
-			margin-bottom: 2px;
-		}
-
-
-		&::before{
-			content: '';
-			display: block;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: 0;
-			opacity: .55;
-			z-index: 5;
-		}
-
-		> *{
-			position: relative;
-			z-index: 15;
-		}
-
-		> em,
-		> svg{
-			margin-bottom: 12px;
-		}
-
-		> div {
-			font-size: 0.85em;
-			text-transform: uppercase;
-			font-weight: bold;
-		}
-
-		> span{
-			display: block;
-			width: 30px;
-			height: 4px;
-			border-radius: 5px;
-			margin: 10px auto 0;
-		}
-	}
+            &:nth-child(6) {
+                margin-right: 2px;
+            }
+        }
+    }
 }
 
-@media (max-width: 1440px){
-	.main-header-tiles-section__tile_links>a>div{
-		font-size: .65em;
-	}
+.main-header-tiles-section__tile.culture {
+    .main-header-tiles-section__tile_links {
+        > a {
+            &:nth-child(1),
+            &:nth-child(2) {
+                max-width: 50%;
+                min-width: calc(50% - 2px);
+            }
+
+            &:nth-child(2) {
+                margin-right: 0;
+            }
+
+            &:nth-child(3) {
+                margin-right: 2px;
+            }
+        }
+    }
 }
 
-@media (max-width: 1199px){
+.main-header-tiles-section__tile_info {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    margin: auto;
+    transition: opacity .5s;
 
-	.main-header-tiles-section{
-		flex-wrap: wrap;
-	}
-
-	.main-header-tiles-section__left,
-	.main-header-tiles-section__right{
-		width: 100%;
-
-		.main-header-tiles-section__tile{
-			height: 240px;
-		}
-	}
-
-
-	.main-header-tiles-section__tile{
-		height: 240px;
-	}
+    em,
+    svg {
+        margin-bottom: 15px;
+    }
 }
 
-@media (max-width: 600px){
-	.main-header-tiles-section__tile{
-		height: 155px !important;
 
-		svg{
-			max-width: 37px;
-		}
-	}
+.main-header-tiles-section__tile_links {
+    @include flex-wrap;
+    transition: opacity .5s;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+
+
+    > a {
+        position: relative;
+        flex: 1 1;
+        min-width: calc(33.333% - 2px);
+        padding: 15px;
+
+        color: #fff;
+        text-align: center;
+
+        @include flex-column-centered;
+
+        margin-right: 2px;
+        z-index: 15;
+
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            margin-bottom: 2px;
+        }
+
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: .55;
+            z-index: 5;
+        }
+
+        > * {
+            position: relative;
+            z-index: 15;
+        }
+
+        > em,
+        > svg {
+            margin-bottom: 12px;
+        }
+
+        > div {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        > span {
+            display: block;
+            width: 30px;
+            height: 4px;
+            border-radius: 5px;
+            margin: 10px auto 0;
+        }
+    }
+}
+
+@media (min-width: 480px) {
+    .main-header-tiles-section__tile_links > a > div {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header-tiles-section__tile_links > a > div {
+        font-size: .65em;
+    }
+}
+
+@media (max-width: 1199px) {
+
+    .main-header-tiles-section {
+        flex-wrap: wrap;
+    }
+
+    .main-header-tiles-section__left,
+    .main-header-tiles-section__right {
+        width: 100%;
+
+        .main-header-tiles-section__tile {
+            height: 240px;
+        }
+    }
+
+
+    .main-header-tiles-section__tile {
+        height: 240px;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-header-tiles-section__tile {
+        height: 155px !important;
+
+        svg {
+            max-width: 37px;
+        }
+    }
 }

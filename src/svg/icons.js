@@ -78,6 +78,7 @@ import {ReactComponent as BicycleIconRed} from "./icons/red-bike.svg";
 import {ReactComponent as BicycleIconBlue} from "./icons/blue-bike.svg";
 import {ReactComponent as BicycleIconYellow} from "./icons/yellow-bike.svg";
 import {ReactComponent as BicycleIcon} from "./icons/bike_green.svg";
+import {ReactComponent as CrossIcon} from "./icons/cross.svg";
 
 import herb_src from "../img/herb.png";
 
@@ -99,6 +100,7 @@ export {
 	TennisIcon,
 	FoodOutletsIcon,
 	BedIcon,
+    CrossIcon,
 	SquareIcon,
 	MapIcon,
 	CloseIcon,

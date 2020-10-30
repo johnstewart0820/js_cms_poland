@@ -1,70 +1,115 @@
-import React, { Component } from 'react';
-
-import { TileMark } from "../../svg/icons";
-
-
-export default class MainHeaderTile extends Component{
-
-	timer = null;
-	delay = 1300;
-
-	state = { show_links: false };
+import React, {Component} from 'react';
+import {isBrowser, isMobile} from "react-device-detect";
+import {TileMark} from "../../svg/icons";
+import Modal from "../modal/Modal";
 
 
-	componentWillUnmount(){ clearTimeout( this.timer ) }
+export default class MainHeaderTile extends Component {
+
+    timer = null;
+    delay = 1300;
+
+    state = {
+        show_links: false,
+        showModalToMobile: false,
+    };
 
 
-	onMouseOver = () => {		
-		if( this.timer ) return;
+    componentWillUnmount() {
+        clearTimeout(this.timer)
+    }
 
-		this.timer = setTimeout(() => {
-			this.setState({ show_links: true });
-		}, this.delay )
-	}
 
-	onMouseLeave = () => {
+    onMouseOver = () => {
+        if (this.timer) return;
 
-		clearTimeout( this.timer );
-		this.timer = null;
-		
-		this.setState({ show_links: false });
-	}
+        this.timer = setTimeout(() => {
+            if (isMobile) this.setState({show_links: false});
+            else {
+                this.setState({show_links: true});
+            }
+        }, this.delay)
+    }
 
-	render(){
+    onMouseLeave = () => {
+        clearTimeout(this.timer);
+        this.timer = null;
 
-		const { main_href, title, svg, items, bg, extra_class, svgSrc } = this.props;
-		const { show_links } = this.state;
+        this.setState({show_links: false});
+    }
+    openModal = () => {
+        this.setState({
+            show_links: true,
+            showModalToMobile: true,
+        });
+    }
+    handleClose = () => {
+        this.setState({
+            show_links: false,
+            showModalToMobile: false,
+        });
+    }
 
-		return(
-			<a  
-				target={'_blank'}
-				rel={'noopener noreferrer'}
-				href={ main_href }
-				onMouseOver={ this.onMouseOver }
-				onMouseLeave={ this.onMouseLeave }
-				className={`main-header-tiles-section__tile thumbnail ${ show_links ? "show-links" : "" } ${ extra_class || "" }`}
-				style={{ backgroundImage: `url(${ bg })` }}
-			>
-				<div className="main-header-tiles-section__tile_info">
-					{ !svg && <TileMark /> }
-					{ svg }
-					<div className="heading"> { title } </div>
-					<span/>
-				</div>
-				{ items && !!items.length &&
-					<div className="main-header-tiles-section__tile_links">
-					{ items.map(({ svg, title, link }, index) => (
+    render() {
 
-						<a href={ link } target="_blank" rel={'noopener noreferrer'} key={ index } >
-							{ <img alt='' src={svg}/> }
-							<div> { title } </div>
-							<span/>
-						</a>
-						
-					)) }
-					</div>
-				}
-			</a>	
-		)
-	}
+        const {main_href, title, svg, items, bg, extra_class, svgSrc} = this.props;
+        const {show_links, showModalToMobile} = this.state;
+
+        return (
+
+            <a
+                target={'_blank'}
+                rel={'noopener noreferrer'}
+                href={(isBrowser || bg[67] === "1") ? main_href : false}
+                onClick={isMobile && bg[67] !== "1" && !showModalToMobile ? this.openModal : false}
+                onMouseOver={isBrowser && this.onMouseOver}
+                onMouseLeave={isBrowser && this.onMouseLeave}
+                className={`main-header-tiles-section__tile thumbnail ${show_links ? "show-links" : ""} ${extra_class || ""}`}
+                style={{backgroundImage: `url(${bg})`}}
+            >
+
+                <Modal
+                    show={showModalToMobile}
+                    handleClose={this.handleClose}
+                    extraClasses={'a'}
+                    children=
+                        {items && !!items.length &&
+                        <div className="main-header-tiles-section__tile_links " style={{
+                            backgroundImage: `url(${bg})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover',
+                        }}>
+                            {items.map(({svg, title, link}, index) => (
+
+                                <a href={link} rel={'noopener norgrreferrer'} key={index}>
+                                    {<img alt='' src={svg}/>}
+                                    <div> {title} </div>
+                                    <span/>
+                                </a>
+
+                            ))}
+                        </div>
+                        }/>
+
+                <div className="main-header-tiles-section__tile_info">
+                    {!svg && <TileMark/>}
+                    {svg}
+                    <div className="heading"> {title} </div>
+                    <span/>
+                </div>
+                {items && !!items.length &&
+                <div className="main-header-tiles-section__tile_links">
+                    {items.map(({svg, title, link}, index) => (
+                        <a href={link} target="_blank" rel={'noopener noreferrer'} key={index}>
+                            {<img alt='' src={svg}/>}
+                            <div> {title} </div>
+                            <span/>
+                        </a>
+
+                    ))}
+                </div>
+                }
+            </a>
+        )
+    }
 };
