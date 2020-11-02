@@ -3,7 +3,6 @@ import moment from "moment";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import LoopSearchForm from "../components/loop/LoopSearchForm";
-import Carousel from "../components/carousel/Carousel";
 import {PageDescription} from "../components/events/PageDescription";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
 import '../styles/EventsPage/EventsPage.scss';
@@ -85,20 +84,19 @@ const EventsPage = props => {
         for (const cycleDate = startDate.clone(); cycleDate.isSameOrBefore(endDate); cycleDate.add(1, 'day')) {
             const cycleClone = moment(cycleDate.format('DD.MM.YYYY'), 'DD.MM.YYYY');
             for (const event of allEvents.contents) {
-                const eventStart = moment.utc(event.event_start_date);
-                const eventEnd = moment.utc(event.event_end_date);
+                const eventStart = moment(moment.unix(event.event_start_date).utcOffset(0).format('DD.MM.YYYY'), 'DD.MM.YYYY');
+                const eventEnd = moment(moment.unix(event.event_end_date).utcOffset(0).format('DD.MM.YYYY'), 'DD.MM.YYYY');
 
-                if (eventStart.isAfter(endDate) || eventEnd.isBefore(startDate))
-                    continue;
-
-                dates.push({
-                    number: cycleDate.date(),
-                    onClick: () => setSelectedDate(cycleClone),
-                    date: cycleClone,
-                    dayName: cycleDate.format('dddd').toUpperCase(),
-                    monthName: cycleDate.format('MMMM').toUpperCase(),
-                });
-                break;
+                if (cycleClone.isSame(eventStart) || cycleClone.isBetween(eventStart, eventEnd, undefined, '[]')) {
+                    dates.push({
+                        number: cycleDate.date(),
+                        onClick: () => setSelectedDate(cycleClone),
+                        date: cycleClone,
+                        dayName: cycleDate.format('dddd').toUpperCase(),
+                        monthName: cycleDate.format('MMMM').toUpperCase(),
+                    });
+                    break;
+                }
             }
         }
 
@@ -171,17 +169,15 @@ const EventsPage = props => {
             />
 
             {carouselDates === null && <Loader/>}
-
-
             {carouselDates?.length && (
-					<OneCarouseInRow
-						carousel={{
-							extra_classes: 'arrows-on-right',
-							items: carouselDates,
-							ItemComponent: DayButton,
-							shared: selectedDate
-						}}
-					/>
+                <OneCarouseInRow
+                    carousel={{
+                        extra_classes: 'arrows-on-right',
+                        items: carouselDates,
+                        ItemComponent: DayButton,
+                        shared: {selectedDate},
+                    }}
+                />
             )}
 
 
@@ -209,12 +205,12 @@ const EventsPage = props => {
             {nearestLoading && <Loader/>}
             {!nearestLoading && nearestEvents?.contents?.length && (
                 <OneCarouseInRow
-							carousel={{
-								heading: 'NAJBLIŻSZE WYDARZENIA',
-								extra_classes: 'no-arrows',
-								items: nearestEvents.contents,
-								ItemComponent: LoopCard
-							}}
+                    carousel={{
+                        heading: 'NAJBLIŻSZE WYDARZENIA',
+                        extra_classes: 'no-arrows',
+                        items: nearestEvents.contents,
+                        ItemComponent: LoopCard,
+                    }}
                 />
             )}
 
@@ -225,7 +221,7 @@ const EventsPage = props => {
                 href={getMailToLink(acf.field_new_event_button_mail_address, {subject: acf.field_new_event_button_mail_heading})}
             />
 
-				{ acf?.field_new_event_map && <MapWithPinsFiltering map_id={acf.field_new_event_map}/> }
+            {acf?.field_new_event_map && <MapWithPinsFiltering map_id={acf.field_new_event_map}/>}
         </>
     );
 };
