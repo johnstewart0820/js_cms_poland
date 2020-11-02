@@ -11,8 +11,7 @@ const DayNumMonth = ({ day_num, month_name }) => (
 	</>
 )
 
-
-export default function EventDates({start_date, end_date}) {
+export default function EventDates({start_date, end_date, is_one_day}) {
 
     const start_date_obj = getAllFromDateObject(start_date);
     const end_date_obj = getAllFromDateObject(end_date)
@@ -25,11 +24,13 @@ export default function EventDates({start_date, end_date}) {
     return (
         <div className="event-dates">
             {start_date_obj && end_date_obj &&
-            <div className="event-dates__several_dates">
+            <div className={`event-dates__several_dates ${parseInt(is_one_day) === 0 && 'vertical-line'}`}>
                 {isNotFieldEmpty(start_date_obj) &&
-                <div className="event-dates__date"><DayNumMonth {...start_date_obj} /></div>}
-                {isNotFieldEmpty(end_date_obj) &&
-                <div className="event-dates__date"><DayNumMonth {...end_date_obj} /></div>}
+                <div className={`event-dates__date ${parseInt(is_one_day) === 0 && 'vertical-line'}`}>
+                    <DayNumMonth {...start_date_obj} /></div>}
+                {(isNotFieldEmpty(end_date_obj) && parseInt(is_one_day) === 0 )&&
+                <div className={`event-dates__date ${parseInt(is_one_day) === 0 && 'vertical-line'}`}>
+                    <DayNumMonth {...end_date_obj} /></div>}
             </div>
             }
 
@@ -40,8 +41,8 @@ export default function EventDates({start_date, end_date}) {
             <div className="event-dates__time">
                 {start_date_obj && end_date_obj &&
                 <>
-                    {isNotFieldEmpty(start_date_obj) && <div> {start_date_obj.time} </div>}
-                    {isNotFieldEmpty(end_date_obj) && <div> {end_date_obj.time} </div>}
+                    {isNotFieldEmpty(start_date_obj) && parseInt(is_one_day) === 0 &&<div> {start_date_obj.time} </div>}
+                    {isNotFieldEmpty(end_date_obj) && parseInt(is_one_day) === 0 && <div> {end_date_obj.time} </div>}
                 </>
                 }
 
@@ -52,7 +53,7 @@ export default function EventDates({start_date, end_date}) {
 }
 
 
-EventDates.propTypes = { 
-	start_date: PropTypes.instanceOf(Date),
-	end_date: PropTypes.instanceOf(Date)
+EventDates.propTypes = {
+    start_date: PropTypes.instanceOf(Date),
+    end_date: PropTypes.instanceOf(Date),
 }

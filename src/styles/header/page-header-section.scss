@@ -24,9 +24,10 @@
 
 	.event-dates{
 		border-color: #fff;
-		* {
-			border-color: #fff;
-		}
+
+	    .vertical-line{
+        border-color: white;
+        }
 	}
 
 	.page-title{
