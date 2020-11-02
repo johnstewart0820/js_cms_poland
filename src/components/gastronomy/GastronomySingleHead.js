@@ -4,6 +4,7 @@ import '../../styles/gastronomy/gastronomy-single-page.scss';
 import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
+import {openHoursIsEmpty} from "../../extra/functions";
 
 
 function GastronomySingleHead({title, categories_labels, image, acf,id}) {
@@ -55,7 +56,7 @@ function GastronomySingleHead({title, categories_labels, image, acf,id}) {
                     }
                 </div>
             </div>
-            {openHours &&
+            {openHoursIsEmpty(openHours) &&
             <div className={"hours-open-gastronomy"}>
                 <p>GODZINY OTWARCIA:</p>
                 <div className={'container-hours'}>

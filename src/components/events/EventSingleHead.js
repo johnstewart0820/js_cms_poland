@@ -50,6 +50,4 @@ const EventSingleHead = ({title, categories_labels, thumbnail, custom_data}) => 
     )
 }
 
-EventSingleHead.propTypes = {}
-
 export default EventSingleHead;

@@ -30,6 +30,17 @@ export const parserShortcodes = (body) => {
 
 }
 
+export const openHoursIsEmpty = openHours =>{
+    let fieldIsNotEmpty = false
+    Object.values(openHours).map(hour => {
+        if (hour !== "") fieldIsNotEmpty = true;
+    })
+    if (fieldIsNotEmpty === true) return true;
+    else {
+        return false;
+    }
+}
+
 
 export const addZeroIfNeeded = num => (num < 10 ? `0${+num}` : num);
 

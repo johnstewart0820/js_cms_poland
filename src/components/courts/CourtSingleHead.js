@@ -5,6 +5,7 @@ import '../../styles/courts/courts-single-page.scss';
 import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
+import {openHoursIsEmpty} from "../../extra/functions";
 
 function CourtSingleHead({id, title, custom_data, image, acf}) {
     const planerContext = React.useContext(PlanerContext);
@@ -13,6 +14,7 @@ function CourtSingleHead({id, title, custom_data, image, acf}) {
     const minutesPerReservation = JSON.parse(custom_data.courts).minutes_per_reservation;
     const costPerReservation = JSON.parse(custom_data.courts).cost_per_reservation;
     const openHours = JSON.parse(custom_data.courts).hours;
+
 
 
     function checkDuplicateItem() {
@@ -64,7 +66,7 @@ function CourtSingleHead({id, title, custom_data, image, acf}) {
                 </div>
             </div>
 
-            {openHours &&
+            {openHoursIsEmpty(openHours) &&
             <div className={"hours-open-court"}>
                 <p>GODZINY OTWARCIA:</p>
                 <div className={'container-hours'}>
