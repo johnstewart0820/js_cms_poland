@@ -3,7 +3,6 @@ import moment from "moment";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import Breadcrumbs from "../components/general/Breadcrumbs";
 import LoopSearchForm from "../components/loop/LoopSearchForm";
-import Carousel from "../components/carousel/Carousel";
 import {PageDescription} from "../components/events/PageDescription";
 import MapWithPinsFiltering from "../components/map/MapWithPinsFiltering";
 import '../styles/EventsPage/EventsPage.scss';
@@ -85,20 +84,19 @@ const EventsPage = props => {
         for (const cycleDate = startDate.clone(); cycleDate.isSameOrBefore(endDate); cycleDate.add(1, 'day')) {
             const cycleClone = moment(cycleDate.format('DD.MM.YYYY'), 'DD.MM.YYYY');
             for (const event of allEvents.contents) {
-                const eventStart = moment.utc(event.event_start_date);
-                const eventEnd = moment.utc(event.event_end_date);
+                const eventStart = moment(moment.unix(event.event_start_date).utcOffset(0).format('DD.MM.YYYY'), 'DD.MM.YYYY');
+                const eventEnd = moment(moment.unix(event.event_end_date).utcOffset(0).format('DD.MM.YYYY'), 'DD.MM.YYYY');
 
-                if (eventStart.isAfter(endDate) || eventEnd.isBefore(startDate))
-                    continue;
-
-                dates.push({
-                    number: cycleDate.date(),
-                    onClick: () => setSelectedDate(cycleClone),
-                    date: cycleClone,
-                    dayName: cycleDate.format('dddd').toUpperCase(),
-                    monthName: cycleDate.format('MMMM').toUpperCase(),
-                });
-                break;
+                if (cycleClone.isSame(eventStart) || cycleClone.isBetween(eventStart, eventEnd, undefined, '[]')) {
+                    dates.push({
+                        number: cycleDate.date(),
+                        onClick: () => setSelectedDate(cycleClone),
+                        date: cycleClone,
+                        dayName: cycleDate.format('dddd').toUpperCase(),
+                        monthName: cycleDate.format('MMMM').toUpperCase(),
+                    });
+                    break;
+                }
             }
         }
 
