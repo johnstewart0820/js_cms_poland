@@ -8,10 +8,9 @@ export default {
     },
     deleteItem: index => {
         const itemIds = JSON.parse(localStorage.getItem(LocalStorage.Planer));
-        const itemIndex = itemIds.indexOf(index);
         if (itemIds.length > 0) {
-            itemIds.splice(itemIndex, 1);
+            itemIds.splice(index, 1);
             localStorage.setItem(LocalStorage.Planer, JSON.stringify(itemIds))
         }
-    }
+    },
 };

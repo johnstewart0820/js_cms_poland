@@ -59,7 +59,7 @@ export const PlanerContextProvider = props => {
         <PlanerContext.Provider value={{
             ids: ids || [],
             data,
-            add: id => setIds([...ids, id]),
+            add: id => setIds([...(ids || []), id]),
             delete: index => {
                 Planer.deleteItem(index);
                 setIds(Planer.getData());
