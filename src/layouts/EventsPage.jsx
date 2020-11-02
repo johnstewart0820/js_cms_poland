@@ -169,17 +169,15 @@ const EventsPage = props => {
             />
 
             {carouselDates === null && <Loader/>}
-
-
             {carouselDates?.length && (
-					<OneCarouseInRow
-						carousel={{
-							extra_classes: 'arrows-on-right',
-							items: carouselDates,
-							ItemComponent: DayButton,
-							shared: selectedDate
-						}}
-					/>
+                <OneCarouseInRow
+                    carousel={{
+                        extra_classes: 'arrows-on-right',
+                        items: carouselDates,
+                        ItemComponent: DayButton,
+                        shared: {selectedDate},
+                    }}
+                />
             )}
 
 
@@ -207,12 +205,12 @@ const EventsPage = props => {
             {nearestLoading && <Loader/>}
             {!nearestLoading && nearestEvents?.contents?.length && (
                 <OneCarouseInRow
-							carousel={{
-								heading: 'NAJBLIŻSZE WYDARZENIA',
-								extra_classes: 'no-arrows',
-								items: nearestEvents.contents,
-								ItemComponent: LoopCard
-							}}
+                    carousel={{
+                        heading: 'NAJBLIŻSZE WYDARZENIA',
+                        extra_classes: 'no-arrows',
+                        items: nearestEvents.contents,
+                        ItemComponent: LoopCard,
+                    }}
                 />
             )}
 
@@ -223,7 +221,7 @@ const EventsPage = props => {
                 href={getMailToLink(acf.field_new_event_button_mail_address, {subject: acf.field_new_event_button_mail_heading})}
             />
 
-				{ acf?.field_new_event_map && <MapWithPinsFiltering map_id={acf.field_new_event_map}/> }
+            {acf?.field_new_event_map && <MapWithPinsFiltering map_id={acf.field_new_event_map}/>}
         </>
     );
 };
