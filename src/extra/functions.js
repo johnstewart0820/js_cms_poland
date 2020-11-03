@@ -30,15 +30,16 @@ export const parserShortcodes = (body) => {
 
 }
 
-export const openHoursIsEmpty = openHours =>{
-    let fieldIsNotEmpty = false
-    Object.values(openHours).map(hour => {
-        if (hour !== "") fieldIsNotEmpty = true;
-    })
-    if (fieldIsNotEmpty === true) return true;
-    else {
-        return false;
-    }
+export const openHoursIsNotEmpty = openHours =>{
+	 
+	let fieldIsNotEmpty = false; 
+	if ( toString.call( openHours ) !== "[object Object]" ) return false;
+
+	Object.values(openHours).map(hour => {
+		if (hour !== "") fieldIsNotEmpty = true;
+	})
+	 
+	return fieldIsNotEmpty;
 }
 
 
