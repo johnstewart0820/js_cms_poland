@@ -24,25 +24,25 @@ export default function EventDates({ start_date, end_date, is_one_day }) {
 
 	return (
 		<div className="event-dates">
-			{start_date_obj && end_date_obj &&
-				<div className={`event-dates__several_dates ${ !is_one_day ? "vertical-line" : "" }`}>
+			{start_date_obj && end_date_obj && !is_one_day &&
+				<div className={`event-dates__several_dates`}>
 					
 					{ isNotFieldEmpty( start_date_obj ) &&
-						<div className={`event-dates__date ${ !is_one_day ? "vertical-line" : "" }`}>
+						<div className={`event-dates__date`}>
 							<DayNumMonth {...start_date_obj} />
 						</div>
 					}
 
-					{( isNotFieldEmpty( end_date_obj ) && !is_one_day ) &&
-						<div className={`event-dates__date ${ !is_one_day && 'vertical-line'}`}>
+					{ isNotFieldEmpty( end_date_obj ) &&
+						<div className={`event-dates__date`}>
 							<DayNumMonth {...end_date_obj } />
 						</div>
 					}
 				</div>
 			}
 
-			{ start_date_obj && !end_date_obj && 
-				<div className="event-dates__date"> <DayNumMonth {...start_date_obj } />  </div>
+			{ start_date_obj && is_one_day && 
+				<div className="event-dates__date" style={{ border: 0 }}> <DayNumMonth {...start_date_obj } />  </div>
 			}
 
 			{ start_date_obj && end_date_obj && !is_one_day &&
