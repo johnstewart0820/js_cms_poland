@@ -10,11 +10,14 @@ import {getArticleLink} from "../../extra/functions";
 const fromTimeStampToDateObj = timestamp => ( new Date( timestamp * 1000 ));
 
 export default function LoopEventsPost (props) {
-	const {image, title, categories_labels, event_start_date, event_end_date} = props;
+
+	const { image, title, categories_labels, event_start_date, event_end_date } = props;
+	const is_one_day = props?.custom_data?.event?.is_one_day === "1";
 
 	const event_dates = {
 		start_date: event_start_date ? fromTimeStampToDateObj( event_start_date ) : null,
 		end_date: event_end_date ? fromTimeStampToDateObj( event_end_date ) : null,
+		is_one_day
 	};
 
 	return (
