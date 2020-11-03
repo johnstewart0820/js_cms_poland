@@ -5,14 +5,14 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 99999;
 
 	background-color: #f7f7f7;
 	opacity: 1;
+	z-index: 999;
 
-	&.hidden{
-		animation: hide 1.3s linear 1;
 
+	&.hidden {
+		animation: hide 1s linear 1;
 		opacity: 0;
 		z-index: -999;
 	}
@@ -22,11 +22,11 @@
 	from,
 	40% {
 		opacity: 1;
-		z-index: 9999;
+		z-index: 999;
 	} 
 
 	to {
 		opacity: 0;
-		z-index: -1;
+		z-index: -999;
 	}
 }

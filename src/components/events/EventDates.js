@@ -45,16 +45,16 @@ export default function EventDates({ start_date, end_date, is_one_day }) {
 				<div className="event-dates__date"> <DayNumMonth {...start_date_obj } />  </div>
 			}
 
-			<div className="event-dates__time">
-					{ start_date_obj && end_date_obj &&
-					<>
-						{ isNotFieldEmpty(start_date_obj) && !is_one_day && <div> {start_date_obj.time} </div> } 
-						{ isNotFieldEmpty(end_date_obj) && !is_one_day && <div> {end_date_obj.time} </div> }
-					</>
-					}
+			{ start_date_obj && end_date_obj && !is_one_day &&
+				<div className="event-dates__time">
+					{ isNotFieldEmpty(start_date_obj) && !is_one_day && <div> {start_date_obj.time} </div> } 
+					{ isNotFieldEmpty(end_date_obj) && !is_one_day && <div> {end_date_obj.time} </div> }
+				</div>
+			}
 
-				{ start_date_obj && is_one_day && <> { start_date_obj.time } </>}
-			</div>
+			{ start_date_obj && !end_date_obj && !is_one_day && 
+				<div className="event-dates__time"> { start_date_obj.time } </div>
+			}
 		</div>
     )
 }
