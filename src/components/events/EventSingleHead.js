@@ -26,7 +26,7 @@ const EventSingleHead = ({title, categories_labels, thumbnail, custom_data }) =>
             {!nearest_date && <p>wydarzenie odbyło się</p>}
             {(nearest_date || latest_date) &&
             <EventDates
-                is_one_day = { custom_data.event.is_one_day }
+                is_one_day = { custom_data?.event?.is_one_day === "1" }
                 end_date={new Date(nearest_date ?
                     convertDayMonth(nearest_date.end_date) : convertDayMonth(latest_date.end_date))}
                 start_date={new Date(nearest_date ?

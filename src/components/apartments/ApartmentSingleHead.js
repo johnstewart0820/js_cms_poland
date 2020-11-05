@@ -4,7 +4,7 @@ import '../../styles/apartments/apartments-single-page.scss';
 import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
-import {openHoursIsEmpty} from "../../extra/functions";
+import {openHoursIsNotEmpty} from "../../extra/functions";
 
 
 function ApartmentSingleHead({id, title, categories_labels, image, acf}) {
@@ -45,7 +45,7 @@ function ApartmentSingleHead({id, title, categories_labels, image, acf}) {
                     }
                 </div>
             </div>
-            {openHoursIsEmpty(openHours) &&
+            {openHoursIsNotEmpty(openHours) &&
             <div className={"hours-open-apartaments"}>
                 <p>GODZINY OTWARCIA:</p>
                 <div className={'container-hours'}>

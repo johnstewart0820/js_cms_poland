@@ -82,7 +82,7 @@ function SiteInfoContextProvider(props) {
     }, [activeLocale]);
 
     React.useEffect(() => {
-      //   setPageInfo(null);
+        setPageInfo(null);
 
         if (!siteInfo)
             return;
@@ -117,7 +117,7 @@ function SiteInfoContextProvider(props) {
         setActiveLocale(language);
     };
 
-    if (siteInfo === null || pageInfo === null)
+    if ( siteInfo === null )
         return <FullPageLoader/>;
 
     return (
@@ -127,7 +127,9 @@ function SiteInfoContextProvider(props) {
             active_language: activeLocale,
             changeLanguage,
         }}>
-            {props.children}
+			  	<FullPageLoader extra_classes={ !!pageInfo ? "hidden" : "" }> 
+            	{ props.children }
+				</FullPageLoader>
         </SiteInfoContext.Provider>
     );
 }

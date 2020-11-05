@@ -4,7 +4,7 @@ import '../../styles/attractions/attraction-single-page.scss';
 import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
-import {openHoursIsEmpty} from "../../extra/functions";
+import {openHoursIsNotEmpty} from "../../extra/functions";
 
 
 function AttractionSingleHead({id, title, categories, categories_labels, image, acf}) {
@@ -104,7 +104,7 @@ function AttractionSingleHead({id, title, categories, categories_labels, image, 
                     )}
                 </div>
             </div>
-            {openHoursIsEmpty(openHours) &&
+            {openHoursIsNotEmpty(openHours) &&
             <div className={"hours-open"}>
                 <p>GODZINY OTWARCIA:</p>
                 <div className={'container-hours'}>

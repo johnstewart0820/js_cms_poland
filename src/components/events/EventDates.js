@@ -11,44 +11,51 @@ const DayNumMonth = ({ day_num, month_name }) => (
 	</>
 )
 
-export default function EventDates({start_date, end_date, is_one_day}) {
+export default function EventDates({ start_date, end_date, is_one_day }) {
 
-    const start_date_obj = getAllFromDateObject(start_date);
-    const end_date_obj = getAllFromDateObject(end_date)
+	const start_date_obj = getAllFromDateObject(start_date);
+	const end_date_obj = getAllFromDateObject(end_date);
+	 
 
-    function isNotFieldEmpty(date) {
-        if (date.year.toString() === '1970') return false;
-        else return date;
-    }
+	const isNotFieldEmpty = date => {
+		if ( date.year.toString() === "1970" ) return false;
+		else return true;
+	}
 
-    return (
-        <div className="event-dates">
-            {start_date_obj && end_date_obj &&
-            <div className={`event-dates__several_dates ${parseInt(is_one_day) === 0 && 'vertical-line'}`}>
-                {isNotFieldEmpty(start_date_obj) &&
-                <div className={`event-dates__date ${parseInt(is_one_day) === 0 && 'vertical-line'}`}>
-                    <DayNumMonth {...start_date_obj} /></div>}
-                {(isNotFieldEmpty(end_date_obj) && parseInt(is_one_day) === 0 )&&
-                <div className={`event-dates__date ${parseInt(is_one_day) === 0 && 'vertical-line'}`}>
-                    <DayNumMonth {...end_date_obj} /></div>}
-            </div>
-            }
+	return (
+		<div className="event-dates">
+			{start_date_obj && end_date_obj && !is_one_day &&
+				<div className={`event-dates__several_dates`}>
+					
+					{ isNotFieldEmpty( start_date_obj ) &&
+						<div className={`event-dates__date`}>
+							<DayNumMonth {...start_date_obj} />
+						</div>
+					}
 
-			{ start_date_obj && !end_date_obj && 
-				<div className="event-dates__date"> <DayNumMonth {...start_date_obj } />  </div>
+					{ isNotFieldEmpty( end_date_obj ) &&
+						<div className={`event-dates__date`}>
+							<DayNumMonth {...end_date_obj } />
+						</div>
+					}
+				</div>
 			}
 
-            <div className="event-dates__time">
-                {start_date_obj && end_date_obj &&
-                <>
-                    {isNotFieldEmpty(start_date_obj) && parseInt(is_one_day) === 0 &&<div> {start_date_obj.time} </div>}
-                    {isNotFieldEmpty(end_date_obj) && parseInt(is_one_day) === 0 && <div> {end_date_obj.time} </div>}
-                </>
-                }
+			{ start_date_obj && is_one_day && 
+				<div className="event-dates__date" style={{ border: 0 }}> <DayNumMonth {...start_date_obj } />  </div>
+			}
 
-                {start_date_obj && !end_date_obj && <> {start_date_obj.time} </>}
-            </div>
-        </div>
+			{ start_date_obj && end_date_obj && !is_one_day &&
+				<div className="event-dates__time">
+					{ isNotFieldEmpty(start_date_obj) && !is_one_day && <div> {start_date_obj.time} </div> } 
+					{ isNotFieldEmpty(end_date_obj) && !is_one_day && <div> {end_date_obj.time} </div> }
+				</div>
+			}
+
+			{ start_date_obj && !end_date_obj && !is_one_day && 
+				<div className="event-dates__time"> { start_date_obj.time } </div>
+			}
+		</div>
     )
 }
 
