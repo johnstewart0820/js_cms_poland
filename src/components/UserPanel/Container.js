@@ -20,7 +20,6 @@ export const Container = props => {
             <div className={`custom-container ${ props.extraClasses || "" }`}>
                 <UserPanel/>
                 <div className="container-fluid">
-                    {props.setNotification && <Notification message={props.notificationMessage}/>}
                     <div className='row' style={{justifyContent: !!locations.reservation && !!locations.registerToEvent ? 'space-between' : ''}}>
                         <div className="page-title">
                             <img alt="" src={require('../../svg/icons/logo-black.svg')}/>

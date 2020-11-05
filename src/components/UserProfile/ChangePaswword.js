@@ -3,33 +3,66 @@ import InputComponent from "../form/InputComponent";
 import PasswordStrengthMeter from "../form/PasswordStrengthMeter";
 import axios from "../../extra/axios";
 import Col from "../helpers/Col";
+import {toast} from "react-toastify";
 
 export const ChangePassword = props => {
     const [password, setPassword] = React.useState(props.password || '');
     const [confirmPass, setConfirmPass] = React.useState(props.password || '');
-    const [passwordNotice, setPasswordNotice] = React.useState('');
 
     const changePassword = () => {
         let data = {password, confirmPass};
         let url = 'https://api.ustron.s3.netcore.pl/users/setPassword';
         if (password !== '' && confirmPass !== '') {
-            axios.post(url, data)
-                .then((response) => {
-                    setPasswordNotice('Hasło zostało zmienione');
-                }).catch((error) => {
-                alert(error.response.data);
-            })
+            if (password === confirmPass) {
+                axios.post(url, data)
+                    .then(() => {
+                        toast.success("Hasło zostało zmienione", {
+                            position: "top-right",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }).catch(() => {
+                    toast.error("Wybrane hasło jest zbyt słabe", {
+                        position: "top-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                })
+            } else {
+                toast.error("Hasla są rożne", {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         } else {
-            alert('Proszę wypełnić wszystkie pola !');
+            toast.error("Oba pola muszą być wypełnione", {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
     return (
         <Col extraClasses="my-profile__change-password">
             <div className="container-inner">
-                <div>
-                    {passwordNotice}
-                </div>
                 <InputComponent
                     containerStyles={{marginTop: "70px"}}
                     fieldName={'HASŁO'}

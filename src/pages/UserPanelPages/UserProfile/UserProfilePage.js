@@ -13,22 +13,17 @@ import '../../../styles/helpers/classes.scss';
 import Row from "../../../components/helpers/Row";
 import Col from "../../../components/helpers/Col";
 import {API, API_URL} from "../../../extra/API";
+import LocalStorage from "../../../constants/LocalStorage";
+import {toast, ToastContainer} from "react-toastify";
 
 
 const UserProfilePage = () => {
     const userContext = React.useContext(UserContext);
 
-    const [notifications_area, setNotificationsArea] = React.useState(userContext.notifications || []);
-    const [name, setName] = React.useState(userContext.name || '');
-    const [userDataNotice, setUserDataNotice] = React.useState('');
+    const [notifications_area, setNotificationsArea] = React.useState( userContext.notifications||[]);
+    const [name, setName] = React.useState(JSON.parse(localStorage.getItem(LocalStorage.UserToken)).name||"");
     const [loading, setLoading] = React.useState(true);
-    const [notification, setNotification] = React.useState(null);
 
-    React.useEffect(() => {
-        setName(userContext.name || '');
-        setNotificationsArea(userContext.notifications || []);
-        setLoading(false);
-    }, [userContext]);
 
     const handleChange = e => {
         const value = e.target.name;
@@ -36,35 +31,63 @@ const UserProfilePage = () => {
 
         if (data.includes(value))
             data = data.filter(element => element !== value)
-        else
-            data.push(value);
-
+        else {
+          data.push(value);
+        }
         setNotificationsArea(data);
     };
+    React.useEffect(() => {
+        axios.get('https://api.ustron.s3.netcore.pl/users/getInfo').then(res => {
+            setLoading(false);
+            setNotificationsArea(res.data.info.notifications_area)
+        })
+    }, [])
 
     const updateUserData = () => {
         if (name !== '') {
             const data = {full_name: name, notifications_area};
             axios.post(`${API_URL}users/setInfo`, data)
                 .then(() => {
+                    setNotificationsArea(notifications_area)
                     let userData = User.getData();
                     userData.name = name;
                     User.saveData(JSON.stringify(userData));
                     userContext.login(userData);
-                    setUserDataNotice('Twój profil został zaktualizowany');
-                    window.scrollTo({top: 0});
-                }).catch((error) => {
-                    setNotification(error.response.data);
+                    toast.success('Twój profil został zaktualizowany', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }).catch(() => {
+                toast.error("Pole 'imie nazwisko' musi zawierać minimum 6 liter", {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
                 });
+            });
         } else {
-            setUserDataNotice('Proszę wypełnić wszystkie pola ');
+            toast.error("Proszę wypełnić pole 'imie nazwisko'", {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
     if (!!loading) return <Container
-         containerTitle={'MOJ PROFIL'}
-         setNotification={!!notification && true}
-         notificationMessage={notification}
+        containerTitle={'MOJ PROFIL'}
     >
         <div className="loader-container">
             <Loader/>
@@ -73,8 +96,6 @@ const UserProfilePage = () => {
 
     return (
         <Container
-            setNotification={!!notification && true}
-            notificationMessage={notification}
             containerTitle={'MOJ PROFIL'}>
             <Row>
                 <Col extraClasses="my-profile__notifications">
@@ -82,11 +103,6 @@ const UserProfilePage = () => {
                         <div className="user-category-header">
                             <div className="user-category__image">
                                 <img alt='' src={require('../../../svg/icons/user-photo.svg')}/>
-                            </div>
-                            <div className="user-category__text">
-                                <h4>
-                                    {userContext.name}
-                                </h4>
                             </div>
                         </div>
                         <Row>
@@ -97,7 +113,7 @@ const UserProfilePage = () => {
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <div style={{display: 'inline-block'}}>
                                 <Checkbox
-                                    containerStyles={{marginTop:'20px'}}
+                                    containerStyles={{marginTop: '20px'}}
                                     labelRight={true}
                                     label={'systemowe'}
                                     name={'system'}
@@ -105,7 +121,7 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
-                                    containerStyles={{marginTop:'20px'}}
+                                    containerStyles={{marginTop: '20px'}}
                                     labelRight={true}
                                     label={'kultura'}
                                     name={'culture'}
@@ -113,7 +129,7 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
-                                    containerStyles={{marginTop:'20px'}}
+                                    containerStyles={{marginTop: '20px'}}
                                     labelRight={true}
                                     label={'oświata'}
                                     name={'education'}
@@ -121,7 +137,7 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
-                                    containerStyles={{marginTop:'20px'}}
+                                    containerStyles={{marginTop: '20px'}}
                                     labelRight={true}
                                     label={'sport'}
                                     name={'sport'}
@@ -129,38 +145,31 @@ const UserProfilePage = () => {
                                     onChange={handleChange}
                                 />
                                 <Checkbox
-                                    containerStyles={{marginTop:'20px'}}
+                                    containerStyles={{marginTop: '20px'}}
                                     labelRight={true}
                                     label={'turystyka'}
                                     name={'turism'}
-                                    checked={notifications_area.includes('turism')}
+                                     checked={notifications_area.includes('turism')}
                                     onChange={handleChange}
                                 />
                             </div>
                         </div>
                     </div>
                 </Col>
+                <ToastContainer/>
                 <Col extraClasses="my-profile__edit">
                     <div className="container-inner">
                         <InputComponent
-                            fieldName={'NAZWA UŻYTKOWNIKA'}
-                            name={'login'}
-                            value={userContext.email}
-                            disabled
-                        />
-                        <InputComponent
                             fieldName={'EMAIL'}
                             name={'email'}
-                            value={userContext.email}
+                            value={JSON.parse(localStorage.getItem(LocalStorage.UserToken)).email}
                             disabled
                         />
-                        <div>
-                            {userDataNotice}
-                        </div>
                         <InputComponent
+                            placeholder={JSON.parse(localStorage.getItem(LocalStorage.UserToken)).name}
                             maxLength={'40'}
                             containerStyles={{marginTop: '70px'}}
-                            fieldName={'IMIĘ NAZWISKO'}
+                            fieldName={'NAZWA UŻYTKOWNIKA'}
                             name={'name'}
                             value={name}
                             onChange={e => setName(e.target.value)}

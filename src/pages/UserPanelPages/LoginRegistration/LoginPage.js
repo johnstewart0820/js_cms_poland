@@ -41,7 +41,7 @@ const LoginPage = () => {
 
     const loginUser = () => {
         let userData = state;
-
+        localStorage.clear()
         axios.post(
             `${API_URL}users/login`, userData,
         ).then((response) => {

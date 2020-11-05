@@ -12,6 +12,7 @@ import UserContext from "../../constants/UserContext";
 import "../../styles/header/header.scss";
 import TourismRoutes from "../../constants/TourismRoutes";
 import SiteInfoContext from "../../constants/SiteInfoContext";
+import LocalStorage from "../../constants/LocalStorage";
 
 const Header = () => {
     const history = useHistory();
@@ -30,9 +31,10 @@ const Header = () => {
                 svg: <UserIcon/>,
                 extra_classes: `has-overlay ${show ? "active" : ''}`,
                 hidden_text: "login / logout",
-                onClick: userContext.id
+                onClick: localStorage.getItem(LocalStorage.UserToken)
                     ? () => history.push(TourismRoutes.UserProfile)
-                    : () => setShow(prevState => !prevState),
+                    : () => {  window.localStorage.clear();
+                    setShow(prevState => !prevState)},
             },
         ];
 

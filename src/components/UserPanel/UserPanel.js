@@ -8,6 +8,7 @@ import UserContext from "../../constants/UserContext";
 import PanelButton from "./PanelButton";
 
 import Angle from "../../svg/components/Angle";
+import LocalStorage from "../../constants/LocalStorage";
 
 
 export const UserPanel = () => {
@@ -21,7 +22,7 @@ export const UserPanel = () => {
 
     React.useEffect(() => {
         setName(userContext.name);
-    }, [userContext]);
+    }, []);
 
     const logout = () => {
         axios.get(`https://api.ustron.s3.netcore.pl/users/logout`)
@@ -81,7 +82,6 @@ export const UserPanel = () => {
 		}
 	 ]
 
-
     return (
         <div className={`panel-container ${ mobile_visible ? "visible" : "" }`}>
 
@@ -92,7 +92,7 @@ export const UserPanel = () => {
             <div className="panel-container__header">
                 <img alt='user photo' src={ require('../../svg/icons/user-photo.svg') }/>
                 <div className="column">
-                    <h3> { name } </h3>
+                    <h3> { JSON.parse(localStorage.getItem(LocalStorage.UserToken)).name } </h3>
                     {/* <p>{role}</p> */}
                 </div>
             </div>
