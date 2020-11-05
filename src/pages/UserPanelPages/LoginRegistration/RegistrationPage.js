@@ -36,7 +36,7 @@ const RegistrationPage = () => {
     const submitFormData = () => {
         if (!password && !email && !name) {
 
-            toast.info("Trzy ostatnie pola nie moga być puste!", {
+            toast.error("Każde pole musi być wypełnione!", {
                 position: "top-right",
                 autoClose: 4000,
                 hideProgressBar: false,
@@ -55,7 +55,6 @@ const RegistrationPage = () => {
             setEmailIsEmpty(email.length === 0 ? true : false);
             setNameIsEmpty(name.length === 0 ? true : false);
 
-
             if (privacyPolicy !== false && userDataPolicy !== null) {
                 setPrivacyPolicyIsEmpty(false);
                 setUserDataPolicyIsEmpty(false);
@@ -68,13 +67,9 @@ const RegistrationPage = () => {
                     .then((response) => {
                         setIsLoading(true);
                         if (response.status === 200) {
-
                            setTimeout(()=>routeToConfirm(),1500)
-
                         }
                     }, (error) => {
-                        console.log(error.response.data.errors.join('\n'))
-
                         toast.error(error.response.data.errors.join('\n'), {
                             position: "top-right",
                             autoClose: 10000,
@@ -97,8 +92,6 @@ const RegistrationPage = () => {
                     draggable: true,
                     progress: undefined,
                 });
-
-
             }
         }
     }
@@ -125,19 +118,11 @@ const RegistrationPage = () => {
                     Zarejestruj się
                 </p>
                 <InputComponent
-                    fieldName={'NAZWA UŻYTKOWNIKA'}
-                    onChange={e => setLogin(e.target.value)}
-
-                    value={login}
-                    name={'login'}
-                    onKeyPress={e => onEnterPress(e)}
-                />
-                <InputComponent
                     containerStyles={{
                         margin: '5px 5px 40px 5px',
                         borderColor: nameIsEmpty ?'red': '#d2d2d2'
                     }}
-                    fieldName={'IMIĘ NAZWISKO'}
+                    fieldName={'NAZWA UŻYTKOWNIKA'}
                     onChange={e => setName(e.target.value)}
                     value={name}
                     name={'name'}

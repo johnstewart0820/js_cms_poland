@@ -169,7 +169,7 @@ const UserProfilePage = () => {
                             placeholder={JSON.parse(localStorage.getItem(LocalStorage.UserToken)).name}
                             maxLength={'40'}
                             containerStyles={{marginTop: '70px'}}
-                            fieldName={'NAZWA UŻYTKOWNIKA'}
+                            fieldName={'IMIĘ NAZWISKO'}
                             name={'name'}
                             value={name}
                             onChange={e => setName(e.target.value)}
