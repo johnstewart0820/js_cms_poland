@@ -49,7 +49,7 @@ const LoginPage = () => {
         ).then((response) => {
             token = response.data.token;
             setLoading(true);
-            setCookie('token', token, {path: '/', domain: '.s3.netcore.pl'});
+            setCookie('token', token, {path: '/', domain: '.netcore.pl'});
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
 
@@ -79,7 +79,7 @@ const LoginPage = () => {
                     progress: undefined,
                 });
             } else {
-                removeCookie();
+                removeCookie('token',{path: '/', domain: '.netcore.pl'})
                 localStorage.clear();
                 toast.error('Problem z uwierzytelnianiem. Zaloguj się ponownie', {
                     position: "top-right",
@@ -172,7 +172,7 @@ const LoginPage = () => {
 
                 <div className="bottom-container" style={{margin: '5px 5px -10px 5px'}}>
                     <div className="login-container">
-                        <h5>Nie masz konta ? </h5>
+                        <div>Nie masz konta?</div>
                         <button onClick={() => history.push('/registration')}> Zarejestruj się</button>
                     </div>
                 </div>
