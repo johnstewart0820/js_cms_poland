@@ -10,6 +10,7 @@ import 'moment/locale/cs';
 import 'moment/locale/de';
 import {getArticleLink} from "../extra/functions";
 import {matchPath, useLocation} from "react-router-dom";
+import TourismRoutes from "./TourismRoutes";
 
 const SiteInfoContext = React.createContext(null);
 const SiteInfoContextConsumer = SiteInfoContext.Consumer;
@@ -127,7 +128,7 @@ function SiteInfoContextProvider(props) {
             active_language: activeLocale,
             changeLanguage,
         }}>
-			  	<FullPageLoader extra_classes={ !!pageInfo ? "hidden" : "" }> 
+			  	<FullPageLoader extra_classes={ TourismRoutes.Reservation ? 'hidden' : !!pageInfo ? "hidden" : "" }>
             	{ props.children }
 				</FullPageLoader>
         </SiteInfoContext.Provider>
