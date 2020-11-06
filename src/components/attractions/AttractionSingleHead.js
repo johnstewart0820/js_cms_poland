@@ -153,7 +153,7 @@ function AttractionSingleHead({id, title, categories, categories_labels, image, 
                 {acf.field_contact_www &&
                 <div className={'www-container'}>
                     <img alt='' src={require('../../svg/icons/www_white.svg')}/>
-                    <div className={'www'}>{acf.field_contact_www}</div>
+                    <a href={acf.field_contact_www} className={'www'}>{acf.field_contact_www}</a>
                 </div>
                 }
             </div>

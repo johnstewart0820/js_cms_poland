@@ -105,7 +105,7 @@ function GastronomySingleHead({title, categories_labels, image, acf,id}) {
                 {acf.field_contact_www &&
                 <div className={'www-container'}>
                     <img alt='' src={require('../../svg/icons/www_white.svg')}/>
-                    <div className={'www'}>{acf.field_contact_www}</div>
+                    <a className={'www'} href={acf.field_contact_www}>{acf.field_contact_www}</a>
                 </div>
                 }
             </div>
