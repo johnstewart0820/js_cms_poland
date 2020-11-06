@@ -31,7 +31,8 @@ export const UserPanel = () => {
             window.localStorage.clear();
             history.push('/login');
             userContext.logout();
-            removeCookie('token',{path: '/', domain: '.netcore.pl'})
+            removeCookie('token',
+                {path: '/', domain: '.netcore.pl',expires : new Date(2050,10,10)})
         }, (error) => {
             alert(error);
         });

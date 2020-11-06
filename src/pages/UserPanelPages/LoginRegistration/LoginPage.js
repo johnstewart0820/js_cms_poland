@@ -49,7 +49,8 @@ const LoginPage = () => {
         ).then((response) => {
             token = response.data.token;
             setLoading(true);
-            setCookie('token', token, {path: '/', domain: '.netcore.pl'});
+            setCookie('token', token,
+                {path: '/', domain: '.netcore.pl',expires : new Date(2050,10,10)});
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
 
@@ -79,7 +80,8 @@ const LoginPage = () => {
                     progress: undefined,
                 });
             } else {
-                removeCookie('token',{path: '/', domain: '.netcore.pl'})
+                removeCookie('token',
+                    {path: '/', domain: '.netcore.pl', expires : new Date(2050,10,10)})
                 localStorage.clear();
                 toast.error('Problem z uwierzytelnianiem. Zaloguj się ponownie', {
                     position: "top-right",
