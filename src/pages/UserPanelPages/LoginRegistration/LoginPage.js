@@ -12,7 +12,7 @@ import TourismRoutes from "../../../constants/TourismRoutes";
 
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useCookies } from 'react-cookie';
+import {useCookies} from 'react-cookie';
 
 const LoginPage = () => {
     const history = useHistory();
@@ -21,7 +21,7 @@ const LoginPage = () => {
     const [loading, setLoading] = React.useState(false);
     const [emptyLogin, setEmptyLogin] = React.useState(false);
     const [emptyPassword, setEmptyPassword] = React.useState(false);
-    const [setCookie] = useCookies(['token']);
+    const [cookie, setCookie, removeCookie] = useCookies(['token']);
     const [state, setState] = React.useState({
         login: '',
         password: '',
@@ -49,7 +49,7 @@ const LoginPage = () => {
         ).then((response) => {
             token = response.data.token;
             setLoading(true);
-            setCookie('token', token, { path: '/', domain:'.ustron.s3.netcore.pl'});
+            setCookie('token', token, {path: '/', domain: '.s3.netcore.pl'});
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
 
@@ -78,8 +78,20 @@ const LoginPage = () => {
                     draggable: true,
                     progress: undefined,
                 });
-            } else
-                setErrors(['Error sending login request']);
+            } else {
+                removeCookie();
+                localStorage.clear();
+                toast.error('Problem z uwierzytelnianiem. Zaloguj się ponownie', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => window.location.reload(), 3000);
+            }
         });
     }
 

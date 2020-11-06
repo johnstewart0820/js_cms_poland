@@ -18,7 +18,7 @@ export const UserPanel = () => {
     const [name, setName] = useState('');
     const [role, setRole] = useState('');
     const [ mobile_visible, setMobileVisible ] = useState( false );
-    const [removeCookie] = useCookies(['token']);
+    const [cookie, setCookie, removeCookie] = useCookies(['token']);
 
 
     React.useEffect(() => {
@@ -32,14 +32,10 @@ export const UserPanel = () => {
             history.push('/login');
             userContext.logout();
             removeCookie('token')
-
-
-
         }, (error) => {
             alert(error);
         });
 	 }
-	 
 
 	 const panel_links = [
 		 { 
