@@ -12,6 +12,7 @@ import TourismRoutes from "../../../constants/TourismRoutes";
 
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useCookies } from 'react-cookie';
 
 const LoginPage = () => {
     const history = useHistory();
@@ -20,6 +21,7 @@ const LoginPage = () => {
     const [loading, setLoading] = React.useState(false);
     const [emptyLogin, setEmptyLogin] = React.useState(false);
     const [emptyPassword, setEmptyPassword] = React.useState(false);
+    const [setCookie] = useCookies(['token']);
     const [state, setState] = React.useState({
         login: '',
         password: '',
@@ -47,7 +49,7 @@ const LoginPage = () => {
         ).then((response) => {
             token = response.data.token;
             setLoading(true);
-
+            setCookie('token', token, { path: '/', domain:'.ustron.s3.netcore.pl'});
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
 

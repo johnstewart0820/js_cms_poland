@@ -13,6 +13,7 @@ import "../../styles/header/header.scss";
 import TourismRoutes from "../../constants/TourismRoutes";
 import SiteInfoContext from "../../constants/SiteInfoContext";
 import LocalStorage from "../../constants/LocalStorage";
+import { useCookies } from 'react-cookie';
 
 const Header = () => {
     const history = useHistory();
@@ -20,6 +21,7 @@ const Header = () => {
     const title = React.useContext(SiteInfoContext)?.site_info?.title;
     const [show, setShow] = React.useState(false);
     const headerClasses = ["header"];
+    const [cookies, setCookie,removeCookie] = useCookies(['token']);
 
     const getHeaderExtraActions = useMemo(() => {
         const actions = [
@@ -31,7 +33,8 @@ const Header = () => {
                 svg: <UserIcon/>,
                 extra_classes: `has-overlay ${show ? "active" : ''}`,
                 hidden_text: "login / logout",
-                onClick: localStorage.getItem(LocalStorage.UserToken)
+
+                onClick: cookies.token
                     ? () => history.push(TourismRoutes.UserProfile)
                     : () => {  window.localStorage.clear();
                     setShow(prevState => !prevState)},

@@ -9,15 +9,16 @@ import PanelButton from "./PanelButton";
 
 import Angle from "../../svg/components/Angle";
 import LocalStorage from "../../constants/LocalStorage";
+import {useCookies} from 'react-cookie';
 
 
 export const UserPanel = () => {
     const history = useHistory();
     const userContext = useContext(UserContext);
     const [name, setName] = useState('');
-	 const [role, setRole] = useState('');
-	 
-	 const [ mobile_visible, setMobileVisible ] = useState( false );
+    const [role, setRole] = useState('');
+    const [ mobile_visible, setMobileVisible ] = useState( false );
+    const [removeCookie] = useCookies(['token']);
 
 
     React.useEffect(() => {
@@ -30,6 +31,10 @@ export const UserPanel = () => {
             window.localStorage.clear();
             history.push('/login');
             userContext.logout();
+            removeCookie('token')
+
+
+
         }, (error) => {
             alert(error);
         });

@@ -16,27 +16,30 @@ import TourismRoutes from "./constants/TourismRoutes";
 import PlanerButton from "./components/buttons/PlanerButton";
 import ScrollToTop from "./extra/ScrollToTop";
 import ErrorHandler from "./extra/ErrorHandler";
+import {CookiesProvider} from 'react-cookie';
 
 const App = () => (
     <Router basename={router_basename}>
-        <SiteInfoContextProvider>
-            <UserContextProvider>
-                <PlanerContextProvider>
-                    <ScrollToTop>
-                        <Header/>
-                        <Sidebar/>
-                        <SearchPanel/>
-                        <PlanerButton to={TourismRoutes.PlanerListPage}/>
-                        <main>
-                            <ErrorHandler>
-                                <Routing/>
-                            </ErrorHandler>
-                        </main>
-                        <Footer/>
-                    </ScrollToTop>
-                </PlanerContextProvider>
-            </UserContextProvider>
-        </SiteInfoContextProvider>
+        <CookiesProvider>
+            <SiteInfoContextProvider>
+                <UserContextProvider>
+                    <PlanerContextProvider>
+                        <ScrollToTop>
+                            <Header/>
+                            <Sidebar/>
+                            <SearchPanel/>
+                            <PlanerButton to={TourismRoutes.PlanerListPage}/>
+                            <main>
+                                <ErrorHandler>
+                                    <Routing/>
+                                </ErrorHandler>
+                            </main>
+                            <Footer/>
+                        </ScrollToTop>
+                    </PlanerContextProvider>
+                </UserContextProvider>
+            </SiteInfoContextProvider>
+        </CookiesProvider>
     </Router>
 );
 
