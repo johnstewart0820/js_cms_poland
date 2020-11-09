@@ -46,7 +46,9 @@
 .event-dates__date + .event-dates__date{
 	border-top: 1px solid $gray;
 }
-
+.centralDate{
+    display: flex;
+}
 .event-dates__several_dates{
 	flex: auto;
 
