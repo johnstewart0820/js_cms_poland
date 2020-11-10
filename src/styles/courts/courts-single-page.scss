@@ -1,3 +1,5 @@
+@import "../general/colors.scss";
+
 .courts-info-container {
     align-items: flex-start;
     font-size: 15px;
@@ -37,4 +39,11 @@
     border: #85cb3f solid 2px;
     font-size: 15px;
     font-weight: lighter;
+    transition: 1s;
+    cursor: pointer;
+
+    &:hover {
+        border: #85cb3f solid 2px;
+        background: $green;
+    }
 }

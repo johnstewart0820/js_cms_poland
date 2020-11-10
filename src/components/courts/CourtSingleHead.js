@@ -7,8 +7,11 @@ import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
 import {openHoursIsNotEmpty} from "../../extra/functions";
 import PageHeaderContact from "../header/PageHeaderContact";
+import {useHistory} from 'react-router-dom';
+import TourismRoutes from "../../constants/TourismRoutes";
 
 function CourtSingleHead({id, title, custom_data, image, acf}) {
+    const history = useHistory();
     const planerContext = React.useContext(PlanerContext);
     const sourfaceTypeOfCourt = JSON.parse(custom_data.courts).sourface_type;
     const minutesPerReservation = JSON.parse(custom_data.courts).minutes_per_reservation;
@@ -96,7 +99,10 @@ function CourtSingleHead({id, title, custom_data, image, acf}) {
             </div>
             }
             <PageHeaderContact acf={acf}/>
-            <button className="button-rezerwation button-download button-link  full-width">
+            <button
+                className="button-rezerwation button-download button-link full-width"
+                onClick={() => history.push(TourismRoutes.Reservation(id))}
+            >
                 REZERWACJA
             </button>
             <div className={'buttons-container'}>
