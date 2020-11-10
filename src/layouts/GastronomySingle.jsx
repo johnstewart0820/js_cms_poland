@@ -4,7 +4,7 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
 import Breadcrumbs from "../components/general/Breadcrumbs";
-import {API} from "../extra/API";
+import {API, API_URL} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import GastronomySingleHead from "../components/gastronomy/GastronomySingleHead";
@@ -14,7 +14,6 @@ import Modal from "../components/modal/Modal.js";
 import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
 import Video from "../components/general/Video";
-import SingleContainer from "../components/common-single/SingleContainer";
 import Attachment from "../components/general/Attachment";
 
 export default function GastronomySingle(props) {
@@ -46,7 +45,7 @@ export default function GastronomySingle(props) {
     }, []);
 
     React.useEffect(() => {
-        axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
+        axios.get(`${API_URL}/contents/posts/${pageId}`)
             .then((res) => {
                 setDate(res.data.content)
             })

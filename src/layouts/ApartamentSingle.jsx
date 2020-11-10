@@ -4,7 +4,7 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
 import Breadcrumbs from "../components/general/Breadcrumbs";
-import {API} from "../extra/API";
+import {API, API_URL} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import ApartmentSingleHead from "../components/apartments/ApartmentSingleHead";
@@ -12,7 +12,6 @@ import '../styles/gastronomy/gastronomy-single-page.scss'
 import GoogleMap from "../components/map/GoogleMap";
 import LoopCard from "../components/loop/LoopCard";
 import {parserShortcodes} from "../extra/functions";
-import SingleContainer from "../components/common-single/SingleContainer";
 import Video from "../components/general/Video";
 import Attachment from "../components/general/Attachment";
 
@@ -21,8 +20,11 @@ export default function ApartamentSingle(props) {
 
     const {categories, body} = props.page;
     const {
-        field_map_gps, field_service_languages, field_rooms,
-        field_additional_description_history, field_facilities_apartments,
+        field_map_gps,
+        field_service_languages,
+        field_rooms,
+        field_additional_description_history,
+        field_facilities_apartments,
     } = props.page.acf;
 
     const [date, setDate] = React.useState(null);
@@ -53,7 +55,7 @@ export default function ApartamentSingle(props) {
     }, []);
 
     React.useEffect(() => {
-        axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
+        axios.get(`${API_URL}/contents/posts/${pageId}`)
             .then((res) => {
                 setDate(res.data.content)
             })

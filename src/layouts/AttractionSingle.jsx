@@ -3,7 +3,7 @@ import MainHeaderSection from "../components/header/MainHeaderSection";
 import OneCarouseInRow from "../components/carousel/OneCarouseInRow";
 import Gallery from "../components/gallery/Gallery";
 import Breadcrumbs from "../components/general/Breadcrumbs";
-import {API} from "../extra/API";
+import {API, API_URL} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import AttractionSingleHead from "../components/attractions/AttractionSingleHead";
@@ -38,7 +38,7 @@ export default function AttractionSingle(props) {
     }, []);
 
     React.useEffect(() => {
-        axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
+        axios.get(`${API_URL}/contents/posts/${pageId}`)
             .then((res) => {
                 setDate(res.data.content)
             })

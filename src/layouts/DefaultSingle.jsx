@@ -1,9 +1,8 @@
 import React from 'react';
-import Parser from "html-react-parser";
 import MainHeaderSection from "../components/header/MainHeaderSection";
 import Gallery from "../components/gallery/Gallery";
 import Breadcrumbs from "../components/general/Breadcrumbs";
-import {API} from "../extra/API";
+import {API, API_URL} from "../extra/API";
 import axios from "../extra/axios";
 import Loader from "../components/general/Loader";
 import '../styles/attractions/attraction-single-page.scss'
@@ -12,20 +11,15 @@ import '../styles/default/default-single-page.scss'
 import PageHeaderSection from "../components/header/PageHeaderSection";
 import {parserShortcodes} from "../extra/functions";
 import Video from "../components/general/Video";
-import SingleContainer from "../components/common-single/SingleContainer";
 import Attachment from "../components/general/Attachment";
 
 export default function DefaultSingle(props) {
     const pageId = props.page.id;
-
     const {body, categories, categories_labels, image, title} = props.page;
-
     const [date, setDate] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [news, setNews] = React.useState(null);
     const [galleryBoard, setGalleryBoard] = React.useState([]);
-
-
 
     React.useEffect(() => {
         API.getEntities({categories: categories})
@@ -37,12 +31,11 @@ export default function DefaultSingle(props) {
     }, []);
 
     React.useEffect(() => {
-        axios.get(`https://api.ustron.s3.netcore.pl/contents/posts/${pageId}`)
+        axios.get(`${API_URL}/contents/posts/${pageId}`)
             .then((res) => {
                 setDate(res.data.content)
             })
     }, []);
-
 
     React.useEffect(() => {
         props.page.gallery.forEach(element => {
@@ -60,7 +53,6 @@ export default function DefaultSingle(props) {
 
     if (!!loading)
         return <Loader/>
-
 
     return (
         <>
