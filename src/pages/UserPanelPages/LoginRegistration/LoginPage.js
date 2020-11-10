@@ -12,6 +12,7 @@ import TourismRoutes from "../../../constants/TourismRoutes";
 
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useCookies} from 'react-cookie';
 
 const LoginPage = () => {
     const history = useHistory();
@@ -20,6 +21,7 @@ const LoginPage = () => {
     const [loading, setLoading] = React.useState(false);
     const [emptyLogin, setEmptyLogin] = React.useState(false);
     const [emptyPassword, setEmptyPassword] = React.useState(false);
+    const [cookie, setCookie, removeCookie] = useCookies(['token']);
     const [state, setState] = React.useState({
         login: '',
         password: '',
@@ -47,7 +49,8 @@ const LoginPage = () => {
         ).then((response) => {
             token = response.data.token;
             setLoading(true);
-
+            setCookie('token', token,
+                {path: '/', domain: '.netcore.pl',expires : new Date(2050,10,10)});
         }).then(getUserData).catch(error => {
             const responseErrors = error.response?.data?.errors;
 
@@ -76,8 +79,21 @@ const LoginPage = () => {
                     draggable: true,
                     progress: undefined,
                 });
-            } else
-                setErrors(['Error sending login request']);
+            } else {
+                removeCookie('token',
+                    {path: '/', domain: '.netcore.pl', expires : new Date(2050,10,10)})
+                localStorage.clear();
+                toast.error('Problem z uwierzytelnianiem. Zaloguj się ponownie', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => window.location.reload(), 3000);
+            }
         });
     }
 
@@ -158,7 +174,7 @@ const LoginPage = () => {
 
                 <div className="bottom-container" style={{margin: '5px 5px -10px 5px'}}>
                     <div className="login-container">
-                        <h5>Nie masz konta ? </h5>
+                        <div>Nie masz konta?</div>
                         <button onClick={() => history.push('/registration')}> Zarejestruj się</button>
                     </div>
                 </div>
