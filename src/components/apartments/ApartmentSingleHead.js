@@ -5,12 +5,12 @@ import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
 import {openHoursIsNotEmpty} from "../../extra/functions";
+import PageHeaderContact from "../header/PageHeaderContact";
 
 
 function ApartmentSingleHead({id, title, categories_labels, image, acf}) {
     let keyId = 0;
     const openHours = acf.field_openinghours;
-    const visibleEmail = acf.field_contact_email_is_visible;
     const planerContext = React.useContext(PlanerContext);
 
 
@@ -36,69 +36,46 @@ function ApartmentSingleHead({id, title, categories_labels, image, acf}) {
                 <div className="category">{categories_labels}</div>
                 <div className="page-title">{title}</div>
                 <div className="single-attraction-container">
-                    {acf.field_map_adapted_for_disabled && <div className={'icons-container'}>
-                        {isForDisabled()}</div>}
-                    {acf.field_map_distance_from_center &&
-                    (<div className={'text'}> ODLEGŁOŚĆ OD CENTRUM
-                        &nbsp;&nbsp;&nbsp;{acf.field_map_distance_from_center} KM
-                    </div>)
-                    }
+                    {acf.field_map_adapted_for_disabled && <div className={'icons-container'}>{isForDisabled()}</div>}
+                    {acf.field_map_distance_from_center && (
+                        <div className={'text'}>
+                            ODLEGŁOŚĆ OD CENTRUM&nbsp;&nbsp;&nbsp;{acf.field_map_distance_from_center} KM
+                        </div>
+                    )}
                 </div>
             </div>
-            {openHoursIsNotEmpty(openHours) &&
-            <div className={"hours-open-apartaments"}>
-                <p>GODZINY OTWARCIA:</p>
-                <div className={'container-hours'}>
-                    <img alt="" src={require('../../svg/icons/clock.svg')}/>
-                    <div className={"info"}>
-                        {(openHours['1_from'] && openHours['1_to']) &&
-                        <div>poniedziałek: {openHours['1_from']} - {openHours['1_to']}</div>}
-                        {(openHours['2_from'] && openHours['2_to']) &&
-                        <div>wtorek: {openHours['2_from']} - {openHours['2_to']}</div>}
-                        {(openHours['3_from'] && openHours['3_to']) &&
-                        <div>środa: {openHours['3_from']} - {openHours['3_to']}</div>}
-                        {(openHours['4_from'] && openHours['4_to']) &&
-                        <div>czwartek: {openHours['4_from']} - {openHours['4_to']}</div>}
-                        {(openHours['5_from'] && openHours['5_to']) &&
-                        <div>piątek: {openHours['5_from']} - {openHours['5_to']}</div>}
-                        {(openHours['6_from'] && openHours['6_to']) &&
-                        <div>sobota: {openHours['6_from']} - {openHours['6_to']}</div>}
-                        {(openHours['7_from'] && openHours['7_to']) &&
-                        <div>niedziela: {openHours['7_from']} - {openHours['7_to']}</div>}
+            {openHoursIsNotEmpty(openHours) && (
+                <div className={"hours-open-apartaments"}>
+                    <p>GODZINY OTWARCIA:</p>
+                    <div className={'container-hours'}>
+                        <img alt="" src={require('../../svg/icons/clock.svg')}/>
+                        <div className={"info"}>
+                            {(openHours['1_from'] && openHours['1_to']) &&
+                            <div>poniedziałek: {openHours['1_from']} - {openHours['1_to']}</div>}
+                            {(openHours['2_from'] && openHours['2_to']) &&
+                            <div>wtorek: {openHours['2_from']} - {openHours['2_to']}</div>}
+                            {(openHours['3_from'] && openHours['3_to']) &&
+                            <div>środa: {openHours['3_from']} - {openHours['3_to']}</div>}
+                            {(openHours['4_from'] && openHours['4_to']) &&
+                            <div>czwartek: {openHours['4_from']} - {openHours['4_to']}</div>}
+                            {(openHours['5_from'] && openHours['5_to']) &&
+                            <div>piątek: {openHours['5_from']} - {openHours['5_to']}</div>}
+                            {(openHours['6_from'] && openHours['6_to']) &&
+                            <div>sobota: {openHours['6_from']} - {openHours['6_to']}</div>}
+                            {(openHours['7_from'] && openHours['7_to']) &&
+                            <div>niedziela: {openHours['7_from']} - {openHours['7_to']}</div>}
+                        </div>
                     </div>
                 </div>
-            </div>
-            }
-            {(acf.field_map_address && acf.field_map_city) &&
-            <div className={'address'}>
-                <p>ADRES</p>
-                <div className={'info'}>{acf.field_map_postcode} {acf.field_map_city}</div>
-                <div className={'info'}>{acf.field_map_address} </div>
-            </div>
-            }
-            <div className={'contact-container'}>
-                {acf.field_contact_phone &&
-                <div>
-                    <img alt='' src={require('../../svg/icons/phone_white.svg')}/>
-                    <div>{acf.field_contact_phone}</div>
+            )}
+            {(acf.field_map_address && acf.field_map_city) && (
+                <div className={'address'}>
+                    <p>ADRES</p>
+                    <div className={'info'}>{acf.field_map_postcode} {acf.field_map_city}</div>
+                    <div className={'info'}>{acf.field_map_address} </div>
                 </div>
-                }
-                <br/>
-                {acf.field_contact_email && visibleEmail &&
-                <div>
-                    <img alt='' src={require('../../svg/icons/mail.svg')}/>
-                    <div>{acf.field_contact_email}</div>
-                </div>
-                }
-                {!visibleEmail || !acf.field_contact_email ? "" : <br/>}
-
-                {acf.field_contact_www &&
-                <div className={'www-container'}>
-                    <img alt='' src={require('../../svg/icons/www_white.svg')}/>
-                    <div className={'www'}>{acf.field_contact_www}</div>
-                </div>
-                }
-            </div>
+            )}
+            <PageHeaderContact acf={acf}/>
             <div className={'buttons-container'}>
                 {acf.field_map_gps && <SingleContentBottom onAddToPlaner={checkDuplicateItem}/>}
             </div>

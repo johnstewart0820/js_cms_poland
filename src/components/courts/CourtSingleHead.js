@@ -6,16 +6,14 @@ import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
 import {openHoursIsNotEmpty} from "../../extra/functions";
+import PageHeaderContact from "../header/PageHeaderContact";
 
 function CourtSingleHead({id, title, custom_data, image, acf}) {
     const planerContext = React.useContext(PlanerContext);
-    const visibleEmail = acf.field_contact_email_is_visible;
     const sourfaceTypeOfCourt = JSON.parse(custom_data.courts).sourface_type;
     const minutesPerReservation = JSON.parse(custom_data.courts).minutes_per_reservation;
     const costPerReservation = JSON.parse(custom_data.courts).cost_per_reservation;
     const openHours = JSON.parse(custom_data.courts).hours;
-
-
 
     function checkDuplicateItem() {
         let isDuplicate = planerContext.ids.includes(id);
@@ -97,28 +95,7 @@ function CourtSingleHead({id, title, custom_data, image, acf}) {
                 <div className={'info'}>{acf.field_map_address} </div>
             </div>
             }
-            <div className={'contact-container'}>
-                {acf.field_contact_phone &&
-                <div>
-                    <img alt='' src={require('../../svg/icons/phone_white.svg')}/>
-                    <div>{acf.field_contact_phone}</div>
-                </div>
-                }
-                <br/>
-                {acf.field_contact_email && visibleEmail &&
-                <div>
-                    <img alt='' src={require('../../svg/icons/mail.svg')}/>
-                    <div>{acf.field_contact_email}</div>
-                </div>
-                }
-                {!visibleEmail || !acf.field_contact_email ? "" : <br/>}
-                {acf.field_contact_www &&
-                <div className={'www-container'}>
-                    <img alt='' src={require('../../svg/icons/www_white.svg')}/>
-                    <div className={'www'}>{acf.field_contact_www}</div>
-                </div>
-                }
-            </div>
+            <PageHeaderContact acf={acf}/>
             <button className="button-rezerwation button-download button-link  full-width">
                 REZERWACJA
             </button>

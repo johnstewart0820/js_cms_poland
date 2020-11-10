@@ -5,12 +5,12 @@ import '../../svg/icons/tourist.svg';
 import SingleContentBottom from "../common-single/SingleContentBottom";
 import PlanerContext from "../../constants/PlanerContext";
 import {openHoursIsNotEmpty} from "../../extra/functions";
+import PageHeaderContact from "../header/PageHeaderContact";
 
 
 function AttractionSingleHead({id, title, categories, categories_labels, image, acf}) {
     const iconsBoard = acf.field_recomended_for;
     const openHours = acf.field_openinghours;
-    const visibleEmail = acf.field_contact_email_is_visible;
     const [ifTrail, setIfTrail] = React.useState(false);
     const planerContext = React.useContext(PlanerContext);
 
@@ -135,28 +135,7 @@ function AttractionSingleHead({id, title, categories, categories_labels, image, 
                 <div className={'info'}>{acf.field_map_address} </div>
             </div>
             }
-            <div className={'contact-container'}>
-                {acf.field_contact_phone &&
-                <div>
-                    <img alt='' src={require('../../svg/icons/phone_white.svg')}/>
-                    <div>{acf.field_contact_phone}</div>
-                </div>
-                }
-                <br/>
-                {acf.field_contact_email && visibleEmail &&
-                <div>
-                    <img alt='' src={require('../../svg/icons/mail.svg')}/>
-                    <div>{acf.field_contact_email}</div>
-                </div>
-                }
-                {!visibleEmail || !acf.field_contact_email ? "" : <br/>}
-                {acf.field_contact_www &&
-                <div className={'www-container'}>
-                    <img alt='' src={require('../../svg/icons/www_white.svg')}/>
-                    <div className={'www'}>{acf.field_contact_www}</div>
-                </div>
-                }
-            </div>
+            <PageHeaderContact acf={acf}/>
             <div className={'buttons-container'}>
                 {acf.field_map_gps &&
                 <SingleContentBottom onAddToPlaner={checkDuplicateItem}
