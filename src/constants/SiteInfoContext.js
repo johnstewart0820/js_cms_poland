@@ -128,7 +128,7 @@ function SiteInfoContextProvider(props) {
             active_language: activeLocale,
             changeLanguage,
         }}>
-			  	<FullPageLoader extra_classes={ TourismRoutes.Reservation ? 'hidden' : !!pageInfo ? "hidden" : "" }>
+			  	<FullPageLoader extra_classes={ !!pageInfo ? "hidden" : TourismRoutes.Reservation ? 'hidden' : ''}>
             	{ props.children }
 				</FullPageLoader>
         </SiteInfoContext.Provider>

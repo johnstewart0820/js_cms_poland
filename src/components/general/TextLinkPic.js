@@ -5,6 +5,7 @@ import SectionHeading from "./SectionHeading";
 import "../../styles/buttons/button-link.scss";
 import "../../styles/general/text-link-pic.scss";
 import {Link} from "react-router-dom";
+import Parser from "html-react-parser";
 
 const TextLinkPic = ({heading, text, link, link_label, picture}) => (
     <section className="text-link-pic">
@@ -13,7 +14,7 @@ const TextLinkPic = ({heading, text, link, link_label, picture}) => (
                 <SectionHeading heading={heading}/>
 
                 <div className="text-link-pic__text">
-                    <p>{text}</p>
+                    <p>{Parser(text)}</p>
 
                     {link && link_label && (
                         <Link to={link} className="button-link green-transparent">
